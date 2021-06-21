@@ -1,0 +1,72 @@
+h2 {
+  text-align: center;
+}
+h3 {
+  text-align: center;
+}
+.point {
+  height: 14px;
+  width: 14px;
+  margin: 1px;
+  background-color: none;
+  border-radius: 50%;
+  border: 2px;
+  border-style: outset;
+  display: inline-block;
+  vertical-align:middle;  
+}
+.points{
+  float:right;
+  height:20px;
+  overflow: hidden;
+  width: 100px;
+}
+div.statList{
+  width:240px;
+  float:left;
+  padding:10px;
+}
+div.statSection{
+  
+  width:800px;
+}
+.point:hover{background-color:#ff9999;}
+.point.mOver{background-color:#ff9999;}
+.fill{background: radial-gradient(#ff6666,#cc0000);}
+.fill:hover{background: radial-gradient(#ff6666,#ff6666);}
+.fill.mOver{background: radial-gradient(#ff6666,#ff6666);}
+.init{background: radial-gradient(#ff6666,#660000);}
+.init:hover{background: radial-gradient(#ff6666,#660000);}
+.init.mOver{background: radial-gradient(#ff6666,#660000);}
+.bonus{background-color: #0000bb;}
+.bonus:hover{background-color: #cc9999;}
+.bonus.mOver{background-color: #cc9999;}
+
+.ulStats {
+  text-align:left;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.statName{
+  float:left;
+  width : 140px;
+  height: 20px;
+  overflow:hidden;
+  white-space: nowrap;
+}
+.statName:after{content : " ________________"}
+.statResource{
+  margin:auto;
+  width: 480px;
+  clear: both;
+}
+.resourcePoints{
+  float:left;
+  width: 160px;
+  text-align: center;
+}
+.resourcePoints.highlight{
+  color:#ff0000
+}
+.resourcePoints.highlight:after{content: "!"}
