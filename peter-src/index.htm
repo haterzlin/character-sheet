@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Peter CharacterSheet</title>
+    <link rel="stylesheet" href="./App.css" type="text/css">
+  </head>
+  <body>
+
+    <div id="container"></div>  
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!--script src="../react/react.js"></script-->
+    <!--script src="../react/react-dom.js"></script-->
+    <!--script src="../react/babel.js"></script-->
+
+    <script src="App-data.js"></script>
+
+<script type="text/babel">
+
+const isExist = (ref)       => typeof ref != 'undefined' && ref != null;
+const isArray = (ref)       => typeof ref == 'object' && ref != null;
+const isFunction = (ref)    => typeof ref == 'function' && ref != null;
+const isObject = (ref)      => typeof ref == 'object' && ref != null;
+const getValue = (ref, def) => isExist(ref) ? ref : def;
+
+function cloneObject(obj)
+	{
+	return JSON.parse(JSON.stringify(obj));	// note: Object.assign work bad
+	}
+
+function cloneArray(arr)
+	{
+	return JSON.parse(JSON.stringify(arr));	// note: Object.assign work bad
+	}
+
+// ---
+
+class BarNode extends React.Component
+{
+constructor(props)
+	{
+	super(props);
+	this.state = {
+		actived : false, 
+		hover   : false,
+		isClick : isFunction(this.props.onClick),
+		isHover : isFunction(this.props.onMouseHover)
+		};
+	if (this.state.isClick)
+		{
+		this.onClick = this.onClick.bind(this);
+		}
+	if (this.state.isHover)
+		{
+		this.onMouseOver = this.onMouseOver.bind(this);
+		this.onMouseOut = this.onMouseOut.bind(this);
+		}
+	}
+  
+onClick(event)
+	{
+	event.preventDefault();
+        this.setState({
+		actived: this.state.actived ? false : true
+		});
+	this.props.onClick(this.props.value);
+	}
+
+onMouseOver(event)
+	{
+	event.preventDefault();
+        this.setState({
+		hover: true
+		});
+	this.props.onMouseHover(this.props.value, this.state.hover);
+	};
+
+onMouseOut(event)
+	{
+	event.preventDefault();
+        this.setState({
+		hover: false
+		});
+	this.props.onMouseHover(this.props.value, this.state.hover);
+	}
+
+render()
+	{
+	return (
+		<span
+			onClick={this.state.isClick ? this.onClick : function(){}}
+			onMouseOver={this.state.isHover ? this.onMouseOver : function(){}}
+			onMouseOut={this.state.isHover ? this.onMouseOut : function(){}}
+			className={'clickable '+(this.props.actived?' actived':'')+' '+(this.props.hover?' hover':'')}>{this.props.text || ""}</span>
+	       );
+	}
+};
+
+// ---
+
+class App extends React.Component {  
+
+constructor(props)
+	{
+	super(props);	// note: use "super(props)", when need props in subclass, other use "this.props = props;"
+	this.state = {
+		"lng_selected"      : this.props.config.lng_selected,
+		"character_selected": this.props.config.character_selected,
+		"character_fields"  : null
+		};
+	var value = null;
+	this.state.character_selected = null;
+	this.state.character_fields   = this.importCharacterSheet();
+ 	this.changeField     = this.changeField.bind(this);
+ 	this.changeLanguage  = this.changeLanguage.bind(this);
+ 	this.changeCharacter = this.changeCharacter.bind(this);
+ 	this.exportCharacterSheet = this.exportCharacterSheet.bind(this);
+	this.handleChange = this.handleChange.bind(this);
+	this.changeInputText = this.changeInputText.bind(this);
+	this.fieldHover = this.fieldHover.bind(this);
+        this.formSubmit = this.formSubmit.bind(this);
+	}
+
+error(source, text)
+	{
+	console.log(['Error App', source].join('.') + ': ' + text);
+	}
+
+translate(id)
+	{
+	var lng = this.state.lng_selected;
+	lng = isExist(this.props.lng[lng]) ? lng : 'en';
+	return String(
+		isExist(this.props.lng[lng][id]) ? this.props.lng[lng][id]
+		 : ( isExist(this.props.lng['en']) && getValue(this.props.lng['en'][id], '') || this.error('translate','lng[en] id='+id) )
+		);
+	}
+
+importParser(template, obj, list)	// parse character_sheet to list of [field_id, value]
+	{
+	var i, fn;
+	fn = 'importParser';
+	for(i in template)
+		{
+		if (!isObject(obj) || !(i in obj))
+			{
+			continue;
+			}
+		if (isArray(template[i]))
+			{
+			if (!isArray(obj[i]))
+				{
+				this.error(fn, 'Value in "parsed object" is not Array.');
+				return;
+				}
+			this.importParser(template[i], obj[i], list);
+			}
+		else	{
+			list[template[i]] = obj[i];	// list [ field_id ] = sheet_value
+			//console.log([ list[template[i]], obj[i]]);	// list [ field_id ] = sheet_value
+			}
+		}
+	return list;
+	}
+
+importCharacterSheet(character_sheet)
+	{
+	var fn = 'importCharacterSheet';
+//console.log(fn + JSON.stringify(character_sheet));
+	var i, i_end, list, fields;
+	character_sheet = isObject(character_sheet) ? character_sheet : {};
+	list   = {};
+	list   = this.importParser(this.props.config.parser_template, this.props.config.CharacterSheetBlank, list);	// parse BLANK_sheet to list { id: value } -- kdyby byly sheet neuplny, tak nastav vychozi hodnoty
+	list   = this.importParser(this.props.config.parser_template, character_sheet, list);				// parse sheet to list { id: value }
+	fields = cloneObject(this.props.config.fields);
+	// update list to fields
+	for (i in list)
+		{
+		if (isExist(fields[i]))
+			{
+			fields = this.updateField(fields, i, list[i]);
+			}
+		}
+	return fields;
+	}
+
+exportParser(template, obj, out)	// parse character_sheet to list of [field_id, value]
+	{
+	var i, fn, id;
+	fn = 'exportParser';
+	if (!isObject(obj))
+		{
+		return false;
+		}
+	for(i in template)
+		{
+		//console.log('exportParser '+JSON.stringify(obj))
+		if (isObject(template[i]))
+			{
+			this.exportParser(template[i], obj, out[i]);
+			}
+		else	{
+			id = template[i];
+			if (!(id in obj) || !isExist(obj[id].value))
+				{
+				this.error(fn, 'Field or Field.value not exist in character_fields. ' + String(id));
+				return;
+				}
+			out[i] = obj[id].value;
+			}
+		}
+	}
+
+exportCharacterSheet(value)
+	{
+	var fn = 'exportCharacterSheet';
+//console.log(fn);
+	var character_sheet  = cloneObject(this.props.config.CharacterSheetBlank);
+	var character_fields = cloneObject(this.state.character_fields);
+//console.log('exportCharacterSheet '+JSON.stringify(character_sheet))
+	this.exportParser(this.props.config.parser_template, character_fields, character_sheet);
+console.log(fn + JSON.stringify(character_sheet));
+	return;
+	}
+
+sumaOfFields(fields, list)
+	{
+	var i, i_end, suma;
+	suma  = 0;
+	i_end = list.length;
+	for(i=0; i<i_end; i++)
+		{
+		suma += isExist(fields[list[i]]) && isExist(fields[list[i]].value) ? fields[list[i]].value : 0;
+		}
+	return suma;
+	}
+
+updateField(fields, id, value)
+	{
+	// nastav hodnotu do form
+	if (isExist(fields[id]))
+		{
+		var field = fields[id];
+		var fields_for_priority = [12, 17, 22];
+		var field_priority = 10;
+//		console.log('updateField', field.type)
+		if (field.type=='attPriorityBar')
+			{
+			var x, index, i, i_end, f, ordered;
+			i_end  = fields_for_priority.length;
+			id    *= 1;	// to int
+			value *= 1;	// to int
+			value  = value>=0 && value<i_end ? value : i_end-1;	// value validate
+
+			f = isExist(fields[field_priority]) ? fields[field_priority] : null;
+			ordered = isExist(f) && isExist(f.priority) && f.priority.length==i_end ? f.priority : cloneArray(fields_for_priority);
+			index = ordered.indexOf(id);
+			if (index>=0)
+				{
+				ordered.splice(index, 1);		// remove value from old position
+				ordered.splice(value, 0, id);		// add value to new position
+				}
+			for(i=0; i<i_end; i++)
+				{
+				fields[ordered[i]].value = i;		// copy all values back
+				}
+			fields[field_priority].priority = ordered;	// save ordered
+			}
+		if (field.type=='attPointBar' && field.value===value)
+			{
+			value -= 1;
+			}
+		if (isExist(field.value_range))
+			{
+			var r = field.value_range;
+			value = value<r[0] ? r[0] : value>r[1] ? r[1] : value;
+			}
+		field.value = value;
+		if (fields[id].type=='attPriorityBar' || fields[id].type=='attPointBar')
+			{
+			// recompute sums
+			var l = fields_for_priority.length;
+			fields[11].value = this.sumaOfFields(fields, [13, 14, 15]) - (l - fields[12].value);
+			fields[16].value = this.sumaOfFields(fields, [18, 19, 20]) - (l - fields[17].value);
+			fields[21].value = this.sumaOfFields(fields, [23, 24, 25]) - (l - fields[22].value);
+			}
+		}
+	return fields;
+	}
+
+updateFieldHover(fields, id, value)
+	{
+	fields[id].hover = value;
+	return fields;
+	}
+
+changeCharacterBySheet(value)
+	{
+	var fn = 'changeCharacterBySheet';
+	console.log(fn);
+	this.setState({
+		"character_selected": null,
+		"character_fields"  : this.importCharacterSheet(isArray(value) ? value : this.props.config.CharacterSheetBlank)
+		});
+	}
+
+changeCharacterByCharacterId(value)
+	{
+	var fn = 'changeCharacterByCharacterId';
+	console.log(fn);
+	var list = this.props.characters_list;
+	if (isExist(list[value]))
+		{
+		this.state.character_selected  = value;
+		this.state.character_fields  = this.importCharacterSheet(list[value]);	// kdyz se nepouzije setState, tak se nespusti samo componentDidUpdate a musi se napsat na to prikaz forceUpdate()
+		}
+	else 	{
+		this.changeCharacterBySheet();
+		}
+	}
+
+changeField(value)
+	{
+	var fn = 'changeField';
+//	console.log(fn, JSON.stringify(value));
+	this.state.character_fields  = this.updateField(this.state.character_fields, value.id, value.value);
+	this.forceUpdate();
+	}
+
+changeLanguage(value)
+	{
+	var fn = 'changeLanguage';
+	console.log(fn);
+	this.setState({'lng_selected': value}); // note: after setState autoru forceUpdate
+	}
+
+changeCharacter(value)
+	{
+	var fn = 'changeCharacter';
+	console.log(fn);
+	this.changeCharacterByCharacterId(value);
+	this.forceUpdate();
+	}
+
+fieldHover (value, hover)
+	{
+	this.state.character_fields = this.updateFieldHover(this.state.character_fields, value.id, hover ? -1 : value.value);
+	this.forceUpdate();
+	}
+
+changeInputText(event)
+	{
+	console.log('changeInputText')
+	event.preventDefault();
+	var id = event.target.name;
+	id = id.replace(/^.*?\[|\]$/g, '');
+	if (isExist(this.state.character_fields[id]))	// && isExist(event.target.value)
+		{
+		this.state.character_fields[id].value = event.target.value;
+		};
+	}
+
+handleChange = event => {
+	event.preventDefault();
+	var value = { id   : event.target.id.replace(/^.*?\[|\].*/g,''),
+		  value: event.target.value
+		}
+	this.state.character_fields  = this.updateField(this.state.character_fields, value.id, value.value);
+	this.forceUpdate();
+	}
+
+formSubmit(event)
+	{
+	event.preventDefault();
+	}
+
+createFormField(id, data)
+	{
+	var fn = 'createFormField';
+	if (!isExist(data.type))
+		{
+		this.error(fn,'Bad "data".');
+		return '';
+		}
+	var self = this;
+	var field_class = data.type + ' ' + 'f' + id;
+	switch (data.type)
+		{
+		case 'inputText' :	//// defaultValue
+			var for_id = String('field' + '[' + id + ']');
+			return	<div className={field_class}>
+				    <label htmlFor={for_id}>{this.translate(data.label)} </label> 
+                                    <input type="text" id={for_id} name={for_id} value={data.value} onChange={this.handleChange}/> 
+                                    {String(data.value)}
+				</div>
+			break;
+
+		case 'headerMain' :
+			return <div className={field_class}><h3>{this.translate(data.text)}</h3></div>
+			break;
+
+		case 'header' :
+			return <div className={field_class}><b>{this.translate(data.text)}</b></div>
+			break;
+
+		case 'attHeader' :
+			var value_color = data.value_range[0]<=data.value && data.value<=data.value_range[1] ? (isExist(data.priority) && data.priority<2 ? 'textCyan': '') : 'textRed';
+			return	<div className={field_class}>
+				    <span className="name">{this.translate(data.text)}: </span> 
+				    (available points <span className={value_color || ''}>{data.value_range[1] - data.value}</span>)
+				</div>
+			break;
+		case 'attPriorityBar' :
+			var level   = data.value_range[1];
+			var bar     = [];
+			var actived = '';
+			var hover = '';
+			data.hover = isExist(data.hover) ? data.hover : -1;
+			for (var i=0; i<level; i++)
+				{
+				actived = i==data.value;
+//console.log(actived, i, id, data.value)
+				hover   = i==data.hover;
+				bar.push(<BarNode value={{id:id, value:i}} onClick={self.changeField} onMouseHover={self.fieldHover} actived={actived} hover={hover} text={["A", "B", "C"][i]}/>);	// backSelf={self}
+				}
+			return	<div className={field_class+" attPointBar v2"}>
+				    <span className="name">{this.translate(data.label)}</span>
+				    <span className="pointbar">{bar}</span>
+				</div>
+			break;
+//				    <span className="num">{data.value}</span>
+		case 'attPointBar' :
+//Warning: Each child in a list should have a unique "key" prop.
+			var level   = data.value_range[1];
+			var bar     = [];
+			var actived = '';
+			var hover = '';
+//			var value = '';
+			data.hover = isExist(data.hover) ? data.hover : -1;
+			for (var i=0; i<level; i++)
+				{
+				actived = i<data.value;
+				hover   = i<data.hover;
+				bar.push(<BarNode value={{id:id, value:i+1}} onClick={self.changeField} onMouseHover={self.fieldHover} actived={actived} hover={hover} text=""/>);	// backSelf={self}
+				}
+			return	<div className={field_class+" v1"}>
+				    <span className="name">{this.translate(data.label)}</span>
+				    <span className="num">{data.value}</span>
+				    <span className="pointbar">{bar}</span>
+				</div>
+			break;
+
+		case 'lngBar' :
+			var list    = this.props.lng;
+			var bar     = [];
+			var actived = '';
+			for (var i in list)
+				{
+				actived = i==this.state.lng_selected;
+				bar.push(<BarNode value={i} text={list[i][1]} onClick={self.changeLanguage} actived={actived}/>);	// backSelf={self}
+				}
+			return	<div className={field_class}><span className="name">{this.translate(data.label)}: </span>{bar}</div>
+			break;
+
+		case 'charactersBar' :
+			var list    = this.props.characters_list;
+			var bar     = [];
+			var actived = '';
+			//actived = false;
+			//bar.push(<BarNode value={null} text={"blank"} onClick={self.changeCharacter} actived={actived}/>);	// backSelf={self}
+			for (var i in list)
+				{
+				actived = i==this.character_selected;
+				bar.push(<BarNode value={i} text={list[i].Name || ""} onClick={self.changeCharacter} actived={actived}/>);	// backSelf={self}
+				}
+			return	<div className={field_class}><span className="name">{this.translate(data.label)}: </span>{bar}</div>
+			break;
+
+		case 'buttonsBar' :
+			var list    = {0: {"text": "Character to console.log", "fn": this.exportCharacterSheet }};
+			var bar     = [];
+			var actived = '';
+			actived = false;
+			for (var i in list)
+				{
+				bar.push(<BarNode value={i} text={list[i].text || ""} onClick={list[i].fn} actived={actived}/>);	// backSelf={self}
+				}
+			return	<div className={field_class}><span className="name">{this.translate(data.label)}: </span>{bar}</div>
+			break;
+		default: return false; break;
+		}
+	}
+
+
+render()
+	{
+	var i, j;
+	var list   = [];
+	var att_header   = [];
+	var att_group   = [];
+	var fields = this.state.character_fields;
+	for (i in fields)
+		{
+		if (fields[i].type=="attHeader" && isExist(fields[i*1+1]) && fields[i*1+1].type=="attPriorityBar")
+			{
+			fields[i].priority = fields[i*1+1].value;	// !!! hack, zkopirovanie priority, aby som mohol header ofarbit, ked je bonusovana (hack spociva v tom, ze nemam presne definovane, ze je to prave z toho policka)
+			}
+		if (att_group.length>0 && (fields[i].type!=="attPriorityBar" && fields[i].type!=="attPointBar"))
+			{
+			list.push(<div className="att_group">{att_group}</div>);
+			att_group = [];
+			}
+		if (fields[i].type=="attHeader" || fields[i].type=="attPriorityBar" || fields[i].type=="attPointBar")
+			{
+			att_group.push(this.createFormField(i, fields[i]));
+			continue;
+			}
+		list.push(this.createFormField(i, fields[i]));
+		}
+	if (att_group.length>0)
+		{
+		list.push(<div class="attGroup">{att_group}</div>);
+		att_group = [];
+		}
+	return (
+		<div className="App">
+			<form>
+				{list}
+			</form>
+		</div>
+		);
+	}
+
+};
+
+// ---
+
+
+
+
+
+const appRender = (CharacterSheet) =>
+	ReactDOM.render(
+	    <App config={config}
+		 lng={lng}
+		 CharacterSheet={isExist(CharacterSheet) ? CharacterSheet : null}
+		 characters_list={characters_list}
+		/>,
+	    document.getElementById('container')
+	    );
+
+appRender();
+</script>
+
+</body>  
+</html>

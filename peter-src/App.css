@@ -1,0 +1,75 @@
+
+body {background:#eee;}
+.App { border:0px solid #f00; __height:51rem; overflow:hidden;}	/* odstrani volne misto po position:relative prvku field */
+.App p {border:1px solid #f00;}
+.App p#total {border:0px solid #f00; cursor:default; }
+
+.App p.actived {background-color:#dfd;}
+.App .clickable	{cursor:pointer;}
+
+.header,
+.attHeader,
+.attPointBar
+	{width: 15rem; background-color: #eee;}
+
+.att_group {float:left;}
+.attHeader::before {content:""; clear:left; float:none;}
+.App .lngBar {clear:left; float:none; margin-top:1rem;}
+
+.App .headerMain		{float:none; clear:both; margin:0.5em 0;}
+
+.App .header		{float:none; clear:both; margin:0.5em 0;}
+
+.App .inputText  {float:none; clear:both; position:relative;}
+.App .inputText::after  {float:none; clear:both; content:"."; color:#eee;}
+.App .inputText label {float:left; min-width:6.5rem; max-width:6.5rem;}
+.App .inputText input {float:left; min-width:20rem;}
+
+
+.App .attHeader	{float:none; clear:both; margin:0.5em 0;}
+.App .attHeader	.name {font-weight:bold;}
+
+
+.App .textRed {color:#f00;}
+.App .textCyan {color:#0b0; font-weight:bold;}
+
+.App .attPointBar  {float:none; clear:both; position:relative; }
+.App .attPointBar::after  {float:none; clear:both; content:"."; color:#eee;}
+.App .attPointBar .name {float:left; min-width:6.5rem; max-width:6.5rem;}
+.App .attPointBar .num {float:left; min-width:1rem;}
+.App .attPointBar.v1 .pointbar {float:left; font-size:0.5rem;}
+.App .attPointBar .pointbar span {font-weight:bold; cursor: pointer; display:inline-block; height:.75rem; width:.75rem; margin-left:0.1rem;}
+.App .attPointBar.v1 .pointbar span {
+	color:#eee; 
+	background-color:#fff; border:1px solid #bbb; border-color:#ccc #888 #888 #ccc; border-radius:0.5rem; 
+	background: linear-gradient(-225deg, #eee, #fff);
+	}
+.App .attPointBar.v1 .pointbar span.hover {background-color:#fdd;
+	color:#fbb; 
+	background: linear-gradient(-45deg, #fffafa, #fbb);
+	}
+.App .attPointBar.v1 .pointbar span.actived {
+	color:#f00; background-color:#e00;
+	background: linear-gradient(-45deg, #fbb, #f00);
+	}
+.App .attPointBar.v2 .pointbar {float:left; font-size:0.75rem;}
+.App .attPointBar.v2 .pointbar span {
+	color:#000; 
+	background-color:#fff; border:1px solid #bbb; border-color:#ccc #888 #888 #ccc; border-radius:0.5rem; 
+	background: linear-gradient(-225deg, #eee, #fff);
+	}
+.App .attPointBar.v2 .pointbar span.hover {background-color:#fed;
+	color:#000; 
+	background: linear-gradient(-45deg, #fafffa, #bfb);
+	}
+.App .attPointBar.v2 .pointbar span.actived {
+	color:#000; background-color:#0e0;
+	background: linear-gradient(-45deg, #bbf, #0f0);
+	}
+.App .lngBar {margin-top:0.5rem;}
+.App .lngBar span {margin-right:0.5rem;}
+.App .lngBar span.actived {background-color:#8ce; color:#015;}
+.App .charactersBar {margin-top:0.5rem;}
+.App .charactersBar span {margin-right:0.5rem;}
+.App .charactersBar span.actived {background-color:#8ce; color:#015;}
+
