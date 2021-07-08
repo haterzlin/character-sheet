@@ -4,6 +4,8 @@ const app = Vue.createApp({
     return {
       attributes: {
           display: "Attributes",
+          resource: [0, 1, 4, 3, 1, 0],/*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots
+        sum of values in resource <= amount of values in section*/
           data: [
             {
                 display: "Physical",                 
@@ -47,11 +49,13 @@ const app = Vue.createApp({
                       value: 1                      
                     } 
                 ],
+                
         }],
              
       },
       skills: {
           display: "Skills",
+          resource: [12,7,5,3,0,0],
           data: [
               {
                 display: "Physical",
@@ -94,8 +98,9 @@ const app = Vue.createApp({
                     {display: "Science",value: 0},
                     {display: "Technology",value: 0}
                 ],
+             },
              
-             },],
+             ],
              
              
         }
@@ -116,30 +121,48 @@ app.component('sheet',{
 //STAT SECTION
 app.component('stat-section',{
   props: ['stats'],
-  template: `
+  data() {
+    return { 
+      resourceCount : null,
+  }},
+  template: `<div>{{resourceCount}}</div>
              <div class="statSection">
                <h2>{{stats.display}}</h2>
                <stat-category v-for="list in stats.data"
                :key="list.display"
                :categ="list"
+               :resource="this.resourceCount"
+               :scale="stats.resource.length - 1"
                ></stat-category></div>`,
+  created(){
+    let tmp = Array(this.stats.resource.length).fill(0)
+      for (var i = 0; i < this.stats.data.length; i++){
+        for (var j = 0; j < this.stats.data[i].list.length; j++){
+          tmp[this.stats.data[i].list[j].value]++;
+        }
+      }
+    tmp.forEach((element, index) => tmp[index] = this.stats.resource[index] - element);
+    this.resourceCount = tmp;
+  }
   
 })
 
 //STAT CATEGORY
 app.component('stat-category',{
-  props: ['categ'],
+  props: ['categ','resource','scale'],
   template:`<div class="statList"><h2>{{categ.display}}</h2>
              <ul class="ulStats">
              <li v-for="item in categ.list" :key="item.display">
              <stat 
                :stat="item"
+               :resource="resource"
+               :scale="scale"
                ></stat></li></ul></div>`
 })
 
 //STAT
 app.component('stat',{
-  props: ['stat'],
+  props: ['stat','resource','scale'],
   data() {
     return {
       initialValue : this.stat.value,
@@ -147,10 +170,10 @@ app.component('stat',{
       hoverToggle : false
     }},
   template: `<div>  
-    <div :class="{stat : true}">        
+    <div :class="{stat : true, mOver : hoverToggle}">        
       <div class="statName">{{stat.display}}</div>
       <div class="points">  
-        <span v-for="i in 5"       
+        <span v-for="i in scale"       
           :class="pointClass(i)"
           @click = "handleClick()" 
           @mouseover = "handleHover(i , true)"
@@ -183,8 +206,21 @@ app.component('stat',{
         var value = this.stat.value;
         var i = this.hoverPointer;
         var diff = i - value;
+        let tmp;
         
-
+        // -1 if not found || i if found [0, index]
+        const addCheck = (array, index) =>{
+          var i;
+          for (i = index; i >=0 ;i--){
+            if (array[i]>0) break;
+          }          
+          return i;
+        }
+        //adding points : check limit
+        if (diff > 0) {
+          tmp = addCheck(this.resource,i);
+          i = (tmp > value) ? tmp : value;
+        }
         //clicked filled point -> removing points, not below limit aka initial value
         if ((diff <= 0)&&(i>init)) i--;             
     
@@ -192,6 +228,8 @@ app.component('stat',{
         /*TODO
           https://v3.vuejs.org/style-guide/#implicit-parent-child-communication-use-with-caution
           consider using emits instead*/
+        this.resource[value]+=1;
+        this.resource[i]+=-1;
         this.stat.value = i;
       }
     }     
