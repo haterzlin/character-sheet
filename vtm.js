@@ -140,13 +140,21 @@ app.component('stat-category',{
 //STAT
 app.component('stat',{
   props: ['stat'],
+  data() {
+    return {
+      initialValue : this.stat.value,
+      hoverPointer : null,
+      hoverToggle : false
+    }},
   template: `<div>  
     <div :class="{stat : true}">        
       <div class="statName">{{stat.display}}</div>
       <div class="points">  
         <span v-for="i in 5"       
           :class="pointClass(i)"
-          @click = "handleClick()"        
+          @click = "handleClick()" 
+          @mouseover = "handleHover(i , true)"
+          @mouseleave = "handleHover(i , false)"               
           :value = i
         ></span>          
       </div>       
@@ -155,14 +163,36 @@ app.component('stat',{
         
     methods: {
       pointClass(i){
+        const init_val = this.initialValue;
+        const ptr = this.hoverPointer;
         const val = this.stat.value;
         return {
              point : true,
-             init : i<=val,
+             init : i<=init_val,
+             fill : i>init_val &&i<=val,
+             mOver : (ptr && (i === ptr || ((i>ptr) !== (i>val))))
              }
       },
+      handleHover(i, hover){
+        if (!hover) i=null;
+        this.hoverToggle = hover;
+        this.hoverPointer = i; 
+      },
       handleClick(){
-       
+        const init = this.initialValue;
+        var value = this.stat.value;
+        var i = this.hoverPointer;
+        var diff = i - value;
+        
+
+        //clicked filled point -> removing points, not below limit aka initial value
+        if ((diff <= 0)&&(i>init)) i--;             
+    
+        //OK setting values 
+        /*TODO
+          https://v3.vuejs.org/style-guide/#implicit-parent-child-communication-use-with-caution
+          consider using emits instead*/
+        this.stat.value = i;
       }
     }     
 })
