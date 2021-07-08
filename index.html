@@ -1,28 +1,19 @@
-<!doctype html>
 
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="index.css">
-<title>Vampire character generator</title>
+<title>Vampire the Masquerade</title>
+<script src="vue.global.js"></script>
+<link rel="stylesheet" href="vtm.css">
+
+</head>
+
 <body>
-
-<main id="chargen">
-
-    <h1>Vampire character generator</h1>
-
-    <div id="Attributes" class="clear">
-        <h2>Attributes</h2>
-        <div is="attribute-category"
-            v-for="(item, index) in Attributes"
-            v-bind:category="item"
-            v-on:sumchanged="RecomputeAttributePriorities()"
-	></div>    
-    </div>
-
-</main>
-
-<script src="vue.dev.js"></script>
-<script src="index.js"></script>
+<div id="root">
+<sheet :attr="attributes"
+       :skills="skills"></sheet></div>
+<script src="vtm.js"></script>
 </body>
-</html>
+
+</html> 
