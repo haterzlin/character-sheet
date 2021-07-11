@@ -106,7 +106,7 @@ const app = Vue.createApp({
         }
   }}
 })
-//SHEET
+
 app.component('sheet',{
   props: ['attr', 'skills'],
   template: `<stat-section 
@@ -118,7 +118,6 @@ app.component('sheet',{
             `
 })
 
-//STAT SECTION
 app.component('stat-section',{
   props: ['stats'],
   data() {
@@ -147,7 +146,6 @@ app.component('stat-section',{
   
 })
 
-//STAT CATEGORY
 app.component('stat-category',{
   props: ['categ','resource','scale'],
   template:`<div class="statList"><h2>{{categ.display}}</h2>
@@ -160,7 +158,6 @@ app.component('stat-category',{
                ></stat></li></ul></div>`
 })
 
-//STAT
 app.component('stat',{
   props: ['stat','resource','scale'],
   data() {
