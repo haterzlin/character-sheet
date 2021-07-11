@@ -1,187 +1,186 @@
-
 const app = Vue.createApp({
   data() {
     return {
       attributes: {
-        display: "Attributes",
+        id: "Attributes",
         resource: [0, 1, 4, 3, 1, 0],/*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots
         sum of values in resource <= amount of values in section*/
         data: [
           {
-            display: "Physical",
+            id: "Physical",
             list: [
               {
-                display: "Strength",
+                id: "Strength",
                 value: 1
               }, {
-                display: "Dexterity",
+                id: "Dexterity",
                 value: 1
               }, {
-                display: "Stamina",
+                id: "Stamina",
                 value: 1
               },
             ],
           }, {
-            display: "Social",
+            id: "Social",
             list: [
               {
-                display: "Charisma",
+                id: "Charisma",
                 value: 1
               }, {
-                display: "Manipulation",
+                id: "Manipulation",
                 value: 1
               }, {
-                display: "Composure",
+                id: "Composure",
                 value: 1
               }
             ],
           }, {
-            display: "Mental",
+            id: "Mental",
             list: [
               {
-                display: "Intelligence",
+                id: "Intelligence",
                 value: 1
               }, {
-                display: "Wits",
+                id: "Wits",
                 value: 1
               }, {
-                display: "Resolve",
+                id: "Resolve",
                 value: 1
               }
             ],
           }],
       },
       skills: {
-        display: "Skills",
+        id: "Skills",
         resource: [12, 7, 5, 3, 0, 0],
         data: [
           {
-            display: "Physical",
+            id: "Physical",
             list: [
               {
-                display: "Athlethics",
+                id: "Athlethics",
                 value: 0 
               },
               {
-                display: "Brawl",
+                id: "Brawl",
                 value: 0 
               },
               {
-                display: "Craft",
+                id: "Craft",
                 value: 0 
               },
               {
-                display: "Drive",
+                id: "Drive",
                 value: 0 
               },
               {
-                display: "Firearms",
+                id: "Firearms",
                 value: 0 
               },
               {
-                display: "Larceny",
+                id: "Larceny",
                 value: 0 
               },
               {
-                display: "Melee",
+                id: "Melee",
                 value: 0 
               },
               {
-                display: "Stealth",
+                id: "Stealth",
                 value: 0 
               },
               {
-                display: "Survival",
+                id: "Survival",
                 value: 0 
               }
             ],
           },
           {
-            display: "Social",
+            id: "Social",
             list: [
               {
-                display: "Animal Ken",
+                id: "Animal Ken",
                 value: 0 
             },
 
             {
-                display: "Etiquette",
+                id: "Etiquette",
                 value: 0 
             },
 
             {
-                display: "Insight",
+                id: "Insight",
                 value: 0 
             },
 
             {
-                display: "Intimidation",
+                id: "Intimidation",
                 value: 0 
             },
 
             {
-                display: "Leadership",
+                id: "Leadership",
                 value: 0 
             },
 
             {
-                display: "Performance",
+                id: "Performance",
                 value: 0 
             },
 
             {
-                display: "Persuasion",
+                id: "Persuasion",
                 value: 0 
             },
 
             {
-                display: "Streetwise",
+                id: "Streetwise",
                 value: 0 
             },
 
             {
-                display: "Subterfuge",
+                id: "Subterfuge",
                 value: 0 
             }
             ],
           },
           {
-            display: "Mental",
+            id: "Mental",
             list: [
               {
-                display: "Academics",
+                id: "Academics",
                 value: 0 
               },
               {
-                display: "Awareness",
+                id: "Awareness",
                 value: 0 
               },
               {
-                display: "Finance",
+                id: "Finance",
                 value: 0 
               },
               {
-                display: "Investigation",
+                id: "Investigation",
                 value: 0 
               },
               {
-                display: "Medicine",
+                id: "Medicine",
                 value: 0 
               },
               {
-                display: "Occult",
+                id: "Occult",
                 value: 0 
               },
               {
-                display: "Politics",
+                id: "Politics",
                 value: 0 
               },
               {
-                display: "Science",
+                id: "Science",
                 value: 0 
               },
               {
-                display: "Technology",
+                id: "Technology",
                 value: 0 
               }
             ],
@@ -212,9 +211,9 @@ app.component('stat-section', {
   },
   template: `<div>{{resourceCount}}</div>
              <div class="statSection">
-               <h2>{{stats.display}}</h2>
+               <h2>{{stats.id}}</h2>
                <stat-category v-for="list in stats.data"
-               :key="list.display"
+               :key="list.id"
                :categ="list"
                :resource="this.resourceCount"
                :scale="stats.resource.length - 1"
@@ -234,9 +233,9 @@ app.component('stat-section', {
 
 app.component('stat-category', {
   props: ['categ', 'resource', 'scale'],
-  template: `<div class="statList"><h2>{{categ.display}}</h2>
+  template: `<div class="statList"><h2>{{categ.id}}</h2>
              <ul class="ulStats">
-             <li v-for="item in categ.list" :key="item.display">
+             <li v-for="item in categ.list" :key="item.id">
              <stat 
                :stat="item"
                :resource="resource"
@@ -255,7 +254,7 @@ app.component('stat', {
   },
   template: `<div>  
     <div :class="{stat : true, mOver : hoverToggle}">        
-      <div class="statName">{{stat.display}}</div>
+      <div class="statName">{{stat.id}}</div>
       <div class="points">  
         <span v-for="i in scale"       
           :class="pointClass(i)"
@@ -320,4 +319,3 @@ app.component('stat', {
 })
 
 const vm = app.mount('#root')
-
