@@ -212,17 +212,17 @@ app.component('stat-section', {
       resourceCount: null,
     };
   },
-  template: `
-    <div>{{resourceCount}}</div>
+  template: `    
     <div class="statSection">
       <h2>{{stats.id}}</h2>
+      <div class="resourceCount">{{resourceCount}}</div>
       <stat-category 
         v-for="list in stats.data"
         :key="list.id"
         :categ="list"
         :resource="this.resourceCount"
         :scale="stats.resource.length - 1">
-      </stat-category>
+      </stat-category>      
     </div>`,
   created() {
     let tmp = Array(this.stats.resource.length).fill(0);

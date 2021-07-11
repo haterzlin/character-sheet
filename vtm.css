@@ -90,6 +90,10 @@ div.statSection {
   clear: both;
 }
 
+.recourceCount {
+  clear: both;
+}
+
 .resourcePoints {
   float: left;
   width: 160px;
