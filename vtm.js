@@ -102,42 +102,34 @@ const app = Vue.createApp({
                 id: "Animal Ken",
                 value: 0 
             },
-
             {
                 id: "Etiquette",
                 value: 0 
             },
-
             {
                 id: "Insight",
                 value: 0 
             },
-
             {
                 id: "Intimidation",
                 value: 0 
             },
-
             {
                 id: "Leadership",
                 value: 0 
             },
-
             {
                 id: "Performance",
                 value: 0 
             },
-
             {
                 id: "Persuasion",
                 value: 0 
             },
-
             {
                 id: "Streetwise",
                 value: 0 
             },
-
             {
                 id: "Subterfuge",
                 value: 0 
