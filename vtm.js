@@ -263,7 +263,12 @@ app.component('stat-category', {
           <stat 
             :stat="item"
             :resource="resource"
-            :scale="scale">
+            :scale="scale"
+            @statchange="                
+              resource[item.value]+=1;
+              resource[$event]+=-1;
+              item.value = $event;
+            ">
           </stat>
         </li>
       </ul>
@@ -328,16 +333,10 @@ app.component('stat', {
       //clicked filled point -> removing points, not below limit aka initial value
       else if (new_value > this.initialValue) new_value--;
 
-      //OK setting values
-      /*TODO
-        https://v3.vuejs.org/style-guide/#implicit-parent-child-communication-use-with-caution
-        consider using emits instead*/
-      this.resource[this.stat.value] += 1;
-      this.resource[new_value] += -1;
-      this.stat.value = new_value;
+      this.$emit('statchange', new_value);
     },
   },
-  
+  emits: ['statchange'],
   template: `  
     <div :class="{stat : true, active : isActive}">        
       <div class="statName">{{stat.id}}</div>
