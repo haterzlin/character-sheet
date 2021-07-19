@@ -283,14 +283,11 @@ app.component('stat', {
 
   methods: {
     pointClass(i) {
-      const init_val = this.initialValue;
-      const ptr = this.hoverPointer;
-      const val = this.stat.value;
       return {
         point: true,
-        init: i <= init_val,
-        fill: i > init_val && i <= val,
-        mOver: ptr && (i === ptr || i > ptr !== i > val),
+        init: i <= this.initialValue,
+        fill: i > this.initialValue && i <= this.stat.value,
+        mOver: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value),
       };
     },
     handleHover(i, hover) {
@@ -299,10 +296,8 @@ app.component('stat', {
       this.hoverPointer = i;
     },
     handleClick() {
-      const init = this.initialValue;
-      var value = this.stat.value;
       var i = this.hoverPointer;
-      var diff = i - value;
+      var diff = i - this.stat.value;
       let tmp;
 
       // -1 if not found || i if found [0, index]
@@ -316,16 +311,16 @@ app.component('stat', {
       //adding points : check limit
       if (diff > 0) {
         tmp = addCheck(this.resource, i);
-        i = tmp > value ? tmp : value;
+        i = tmp > this.stat.value ? tmp : this.stat.value;
       }
       //clicked filled point -> removing points, not below limit aka initial value
-      if (diff <= 0 && i > init) i--;
+      if (diff <= 0 && i > this.initialValue) i--;
 
       //OK setting values
       /*TODO
         https://v3.vuejs.org/style-guide/#implicit-parent-child-communication-use-with-caution
         consider using emits instead*/
-      this.resource[value] += 1;
+      this.resource[this.stat.value] += 1;
       this.resource[i] += -1;
       this.stat.value = i;
     },
