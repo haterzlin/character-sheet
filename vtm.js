@@ -212,18 +212,6 @@ app.component('stat-section', {
       resourceCount: null,
     };
   },
-  template: `    
-    <div class="statSection">
-      <h2>{{stats.id}}</h2>
-      <div class="resourceCount">{{resourceCount}}</div>
-      <stat-category 
-        v-for="list in stats.data"
-        :key="list.id"
-        :categ="list"
-        :resource="this.resourceCount"
-        :scale="stats.resource.length - 1">
-      </stat-category>      
-    </div>`,
   created() {
     let tmp = Array(this.stats.resource.length).fill(0);
     for (var i = 0; i < this.stats.data.length; i++) {
@@ -236,6 +224,18 @@ app.component('stat-section', {
     );
     this.resourceCount = tmp;
   },
+  template: `    
+    <div class="statSection">
+      <h2>{{stats.id}}</h2>
+      <div class="resourceCount">{{resourceCount}}</div>
+      <stat-category 
+        v-for="list in stats.data"
+        :key="list.id"
+        :categ="list"
+        :resource="this.resourceCount"
+        :scale="stats.resource.length - 1">
+      </stat-category>      
+    </div>`
 });
 
 app.component('stat-category', {
@@ -266,21 +266,7 @@ app.component('stat', {
       hoverToggle: false,
     };
   },
-  template: `  
-    <div :class="{stat : true, mOver : hoverToggle}">        
-      <div class="statName">{{stat.id}}</div>
-      <div class="points">  
-        <span 
-          v-for="i in scale"       
-          :class="pointClass(i)"
-          @click = "handleClick()" 
-          @mouseover = "handleHover(i , true)"
-          @mouseleave = "handleHover(i , false)"               
-          :value = i>
-        </span>          
-      </div>             
-    </div>`,
-
+  
   methods: {
     pointClass(i) {
       return {
@@ -325,6 +311,21 @@ app.component('stat', {
       this.stat.value = i;
     },
   },
+  
+  template: `  
+    <div :class="{stat : true, mOver : hoverToggle}">        
+      <div class="statName">{{stat.id}}</div>
+      <div class="points">  
+        <span 
+          v-for="i in scale"       
+          :class="pointClass(i)"
+          @click = "handleClick()" 
+          @mouseover = "handleHover(i , true)"
+          @mouseleave = "handleHover(i , false)"               
+          :value = i>
+        </span>          
+      </div>             
+    </div>`
 });
 
 const vm = app.mount('#root');
