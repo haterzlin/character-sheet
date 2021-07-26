@@ -224,7 +224,7 @@ app.component('stat-section', {
    * 4 - we can have 4 attributes with value 2 and there are zero allocated
    * 3 - we can have 3 attrs with value 3
    * ...
-  */
+   */
   created() {
     let tmp = Array(this.stats.resource.length).fill(0);
     for (var i = 0; i < this.stats.data.length; i++) {
@@ -281,15 +281,12 @@ app.component('stat', {
   },
   
   methods: {
-    /*TODO computed could be better instead of method*/
+    /*TODO computed could be better instead of method */
     /**
-     * Returns class for point with value i
+     * Returns list of classes to add to point with value i
      *
-     * @param {InitialValue} initialValue Starting value of this stat
-     * @param {PointValue} i Value of processed point
-     * @param {StatValue} stat.value Current value of stat
-     * @param {HoverPointer} hoverPointer The value of point where mouse is pointed
-    */
+     * @param {Number} i Value of processed point
+     */
     pointClass(i) {
       return {
         point: true,
@@ -299,13 +296,10 @@ app.component('stat', {
       };
     },
     /**
-     * Called when user click on point
-     *
-     * @param {InitialValue} initialValue Starting value of this stat
-     * @param {StatValue} stat.value Current value of stat
-     * @param {HoverPointer} hoverPointer The value of point where mouse is pointed AKA the point that is clicked
-     * @param {AvailableDots} resource Amount of dots you can allocate
-     * @event valueChanged
+     * What to do when user clicks on point
+     * - we check restriction if we can change value 
+     * - if yes we save value to data
+     * - we also modify resourceCount array
     */
     handleClick() {
       var new_value = this.hoverPointer;
@@ -325,13 +319,14 @@ app.component('stat', {
         }
         return i;
       };
+      
       //clicked empty point -> check if add is possible
       if (new_value > this.stat.value) {
         tmp = addCheck(this.resource, new_value);
         new_value = tmp > this.stat.value ? tmp : this.stat.value;
       }
       //clicked filled point -> removing points, not below limit aka initial value
-      else if (new_value>this.initialValue) new_value--;
+      else if (new_value > this.initialValue) new_value--;
 
       //OK setting values
       /*TODO
