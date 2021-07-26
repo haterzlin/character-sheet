@@ -37,7 +37,7 @@ div.statSection {
   width: 800px;
 }
 
-.point.mOver {
+.point.active {
   background-color: #ff9999;
 }
 
@@ -45,7 +45,7 @@ div.statSection {
   background: radial-gradient(#ff6666, #cc0000);
 }
 
-.fill.mOver {
+.fill.active {
   background: radial-gradient(#ff6666, #ff6666);
 }
 
@@ -53,7 +53,7 @@ div.statSection {
   background: radial-gradient(#ff6666, #660000);
 }
 
-.init.mOver {
+.init.active {
   background: radial-gradient(#ff6666, #660000);
 }
 
@@ -61,7 +61,7 @@ div.statSection {
   background-color: #0000bb;
 }
 
-.bonus.mOver {
+.bonus.active {
   background-color: #cc9999;
 }
 

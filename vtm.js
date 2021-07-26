@@ -274,7 +274,7 @@ app.component('stat', {
         point: true,
         init: i <= this.initialValue,
         fill: i > this.initialValue && i <= this.stat.value,
-        mOver: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value),
+        active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value),
       };
     },
     
@@ -310,7 +310,7 @@ app.component('stat', {
   },
   
   template: `  
-    <div :class="{stat : true, mOver : isActive}">        
+    <div :class="{stat : true, active : isActive}">        
       <div class="statName">{{stat.id}}</div>
       <div class="points">  
         <span 
