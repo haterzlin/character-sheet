@@ -325,7 +325,7 @@ app.component('stat', {
         new_value = tmp > this.stat.value ? tmp : this.stat.value;
       }
       //clicked filled point -> removing points, not below limit aka initial value
-      else new_value--;
+      else if (new_value>this.initialValue) new_value--;
 
       //OK setting values
       /*TODO
