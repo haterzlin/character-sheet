@@ -212,6 +212,13 @@ app.component('stat-section', {
       resourceCount: null,
     };
   },
+  /**
+   * Counts values in stats.data, same format as stats.resource
+   *
+   * @param {AvailableDots} stats.resource Amount of dots you can allocate
+   * @param {StatsData} stats.data The data with values
+   * @param {ResourceCount} resourceCount Counter of resource - values in data
+  */
   created() {
     let tmp = Array(this.stats.resource.length).fill(0);
     for (var i = 0; i < this.stats.data.length; i++) {
@@ -269,6 +276,14 @@ app.component('stat', {
   
   methods: {
     /*TODO computed could be better instead of method*/
+    /**
+     * Returns class for point with value i
+     *
+     * @param {InitialValue} initialValue Starting value of this stat
+     * @param {PointValue} i Value of processed point
+     * @param {StatValue} stat.value Current value of stat
+     * @param {HoverPointer} hoverPointer The value of point where mouse is pointed
+    */
     pointClass(i) {
       return {
         point: true,
@@ -277,13 +292,26 @@ app.component('stat', {
         active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value),
       };
     },
-    
+    /**
+     * Called when user click on point
+     *
+     * @param {InitialValue} initialValue Starting value of this stat
+     * @param {StatValue} stat.value Current value of stat
+     * @param {HoverPointer} hoverPointer The value of point where mouse is pointed AKA the point that is clicked
+     * @param {AvailableDots} resource Amount of dots you can allocate
+     * @event valueChanged
+    */
     handleClick() {
-      var i = this.hoverPointer;
-      var diff = i - this.stat.value;
+      var new_value = this.hoverPointer;
       let tmp;
 
-      // -1 if not found || i if found [0, index]
+      /**
+       * Called when user clicks value higher than the current value of stat
+       * Returns highest possible value that can be added
+       *
+       * @param {AvailableDots} array Amount of dots you can allocate
+       * @param {ValueClicked} index
+      */
       const addCheck = (array, index) => {
         var i;
         for (i = index; i >= 0; i--) {
@@ -291,21 +319,21 @@ app.component('stat', {
         }
         return i;
       };
-      //adding points : check limit
-      if (diff > 0) {
-        tmp = addCheck(this.resource, i);
-        i = tmp > this.stat.value ? tmp : this.stat.value;
+      //clicked empty point -> check if add is possible
+      if (new_value > this.stat.value) {
+        tmp = addCheck(this.resource, new_value);
+        new_value = tmp > this.stat.value ? tmp : this.stat.value;
       }
       //clicked filled point -> removing points, not below limit aka initial value
-      if (diff <= 0 && i > this.initialValue) i--;
+      else new_value--;
 
       //OK setting values
       /*TODO
         https://v3.vuejs.org/style-guide/#implicit-parent-child-communication-use-with-caution
         consider using emits instead*/
       this.resource[this.stat.value] += 1;
-      this.resource[i] += -1;
-      this.stat.value = i;
+      this.resource[new_value] += -1;
+      this.stat.value = new_value;
     },
   },
   
