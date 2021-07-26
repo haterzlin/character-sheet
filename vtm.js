@@ -263,7 +263,7 @@ app.component('stat', {
     return {
       initialValue: this.stat.value,
       hoverPointer: null,
-      hoverToggle: false,
+      isActive: false,
     };
   },
   
@@ -278,7 +278,7 @@ app.component('stat', {
     },
     handleHover(i, hover) {
       if (!hover) i = null;
-      this.hoverToggle = hover;
+      this.isActive = hover;
       this.hoverPointer = i;
     },
     handleClick() {
@@ -313,15 +313,17 @@ app.component('stat', {
   },
   
   template: `  
-    <div :class="{stat : true, mOver : hoverToggle}">        
+    <div :class="{stat : true, mOver : isActive}">        
       <div class="statName">{{stat.id}}</div>
       <div class="points">  
         <span 
           v-for="i in scale"       
           :class="pointClass(i)"
           @click = "handleClick()" 
-          @mouseover = "handleHover(i , true)"
-          @mouseleave = "handleHover(i , false)"               
+          @mouseover = "isActive = true;
+                        hoverPointer = i;"
+          @mouseleave = "isActive = false;
+                        hoverPointer = null;"               
           :value = i>
         </span>          
       </div>             
