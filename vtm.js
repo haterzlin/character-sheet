@@ -268,6 +268,7 @@ app.component('stat', {
   },
   
   methods: {
+    /*TODO computed could be better instead of method*/
     pointClass(i) {
       return {
         point: true,
@@ -276,11 +277,7 @@ app.component('stat', {
         mOver: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value),
       };
     },
-    handleHover(i, hover) {
-      if (!hover) i = null;
-      this.isActive = hover;
-      this.hoverPointer = i;
-    },
+    
     handleClick() {
       var i = this.hoverPointer;
       var diff = i - this.stat.value;
@@ -320,10 +317,8 @@ app.component('stat', {
           v-for="i in scale"       
           :class="pointClass(i)"
           @click = "handleClick()" 
-          @mouseover = "isActive = true;
-                        hoverPointer = i;"
-          @mouseleave = "isActive = false;
-                        hoverPointer = null;"               
+          @mouseover = "isActive = true; hoverPointer = i;"
+          @mouseleave = "isActive = false; hoverPointer = null;"               
           :value = i>
         </span>          
       </div>             
