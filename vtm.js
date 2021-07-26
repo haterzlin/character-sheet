@@ -212,12 +212,18 @@ app.component('stat-section', {
       resourceCount: null,
     };
   },
-  /**
+/**
    * Counts values in stats.data, same format as stats.resource
    *
-   * @param {AvailableDots} stats.resource Amount of dots you can allocate
-   * @param {StatsData} stats.data The data with values
-   * @param {ResourceCount} resourceCount Counter of resource - values in data
+   * @param {Number} stats.resource Amount of dots you can allocate
+   * @param {JSON} stats.data Current values
+   * @param {Array} of numbers resourceCount - restricting how many stats can have array index values, for example:
+   * [ 0, -8, 4, 3, 1, 0 ]
+   * first zero - we can have 0 attributes with value 0
+   * -8 - we can have only 1 attribute with value 1 and there are 9 attributes with value 1 currently
+   * 4 - we can have 4 attributes with value 2 and there are zero allocated
+   * 3 - we can have 3 attrs with value 3
+   * ...
   */
   created() {
     let tmp = Array(this.stats.resource.length).fill(0);
