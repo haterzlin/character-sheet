@@ -246,13 +246,19 @@ app.component('stat-section', {
         :key="list.id"
         :categ="list"
         :resource="this.resourceCount"
-        :scale="stats.resource.length - 1">
+        :scale="stats.resource.length - 1"
+        @resourcechange="
+          this.resourceCount[$event[0]]+=1;
+          this.resourceCount[$event[1]]+=-1;
+        "
+      >
       </stat-category>      
     </div>`
 });
 
 app.component('stat-category', {
   props: ['categ', 'resource', 'scale'],
+  emits: 'resourcechange',
   template: `
     <div class="statList">
       <h2>{{categ.id}}</h2>
@@ -264,9 +270,8 @@ app.component('stat-category', {
             :stat="item"
             :resource="resource"
             :scale="scale"
-            @statchange="                
-              resource[item.value]+=1;
-              resource[$event]+=-1;
+            @statchange="
+              this.$emit('resourcechange', [item.value, $event]);
               item.value = $event;
             ">
           </stat>
