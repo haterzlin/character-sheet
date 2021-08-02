@@ -1,6 +1,11 @@
 const app = Vue.createApp({
   data() {
     return {
+      biography: {
+        name: "",
+        defaultName: "A Kindred That Is Not To Be Named",
+        age: 0,
+      },
       attributes: {
         id: 'Attributes',
         resource: [
@@ -195,8 +200,11 @@ const app = Vue.createApp({
 });
 
 app.component('sheet', {
-  props: ['attr', 'skills'],
+  props: ['attr', 'skills','bio'],
   template: `
+    <character-info
+      :bio="bio">
+    </character-info>
     <stat-section 
       :stats="attr">
     </stat-section>
@@ -250,6 +258,16 @@ app.component('stat-section', {
       </stat-category>      
     </div>`
 });
+
+
+app.component('character-info', {
+  props: ['bio', 'clans'],
+  template: `
+    <div>
+      <h1>{{bio.defaultName}}</h1>
+    </div>`,
+});
+
 
 app.component('stat-category', {
   props: ['categ', 'resource', 'scale'],
