@@ -1,9 +1,11 @@
+/*KEEP defaultName together in single file w/ character-info component*/
+const DEFAULTNAME = "A Kindred That Is Not To Be Named";
 const app = Vue.createApp({
   data() {
     return {
       biography: {
         name: "",
-        defaultName: "A Kindred That Is Not To Be Named",
+        defaultName: DEFAULTNAME,
         age: 0,
       },
       attributes: {
@@ -264,6 +266,7 @@ app.component('character-info', {
   props: ['bio', 'clans'],
   template: `
     <div>
+      <input class="heading1" v-model="bio.name" :placeholder="bio.defaultName" />
       <h1>{{bio.defaultName}}</h1>
     </div>`,
 });

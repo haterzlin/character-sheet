@@ -107,3 +107,12 @@ div.statSection {
 .resourcePoints.highlight:after {
   content: "!"
 }
+input.heading1{
+  border:none;
+  font-size: 2em;
+  font-weight: bolder;
+}
+}
+input.heading1:hover{
+  background-color: #eeeeee;
+}
