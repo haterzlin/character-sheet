@@ -1,3 +1,6 @@
+body{
+  font-family: Serif;
+}
 h2 {
   text-align: center;
 }
@@ -107,12 +110,15 @@ div.statSection {
 .resourcePoints.highlight:after {
   content: "!"
 }
-input.heading1{
+input{
   border:none;
+}
+input.heading1{
+  width:29ch;
+  font-family:Serif;
   font-size: 2em;
   font-weight: bolder;
 }
-}
-input.heading1:hover{
-  background-color: #eeeeee;
+input:hover{
+  background-color: #dddddd;
 }

@@ -264,13 +264,18 @@ app.component('stat-section', {
 
 app.component('character-info', {
   props: ['bio', 'clans'],
+  
   template: `
-    <div>
-      <input class="heading1" v-model="bio.name" :placeholder="bio.defaultName" />
-      <h1>{{bio.defaultName}}</h1>
+    <div class="char-info">
+      <input 
+        class="heading1"
+        type="text"
+        v-model="bio.name" 
+        :placeholder="bio.defaultName"
+        onkeydown="this.style.width = (this.value.length + 1 ) + 'ch';" />
     </div>`,
 });
-
+/*solution from https://stackoverflow.com/questions/66461136/how-to-get-a-input-elements-width-and-adjust-it-dynamically-with-vue3-compositi*/
 
 app.component('stat-category', {
   props: ['categ', 'resource', 'scale'],
