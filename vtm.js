@@ -1,6 +1,11 @@
 const app = Vue.createApp({
   data() {
     return {
+      biography: {
+        name: "",
+        defaultName: "A Kindred That Is Not To Be Named",
+        age: 0,
+      },
       attributes: {
         id: 'Attributes',
         resource: [
@@ -193,6 +198,9 @@ const app = Vue.createApp({
     };
   },
   template: `
+  <character-info
+    :bio="bio">
+  </character-info>
   <stat-section 
     :stats="attributes"
     @stat-section-change="$event[0].value=$event[1]"
@@ -267,7 +275,6 @@ app.component('stat-section', {
     </div>`
 });
 
-
 /** displays category of attributes
   * in case there is stat change from child component stat
   * it will build whole category list with change and emits to parent component
@@ -291,7 +298,6 @@ app.component('stat-category', {
       </ul>
     </div>`,
 });
-
 
 /** displays clickable point representing number depending on scale and stat value
   * after click, change is emitted to parent component to decide if it is alright
@@ -324,6 +330,14 @@ app.component('stat', {
         </span>          
       </div>             
     </div>`
+});
+
+app.component('character-info', {
+  props: ['bio', 'clans'],
+  template: `
+    <div>
+      <h1>{{bio.defaultName}}</h1>
+    </div>`,
 });
 
 const vm = app.mount('#root');
