@@ -192,19 +192,23 @@ const app = Vue.createApp({
       },
     };
   },
-});
-
-app.component('sheet', {
-  props: ['attr', 'skills'],
   template: `
-    <stat-section 
-      :stats="attr">
-    </stat-section>
-    <stat-section 
-      :stats="skills">
-    </stat-section>`
+  <stat-section 
+    :stats="this.attributes"
+    @statsectionchange="this.attributes=$event"
+    >
+  </stat-section>
+  <stat-section 
+    :stats="this.skills"
+    @statsectionchange="this.skills=$event"
+    >
+  </stat-section>`
 });
 
+/** Displays entire section of attributes or skills
+ * receives events from child component and check if change is possible in resources
+ * if changes are possible, emit event to top component to make changes, otherwise don't
+ */
 app.component('stat-section', {
   props: ['stats'],
   data() {
@@ -237,6 +241,7 @@ app.component('stat-section', {
     );
     this.resourceCount = tmp;
   },
+  emits: 'statsectionchange',
   template: `    
     <div class="statSection">
       <h2>{{stats.id}}</h2>
@@ -245,14 +250,29 @@ app.component('stat-section', {
         v-for="list in stats.data"
         :key="list.id"
         :categ="list"
-        :resource="this.resourceCount"
-        :scale="stats.resource.length - 1">
+        :scale="stats.resource.length - 1"
+        @statcategorychange="
+          sendStatSection=stats;
+          sendStatSection.data[list.id]=$event;
+          //check if change is allowed
+          // if yes, modify resource
+          // sendStatSection.resourceCount[$event[0]]+=1;
+          // sendStatSection.resourceCount[$event[1]]+=-1;
+          this.$emit('statsectionchange', sendStatSection);
+        "
+      >
       </stat-category>      
     </div>`
 });
 
-app.component('stat-category', {
-  props: ['categ', 'resource', 'scale'],
+
+/** displays category of attributes
+   * in case there is stat change from child component stat
+   * it will build whole category list with change and emits to parent component
+   */
+app.component('stat-category', {  
+  props: ['categ', 'scale'],
+  emits: 'statcategorychange',
   template: `
     <div class="statList">
       <h2>{{categ.id}}</h2>
@@ -262,93 +282,47 @@ app.component('stat-category', {
           :key="item.id">
           <stat 
             :stat="item"
-            :resource="resource"
-            :scale="scale">
+            :scale="scale"
+            @statchange="
+              sendCateg = categ;
+              sendCateg.list[item.id]=$event;              
+              this.$emit('statcategorychange', sendCateg);
+            ">
           </stat>
         </li>
       </ul>
     </div>`,
 });
 
-app.component('stat', {
-  props: ['stat', 'resource', 'scale'],
+
+/** displays clickable point representing number depending on scale and stat value
+   * after click, change is emitted to parent component to decide if it is alright
+   */
+app.component('stat', {  
+  props: ['stat', 'scale'],
   data() {
     return {
       initialValue: this.stat.value,
-      hoverPointer: null,
-      isActive: false,
+      hoverPointer: null
     };
-  },
-  
-  methods: {
-    /*TODO computed could be better instead of method */
-    /**
-     * Returns list of classes to add to point with value i
-     *
-     * @param {Number} i Value of processed point
-     */
-    pointClass(i) {
-      return {
-        point: true,
-        init: i <= this.initialValue,
-        fill: i > this.initialValue && i <= this.stat.value,
-        active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value),
-      };
-    },
-    /**
-     * What to do when user clicks on point
-     * - we check restriction if we can change value 
-     * - if yes we save value to data
-     * - we also modify resourceCount array
-    */
-    handleClick() {
-      var new_value = this.hoverPointer;
-      let tmp;
-
-      /**
-       * Called when user clicks value higher than the current value of stat
-       * Returns highest possible value that can be added
-       *
-       * @param {AvailableDots} array Amount of dots you can allocate
-       * @param {ValueClicked} index
-      */
-      const addCheck = (array, index) => {
-        var i;
-        for (i = index; i >= 0; i--) {
-          if (array[i] > 0) break;
-        }
-        return i;
-      };
-      
-      //clicked empty point -> check if add is possible
-      if (new_value > this.stat.value) {
-        tmp = addCheck(this.resource, new_value);
-        new_value = tmp > this.stat.value ? tmp : this.stat.value;
-      }
-      //clicked filled point -> removing points, not below limit aka initial value
-      else if (new_value > this.initialValue) new_value--;
-
-      //OK setting values
-      /*TODO
-        https://v3.vuejs.org/style-guide/#implicit-parent-child-communication-use-with-caution
-        consider using emits instead*/
-      this.resource[this.stat.value] += 1;
-      this.resource[new_value] += -1;
-      this.stat.value = new_value;
-    },
-  },
-  
+  },  
+  emits: ['statchange'],
   template: `  
-    <div :class="{stat : true, active : isActive}">        
+    <div>        
       <div class="statName">{{stat.id}}</div>
       <div class="points">  
-        <span 
-          v-for="i in scale"       
-          :class="pointClass(i)"
-          @click = "handleClick()" 
-          @mouseover = "isActive = true; hoverPointer = i;"
-          @mouseleave = "isActive = false; hoverPointer = null;"               
-          :value = i>
+        <span
+          v-for="i in scale"
+          :class="{
+            point: true,
+            init: i <= this.initialValue,
+            fill: i > this.initialValue && i <= this.stat.value,
+            active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value)         
+          }"      
+          @click="$emit('statchange', i)"
+          @mouseover = "this.hoverPointer = i;"
+          @mouseleave = "this.hoverPointer = null;"    
+        >
         </span>          
       </div>             
     </div>`
