@@ -192,15 +192,34 @@ const app = Vue.createApp({
       },
     };
   },
+  methods: {
+    /** will update data based on event received from child component */
+    updateStat(statChangeData) {
+      debugger;
+      for (var statSection = 0; statSection < data.length; statSection++) {
+        if (data[statSection].id == statChangeData[0]) {
+          for (var statCategory = 0; statCategory < data[statSection].list.length; statCategory++) {
+            if (data[statSection].list[statCategory].id == statChangeData[1]) {
+              for (var stat = 0; stat < data[statSection].list[statCategory].list.length; stat++) {
+                if (data[statSection].list[statCategory].list[stat].id == statChangeData[2]) {
+                  data[statSection].list[statCategory].list[stat].value = statChangeData[3];
+                }
+              }
+            } 
+          }
+        }
+      }      
+    } 
+  },
   template: `
   <stat-section 
     :stats="this.attributes"
-    @statsectionchange="this.attributes=$event"
+    @statsectionchange="this.updateStat($event)"
     >
   </stat-section>
   <stat-section 
     :stats="this.skills"
-    @statsectionchange="this.skills=$event"
+    @statsectionchange="this.updateStat($event)"
     >
   </stat-section>`
 });
@@ -241,7 +260,7 @@ app.component('stat-section', {
     );
     this.resourceCount = tmp;
   },
-  emits: 'statsectionchange',
+  emits: {statsectionchange: null},
   template: `    
     <div class="statSection">
       <h2>{{stats.id}}</h2>
@@ -251,14 +270,12 @@ app.component('stat-section', {
         :key="list.id"
         :categ="list"
         :scale="stats.resource.length - 1"
-        @statcategorychange="
-          sendStatSection=stats;
-          sendStatSection.data[list.id]=$event;
+        @statcategorychange="          
           //check if change is allowed
           // if yes, modify resource
           // sendStatSection.resourceCount[$event[0]]+=1;
           // sendStatSection.resourceCount[$event[1]]+=-1;
-          this.$emit('statsectionchange', sendStatSection);
+          this.$emit('statsectionchange', [stats.id].concat($event)]);
         "
       >
       </stat-category>      
@@ -272,7 +289,7 @@ app.component('stat-section', {
    */
 app.component('stat-category', {  
   props: ['categ', 'scale'],
-  emits: 'statcategorychange',
+  emits: {statcategorychange: null},
   template: `
     <div class="statList">
       <h2>{{categ.id}}</h2>
@@ -284,9 +301,7 @@ app.component('stat-category', {
             :stat="item"
             :scale="scale"
             @statchange="
-              sendCateg = categ;
-              sendCateg.list[item.id]=$event;              
-              this.$emit('statcategorychange', sendCateg);
+              this.$emit('statcategorychange', [categ.id, item.id, $event]);
             ">
           </stat>
         </li>
@@ -306,9 +321,9 @@ app.component('stat', {
       hoverPointer: null
     };
   },  
-  emits: ['statchange'],
-  template: `  
-    <div>        
+  emits: {statchange: null},
+  template: `
+    <div>
       <div class="statName">{{stat.id}}</div>
       <div class="points">  
         <span
@@ -319,7 +334,7 @@ app.component('stat', {
             fill: i > this.initialValue && i <= this.stat.value,
             active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value)         
           }"      
-          @click="$emit('statchange', i)"
+          @click="this.$emit('statchange', i)"
           @mouseover = "this.hoverPointer = i;"
           @mouseleave = "this.hoverPointer = null;"    
         >
