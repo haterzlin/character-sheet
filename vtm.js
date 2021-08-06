@@ -193,22 +193,35 @@ const app = Vue.createApp({
     };
   },
   methods: {
-    /** will update data based on event received from child component */
+    /** 
+     * will update data based on event received from child component 
+     * input parameter statChangeData is array identifying which stat needs to be changed to which value
+     * for example
+     * [ "Attributes", "Physical", "Strength", 5]
+    */
     updateStat(statChangeData) {
-      debugger;
-      for (var statSection = 0; statSection < data.length; statSection++) {
-        if (data[statSection].id == statChangeData[0]) {
-          for (var statCategory = 0; statCategory < data[statSection].list.length; statCategory++) {
-            if (data[statSection].list[statCategory].id == statChangeData[1]) {
-              for (var stat = 0; stat < data[statSection].list[statCategory].list.length; stat++) {
-                if (data[statSection].list[statCategory].list[stat].id == statChangeData[2]) {
-                  data[statSection].list[statCategory].list[stat].value = statChangeData[3];
-                }
+      if (statChangeData[0] == "Attributes") {
+        for (var statCategory = 0; statCategory < this.attributes.data.length; statCategory++) {
+          if (this.attributes.data[statCategory].id == statChangeData[1]) {
+            for (var stat = 0; stat < this.attributes.data[statCategory].list.length; stat++) {
+              if (this.attributes.data[statCategory].list[stat].id == statChangeData[2]) {
+                this.attributes.data[statCategory].list[stat].value = statChangeData[3];
               }
-            } 
-          }
+            }
+          } 
         }
-      }      
+      }
+      else {
+        for (var statCategory = 0; statCategory < this.skills.data.length; statCategory++) {
+          if (this.skills.data[statCategory].id == statChangeData[1]) {
+            for (var stat = 0; stat < this.skills.data[statCategory].list.length; stat++) {
+              if (this.skills.data[statCategory].list[stat].id == statChangeData[2]) {
+                this.skills.data[statCategory].list[stat].value = statChangeData[3];
+              }
+            }
+          } 
+        }        
+      }  
     } 
   },
   template: `
@@ -275,7 +288,7 @@ app.component('stat-section', {
           // if yes, modify resource
           // sendStatSection.resourceCount[$event[0]]+=1;
           // sendStatSection.resourceCount[$event[1]]+=-1;
-          this.$emit('statsectionchange', [stats.id].concat($event)]);
+          this.$emit('statsectionchange', [stats.id].concat($event));
         "
       >
       </stat-category>      
