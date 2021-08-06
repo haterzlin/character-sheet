@@ -243,41 +243,28 @@ const app = Vue.createApp({
  */
 app.component('stat-section', {
   props: ['stats'],
-  data() {
-    return {
-      resourceCount: null,
-    };
-  },
-/**
-   * Counts values in stats.data, same format as stats.resource
-   *
-   * @param {Number} stats.resource Amount of dots you can allocate
-   * @param {JSON} stats.data Current values
-   * @param {Array} of numbers resourceCount - restricting how many stats can have array index values, for example:
-   * [ 0, -8, 4, 3, 1, 0 ]
-   * first zero - we can have 0 attributes with value 0
-   * -8 - we can have only 1 attribute with value 1 and there are 9 attributes with value 1 currently
-   * 4 - we can have 4 attributes with value 2 and there are zero allocated
-   * 3 - we can have 3 attrs with value 3
-   * ...
-   */
-  created() {
-    let tmp = Array(this.stats.resource.length).fill(0);
-    for (var i = 0; i < this.stats.data.length; i++) {
-      for (var j = 0; j < this.stats.data[i].list.length; j++) {
-        tmp[this.stats.data[i].list[j].value]++;
+  computed: {
+    /**
+     * @returns {Array} of numbers describing how many points are currently assigned
+     * for example [0,9,0,0,0,0] means there are 9 attributes with value 1
+     * while [0,1,4,3,1,0] means 1 attribute with value 1, 4 attributes with value 2,
+     * 3 attributes with value 3, 1 attribute with value 4 and 0 attributes with value 5
+     */
+    allocatedResources() {
+      let tmp = Array(this.stats.resource.length).fill(0);
+      for (var i = 0; i < this.stats.data.length; i++) {
+        for (var j = 0; j < this.stats.data[i].list.length; j++) {
+          tmp[this.stats.data[i].list[j].value]++;
+        }
       }
+      return tmp;
     }
-    tmp.forEach(
-      (element, index) => (tmp[index] = this.stats.resource[index] - element)
-    );
-    this.resourceCount = tmp;
   },
   emits: {statsectionchange: null},
   template: `    
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <div class="resourceCount">{{resourceCount}}</div>
+      <div class="resourceCount">{{allocatedResources}}</div>
       <stat-category 
         v-for="list in stats.data"
         :key="list.id"
@@ -285,10 +272,20 @@ app.component('stat-section', {
         :scale="stats.resource.length - 1"
         @statcategorychange="          
           //check if change is allowed
-          // if yes, modify resource
-          // sendStatSection.resourceCount[$event[0]]+=1;
-          // sendStatSection.resourceCount[$event[1]]+=-1;
-          this.$emit('statsectionchange', [stats.id].concat($event));
+          if (allocatedResources[$event[2]] < this.stats.resource[$event[2]]) {
+            this.$emit('statsectionchange', [stats.id].concat($event));
+          }
+          else {
+            // if not check if lower value is allowed
+            var i = $event[2]-1;
+            while (i > 0) {
+              if (allocatedResources[i] < this.stats.resource[i]) {
+                this.$emit('statsectionchange', [stats.id].concat($event).splice(-1).concat(i));
+                i=0;
+              }
+              i--;
+            }
+          }
         "
       >
       </stat-category>      
