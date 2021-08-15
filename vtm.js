@@ -4,8 +4,9 @@ const app = Vue.createApp({
       attributes: {
         id: 'Attributes',
         resource: [
-          0, 1, 4, 3, 1, 0,
-        ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots
+          0, 9, 4, 3, 1, 0,
+        ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots, 
+        9 times 1 dots (as we want to be able to set attribute to 1 everytime we want)
         sum of values in resource <= amount of values in section*/,
         data: [
           {
@@ -63,7 +64,7 @@ const app = Vue.createApp({
       },
       skills: {
         id: 'Skills',
-        resource: [12, 7, 5, 3, 0, 0],
+        resource: [27, 7, 5, 3, 0, 0],
         data: [
           {
             id: 'Physical',
@@ -261,7 +262,7 @@ app.component('stat-section', {
     }
   },
   emits: {statsectionchange: null},
-  template: `    
+  template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
       <div class="resourceCount">{{allocatedResources}}</div>
@@ -271,21 +272,17 @@ app.component('stat-section', {
         :categ="list"
         :scale="stats.resource.length - 1"
         @statcategorychange="          
-          //check if change is allowed
-          if (allocatedResources[$event[2]] < this.stats.resource[$event[2]]) {
-            this.$emit('statsectionchange', [stats.id].concat($event));
-          }
-          else {
-            // if not check if lower value is allowed
-            var i = $event[2]-1;
-            while (i > 0) {
-              if (allocatedResources[i] < this.stats.resource[i]) {
-                this.$emit('statsectionchange', [stats.id].concat($event).splice(-1).concat(i));
-                i=0;
-              }
-              i--;
+          // check if change is allowed
+          // if not check if lower value is allowed
+          var i = $event[2];
+          while (i >= 0) {
+            if (allocatedResources[i] < this.stats.resource[i]) {
+              var toEmit=[stats.id].concat($event).splice(-1).concat(i);
+              this.$emit('statsectionchange', [stats.id].concat($event).slice(0,-1).concat(i));
+              i=-1;
             }
-          }
+            i--;
+          }          
         "
       >
       </stat-category>      
