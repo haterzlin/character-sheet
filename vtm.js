@@ -262,28 +262,33 @@ app.component('stat-section', {
     }
   },
   emits: {statsectionchange: null},
+  methods: {
+    /** 
+      * checks if change is allowed
+      * if not it will try lower value
+      * first allowed value is emitted
+      */
+    emitAllowedChange(received_event) {
+      var i = received_event[2];
+      while (i >= 0) {
+        if (this.allocatedResources[i] < this.stats.resource[i]) {
+          this.$emit('statsectionchange', [this.stats.id].concat(received_event).slice(0,-1).concat(i));
+          i=0;
+        }
+        i--;
+      }
+    }      
+  },
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
       <div class="resourceCount">{{allocatedResources}}</div>
-      <stat-category 
+      <stat-category
         v-for="list in stats.data"
         :key="list.id"
         :categ="list"
         :scale="stats.resource.length - 1"
-        @statcategorychange="          
-          // check if change is allowed
-          // if not check if lower value is allowed
-          var i = $event[2];
-          while (i >= 0) {
-            if (allocatedResources[i] < this.stats.resource[i]) {
-              var toEmit=[stats.id].concat($event).splice(-1).concat(i);
-              this.$emit('statsectionchange', [stats.id].concat($event).slice(0,-1).concat(i));
-              i=-1;
-            }
-            i--;
-          }          
-        "
+        @statcategorychange="emitAllowedChange($event);"
       >
       </stat-category>      
     </div>`
@@ -291,9 +296,9 @@ app.component('stat-section', {
 
 
 /** displays category of attributes
-   * in case there is stat change from child component stat
-   * it will build whole category list with change and emits to parent component
-   */
+  * in case there is stat change from child component stat
+  * it will build whole category list with change and emits to parent component
+  */
 app.component('stat-category', {  
   props: ['categ', 'scale'],
   emits: {statcategorychange: null},
@@ -307,9 +312,7 @@ app.component('stat-category', {
           <stat 
             :stat="item"
             :scale="scale"
-            @statchange="
-              this.$emit('statcategorychange', [categ.id, item.id, $event]);
-            ">
+            @statchange="this.$emit('statcategorychange', [categ.id, item.id, $event]);">
           </stat>
         </li>
       </ul>
@@ -318,8 +321,8 @@ app.component('stat-category', {
 
 
 /** displays clickable point representing number depending on scale and stat value
-   * after click, change is emitted to parent component to decide if it is alright
-   */
+  * after click, change is emitted to parent component to decide if it is alright
+  */
 app.component('stat', {  
   props: ['stat', 'scale'],
   data() {
