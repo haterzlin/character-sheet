@@ -194,6 +194,34 @@ const app = Vue.createApp({
     };
   },
   methods: {
+    /**
+     * should return positions of attribute or skill in data
+     * for example on input array ["Attributes","Social","Charisma",value]
+     * we should get [1,0] which represents that index of "Social" category in Attribute list is 1
+     * and index of "Charisma" in Social category is 0
+     * if not found, will return [0,0]
+     */
+    transformIdsToArrayNumbers(statChangeData) {
+      if (statChangeData[0] == "Attributes") {
+        var forComparing = this.attributes;
+      }
+      else {
+        var forComparing = this.skills;
+      }
+      var statCategory = 0;
+      var stat = 0;
+      for (statCategory; statCategory < forComparing.data.length; statCategory++) {
+        if (forComparing.data[statCategory].id == statChangeData[1]) {
+          for (stat; stat < forComparing.data[statCategory].list.length; stat++) {
+            if (forComparing.data[statCategory].list[stat].id == statChangeData[2]) {
+              return [statCategory,stat];
+            }
+          }
+        }
+      }
+      return [0,0]
+    },
+
     /** 
      * will update data based on event received from child component 
      * input parameter statChangeData is array identifying which stat needs to be changed to which value
@@ -201,25 +229,12 @@ const app = Vue.createApp({
      * [ "Attributes", "Physical", "Strength", 5]
     */
     updateStat(statChangeData) {
+      var indexes = this.transformIdsToArrayNumbers(statChangeData);
       if (statChangeData[0] == "Attributes") {
-        var forComparing = this.attributes;
+        this.attributes.data[indexes[0]].list[indexes[1]].value = statChangeData[3];
       }
       else {
-        var forComparing = this.skills;
-      }
-      for (var statCategory = 0; statCategory < forComparing.data.length; statCategory++) {
-        if (forComparing.data[statCategory].id == statChangeData[1]) {
-          for (var stat = 0; stat < forComparing.data[statCategory].list.length; stat++) {
-            if (forComparing.data[statCategory].list[stat].id == statChangeData[2]) {
-              if (statChangeData[0] == "Attributes") {
-                this.attributes.data[statCategory].list[stat].value = statChangeData[3];
-              }
-              else {
-                this.skills.data[statCategory].list[stat].value = statChangeData[3];
-              }
-            }
-          }
-        } 
+        this.skills.data[indexes[0]].list[indexes[1]].value = statChangeData[3];
       }
     } 
   },
