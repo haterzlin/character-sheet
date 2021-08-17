@@ -202,27 +202,25 @@ const app = Vue.createApp({
     */
     updateStat(statChangeData) {
       if (statChangeData[0] == "Attributes") {
-        for (var statCategory = 0; statCategory < this.attributes.data.length; statCategory++) {
-          if (this.attributes.data[statCategory].id == statChangeData[1]) {
-            for (var stat = 0; stat < this.attributes.data[statCategory].list.length; stat++) {
-              if (this.attributes.data[statCategory].list[stat].id == statChangeData[2]) {
-                this.attributes.data[statCategory].list[stat].value = statChangeData[3];
-              }
-            }
-          } 
-        }
+        var forComparing = this.attributes;
       }
       else {
-        for (var statCategory = 0; statCategory < this.skills.data.length; statCategory++) {
-          if (this.skills.data[statCategory].id == statChangeData[1]) {
-            for (var stat = 0; stat < this.skills.data[statCategory].list.length; stat++) {
-              if (this.skills.data[statCategory].list[stat].id == statChangeData[2]) {
+        var forComparing = this.skills;
+      }
+      for (var statCategory = 0; statCategory < forComparing.data.length; statCategory++) {
+        if (forComparing.data[statCategory].id == statChangeData[1]) {
+          for (var stat = 0; stat < forComparing.data[statCategory].list.length; stat++) {
+            if (forComparing.data[statCategory].list[stat].id == statChangeData[2]) {
+              if (statChangeData[0] == "Attributes") {
+                this.attributes.data[statCategory].list[stat].value = statChangeData[3];
+              }
+              else {
                 this.skills.data[statCategory].list[stat].value = statChangeData[3];
               }
             }
-          } 
-        }        
-      }  
+          }
+        } 
+      }
     } 
   },
   template: `
