@@ -4,7 +4,7 @@ const app = Vue.createApp({
       attributes: {
         id: 'Attributes',
         resource: [
-          0, 9, 4, 3, 1, 0,
+          0, 1, 4, 3, 1, 0,
         ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots, 
         9 times 1 dots (as we want to be able to set attribute to 1 everytime we want)
         sum of values in resource <= amount of values in section*/,
@@ -64,7 +64,7 @@ const app = Vue.createApp({
       },
       skills: {
         id: 'Skills',
-        resource: [27, 7, 5, 3, 0, 0],
+        resource: [12, 7, 5, 3, 0, 0],
         data: [
           {
             id: 'Physical',
@@ -261,19 +261,40 @@ app.component('stat-section', {
     }
   },
   methods: {
+    /**
+     * will search for current value of stat before the change
+     * and return that value else return 0
+     * @param {Array} received_event is array containing [statsection.id, stat.id, newstat.value]
+     */
+    getCurrentValue(received_event) {
+      for (var i = 0; i < this.stats.data.length; i++) {
+        if (this.stats.data[i].id == received_event[0]) {
+          for (var j = 0; j < this.stats.data[i].list.length; j++) {
+            if (this.stats.data[i].list[j].id == received_event[1]) { 
+              return this.stats.data[i].list[j].value;
+            }
+          }
+        }
+      }
+      return 0;
+    },
     /** 
+      * if we are adding
       * checks if change is allowed
-      * if not it will try lower value
+      * if change is not allowed, we will try lower value
       * first allowed value is emitted
+      * if we are not adding, no restriction check is needed, so we emit event
       */
     emitAllowedChange(received_event) {
       var i = received_event[2];
-      for (i; i >= 0; i--) {      
-        if (this.allocatedResources[i] < this.stats.resource[i]) {
-          break;
+      if (this.getCurrentValue(received_event) < received_event[2]) {        
+        for (i; i >= 0; i--) {      
+          if (this.allocatedResources[i] < this.stats.resource[i]) {
+            break;
+          }
         }
       }
-      this.$emit('statsectionchange', [this.stats.id].concat(received_event).slice(0,-1).concat(i));
+      this.$emit('statsectionchange', [this.stats.id].concat(received_event).slice(0,-1).concat(i));           
     }      
   },
   template: `
@@ -309,7 +330,7 @@ app.component('stat-category', {
           <stat 
             :stat="item"
             :scale="scale"
-            @statchange="this.$emit('statcategorychange', [categ.id, item.id, $event]);">
+            @statchange="$emit('statcategorychange', [categ.id, item.id, $event]);">
           </stat>
         </li>
       </ul>
@@ -341,7 +362,7 @@ app.component('stat', {
             fill: i > this.initialValue && i <= this.stat.value,
             active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value)         
           }"      
-          @click="(stat.value >= i) ? this.$emit('statchange', i-1) : this.$emit('statchange', i);"
+          @click="(stat.value >= i) ? $emit('statchange', i-1) : $emit('statchange', i);"
           @mouseover = "this.hoverPointer = i;"
           @mouseleave = "this.hoverPointer = null;"    
         >
