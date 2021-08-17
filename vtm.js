@@ -242,6 +242,7 @@ const app = Vue.createApp({
  */
 app.component('stat-section', {
   props: ['stats'],
+  emits: {statsectionchange: null},
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
@@ -259,7 +260,6 @@ app.component('stat-section', {
       return tmp;
     }
   },
-  emits: {statsectionchange: null},
   methods: {
     /** 
       * checks if change is allowed
@@ -322,13 +322,13 @@ app.component('stat-category', {
   */
 app.component('stat', {  
   props: ['stat', 'scale'],
+  emits: {statchange: null},
   data() {
     return {
       initialValue: this.stat.value,
       hoverPointer: null
     };
   },  
-  emits: {statchange: null},
   template: `
     <div>
       <div class="statName">{{stat.id}}</div>
