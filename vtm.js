@@ -362,7 +362,7 @@ app.component('stat', {
             fill: i > this.initialValue && i <= this.stat.value,
             active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value)         
           }"      
-          @click="(stat.value >= i) ? $emit('statchange', i-1) : $emit('statchange', i);"
+          @click="(stat.value == i) ? $emit('statchange', i-1) : $emit('statchange', i);"
           @mouseover = "this.hoverPointer = i;"
           @mouseleave = "this.hoverPointer = null;"    
         >
