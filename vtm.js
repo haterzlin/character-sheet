@@ -267,13 +267,11 @@ app.component('stat-section', {
       * first allowed value is emitted
       */
     emitAllowedChange(received_event) {
-      var i = received_event[2];
-      while (i >= 0) {
+      for (var i = received_event[2]; i > 0; i--) {      
         if (this.allocatedResources[i] < this.stats.resource[i]) {
           this.$emit('statsectionchange', [this.stats.id].concat(received_event).slice(0,-1).concat(i));
-          i=0;
+          break;
         }
-        i--;
       }
     }      
   },
