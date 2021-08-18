@@ -261,7 +261,7 @@ app.component('stat-section', {
         :key="list.id"
         :categ="list"
         :scale="stats.resource.length - 1"
-        @stat-category-change="emitAllowedChange($event);"
+        @stat-category-change="emitAllowedChange($event)"
       >
       </stat-category>      
     </div>`
@@ -285,7 +285,7 @@ app.component('stat-category', {
           <stat 
             :stat="item"
             :scale="scale"
-            @stat-change="$emit('statCategoryChange', $event);">
+            @stat-change="$emit('statCategoryChange', $event)">
           </stat>
         </li>
       </ul>
