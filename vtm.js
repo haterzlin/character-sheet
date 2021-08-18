@@ -193,7 +193,7 @@ const app = Vue.createApp({
     };
   },
   methods: {
-    /**
+    /** TODO DEL
      * should return positions of attribute or skill in data
      * for example on input array ["Attributes","Social","Charisma",value]
      * we should get [1,0] which represents that index of "Social" category in Attribute list is 1
@@ -236,16 +236,16 @@ const app = Vue.createApp({
         this.skills.data[indexes[0]].list[indexes[1]].value = statChangeData[3];
       }
     } 
-  },
+  },/*TODO DEL*/
   template: `
   <stat-section 
     :stats="this.attributes"
-    @statsectionchange="this.updateStat($event)"
+    @statsectionchange="$event[0].value=$event[1]"
     >
   </stat-section>
   <stat-section 
     :stats="this.skills"
-    @statsectionchange="this.updateStat($event)"
+    @statsectionchange="$event[0].value=$event[1]"
     >
   </stat-section>`
 });
@@ -275,23 +275,6 @@ app.component('stat-section', {
     }
   },
   methods: {
-    /**
-     * will search for current value of stat before the change
-     * and return that value else return 0
-     * @param {Array} received_event is array containing [statsection.id, stat.id, newstat.value]
-     */
-    getCurrentValue(received_event) {
-      for (var i = 0; i < this.stats.data.length; i++) {
-        if (this.stats.data[i].id == received_event[0]) {
-          for (var j = 0; j < this.stats.data[i].list.length; j++) {
-            if (this.stats.data[i].list[j].id == received_event[1]) { 
-              return this.stats.data[i].list[j].value;
-            }
-          }
-        }
-      }
-      return 0;
-    },
     /** 
       * if we are adding
       * checks if change is allowed
@@ -300,15 +283,18 @@ app.component('stat-section', {
       * if we are not adding, no restriction check is needed, so we emit event
       */
     emitAllowedChange(received_event) {
-      var i = received_event[2];
-      if (this.getCurrentValue(received_event) < received_event[2]) {        
+      var i = received_event[1];
+      if (received_event[0].value <= received_event[1]) {        
         for (i; i >= 0; i--) {      
           if (this.allocatedResources[i] < this.stats.resource[i]) {
             break;
           }
         }
       }
-      this.$emit('statsectionchange', [this.stats.id].concat(received_event).slice(0,-1).concat(i));           
+      else{ 
+        i--;
+      }
+      this.$emit('statsectionchange', [received_event[0], i]);           
     }      
   },
   template: `
@@ -333,7 +319,7 @@ app.component('stat-section', {
   */
 app.component('stat-category', {  
   props: ['categ', 'scale'],
-  emits: {statcategorychange: null},
+  emits: ['statcategorychange'],
   template: `
     <div class="statList">
       <h2>{{categ.id}}</h2>
@@ -344,7 +330,7 @@ app.component('stat-category', {
           <stat 
             :stat="item"
             :scale="scale"
-            @statchange="$emit('statcategorychange', [categ.id, item.id, $event]);">
+            @statchange="$emit('statcategorychange', $event);">
           </stat>
         </li>
       </ul>
@@ -357,7 +343,7 @@ app.component('stat-category', {
   */
 app.component('stat', {  
   props: ['stat', 'scale'],
-  emits: {statchange: null},
+  emits: ['statchange'],
   data() {
     return {
       initialValue: this.stat.value,
@@ -372,13 +358,13 @@ app.component('stat', {
           v-for="i in scale"
           :class="{
             point: true,
-            init: i <= this.initialValue,
-            fill: i > this.initialValue && i <= this.stat.value,
-            active: this.hoverPointer && (i === this.hoverPointer || i > this.hoverPointer !== i > this.stat.value)         
+            init: i <= initialValue,
+            fill: i > initialValue && i <= stat.value,
+            active: hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value)         
           }"      
-          @click="(stat.value == i) ? $emit('statchange', i-1) : $emit('statchange', i);"
-          @mouseover = "this.hoverPointer = i;"
-          @mouseleave = "this.hoverPointer = null;"    
+          @click="$emit('statchange', [stat, i])"
+          @mouseover = "hoverPointer = i"
+          @mouseleave = "hoverPointer = null"    
         >
         </span>          
       </div>             
