@@ -5,7 +5,7 @@ const app = Vue.createApp({
         id: 'Attributes',
         resource: [
           0, 1, 4, 3, 1, 0,
-        ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots, 
+        ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots
         sum of values in resource <= amount of values in section*/,
         data: [
           {
@@ -193,47 +193,19 @@ const app = Vue.createApp({
     };
   },
   methods: {
-    /**
-     * should return positions of attribute or skill in data
-     * for example on input array ["Attributes","Social","Charisma",value]
-     * we should get [1,0] which represents that index of "Social" category in Attribute list is 1
-     * and index of "Charisma" in Social category is 0
-     * if not found, will return [0,0]
-     */
-    transformIdsToArrayNumbers(statChangeData) {
-      if (statChangeData[0] == "Attributes") {
-        var forComparing = this.attributes;
-      }
-      else {
-        var forComparing = this.skills;
-      }
-      var statCategory = 0;
-      var stat = 0;
-      for (statCategory; statCategory < forComparing.data.length; statCategory++) {
-        if (forComparing.data[statCategory].id == statChangeData[1]) {
-          for (stat; stat < forComparing.data[statCategory].list.length; stat++) {
-            if (forComparing.data[statCategory].list[stat].id == statChangeData[2]) {
-              return [statCategory,stat];
-            }
-          }
-        }
-      }
-      return [0,0]
-    },
-
     /** 
      * will update data based on event received from child component 
      * input parameter statChangeData is array identifying which stat needs to be changed to which value
      * for example
-     * [ "Attributes", "Physical", "Strength", 5]
+     * [ "Attributes", 0, 0, 5]
+     * where first 0 is Physical and second 0 is Strength. 5 is new value
     */
     updateStat(statChangeData) {
-      var indexes = this.transformIdsToArrayNumbers(statChangeData);
       if (statChangeData[0] == "Attributes") {
-        this.attributes.data[indexes[0]].list[indexes[1]].value = statChangeData[3];
+        this.attributes.data[statChangeData[1]].list[statChangeData[2]].value = statChangeData[3];
       }
       else {
-        this.skills.data[indexes[0]].list[indexes[1]].value = statChangeData[3];
+        this.skills.data[statChangeData[1]].list[statChangeData[2]].value = statChangeData[3];
       }
     } 
   },
@@ -275,25 +247,8 @@ app.component('stat-section', {
     }
   },
   methods: {
-    /**
-     * will search for current value of stat before the change
-     * and return that value else return 0
-     * @param {Array} received_event is array containing [statsection.id, stat.id, newstat.value]
-     */
-    getCurrentValue(received_event) {
-      for (var i = 0; i < this.stats.data.length; i++) {
-        if (this.stats.data[i].id == received_event[0]) {
-          for (var j = 0; j < this.stats.data[i].list.length; j++) {
-            if (this.stats.data[i].list[j].id == received_event[1]) { 
-              return this.stats.data[i].list[j].value;
-            }
-          }
-        }
-      }
-      return 0;
-    },
     /** 
-      * if we are adding
+      * if we are adding (current value is lower than proposed value)
       * checks if change is allowed
       * if change is not allowed, we will try lower value
       * first allowed value is emitted
@@ -301,7 +256,7 @@ app.component('stat-section', {
       */
     emitAllowedChange(received_event) {
       var i = received_event[2];
-      if (this.getCurrentValue(received_event) < received_event[2]) {        
+      if (this.stats.data[received_event[0]].list[received_event[1]].value < received_event[2]) {        
         for (i; i >= 0; i--) {      
           if (this.allocatedResources[i] < this.stats.resource[i]) {
             break;
@@ -316,11 +271,11 @@ app.component('stat-section', {
       <h2>{{stats.id}}</h2>
       <div class="resourceCount">{{allocatedResources}}</div>
       <stat-category
-        v-for="list in stats.data"
+        v-for="(list,index) in stats.data"
         :key="list.id"
         :categ="list"
         :scale="stats.resource.length - 1"
-        @statcategorychange="emitAllowedChange($event);"
+        @statcategorychange="emitAllowedChange( [index].concat($event) );"
       >
       </stat-category>      
     </div>`
@@ -339,12 +294,12 @@ app.component('stat-category', {
       <h2>{{categ.id}}</h2>
       <ul class="ulStats">
         <li 
-          v-for="item in categ.list"
+          v-for="(item, index) in categ.list"
           :key="item.id">
           <stat 
             :stat="item"
             :scale="scale"
-            @statchange="$emit('statcategorychange', [categ.id, item.id, $event]);">
+            @statchange="$emit('statcategorychange', [index, $event] );">
           </stat>
         </li>
       </ul>
