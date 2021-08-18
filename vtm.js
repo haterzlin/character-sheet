@@ -194,13 +194,13 @@ const app = Vue.createApp({
   },
   template: `
   <stat-section 
-    :stats="this.attributes"
-    @statsectionchange="$event[0].value=$event[1]"
+    :stats="attributes"
+    @stat-section-change="$event[0].value=$event[1]"
     >
   </stat-section>
   <stat-section 
-    :stats="this.skills"
-    @statsectionchange="$event[0].value=$event[1]"
+    :stats="skills"
+    @stat-section-change="$event[0].value=$event[1]"
     >
   </stat-section>`
 });
@@ -211,7 +211,7 @@ const app = Vue.createApp({
  */
 app.component('stat-section', {
   props: ['stats'],
-  emits: {statsectionchange: null},
+  emits: ['statSectionChange'],
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
@@ -249,7 +249,7 @@ app.component('stat-section', {
       else{ 
         i--;
       }
-      this.$emit('statsectionchange', [received_event[0], i]);           
+      this.$emit('statSectionChange', [received_event[0], i]);           
     }      
   },
   template: `
@@ -261,7 +261,7 @@ app.component('stat-section', {
         :key="list.id"
         :categ="list"
         :scale="stats.resource.length - 1"
-        @statcategorychange="emitAllowedChange($event);"
+        @stat-category-change="emitAllowedChange($event);"
       >
       </stat-category>      
     </div>`
@@ -274,7 +274,7 @@ app.component('stat-section', {
   */
 app.component('stat-category', {  
   props: ['categ', 'scale'],
-  emits: ['statcategorychange'],
+  emits: ['statCategoryChange'],
   template: `
     <div class="statList">
       <h2>{{categ.id}}</h2>
@@ -285,7 +285,7 @@ app.component('stat-category', {
           <stat 
             :stat="item"
             :scale="scale"
-            @statchange="$emit('statcategorychange', $event);">
+            @stat-change="$emit('statCategoryChange', $event);">
           </stat>
         </li>
       </ul>
@@ -298,7 +298,7 @@ app.component('stat-category', {
   */
 app.component('stat', {  
   props: ['stat', 'scale'],
-  emits: ['statchange'],
+  emits: ['statChange'],
   data() {
     return {
       initialValue: this.stat.value,
@@ -317,7 +317,7 @@ app.component('stat', {
             fill: i > initialValue && i <= stat.value,
             active: hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value)         
           }"      
-          @click="$emit('statchange', [stat, i])"
+          @click="$emit('statChange', [stat, i])"
           @mouseover = "hoverPointer = i"
           @mouseleave = "hoverPointer = null"    
         >
