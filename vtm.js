@@ -6,7 +6,6 @@ const app = Vue.createApp({
         resource: [
           0, 1, 4, 3, 1, 0,
         ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots, 
-        9 times 1 dots (as we want to be able to set attribute to 1 everytime we want)
         sum of values in resource <= amount of values in section*/,
         data: [
           {
