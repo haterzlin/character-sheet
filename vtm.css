@@ -32,7 +32,7 @@ div.statList {
   padding: 10px;
 }
 
-div.statSection {
+.statSection, .char-info{
 
   width: 800px;
 }
@@ -119,6 +119,7 @@ input.heading1{
   font-family:Serif;
   font-size: 2em;
   font-weight: bolder;
+  width: 100%;
 }
 input:hover{
   background-color: #dddddd;

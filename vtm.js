@@ -303,7 +303,8 @@ const app = Vue.createApp({
   },
   template: `
   <character-info
-    :bio="biography">
+    :bio="biography"
+    :clans="clans">
   </character-info>
   <stat-section 
     :stats="attributes"
@@ -416,7 +417,7 @@ app.component('stat', {
     };
   },  
   template: `
-    <div>
+    <div class="stat">
       <div class="statName">{{stat.id}}</div>
       <div class="points">  
         <span
@@ -436,11 +437,20 @@ app.component('stat', {
     </div>`
 });
 
+/**
+  * displays inputs for name and age
+  * displays selects for clan, generation, faction
+  */
 app.component('character-info', {
   props: ['bio', 'clans'],
   template: `
-    <div>
-      <h1>{{bio.defaultName}}</h1>
+    <div class="char-info">
+      <input 
+        class="heading1"
+        type="text"
+        v-model="bio.name" 
+        :placeholder="bio.defaultName"
+        />
     </div>`,
 });
 
