@@ -451,6 +451,12 @@ app.component('character-info', {
         v-model="bio.name" 
         :placeholder="bio.defaultName"
         />
+      <b>Age:</b>
+      <input
+        :style= "{width: 7 + 'ch'}"
+        v-model="bio.age"
+        type="number"
+        :placeholder = '123'/>
     </div>`,
 });
 
