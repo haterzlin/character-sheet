@@ -296,7 +296,6 @@ const app = Vue.createApp({
             id: 'Protean',
             value: 0,
           },
-          
         ],
       },
     };
@@ -308,40 +307,17 @@ const app = Vue.createApp({
   </character-info>
   <stat-section 
     :stats="attributes"
-    @stat-section-change="$event[0].value=$event[1]"
-    >
+    @stat-section-change="$event[0].value=$event[1]">
   </stat-section>
   <stat-section 
     :stats="skills"
-    @stat-section-change="$event[0].value=$event[1]"
-    >
+    @stat-section-change="$event[0].value=$event[1]">
   </stat-section>`
 });
 
-/** Displays entire section of attributes or skills
- * receives events from child component and check if change is possible in resources
- * if changes are possible, emit event to top component to make changes, otherwise don't
- */
-app.component('stat-section', {
+const statSectionMixin = {
   props: ['stats'],
   emits: ['statSectionChange'],
-  computed: {
-    /**
-     * @returns {Array} of numbers describing how many points are currently assigned
-     * for example [0,9,0,0,0,0] means there are 9 attributes with value 1
-     * while [0,1,4,3,1,0] means 1 attribute with value 1, 4 attributes with value 2,
-     * 3 attributes with value 3, 1 attribute with value 4 and 0 attributes with value 5
-     */
-    allocatedResources() {
-      let tmp = Array(this.stats.resource.length).fill(0);
-      for (var i = 0; i < this.stats.data.length; i++) {
-        for (var j = 0; j < this.stats.data[i].list.length; j++) {
-          tmp[this.stats.data[i].list[j].value]++;
-        }
-      }
-      return tmp;
-    }
-  },
   methods: {
     /** 
       * if we are adding
@@ -364,7 +340,34 @@ app.component('stat-section', {
       }
       this.$emit('statSectionChange', [received_event[0], i]);           
     }      
+  }
+}
+const attributesAndSkillsMixin = {
+  computed: {
+    /**
+     * @returns {Array} of numbers describing how many points are currently assigned
+     * for example [0,9,0,0,0,0] means there are 9 attributes with value 1
+     * while [0,1,4,3,1,0] means 1 attribute with value 1, 4 attributes with value 2,
+     * 3 attributes with value 3, 1 attribute with value 4 and 0 attributes with value 5
+     */
+    allocatedResources() {
+      let tmp = Array(this.stats.resource.length).fill(0);
+      for (var i = 0; i < this.stats.data.length; i++) {
+        for (var j = 0; j < this.stats.data[i].list.length; j++) {
+          tmp[this.stats.data[i].list[j].value]++;
+        }
+      }
+      return tmp;
+    }
   },
+}
+
+/** Displays entire section of attributes or skills
+ * receives events from child component and check if change is possible in resources
+ * if changes are possible, emit event to top component to make changes, otherwise don't
+ */
+app.component('stat-section', {
+  mixins:[statSectionMixin,attributesAndSkillsMixin],
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
@@ -374,8 +377,7 @@ app.component('stat-section', {
         :key="list.id"
         :categ="list"
         :scale="stats.resource.length - 1"
-        @stat-category-change="emitAllowedChange($event)"
-      >
+        @stat-category-change="emitAllowedChange($event)">
       </stat-category>      
     </div>`
 });
