@@ -313,7 +313,12 @@ const app = Vue.createApp({
     :stats="skills"
     :distributions="skillDistributions"
     @stat-section-change="$event[0].value=$event[1]">
-  </skill-section>`
+  </skill-section>
+  <discipline-section 
+    :stats="disciplines"
+    
+    @stat-section-change="$event[0].value=$event[1]">
+  </discipline-section>`
 });
 
 const statSectionMixin = {
@@ -382,6 +387,7 @@ app.component('attribute-section', {
 });
 
 /** Displays entire section of skills
+ * displays select for distribution of skills
  * receives events from child component and check if change is possible in resources
  * if changes are possible, emit event to top component to make changes, otherwise don't
  */
@@ -514,6 +520,44 @@ app.component('character-info', {
         <option>C</option>
       </select>
       </div>`
+});
+
+app.component('discipline-section', {
+  mixins:[statSectionMixin],
+  props:['clan'],
+  computed: {
+    /**
+     * @returns {Array} of numbers describing how many points are currently assigned
+     * for example [0,9,0,0,0,0] means there are 9 attributes with value 1
+     * while [0,1,4,3,1,0] means 1 attribute with value 1, 4 attributes with value 2,
+     * 3 attributes with value 3, 1 attribute with value 4 and 0 attributes with value 5
+     */
+    allocatedResources() {
+      let tmp = Array(this.stats.resource.length).fill(0);
+      for (var i = 0; i < this.stats.data.length; i++) {
+        tmp[this.stats.data[i].value]++;
+      }
+      return tmp;
+    },
+    primary(){
+      return {
+        id: 'Primary',
+        list: this.stats.data
+      };
+    }
+  },
+  template: `
+    <div class="statSection">
+      <h2>{{stats.id}}</h2>
+      <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
+      <stat-category
+        
+        :key="primary.id"
+        :categ="primary"
+        :scale="stats.resource.length - 1"
+        @stat-category-change="emitAllowedChange($event)">
+      </stat-category>      
+    </div>`
 });
 
 const vm = app.mount('#root');
