@@ -1,11 +1,6 @@
 const app = Vue.createApp({
   data() {
     return {
-      biography: {
-        name: "",
-        defaultName: "A Kindred That Is Not To Be Named",
-        age: 0,
-      },
       attributes: {
         id: 'Attributes',
         resource: [
@@ -197,6 +192,7 @@ const app = Vue.createApp({
       },
     };
   },
+<<<<<<< HEAD
   template: `
   <character-info
     :bio="bio">
@@ -211,6 +207,19 @@ const app = Vue.createApp({
     @stat-section-change="$event[0].value=$event[1]"
     >
   </stat-section>`
+=======
+});
+
+app.component('sheet', {
+  props: ['attr', 'skills'],
+  template: `
+    <stat-section 
+      :stats="attr">
+    </stat-section>
+    <stat-section 
+      :stats="skills">
+    </stat-section>`
+>>>>>>> Revert "add name"
 });
 
 /** Displays entire section of attributes or skills
