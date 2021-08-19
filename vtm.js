@@ -300,7 +300,6 @@ const app = Vue.createApp({
       },
     };
   },
-  
   template: `
   <character-info
     :bio="biography"
@@ -541,26 +540,56 @@ app.component('discipline-section', {
       }
       return tmp;
     },
+  },
+  methods:{
     /**
-    * @returns {JSON} of primary disciplines, similar to how other data works
-    */
-    primary(){
-      return {
-        id: 'Primary',
-        list: this.stats.data
-      };
-    }
+     * @returns if discipline is primary or not
+     */
+    isPrimary(discipline){
+      if (!this.clan.abilities) return false;
+      for (var i = 0; i< this.clan.abilities.length; i++){
+        if (discipline.id == this.clan.abilities[i]){
+          return true;
+        }
+      }
+      return false;
+    },
+    
   },
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
       <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
-      <stat-category
-        :key="primary.id"
-        :categ="primary"
-        :scale="stats.resource.length - 1"
-        @stat-category-change="emitAllowedChange($event)">
-      </stat-category>      
+      <div class="statList">
+        <h2>Primary</h2>
+        <ul class="ulStats">
+          <li 
+            v-for="item in stats.data"
+            :key="item.id">
+            <stat 
+              v-show = "isPrimary(item)"
+              :stat="item"
+              :scale="stats.resource.length - 1"
+              @stat-change="emitAllowedChange($event)">
+            </stat>
+          </li>
+        </ul>
+      </div>
+      <div class="statList">
+        <h2>Secondary</h2>
+        <ul class="ulStats">
+          <li 
+            v-for="item in stats.data"
+            :key="item.id">
+            <stat 
+              v-show = "!isPrimary(item)"
+              :stat="item"
+              :scale="stats.resource.length - 1"
+              @stat-change="emitAllowedChange($event)">
+            </stat>
+          </li>
+        </ul>
+      </div>  
     </div>`
 });
 
