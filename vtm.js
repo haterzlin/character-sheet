@@ -305,14 +305,14 @@ const app = Vue.createApp({
     :bio="biography"
     :clans="clans">
   </character-info>
-  <stat-section 
+  <attribute-section 
     :stats="attributes"
     @stat-section-change="$event[0].value=$event[1]">
-  </stat-section>
-  <stat-section 
+  </attribute-section>
+  <skill-section 
     :stats="skills"
     @stat-section-change="$event[0].value=$event[1]">
-  </stat-section>`
+  </skill-section>`
 });
 
 const statSectionMixin = {
@@ -362,11 +362,31 @@ const attributesAndSkillsMixin = {
   },
 }
 
-/** Displays entire section of attributes or skills
+/** Displays entire section of attributes
  * receives events from child component and check if change is possible in resources
  * if changes are possible, emit event to top component to make changes, otherwise don't
  */
-app.component('stat-section', {
+app.component('attribute-section', {
+  mixins:[statSectionMixin,attributesAndSkillsMixin],
+  template: `
+    <div class="statSection">
+      <h2>{{stats.id}}</h2>
+      <div class="resourceCount">{{allocatedResources}}</div>
+      <stat-category
+        v-for="list in stats.data"
+        :key="list.id"
+        :categ="list"
+        :scale="stats.resource.length - 1"
+        @stat-category-change="emitAllowedChange($event)">
+      </stat-category>      
+    </div>`
+});
+
+/** Displays entire section of skills
+ * receives events from child component and check if change is possible in resources
+ * if changes are possible, emit event to top component to make changes, otherwise don't
+ */
+app.component('skill-section', {
   mixins:[statSectionMixin,attributesAndSkillsMixin],
   template: `
     <div class="statSection">
