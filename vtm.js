@@ -1,3 +1,4 @@
+const DEFAULTNAME = "A Kindred That Is Not To Be Named";
 const app = Vue.createApp({
   data() {
     return {
