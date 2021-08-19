@@ -328,16 +328,11 @@ const statSectionMixin = {
       * if we are not adding, no restriction check is needed, so we emit event
       */
     emitAllowedChange(received_event) {
-      var i = received_event[1];
-      if (received_event[0].value <= received_event[1]) {        
-        for (i; i >= 0; i--) {      
-          if (this.allocatedResources[i] < this.stats.resource[i]) {
-            break;
-          }
+      var i = received_event[1];    
+      for (; i > received_event[0].value; i--) {      
+        if (this.allocatedResources[i] < this.stats.resource[i])  {
+          break;
         }
-      }
-      else{ 
-        i--;
       }
       this.$emit('statSectionChange', [received_event[0], i]);           
     }      
@@ -402,7 +397,7 @@ app.component('skill-section', {
           {{distrib.id}}
         </option>
       </select>
-      <div class="resourceCount">{{allocatedResources}}</div>
+      <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
       <stat-category
         v-for="list in stats.data"
         :key="list.id"
@@ -448,7 +443,19 @@ app.component('stat', {
       initialValue: this.stat.value,
       hoverPointer: null
     };
-  },  
+  },
+  /** emits click event
+    * if user click filled point passes i-1
+    * @param i (number) value of clicked span
+    */
+  methods:{
+    clickEvent(i){
+      if ((this.stat.value >= i) && (i > this.initialValue)){
+        i--;
+      }
+      this.$emit('statChange', [this.stat, i])
+    }
+  },
   template: `
     <div class="stat">
       <div class="statName">{{stat.id}}</div>
@@ -461,7 +468,7 @@ app.component('stat', {
             fill: i > initialValue && i <= stat.value,
             active: hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value)         
           }"      
-          @click="$emit('statChange', [stat, i])"
+          @click="clickEvent(i)"
           @mouseover = "hoverPointer = i"
           @mouseleave = "hoverPointer = null"    
         >
