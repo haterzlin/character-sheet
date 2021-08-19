@@ -298,12 +298,12 @@ const app = Vue.createApp({
           },
           
         ],
-      },,
+      },
     };
   },
   template: `
   <character-info
-    :bio="bio">
+    :bio="biography">
   </character-info>
   <stat-section 
     :stats="attributes"
