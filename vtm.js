@@ -457,7 +457,32 @@ app.component('character-info', {
         v-model="bio.age"
         type="number"
         :placeholder = '123'/>
-    </div>`,
+      <b>Generation:</b>
+      <select 
+        v-model="bio.generation">
+        <option disabled value=null>-none-</option>
+        <option>15th</option>
+        <option>14th</option>
+        <option>13th</option>
+      </select>
+      <b>Clan:</b>
+      <select v-model="bio.clan">
+        <option disabled value="">Pick a Clan</option>
+        <option 
+          v-for="clan in clans"
+          :key = "clan.id"
+          :value="clan.id">
+          {{clan.id}}
+        </option>
+      </select>
+      <b>Faction:</b>
+      <select v-model="bio.faction">
+        <option disabled value="">Choose Your Coterie's Faction</option>
+        <option>Cammarilla</option>
+        <option>etc</option>
+        <option>C</option>
+      </select>
+      </div>`
 });
 
 const vm = app.mount('#root');
