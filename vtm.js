@@ -1,11 +1,72 @@
 const app = Vue.createApp({
   data() {
     return {
+      biography: {
+        name: "",
+        defaultName: DEFAULTNAME,/*make a set of names and randomly pick a default on page load*/
+        age: null, /*why not age=0? bcuz if you use a value then placeholder does not apply in input box*/
+        clan: null,
+        generation: null,
+        faction: null,
+      },
+      skillDistributions:[
+        { 
+          id: "Balanced",
+          resource: [12,7,5,3,0,0]
+        },
+        { 
+          id: "Jack-of-all-trades",
+          resource: [8,10,8,1,0,0]
+        },
+        { 
+          id: "Specialist",
+          resource: [17,3,3,3,1,0]
+        },
+      ],
+      clans :[
+        {
+          id: "Thin-blood",
+          abilities: null,
+          bloodPotency: "=0",
+        },{
+          id: "Caitiff",
+          abilities: null,
+          bloodPotency: ">0"
+        },{
+          id: "Brujah",
+          abilities: ["Celerity", "Potence", "Presence"],
+          bloodPotency: ">0"
+        },{
+          id: "Gangrel",
+          abilities: ["Animalism", "Fortitude", "Protean"],
+          bloodPotency: ">0"
+        },{
+          id: "Malkavian",
+          abilities: ["Auspex", "Dominate", "Obfuscate"],
+          bloodPotency: ">0"
+        },{
+          id: "Nosferatu",
+          abilities: ["Animalism", "Obfuscate", "Potence"],
+          bloodPotency: ">0"
+        },{
+          id: "Toreador",
+          abilities: ["Celerity", "Potence", "Presence"],
+          bloodPotency: ">0"
+        },{
+          id: "Tremere",
+          abilities: ["Animalism", "Blood Sorcery", "Dominate"],
+          bloodPotency: ">0"
+        },{
+          id: "Ventrue",
+          abilities: ["Dominate", "Fortitude", "Presence"],
+          bloodPotency: ">0"
+        },
+      ],
       attributes: {
         id: 'Attributes',
         resource: [
           0, 1, 4, 3, 1, 0,
-        ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots, 
+        ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots
         sum of values in resource <= amount of values in section*/,
         data: [
           {
@@ -190,9 +251,55 @@ const app = Vue.createApp({
           },
         ],
       },
+      disciplines:{
+        id: "Disciplines",
+        resource: [0,1,1,0,0,0],
+        data: [
+          {
+            id: 'Animalism',
+            value: 0,
+          },
+          {
+            id: 'Auspex',
+            value: 0,
+          },
+          {
+            id: 'Blood Sorcery',
+            value: 0,
+          },
+          {
+            id: 'Celerity',
+            value: 0,
+          },
+          {
+            id: 'Dominate',
+            value: 0,
+          },
+          {
+            id: 'Fortitude',
+            value: 0,
+          },
+          {
+            id: 'Obfuscate',
+            value: 0,
+          },
+          {
+            id: 'Potence',
+            value: 0,
+          },
+          {
+            id: 'Presence',
+            value: 0,
+          },
+          {
+            id: 'Protean',
+            value: 0,
+          },
+          
+        ],
+      },,
     };
   },
-<<<<<<< HEAD
   template: `
   <character-info
     :bio="bio">
@@ -207,19 +314,6 @@ const app = Vue.createApp({
     @stat-section-change="$event[0].value=$event[1]"
     >
   </stat-section>`
-=======
-});
-
-app.component('sheet', {
-  props: ['attr', 'skills'],
-  template: `
-    <stat-section 
-      :stats="attr">
-    </stat-section>
-    <stat-section 
-      :stats="skills">
-    </stat-section>`
->>>>>>> Revert "add name"
 });
 
 /** Displays entire section of attributes or skills
