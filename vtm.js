@@ -300,6 +300,7 @@ const app = Vue.createApp({
       },
     };
   },
+  
   template: `
   <character-info
     :bio="biography"
@@ -481,6 +482,7 @@ app.component('stat', {
   */
 app.component('character-info', {
   props: ['bio', 'clans'],
+  
   template: `
     <div class="char-info">
       <input 
@@ -554,7 +556,6 @@ app.component('discipline-section', {
       }
       return false;
     },
-    
   },
   template: `
     <div class="statSection">
@@ -585,7 +586,7 @@ app.component('discipline-section', {
               v-show = "!isPrimary(item)"
               :stat="item"
               :scale="stats.resource.length - 1"
-              @stat-change="emitAllowedChange($event)">
+              @stat-change="(!clan.abilities || $event[2]) ? emitAllowedChange($event) : ''">
             </stat>
           </li>
         </ul>
