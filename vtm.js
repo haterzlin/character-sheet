@@ -334,6 +334,9 @@ const statSectionMixin = {
           break;
         }
       }
+      if (received_event[2]){
+        i--;
+      }
       this.$emit('statSectionChange', [received_event[0], i]);           
     }      
   }
@@ -444,18 +447,6 @@ app.component('stat', {
       hoverPointer: null
     };
   },
-  /** emits click event
-    * if user click filled point passes i-1
-    * @param i (number) value of clicked span
-    */
-  methods:{
-    clickEvent(i){
-      if ((this.stat.value >= i) && (i > this.initialValue)){
-        i--;
-      }
-      this.$emit('statChange', [this.stat, i])
-    }
-  },
   template: `
     <div class="stat">
       <div class="statName">{{stat.id}}</div>
@@ -468,7 +459,7 @@ app.component('stat', {
             fill: i > initialValue && i <= stat.value,
             active: hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value)         
           }"      
-          @click="clickEvent(i)"
+          @click="$emit('statChange', [stat, i, ((stat.value >= i) && (i > initialValue))])"
           @mouseover = "hoverPointer = i"
           @mouseleave = "hoverPointer = null"    
         >
