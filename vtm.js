@@ -300,6 +300,13 @@ const app = Vue.createApp({
       },
     };
   },
+  computed:{
+    clan(){
+      var i;
+      for (i=0;i<this.clans.length; i++) if (this.clans[i].id===this.biography.clan) break;
+      return (i!=this.clans.length) ? i : -1;
+    }
+  },
   template: `
   <character-info
     :bio="biography"
@@ -315,8 +322,9 @@ const app = Vue.createApp({
     @stat-section-change="$event[0].value=$event[1]">
   </skill-section>
   <discipline-section 
+    v-if="clan > -1"
     :stats="disciplines"
-    
+    :clan="clans[clan]"
     @stat-section-change="$event[0].value=$event[1]">
   </discipline-section>`
 });
@@ -539,6 +547,9 @@ app.component('discipline-section', {
       }
       return tmp;
     },
+    /**
+    * @returns {JSON} of primary disciplines, similar to how other data works
+    */
     primary(){
       return {
         id: 'Primary',
@@ -551,7 +562,6 @@ app.component('discipline-section', {
       <h2>{{stats.id}}</h2>
       <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
       <stat-category
-        
         :key="primary.id"
         :categ="primary"
         :scale="stats.resource.length - 1"
