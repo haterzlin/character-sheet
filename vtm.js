@@ -300,13 +300,7 @@ const app = Vue.createApp({
       },
     };
   },
-  computed:{
-    clan(){
-      var i;
-      for (i=0;i<this.clans.length; i++) if (this.clans[i].id===this.biography.clan) break;
-      return (i!=this.clans.length) ? i : -1;
-    }
-  },
+  
   template: `
   <character-info
     :bio="biography"
@@ -322,9 +316,9 @@ const app = Vue.createApp({
     @stat-section-change="$event[0].value=$event[1]">
   </skill-section>
   <discipline-section 
-    v-if="clan > -1"
+    v-if="biography.clan"
     :stats="disciplines"
-    :clan="clans[clan]"
+    :clan="biography.clan"
     @stat-section-change="$event[0].value=$event[1]">
   </discipline-section>`
 });
@@ -516,7 +510,7 @@ app.component('character-info', {
         <option 
           v-for="clan in clans"
           :key = "clan.id"
-          :value="clan.id">
+          :value="clan">
           {{clan.id}}
         </option>
       </select>
