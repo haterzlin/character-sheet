@@ -311,6 +311,7 @@ const app = Vue.createApp({
   </attribute-section>
   <skill-section 
     :stats="skills"
+    :distributions="skillDistributions"
     @stat-section-change="$event[0].value=$event[1]">
   </skill-section>`
 });
@@ -388,9 +389,19 @@ app.component('attribute-section', {
  */
 app.component('skill-section', {
   mixins:[statSectionMixin,attributesAndSkillsMixin],
+  props:['distributions'],
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
+      <select v-model="stats.resource">
+        <option disabled value="">Select a distribution</option>
+        <option 
+          v-for="distrib in distributions"
+          :key = "distrib.id"
+          :value="distrib.resource">
+          {{distrib.id}}
+        </option>
+      </select>
       <div class="resourceCount">{{allocatedResources}}</div>
       <stat-category
         v-for="list in stats.data"
