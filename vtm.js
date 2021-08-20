@@ -377,14 +377,24 @@ app.component('attribute-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <div class="resourceCount">{{allocatedResources}}</div>
-      <stat-category
-        v-for="list in stats.data"
-        :key="list.id"
-        :categ="list"
-        :scale="stats.resource.length - 1"
-        @stat-category-change="emitAllowedChange($event)">
-      </stat-category>      
+      <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
+      <div 
+        v-for= "category in stats.data"
+        :key="category.id"
+        class="statList">
+        <h2>{{category.id}}</h2>
+        <ul class="ulStats">
+          <li 
+            v-for="item in category.list"
+            :key="item.id">
+            <stat 
+              :stat="item"
+              :scale="stats.resource.length - 1"
+              @stat-change="emitAllowedChange($event)">
+            </stat>
+          </li>
+        </ul>
+      </div>      
     </div>`
 });
 
@@ -409,38 +419,24 @@ app.component('skill-section', {
         </option>
       </select>
       <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
-      <stat-category
-        v-for="list in stats.data"
-        :key="list.id"
-        :categ="list"
-        :scale="stats.resource.length - 1"
-        @stat-category-change="emitAllowedChange($event)">
-      </stat-category>      
+      <div 
+        v-for= "category in stats.data"
+        :key="category.id"
+        class="statList">
+        <h2>{{category.id}}</h2>
+        <ul class="ulStats">
+          <li 
+            v-for="item in category.list"
+            :key="item.id">
+            <stat 
+              :stat="item"
+              :scale="stats.resource.length - 1"
+              @stat-change="emitAllowedChange($event)">
+            </stat>
+          </li>
+        </ul>
+      </div>     
     </div>`
-});
-
-/** displays category of attributes
-  * in case there is stat change from child component stat
-  * it will build whole category list with change and emits to parent component
-  */
-app.component('stat-category', {  
-  props: ['categ', 'scale'],
-  emits: ['statCategoryChange'],
-  template: `
-    <div class="statList">
-      <h2>{{categ.id}}</h2>
-      <ul class="ulStats">
-        <li 
-          v-for="item in categ.list"
-          :key="item.id">
-          <stat 
-            :stat="item"
-            :scale="scale"
-            @stat-change="$emit('statCategoryChange', $event)">
-          </stat>
-        </li>
-      </ul>
-    </div>`,
 });
 
 /** displays clickable point representing number depending on scale and stat value
