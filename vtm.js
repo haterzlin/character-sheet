@@ -496,7 +496,7 @@ app.component('character-info', {
       <b>Generation:</b>
       <select 
         v-model="bio.generation">
-        <option disabled value=null>-none-</option>
+        <option disabled value=null>N/A</option>
         <option>15th</option>
         <option>14th</option>
         <option>13th</option>
@@ -514,9 +514,11 @@ app.component('character-info', {
       <b>Faction:</b>
       <select v-model="bio.faction">
         <option disabled value="">Choose Your Coterie's Faction</option>
-        <option>Cammarilla</option>
-        <option>etc</option>
-        <option>C</option>
+        <option value=null>N/A</option>
+        <option value="Anarch">Anarch</option>
+        <option value="Autarki">Autarki</option>
+        <option value="Camarilla">Camarilla</option>
+        <option value="Sabbat">Sabbat</option>
       </select>
       </div>`
 });
