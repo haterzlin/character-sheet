@@ -28,39 +28,30 @@ const app = Vue.createApp({
         {
           id: "Thin-blood",
           abilities: null,
-          bloodPotency: "=0",
         },{
           id: "Caitiff",
           abilities: null,
-          bloodPotency: ">0"
         },{
           id: "Brujah",
           abilities: ["Celerity", "Potence", "Presence"],
-          bloodPotency: ">0"
         },{
           id: "Gangrel",
           abilities: ["Animalism", "Fortitude", "Protean"],
-          bloodPotency: ">0"
         },{
           id: "Malkavian",
           abilities: ["Auspex", "Dominate", "Obfuscate"],
-          bloodPotency: ">0"
         },{
           id: "Nosferatu",
           abilities: ["Animalism", "Obfuscate", "Potence"],
-          bloodPotency: ">0"
         },{
           id: "Toreador",
           abilities: ["Celerity", "Potence", "Presence"],
-          bloodPotency: ">0"
         },{
           id: "Tremere",
           abilities: ["Animalism", "Blood Sorcery", "Dominate"],
-          bloodPotency: ">0"
         },{
           id: "Ventrue",
           abilities: ["Dominate", "Fortitude", "Presence"],
-          bloodPotency: ">0"
         },
       ],
       attributes: {
