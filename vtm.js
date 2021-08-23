@@ -113,7 +113,7 @@ const app = Vue.createApp({
               {
                 id: 'Charisma',
                 value: 1,
-                description{
+                description:{
                   0:"Charisma measures your natural charm, grace, and sex appeal. If you have it, it draws people to you, making feeding a hell of a lot easier. Charisma doesn’t depend on good looks, which are their own Merit (See Looks, p. 179).",
                   1:"You can speak clearly, though few people tend to listen.",
                   2:"Generally likeable despite your undead nature, you may even have friends.",
@@ -301,7 +301,7 @@ const app = Vue.createApp({
                   3:"You evade patrolling guards, moving softly and hiding easily.",
                   4:"Your subtle, silent passage could make you a worthy ninja – or a worthy foe for ninja.",
                   5:"The Children of Haqim come to you for advice on stalking and hiding, if they can find you.",
-                  specialties: "Specialties: Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness 
+                  specialties: "Specialties: Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness" 
                 }
              },
               {
@@ -314,7 +314,7 @@ const app = Vue.createApp({
                   3:"You can subsist outside the city, setting traps for mortals and a shelter for yourself.",
                   4:"You can thrive outside the city like the true predator you are.",
                   5:"Gangrel run in packs with you – if they can keep up.",
-                  specialties: "Specialties: Desert, Hunting, Jungle, Tracking, Traps, Shelters, Urban Exploration, Woodlands 
+                  specialties: "Specialties: Desert, Hunting, Jungle, Tracking, Traps, Shelters, Urban Exploration, Woodlands"
                 }
              },
             ],
@@ -333,7 +333,7 @@ const app = Vue.createApp({
                   3:"Animals treat you as if you were a warm, friendly owner, unless provoked to do otherwise.",
                   4:"You draw animals into your orbit. Few attacking creatures maintain their aggression.",
                   5:"You can sense an animal’s feelings and thoughts, and they can feel and act on yours.",
-                  specialties: "Specialties: Attack Training, Cats, Dogs, Falconry, Horses, Pacification, Rats, Snakes, Stunt Training, Wolves 
+                  specialties: "Specialties: Attack Training, Cats, Dogs, Falconry, Horses, Pacification, Rats, Snakes, Stunt Training, Wolves"
                 }
              },
               {
@@ -346,7 +346,7 @@ const app = Vue.createApp({
                   3:"You impress others with your command of politeness, deference, and grace.",
                   4:"Your behavior sets trends, especially if you do something to buck the norm of etiquette.",
                   5:"The Keeper of Elysium and the Harpies look to you to establish domain protocol.",
-                  specialties: "Specialties: Anarch, Camarilla, Celebrities, Corporate, Elysium, Feudal, OnePercenter, Secret Society 
+                  specialties: "Specialties: Anarch, Camarilla, Celebrities, Corporate, Elysium, Feudal, OnePercenter, Secret Society" 
                 }
              },
               {
@@ -359,7 +359,7 @@ const app = Vue.createApp({
                   3:"You can provide psychotherapy even more effectively than someone who doesn’t want to eat their patient.",
                   4:"You are an undead lie detector. Only the best con artists can slip one by you.",
                   5:"People may be books of blood, but they are printed in very large type – easy to read.",
-                  specialties: "Specialties: Ambitions, Desires, Detect Lies, Emotions, Empathy, Interrogation, Motives, Phobias, Vices
+                  specialties: "Specialties: Ambitions, Desires, Detect Lies, Emotions, Empathy, Interrogation, Motives, Phobias, Vices"
                 }
              },
               {
@@ -541,14 +541,26 @@ const app = Vue.createApp({
                 id: 'Science',
                 value: 0,
                 description:{
-                  
+                  0:"Science is a broad church, covering everything from basic principles of life to the understanding of universal entropy. The laws of science govern the mortal world, and vampires who wish to rule that world study them. Levels of the Science Skill roughly match those in Academics, from “some college” to “worldfamous scholar.” Also like Academics, characters with a rating in Science get a free specialty.",
+                  1:"You dabble in the sciences and understand the principles behind the building blocks of life.",
+                  2:"You can accurately explain the competing scientific theories of the Embrace to another vampire.",
+                  3:"You make an excellent scientific manager; you can run a laboratory, interpret scientific findings, and get up to speed on scientific research in most fields. You can repair scientific equipment.",
+                  4:"You are an expert in your field and in those allied to it.",
+                  5:"Few peers match your understanding, and others come to you for guidance.",
+                  specialties: "Specialties: Astronomy, Biology, Chemistry, Demolitions, Engineering, Genetics, Geology, Mathematics, Physics"
                 }
              },
               {
                 id: 'Technology',
                 value: 0,
                 description:{
-                  
+                  0:"Technology acts as something of a moving target; it governs the operation and understanding of “technical developments most vampires find mystifying.” In 1870, it might have governed steam engines and electricity; these nights, it governs computers and computer systems. Of course, now computers govern almost everything – including steam turbines in power plants and electrical systems in office buildings.",
+                  1:"You know how to upgrade a home PC and keep it protected from viruses.",
+                  2:"You can conceal your IP, operate drones, and fake a digital photograph.",
+                  3:"You can create and unleash your own viruses without fear of detection.",
+                  4:"The Prince might call you personally to manage cybersecurity for their domain.",
+                  5:"On the internet, nobody knows you’re a vampire – or that you’re there at all.",
+                  specialties: "Specializations: Artillery, Coding, Computer Building, Data Mining, Hacking, Networks, Phones, Surveillance Systems"
                 }
              },
             ],
