@@ -2,6 +2,7 @@ const DEFAULTNAME = "A Kindred That Is Not To Be Named";
 const app = Vue.createApp({
   data() {
     return {
+      mouseOverData: 'test',
       biography: {
         name: "",
         defaultName: DEFAULTNAME,/*make a set of names and randomly pick a default on page load*/
@@ -300,7 +301,8 @@ const app = Vue.createApp({
     </character-info>
     <attribute-section 
       :stats="attributes"
-      @stat-section-change="$event[0].value=$event[1]">
+      @stat-section-change="$event[0].value=$event[1]"
+      @stat-section-hover="mouseOverData=$event">
     </attribute-section>
     <skill-section 
       :stats="skills"
@@ -313,12 +315,14 @@ const app = Vue.createApp({
       :clan="biography.clan"
       @stat-section-change="$event[0].value=$event[1]">
     </discipline-section>
-  </div>`
+  </div>
+  <hover-window
+    :mouse-over-data="mouseOverData"></hover-window>`
 });
 
 const statSectionMixin = {
   props: ['stats'],
-  emits: ['statSectionChange'],
+  emits: ['statSectionChange','statSectionHover'],
   methods: {
     /** 
       * if we are adding
@@ -383,7 +387,9 @@ app.component('attribute-section', {
             <stat 
               :stat="item"
               :scale="stats.resource.length - 1"
-              @stat-change="emitAllowedChange($event)">
+              @stat-change="emitAllowedChange($event)"
+              @stat-hover-start="$emit('statSectionHover',[$event, category.id, stats.id, allocatedResources, stats.resource])"
+              @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
         </ul>
@@ -437,7 +443,7 @@ app.component('skill-section', {
   */
 app.component('stat', {  
   props: ['stat', 'scale'],
-  emits: ['statChange'],
+  emits: ['statChange','statHoverStart','statHoverEnd'],
   data() {
     return {
       initialValue: this.stat.value,
@@ -445,7 +451,10 @@ app.component('stat', {
     };
   },
   template: `
-    <div class="stat">
+    <div 
+      class="stat"
+      @mouseover="$emit('statHoverStart',[stat, hoverPointer])"
+      @mouseleave="$emit('statHoverEnd')">
       <div class="statName">{{stat.id}}</div>
       <div class="points">  
         <span
