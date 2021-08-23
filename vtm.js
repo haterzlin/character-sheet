@@ -293,25 +293,27 @@ const app = Vue.createApp({
   },
   
   template: `
-  <character-info
-    :bio="biography"
-    :clans="clans">
-  </character-info>
-  <attribute-section 
-    :stats="attributes"
-    @stat-section-change="$event[0].value=$event[1]">
-  </attribute-section>
-  <skill-section 
-    :stats="skills"
-    :distributions="skillDistributions"
-    @stat-section-change="$event[0].value=$event[1]">
-  </skill-section>
-  <discipline-section 
-    v-if="biography.clan"
-    :stats="disciplines"
-    :clan="biography.clan"
-    @stat-section-change="$event[0].value=$event[1]">
-  </discipline-section>`
+  <div class="sheet">
+    <character-info
+      :bio="biography"
+      :clans="clans">
+    </character-info>
+    <attribute-section 
+      :stats="attributes"
+      @stat-section-change="$event[0].value=$event[1]">
+    </attribute-section>
+    <skill-section 
+      :stats="skills"
+      :distributions="skillDistributions"
+      @stat-section-change="$event[0].value=$event[1]">
+    </skill-section>
+    <discipline-section 
+      v-if="biography.clan"
+      :stats="disciplines"
+      :clan="biography.clan"
+      @stat-section-change="$event[0].value=$event[1]">
+    </discipline-section>
+  </div>`
 });
 
 const statSectionMixin = {
