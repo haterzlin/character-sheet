@@ -512,6 +512,10 @@ app.component('character-info', {
       </div>`
 });
 
+/** Displays entire section of disciplines
+ * receives events from child component and check if change is possible in resources
+ * if changes are possible, emit event to top component to make changes, otherwise don't
+ */
 app.component('discipline-section', {
   mixins:[statSectionMixin],
   props:['clan'],
@@ -579,6 +583,16 @@ app.component('discipline-section', {
         </ul>
       </div>  
     </div>`
+});
+
+app.component('hover-window',{
+  props:['mouseOverData'],
+  template:`
+    <div 
+      class="hover">
+      {{mouseOverData}}
+    </div>
+  `
 });
 
 const vm = app.mount('#root');
