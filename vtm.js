@@ -307,13 +307,15 @@ const app = Vue.createApp({
     <skill-section 
       :stats="skills"
       :distributions="skillDistributions"
-      @stat-section-change="$event[0].value=$event[1]">
+      @stat-section-change="$event[0].value=$event[1]"
+      @stat-section-hover="mouseOverData=$event">
     </skill-section>
     <discipline-section 
       v-if="biography.clan"
       :stats="disciplines"
       :clan="biography.clan"
-      @stat-section-change="$event[0].value=$event[1]">
+      @stat-section-change="$event[0].value=$event[1]"
+      @stat-section-hover="mouseOverData=$event">
     </discipline-section>
   </div>
   <hover-window
@@ -430,7 +432,9 @@ app.component('skill-section', {
             <stat 
               :stat="item"
               :scale="stats.resource.length - 1"
-              @stat-change="emitAllowedChange($event)">
+              @stat-change="emitAllowedChange($event)"
+              @stat-hover-start="$emit('statSectionHover',[$event, category.id, stats.id, allocatedResources, stats.resource])"
+              @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
         </ul>
@@ -573,7 +577,9 @@ app.component('discipline-section', {
               v-show = "isPrimary(item)"
               :stat="item"
               :scale="stats.resource.length - 1"
-              @stat-change="emitAllowedChange($event)">
+              @stat-change="emitAllowedChange($event)"
+              @stat-hover-start="$emit('statSectionHover',[$event, 'Primary', stats.id, allocatedResources, stats.resource])"
+              @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
         </ul>
@@ -588,7 +594,9 @@ app.component('discipline-section', {
               v-show = "!isPrimary(item)"
               :stat="item"
               :scale="stats.resource.length - 1"
-              @stat-change="(!clan.abilities || $event[2]) ? emitAllowedChange($event) : ''">
+              @stat-change="(!clan.abilities || $event[2]) ? emitAllowedChange($event) : ''"
+              @stat-hover-start="$emit('statSectionHover',[$event, 'Secondary', stats.id, allocatedResources, stats.resource, clan.abilities===null])"
+              @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
         </ul>
