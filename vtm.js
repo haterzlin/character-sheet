@@ -704,7 +704,15 @@ const statSectionMixin = {
         i--;
       }
       this.$emit('statSectionChange', [received_event[0], i]);           
-    }      
+    }     
+  },
+  computed: {
+    /** Returns reference to computed value allocated resource
+      * used to make mouse-over event data react to click
+      */
+    allocatedRef(){
+      return Vue.computed(()=>this.allocatedResources)
+    }
   }
 }
 const attributesAndSkillsMixin = {
@@ -750,7 +758,7 @@ app.component('attribute-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedResources, resource: stats.resource})"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedRef, resource: stats.resource})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
@@ -793,7 +801,7 @@ app.component('skill-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedResources, resource: stats.resource})"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedRef, resource: stats.resource})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
@@ -938,7 +946,7 @@ app.component('discipline-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:'Primary', section:stats.id, allocated:allocatedResources, resource: stats.resource})"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:'Primary', section:stats.id, allocated:allocatedRef, resource: stats.resource})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
@@ -955,7 +963,7 @@ app.component('discipline-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="(!clan.abilities || $event[2]) ? emitAllowedChange($event) : ''"
-              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category: 'Secondary', section:stats.id, allocated:allocatedResources, resource: stats.resource, isCaitiff:clan.abilities===null})"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category: 'Secondary', section:stats.id, allocated:allocatedRef, resource: stats.resource, isCaitiff:clan.abilities===null})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
