@@ -141,3 +141,7 @@ div.hover{
   position: fixed;
   width: 600px;
 }
+b.caps{
+  margin-top: 4px;
+  text-transform: uppercase;
+}
