@@ -131,3 +131,12 @@ select:hover{
   background-color: #dddddd;
   cursor: pointer;
 }
+div.sheet{
+  float: left;
+}
+div.hover{
+  float:right;
+  z-index: 9;
+  position: relative;
+  width: 600px;
+}

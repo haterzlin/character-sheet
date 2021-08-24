@@ -61,10 +61,10 @@ const app = Vue.createApp({
           0, 1, 4, 3, 1, 0,
         ] /*vtm5e attribute distribution: 1 times 4 dots; 3 times 3 dots, 4 times 2 dots
         sum of values in resource <= amount of values in section*/,
-        description:"Physical Attributes measure a character’s general strength, agility, and stamina. Due to the vagaries of the Blood, strong, quick, or tough vampires need not look muscle-bound, graceful, or meaty. Some of the most lethal Kindred appear most deceptively weak and slow.",
         data: [
           {
             id: 'Physical',
+            description:"Physical Attributes measure a character’s general strength, agility, and stamina. Due to the vagaries of the Blood, strong, quick, or tough vampires need not look muscle-bound, graceful, or meaty. Some of the most lethal Kindred appear most deceptively weak and slow.",
             list: [
               {
                 id: 'Strength',
@@ -575,7 +575,13 @@ const app = Vue.createApp({
             id: 'Animalism',
             value: 0,
                 description:{
-                  
+                  0:"By default Animalism powers involving animals can only be used on vertebrates. Additionally, any use of the ability on herbivores adds one to the Difficulty of skill rolls involved. <ul><li> Type: Mental</li><li>Masquerade threat: Low to medium. While talking to animalsmight seem eccentric, only the most violent applications of the Discipline elicit more than a few raised eyebrows.</li><li>Blood Resonance: Animal blood, preferably feral.</li></ul>",
+                  1:"<b>bond famulus</b>\n When Blood Bonding an animal, the vampire can make it a famulus, forming a mental link with it and facilitating the use of other Animalism powers. While this power alone does not allow two-way communication with the animal, it can follow simple verbal instructions such as \“stay\” and \“come here.\" It attacks in defense of itself and its master but cannot otherwise be persuaded to fight something it would not normally attack.\n<b>Dice Pools:</b> Charisma + Animal Ken\n <b>sense the beast</b>\nThe vampire can sense the Beast present in mortals, vampires, and other supernaturals, gaining a sense of their nature, hunger, and hostility.\n<b>Dice Pools:</b> Resolve + Animalism vs Composure + Subterfuge",
+                  2:"<b>feral whispers</b>\nThe vampire can commune with the beasts of the wild and the city. Feral Whispers allows two-way communication with animals. A cat might not be interested in debating Matisse’s use of color but happily discusses the lack of prey around the brownstone building across the street. Depending on the vampire’s skill, they can even persuade animals to perform services; like humans, animals seldom agree to things that go against their nature or endanger them. Vampires can also use Feral Whispers to summon a chosen type of animal but the animals must be present to answer. Nothing prevents a vampire trying to summon an orca in Central Park, but success seems unlikely. Summoned animals listen to the summoner, but scatter or attack if endangered.\n <b>Dice Pools:</b> Manipulation + Animalism, Charisma + Animalism",
+                  3:"<b>animal succulence</b>\nThe vampire can slake additional Hunger by feeding on animals. In addition, the vampire can consume its famulus, gaining nourishment far beyond what would be gained from an animal of similar stature and absorbing a sliver of its primary trait.\n<b>quell the beast</b> By locking eyes with a target, the vampire cows their inner Beast into temporary slumber. Mortals affected thus become apathetic, unable to take any actions other than to stay alive, while vampires’ bestial urges temporarily abate, for better or worse.\n<b>Dice Pools:</b> Charisma + Animalism vs Stamina + Resolve\n<b>unliving hive</b>\n<b>Amalgam:</b> Obfuscate 2\n Most often seen amongst the Nosferatu, this unnerving power allows the user to extend their animal influence to swarms of insects such as flies or roaches. Certain vampires even go so far as to adopt swarms as famuli, giving them a permanent home within the folds and orifices of their malformed flesh.",
+                  4:"<b>subsume the spirit</b>\nThe vampire can completely transfer its mind into the body of an animal. They can control the animal and use its senses freely, even during the day should they manage to stay awake. While doing this, the vampire’s body lies immobile as if in torpor.\n<b>Dice Pools:</b> Manipulation + Animalism",
+                  5:"<b>animal dominion</b>\nThe power the vampire holds over beasts is now great enough to command flocks and packs as if they were extensions of their own body. At a gesture, animals lay down their lives by the dozens, even hundreds, to appease their master.\n<b>Dice Pools:</b> Charisma + Animalism\n<b>drawing out the beast</b>\n The vampire can project their Beast at the moment of terror or fury frenzy, transferring it into a nearby subject, either mortal or vampire. That person immediately experiences the frenzy instead, going on a merciless rampage or fleeing in terror depending on the trigger\n.<b>Dice Pools:</b> Wits + Animalism vs Composure + Resolve"
+
                 }
           },
           {
