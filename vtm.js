@@ -715,6 +715,7 @@ const statSectionMixin = {
     }
   }
 }
+
 const attributesAndSkillsMixin = {
   computed: {
     /**
@@ -744,7 +745,6 @@ app.component('attribute-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
       <div 
         v-for= "category in stats.data"
         :key="category.id"
@@ -778,7 +778,9 @@ app.component('skill-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <select v-model="stats.resource">
+      <select 
+        v-model="stats.resource"
+        :style="{display:'block'}">
         <option disabled value="">Select a distribution</option>
         <option 
           v-for="distrib in distributions"
@@ -787,7 +789,6 @@ app.component('skill-section', {
           {{distrib.id}}
         </option>
       </select>
-      <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
       <div 
         v-for= "category in stats.data"
         :key="category.id"
@@ -934,7 +935,6 @@ app.component('discipline-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <div class="resourceCount">{{allocatedResources}} | {{stats.resource}}</div>
       <div class="statList">
         <h2>Primary</h2>
         <ul class="ulStats">
