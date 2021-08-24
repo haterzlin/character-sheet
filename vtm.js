@@ -750,7 +750,7 @@ app.component('attribute-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',[$event, category.id, stats.id, allocatedResources, stats.resource])"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedResources, resource: stats.resource})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
@@ -793,7 +793,7 @@ app.component('skill-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',[$event, category.id, stats.id, allocatedResources, stats.resource])"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedResources, resource: stats.resource})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
@@ -817,7 +817,7 @@ app.component('stat', {
   template: `
     <div 
       class="stat"
-      @mouseover="$emit('statHoverStart',[stat, hoverPointer])"
+      @mouseover="$emit('statHoverStart',{stat:stat, hoverPointer:hoverPointer})"
       @mouseleave="$emit('statHoverEnd')">
       <div class="statName">{{stat.id}}</div>
       <div class="points">  
@@ -938,7 +938,7 @@ app.component('discipline-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',[$event, 'Primary', stats.id, allocatedResources, stats.resource])"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:'Primary', section:stats.id, allocated:allocatedResources, resource: stats.resource})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
@@ -955,7 +955,7 @@ app.component('discipline-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="(!clan.abilities || $event[2]) ? emitAllowedChange($event) : ''"
-              @stat-hover-start="$emit('statSectionHover',[$event, 'Secondary', stats.id, allocatedResources, stats.resource, clan.abilities===null])"
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category: 'Secondary', section:stats.id, allocated:allocatedResources, resource: stats.resource, isCaitiff:clan.abilities===null})"
               @stat-hover-end="$emit('statSectionHover', null)">
             </stat>
           </li>
@@ -983,15 +983,21 @@ app.component('hover-window',{
   },
   template:`
     <div class="hover">
-      
       <div
         class="description"
-        v-if = "data[0][0].description">
-      <p v-html = "data[0][0].description[0]"></p>
-      <p v-html = "data[0][0].description[data[0][1]]"></p>
+        v-if = "data.stat">
+      <p v-html = "data.stat.description[0]"></p>
+      <p v-html = "data.stat.description[data.hoverPointer]"></p>
       <p
-        v-if = "data[0][0].description.specialties" 
-        v-html = "data[0][0].description.specialties"></p>
+        v-if = "data.stat.description.specialties" 
+        v-html = "data.stat.description.specialties"></p>
+      </div>
+      <div
+        class=resource
+        v-if = "data.allocated && data.resource">
+        <span 
+          :style="{display: 'block'}"
+          v-for="(item,index) in data.allocated">{{item}}/{{data.resource[index]}} of {{index}}</span>
       </div>
     </div>
   `
