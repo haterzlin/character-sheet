@@ -135,8 +135,9 @@ div.sheet{
   float: left;
 }
 div.hover{
+  margin-left: 800px;
   float:right;
   z-index: 9;
-  position: relative;
+  position: fixed;
   width: 600px;
 }
