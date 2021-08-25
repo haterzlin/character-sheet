@@ -589,7 +589,12 @@ const app = Vue.createApp({
             id: 'Auspex',
             value: 0,
                 description:{
-                  
+                  0:"Storytellers may wish to make Auspex rolls for characters in order to more convincingly provide wrong or incomplete answers after failed rolls.<ul><li> Type: Mental</li><li>Masquerade threat: Low. Auspex never by itself manifests in a way visible to the naked eye or causes effects that can’t be rationalized, if only as dumb luck.</li><li>Blood Resonance: Phlegmatic. Artists (especially photographers) and visionaries, certain schizophrenics, users of psychoactive substances, detectives.</li></ul>",
+                  1:"<b class=\"caps\">heightened senses</b><ul><li>Cost: Free*</li><li>Dice Pools: Wits + Resolve</li></ul><b class=\"caps\">sense the unseen</b><ul><li>Cost: Free</li><li>Dice Pools: Wits + Auspex or Resolve + Auspex</li></ul>",
+                  2:"<b class=\"caps\">premonition</b><ul><li>Cost: Free or one Rouse Check</li><li>Dice Pools: Resolve + Auspex</li></ul>",
+                  3:"<b class=\"caps\">scry the soul</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Auspex vs Composure + Subterfuge</li></ul><b class=\"caps\">share the senses</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Resolve + Auspex</li></ul>",
+                  4:"<b class=\"caps\">spirit’s touch</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Auspex</li></ul>",
+                  5:"<b class=\"caps\">clairvoyance</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Auspex</li></ul><b class=\"caps\">possession</b><ul><li>Amalgam: Dominate 3</li><li>Cost: Two Rouse Check</li><li>Dice Pools: Resolve + Auspex vs Resolve + Intelligence</li></ul><b class=\"caps\">telepathy</b><ul><li>Cost: One Rouse Check (plus one Willpower vs non-consenting vampires)</li><li>Dice Pools: Intelligence + Auspex</li></ul>"
                 }
           },
           {
@@ -603,7 +608,12 @@ const app = Vue.createApp({
             id: 'Celerity',
             value: 0,
                 description:{
-                  
+                  0:"The ability to strike fast, dodge blows, and escape pursuers allows Kindred to become extremely effective predators.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
+                  1:"<b class=\"caps\">cat’s grace</b><ul><li>Cost: Free</li></ul><b class=\"caps\">rapid reflexes</b><ul><li>Cost: Free</li></ul>",
+                  2:"<b class=\"caps\">fleetness</b><ul><li>Cost: Free</li></ul>",
+                  3:"<b class=\"caps\">traversal</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Dexterity + Athletics, or as needed</li></ul><b class=\"caps\">blink</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Dexterity + Athletics</li></ul>",
+                  4:"<b class=\"caps\">draught of elegance</b><ul><li>Cost: One Rouse Check</li></ul><b class=\"caps\">unerring aim</b><ul><li>Amalgam: Auspex 2</li><li>Cost: One Rouse Check</li></ul>",
+                  5:"<b class=\"caps\">lightning strike</b><ul><li>Cost: One Rouse Check</li></ul><b class=\"caps\">split second</b><ul><li>Cost: One Rouse Check</li></ul>"
                 }
           },
           {
