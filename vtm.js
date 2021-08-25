@@ -620,21 +620,36 @@ const app = Vue.createApp({
             id: 'Dominate',
             value: 0,
                 description:{
-                  
+                  0:"Dominate grants the vampire the ability to control the actions of others, manipulate their memories, and force living creatures into acts they would not perform of their own volition.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Bar-ring someone Dominating an entire auditorium to jump off the cliffs of Dover, it remains one of the more subtle vampiric powers.</li><li>Blood Resonance: Phlegmatic. The blood of the submissive or the dominant, masters and slaves, captains of industry, power trippers, cult leaders and followers.</li></ul>",
+                  1:"<b class=\"caps\">cloud memory</b><ul><li>Dice Pools: Charisma + Dominate vs Wits + Resolve</li></ul><b class=\"caps\">compel</b><ul><li>Dice Pools: Charisma + Dominate vs Intelligence + Resolve</li></ul>",
+                  2:"<b class=\"caps\">mesmerize</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Manipulation + Dominate vs Intelligence + Resolve</li></ul><b class=\"caps\">dementation</b><ul><li>Amalgam: Obfuscate 2</li><li>Cost: One Rouse Check</li><li>Dice Pools: Manipulation + Dominate vs Composure + Intelligence</li></ul>",
+                  3:"<b class=\"caps\">the forgetful mind</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Manipulation + Dominate vs Intelligence + Resolve</li></ul><b class=\"caps\">submerged directive</b><ul><li>Cost: No additional cost</li></ul>",
+                  4:"<b class=\"caps\">rationalize</b><ul><li>Cost: No additional cost</li></ul>",
+                  5:"<b class=\"caps\">mass manipulation</b><ul><li>Cost: One Rouse Check in addition to the cost of the power amplified</li><li>Dice Pools: Manipulation + Dominate vs Intelligence + Resolve</li></ul><b class=\"caps\">terminal decree</b><ul><li>Cost: No additional Hunger cost, but the Humanity cost is potentially severe</li></ul>"
                 }
           },
           {
             id: 'Fortitude',
             value: 0,
                 description:{
-                  
+                  0:"Much prized by immortals, Fortitude grants the ability to resist physical and mental assault. Few vampires survive longer than a century without at least a mote of Fortitude, especially in a world where violence is common and not even Kindred are safe.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium. Eyewitnesses undoubtedly react upon someone taking a terminal beating or a hail of bullets and getting back up seemingly unhurt. Favorite cover-up explanations include erroneous recollection in the excitement (the bullets only seemed to hit), special effects (YouTube prank), or the tried-and-tested “must have been on PCP” rationale.</li><li>Blood Resonance: Melancholic. Survivors of war, abuse, or misfortune; endurance runners; mountain climbers; infantry and special forces; those with very powerful immune systems.</li></ul>",
+                  1:"<b class=\"caps\">resilience</b><br><b class=\"caps\">unswayable mind</b>",
+                  2:"<b class=\"caps\">toughness</b><ul><li>Cost: One Rouse Check</li></ul><b class=\"caps\">enduring beasts</b><ul><li>Amalgam: Animalism 1</li><li>Cost: Free (for famulus)/One Rouse Check (for other animals)</li><li>Dice Pools: Stamina + Animalism (for non-famulus animals)</li></ul>",
+                  3:"<b class=\"caps\">defy bane</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Wits + Survival (to activate reflexively)</li></ul><b class=\"caps\">fortify the inner facade</b>",
+                  4:"<b class=\"caps\">draught of endurance</b><ul><li>Cost: One Rouse Check</li></ul>",
+                  5:"<b class=\"caps\">flesh of marble</b><ul><li>Cost: Two Rouse Checks</li></ul><b class=\"caps\">prowess from pain</b><ul><li>Cost: One Rouse Check</li></ul>"
                 }
           },
           {
             id: 'Obfuscate',
             value: 0,
                 description:{
-                  
+                  0:"Obfuscate powers work through ambient, low-level mesmerism. Observers see the vampire but their minds choose to ignore it. Witnesses unconsciously move out of the way if the user blocks their path and rationalize their behavior if pressed. Obfuscate affects all five senses unless otherwise noted.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
+                  1:"<b class=\"caps\">cloak of shadows</b><br><b class=\"caps\">silence of death</b>",
+                  2:"<b class=\"caps\">unseen passage</b><ul><li>Cost: One Rouse Check</li></ul>",
+                  3:"<b class=\"caps\">ghost in the machine</b><ul><li>Cost: No additional cost</li><li>Dice Pools: Wits + Survival (to activate reflexively)</li></ul><b class=\"caps\">mask of a thousand faces</b><ul><li>Cost: One Rouse Check</li></ul>",
+                  4:"<b class=\"caps\">conceal</b><ul><li>Amalgam: Auspex 3</li><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Obfuscate</li></ul><b class=\"caps\">vanish</b><ul><li>Prerequisite: Cloak of Shadows The vampire can activate Cloak of Shadows and Unseen Passage even while under direct observation. The vampire appears to vanish in the blink of an eye; even the memory of them becomes foggy and indistinct.</li><li>Cost: As per power augmented</li><li>Dice Pools: Wits + Obfuscate vs Wits + Awareness</li></ul>",
+                  5:"<b class=\"caps\">cloak the gathering</b><ul><li>Cost: One Rouse Check in addition to the cost of the power extended</li></ul><b class=\"caps\">impostor’s guise</b><ul><li>Prerequisite: Mask of a Thousand Faces With some preparation the vampire can make themselves appear as a specific individual of any build and gender. The user must carefully study the subject, otherwise the charade fails when meeting anyone with more than a casual familiarity with the person being mimicked.</li><li>Cost: One Rouse Check</li></ul>"
                 }
           },
           {
