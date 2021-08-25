@@ -88,7 +88,6 @@ const app = Vue.createApp({
                   3:"Your agility is impressive, and your coordination is as good as any trained amateur.",
                   4:"You could excel at acrobatics and move in a way few humans can.",
                   5:"Your movements are liquid and hypnotic – almost superhuman."
-
                   }
               },
               {
@@ -101,7 +100,6 @@ const app = Vue.createApp({
                   3:"Several days of hard hiking with a backpack is no problem for you.",
                   4:"You could win a marathon or take copious amounts of pain, at least physically.",
                   5:"Even if you were a mortal, you’d never break a sweat."
-
                   }
               },
             ],
@@ -120,7 +118,6 @@ const app = Vue.createApp({
                   3:"People trust you implicitly, and you easily make friends.",
                   4:"You possess significant personal magnetism and draw followers like flies.",
                   5:"You could lead a city in rebellion, if you so choose."
-
                 }
               },
               {
@@ -470,7 +467,6 @@ const app = Vue.createApp({
                   4:"Even when you are distracted, few things are beyond your notice.",
                   5:"Your senses are those of a wild animal.",
                   specialties: "Specialties: Ambushes, Camouflage, Concealed Objects, Hearing, Instincts, Smell, Sight, Traps, Wilderness",
-
                 }
              },
               {
@@ -576,44 +572,29 @@ const app = Vue.createApp({
             id: 'Animalism',
             value: 0,
                 description:{
-                  0:"By default Animalism powers involving animals can only be used on vertebrates. Additionally, any use of the ability on herbivores adds one to the Difficulty of skill rolls involved. <ul><li> Type: Mental</li><li>Masquerade threat: Low to medium. While talking to animalsmight seem eccentric, only the most violent applications of the Discipline elicit more than a few raised eyebrows.</li><li>Blood Resonance: Animal blood, preferably feral.</li></ul>",
-                  1:"<b class=\"caps\">bond famulus</b><br> When Blood Bonding an animal, the vampire can make it a famulus, forming a mental link with it and facilitating the use of other Animalism powers. While this power alone does not allow two-way communication with the animal, it can follow simple verbal instructions such as \“stay\” and \“come here.\" It attacks in defense of itself and its master but cannot otherwise be persuaded to fight something it would not normally attack.<br><b>Dice Pools:</b> Charisma + Animal Ken<br> <b class=\"caps\">sense the beast</b><br>The vampire can sense the Beast present in mortals, vampires, and other supernaturals, gaining a sense of their nature, hunger, and hostility.<br><b>Dice Pools:</b> Resolve + Animalism vs Composure + Subterfuge",
-                  2:"<b class=\"caps\">feral whispers</b><br>The vampire can commune with the beasts of the wild and the city. Feral Whispers allows two-way communication with animals. A cat might not be interested in debating Matisse’s use of color but happily discusses the lack of prey around the brownstone building across the street. Depending on the vampire’s skill, they can even persuade animals to perform services; like humans, animals seldom agree to things that go against their nature or endanger them. Vampires can also use Feral Whispers to summon a chosen type of animal but the animals must be present to answer. Nothing prevents a vampire trying to summon an orca in Central Park, but success seems unlikely. Summoned animals listen to the summoner, but scatter or attack if endangered.<br> <b>Dice Pools:</b> Manipulation + Animalism, Charisma + Animalism",
-                  3:"<b class=\"caps\">animal succulence</b><br>The vampire can slake additional Hunger by feeding on animals. In addition, the vampire can consume its famulus, gaining nourishment far beyond what would be gained from an animal of similar stature and absorbing a sliver of its primary trait.<br><b class=\"caps\">quell the beast</b><br>By locking eyes with a target, the vampire cows their inner Beast into temporary slumber. Mortals affected thus become apathetic, unable to take any actions other than to stay alive, while vampires’ bestial urges temporarily abate, for better or worse.<br><b>Dice Pools:</b> Charisma + Animalism vs Stamina + Resolve<br><b class=\"caps\">unliving hive</b><br><b>Amalgam:</b> Obfuscate 2<br> Most often seen amongst the Nosferatu, this unnerving power allows the user to extend their animal influence to swarms of insects such as flies or roaches. Certain vampires even go so far as to adopt swarms as famuli, giving them a permanent home within the folds and orifices of their malformed flesh.",
-                  4:"<b class=\"caps\">subsume the spirit</b><br>The vampire can completely transfer its mind into the body of an animal. They can control the animal and use its senses freely, even during the day should they manage to stay awake. While doing this, the vampire’s body lies immobile as if in torpor.<br><b>Dice Pools:</b> Manipulation + Animalism",
-                  5:"<b class=\"caps\">animal dominion</b><br>The power the vampire holds over beasts is now great enough to command flocks and packs as if they were extensions of their own body. At a gesture, animals lay down their lives by the dozens, even hundreds, to appease their master.<br><b>Dice Pools:</b> Charisma + Animalism<br><b class=\"caps\">drawing out the beast</b><br> The vampire can project their Beast at the moment of terror or fury frenzy, transferring it into a nearby subject, either mortal or vampire. That person immediately experiences the frenzy instead, going on a merciless rampage or fleeing in terror depending on the trigger.<br><b>Dice Pools:</b> Wits + Animalism vs Composure + Resolve"
-
+                  0:"Animalism is a Discipline that brings the vampire closer to their animalistic nature. This not only allows them to communicate with and gain dominance over creatures of nature, but gives them influence over the Beast itself.<ul><li> Type: Mental</li><li>Masquerade threat: Low to medium. While talking to animalsmight seem eccentric, only the most violent applications of the Discipline elicit more than a few raised eyebrows.</li><li>Blood Resonance: Animal blood, preferably feral.</li></ul>",
                 }
           },
           {
             id: 'Auspex',
             value: 0,
                 description:{
-                  0:"Storytellers may wish to make Auspex rolls for characters in order to more convincingly provide wrong or incomplete answers after failed rolls.<ul><li> Type: Mental</li><li>Masquerade threat: Low. Auspex never by itself manifests in a way visible to the naked eye or causes effects that can’t be rationalized, if only as dumb luck.</li><li>Blood Resonance: Phlegmatic. Artists (especially photographers) and visionaries, certain schizophrenics, users of psychoactive substances, detectives.</li></ul>",
-                  1:"<b class=\"caps\">heightened senses</b><ul><li>Cost: Free*</li><li>Dice Pools: Wits + Resolve</li></ul><b class=\"caps\">sense the unseen</b><ul><li>Cost: Free</li><li>Dice Pools: Wits + Auspex or Resolve + Auspex</li></ul>",
-                  2:"<b class=\"caps\">premonition</b><ul><li>Cost: Free or one Rouse Check</li><li>Dice Pools: Resolve + Auspex</li></ul>",
-                  3:"<b class=\"caps\">scry the soul</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Auspex vs Composure + Subterfuge</li></ul><b class=\"caps\">share the senses</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Resolve + Auspex</li></ul>",
-                  4:"<b class=\"caps\">spirit’s touch</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Auspex</li></ul>",
-                  5:"<b class=\"caps\">clairvoyance</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Auspex</li></ul><b class=\"caps\">possession</b><ul><li>Amalgam: Dominate 3</li><li>Cost: Two Rouse Check</li><li>Dice Pools: Resolve + Auspex vs Resolve + Intelligence</li></ul><b class=\"caps\">telepathy</b><ul><li>Cost: One Rouse Check (plus one Willpower vs non-consenting vampires)</li><li>Dice Pools: Intelligence + Auspex</li></ul>"
+                  0:"Auspex is a Discipline that grants vampires supernatural senses.<ul><li> Type: Mental</li><li>Masquerade threat: Low. Auspex never by itself manifests in a way visible to the naked eye or causes effects that can’t be rationalized, if only as dumb luck.</li><li>Blood Resonance: Phlegmatic. Artists (especially photographers) and visionaries, certain schizophrenics, users of psychoactive substances, detectives.</li></ul>",
                 }
           },
           {
             id: 'Blood Sorcery',
             value: 0,
                 description:{
-                  
+                  0:"Blood Magic, or Blood Sorcery, refers to the magic performed by vampires, fueled by religious or occult practices and the power of Cainite vitae. <ul><li>Type: Sorcery</li><li>Masquerade Threat:Low-High. The individual appearance of the powers and Rituals in Blood Sorcery varies as widely as their effects.</li><li>Blood Resonance: Sanguine. Although not inherent in the Blood itself, Blood Sorcery responds eagerly to blood from human occultists, sorcerers, and cult leaders, as well as hemophiles and bibliophiles.</li></ul>"
                 }
           },
           {
             id: 'Celerity',
             value: 0,
                 description:{
-                  0:"The ability to strike fast, dodge blows, and escape pursuers allows Kindred to become extremely effective predators.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
-                  1:"<b class=\"caps\">cat’s grace</b><ul><li>Cost: Free</li></ul><b class=\"caps\">rapid reflexes</b><ul><li>Cost: Free</li></ul>",
-                  2:"<b class=\"caps\">fleetness</b><ul><li>Cost: Free</li></ul>",
-                  3:"<b class=\"caps\">traversal</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Dexterity + Athletics, or as needed</li></ul><b class=\"caps\">blink</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Dexterity + Athletics</li></ul>",
-                  4:"<b class=\"caps\">draught of elegance</b><ul><li>Cost: One Rouse Check</li></ul><b class=\"caps\">unerring aim</b><ul><li>Amalgam: Auspex 2</li><li>Cost: One Rouse Check</li></ul>",
-                  5:"<b class=\"caps\">lightning strike</b><ul><li>Cost: One Rouse Check</li></ul><b class=\"caps\">split second</b><ul><li>Cost: One Rouse Check</li></ul>"
+                  0:"Celerity is a Discipline that grants vampires supernatural quickness and reflexes.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
+                  
                 }
           },
           {
@@ -621,56 +602,43 @@ const app = Vue.createApp({
             value: 0,
                 description:{
                   0:"Dominate grants the vampire the ability to control the actions of others, manipulate their memories, and force living creatures into acts they would not perform of their own volition.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Bar-ring someone Dominating an entire auditorium to jump off the cliffs of Dover, it remains one of the more subtle vampiric powers.</li><li>Blood Resonance: Phlegmatic. The blood of the submissive or the dominant, masters and slaves, captains of industry, power trippers, cult leaders and followers.</li></ul>",
-                  1:"<b class=\"caps\">cloud memory</b><ul><li>Dice Pools: Charisma + Dominate vs Wits + Resolve</li></ul><b class=\"caps\">compel</b><ul><li>Dice Pools: Charisma + Dominate vs Intelligence + Resolve</li></ul>",
-                  2:"<b class=\"caps\">mesmerize</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Manipulation + Dominate vs Intelligence + Resolve</li></ul><b class=\"caps\">dementation</b><ul><li>Amalgam: Obfuscate 2</li><li>Cost: One Rouse Check</li><li>Dice Pools: Manipulation + Dominate vs Composure + Intelligence</li></ul>",
-                  3:"<b class=\"caps\">the forgetful mind</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Manipulation + Dominate vs Intelligence + Resolve</li></ul><b class=\"caps\">submerged directive</b><ul><li>Cost: No additional cost</li></ul>",
-                  4:"<b class=\"caps\">rationalize</b><ul><li>Cost: No additional cost</li></ul>",
-                  5:"<b class=\"caps\">mass manipulation</b><ul><li>Cost: One Rouse Check in addition to the cost of the power amplified</li><li>Dice Pools: Manipulation + Dominate vs Intelligence + Resolve</li></ul><b class=\"caps\">terminal decree</b><ul><li>Cost: No additional Hunger cost, but the Humanity cost is potentially severe</li></ul>"
+                  
                 }
           },
           {
             id: 'Fortitude',
             value: 0,
                 description:{
-                  0:"Much prized by immortals, Fortitude grants the ability to resist physical and mental assault. Few vampires survive longer than a century without at least a mote of Fortitude, especially in a world where violence is common and not even Kindred are safe.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium. Eyewitnesses undoubtedly react upon someone taking a terminal beating or a hail of bullets and getting back up seemingly unhurt. Favorite cover-up explanations include erroneous recollection in the excitement (the bullets only seemed to hit), special effects (YouTube prank), or the tried-and-tested “must have been on PCP” rationale.</li><li>Blood Resonance: Melancholic. Survivors of war, abuse, or misfortune; endurance runners; mountain climbers; infantry and special forces; those with very powerful immune systems.</li></ul>",
-                  1:"<b class=\"caps\">resilience</b><br><b class=\"caps\">unswayable mind</b>",
-                  2:"<b class=\"caps\">toughness</b><ul><li>Cost: One Rouse Check</li></ul><b class=\"caps\">enduring beasts</b><ul><li>Amalgam: Animalism 1</li><li>Cost: Free (for famulus)/One Rouse Check (for other animals)</li><li>Dice Pools: Stamina + Animalism (for non-famulus animals)</li></ul>",
-                  3:"<b class=\"caps\">defy bane</b><ul><li>Cost: One Rouse Check</li><li>Dice Pools: Wits + Survival (to activate reflexively)</li></ul><b class=\"caps\">fortify the inner facade</b>",
-                  4:"<b class=\"caps\">draught of endurance</b><ul><li>Cost: One Rouse Check</li></ul>",
-                  5:"<b class=\"caps\">flesh of marble</b><ul><li>Cost: Two Rouse Checks</li></ul><b class=\"caps\">prowess from pain</b><ul><li>Cost: One Rouse Check</li></ul>"
+                  0:"Fortitude is a Discipline that grants Kindred unearthly toughness, even to the point of resisting fire and sunlight. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium. Eyewitnesses undoubtedly react upon someone taking a terminal beating or a hail of bullets and getting back up seemingly unhurt. Favorite cover-up explanations include erroneous recollection in the excitement (the bullets only seemed to hit), special effects (YouTube prank), or the tried-and-tested “must have been on PCP” rationale.</li><li>Blood Resonance: Melancholic. Survivors of war, abuse, or misfortune; endurance runners; mountain climbers; infantry and special forces; those with very powerful immune systems.</li></ul>",
                 }
           },
           {
             id: 'Obfuscate',
             value: 0,
                 description:{
-                  0:"Obfuscate powers work through ambient, low-level mesmerism. Observers see the vampire but their minds choose to ignore it. Witnesses unconsciously move out of the way if the user blocks their path and rationalize their behavior if pressed. Obfuscate affects all five senses unless otherwise noted.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
-                  1:"<b class=\"caps\">cloak of shadows</b><br><b class=\"caps\">silence of death</b>",
-                  2:"<b class=\"caps\">unseen passage</b><ul><li>Cost: One Rouse Check</li></ul>",
-                  3:"<b class=\"caps\">ghost in the machine</b><ul><li>Cost: No additional cost</li><li>Dice Pools: Wits + Survival (to activate reflexively)</li></ul><b class=\"caps\">mask of a thousand faces</b><ul><li>Cost: One Rouse Check</li></ul>",
-                  4:"<b class=\"caps\">conceal</b><ul><li>Amalgam: Auspex 3</li><li>Cost: One Rouse Check</li><li>Dice Pools: Intelligence + Obfuscate</li></ul><b class=\"caps\">vanish</b><ul><li>Prerequisite: Cloak of Shadows The vampire can activate Cloak of Shadows and Unseen Passage even while under direct observation. The vampire appears to vanish in the blink of an eye; even the memory of them becomes foggy and indistinct.</li><li>Cost: As per power augmented</li><li>Dice Pools: Wits + Obfuscate vs Wits + Awareness</li></ul>",
-                  5:"<b class=\"caps\">cloak the gathering</b><ul><li>Cost: One Rouse Check in addition to the cost of the power extended</li></ul><b class=\"caps\">impostor’s guise</b><ul><li>Prerequisite: Mask of a Thousand Faces With some preparation the vampire can make themselves appear as a specific individual of any build and gender. The user must carefully study the subject, otherwise the charade fails when meeting anyone with more than a casual familiarity with the person being mimicked.</li><li>Cost: One Rouse Check</li></ul>"
+                  0:"Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen. <ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
+                  
                 }
           },
           {
             id: 'Potence',
             value: 0,
                 description:{
-                  
+                  0:"Potence is the Discipline that endows vampires with physical vigor and preternatural strength. Vampires with the Potence Discipline possess physical prowess beyond mortal bounds. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium to high. Lesser exercises of the Discipline might be passed off as \“hysterical strength,\” but once pavement cracks and buildings start to crumble that explanation loses what little credibility it had.</li><li>Blood Resonance: Choleric. The strong and healthy; athletes and young men and women in their prime, gym rats, wrestlers, construction workers and lum-berjacks, longshoremen.</li></ul>"
                 }
           },
           {
             id: 'Presence',
             value: 0,
                 description:{
-                  
+                  0:"Presence is the Discipline of supernatural allure and emotional manipulation which allows Kindred to attract, sway, and control crowds. <ul><li>Type: Mental</li><li>Masquerade Threat: Low-Medium. A subtle power, people seldom realize Presence has affected them at all. As with most Disciplines, its higher powers can leave puzzled witnesses behind, especially once the effects wear off.</li><li>Blood Resonance: Sanguine. The beautiful and lustful, those completely infatuated with the vampire, models and actors and movie stars, compelling public and private speakers from politicians to car salesmen, YouTube sensations and Instagram influencers.</li></ul>"
                 }
           },
           {
             id: 'Protean',
             value: 0,
                 description:{
-                  
+                  0:"Protean is a Discipline that gives vampires the ability to change form, from growing feral claws to evaporating into a cloud of mist. <ul><li>Type: Physical</li><li>Masquerade Threat: High. One of the most overt Disciplines available to vampires, more or less all Protean powers can breach the Masquerade on their own.</li><li>Blood Resonance: Animal blood, especially animals matching shapeshifted forms; the blood of werewolves, changelings, and other supernatural chimeras of man and beast.</li></ul>"
                 }
           },
         ],
