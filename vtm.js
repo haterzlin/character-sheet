@@ -1072,7 +1072,7 @@ app.component('hover-window',{
         <span 
           v-for="i in data.allocated.length-1"
           class="point"
-          :class="{fill : data.hoverPointer>=i}">
+          :class="{init : data.hoverPointer>=i}">
         </span>
       </div>
       <p
