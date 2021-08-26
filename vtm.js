@@ -70,7 +70,7 @@ const app = Vue.createApp({
                 id: 'Strength',
                 value: 1,
                 description:{
-                  0:"Strength governs how big a mortal you can lift, how hard you can hit them, and how much force you can push your dead body to exert. (The rough amount you can deadlift without an Attribute test appears in parentheses below.)",
+                  general:"Strength governs how big a mortal you can lift, how hard you can hit them, and how much force you can push your dead body to exert. (The rough amount you can deadlift without an Attribute test appears in parentheses below.)",
                   1:"You can easily crush a beer can. (20 kg: a Christmas tree, a stop sign)",
                   2:"You are physically average. (45 kg: a toilet)",
                   3:"You might be able to break open a wooden door. (115 kg: a large human, an empty coffin, a refrigerator)",
@@ -82,7 +82,7 @@ const app = Vue.createApp({
                 id: 'Dexterity',
                 value: 1,
                 description:{
-                  0:"Dexterity governs your agility and grace, how swiftly you dodge that stake to your heart, and how much fine motor control you possess when up against the clock.",
+                  general:"Dexterity governs your agility and grace, how swiftly you dodge that stake to your heart, and how much fine motor control you possess when up against the clock.",
                   1:"You can run, but balance and dodging are a challenge.",
                   2:"Your sprint is solid, and sometimes you appear graceful.",
                   3:"Your agility is impressive, and your coordination is as good as any trained amateur.",
@@ -94,7 +94,7 @@ const app = Vue.createApp({
                 id: 'Stamina',
                 value: 1,
                 description:{
-                  0:"Stamina absorbs physical harm, such as a speeding bullet or a hunter’s blade, and lets you persevere through hazards and arduous effort. Your Stamina + 3 equals your Health.",
+                  general:"Stamina absorbs physical harm, such as a speeding bullet or a hunter’s blade, and lets you persevere through hazards and arduous effort. Your Stamina + 3 equals your Health.",
                   1:"Even lesser exertions make you winded.",
                   2:"You can take a beating, but consider suing for peace.",
                   3:"Several days of hard hiking with a backpack is no problem for you.",
@@ -112,7 +112,7 @@ const app = Vue.createApp({
                 id: 'Charisma',
                 value: 1,
                 description:{
-                  0:"Charisma measures your natural charm, grace, and sex appeal. If you have it, it draws people to you, making feeding a hell of a lot easier. Charisma doesn’t depend on good looks, which are their own Merit (See Looks, p. 179).",
+                  general:"Charisma measures your natural charm, grace, and sex appeal. If you have it, it draws people to you, making feeding a hell of a lot easier. Charisma doesn’t depend on good looks, which are their own Merit (See Looks, p. 179).",
                   1:"You can speak clearly, though few people tend to listen.",
                   2:"Generally likeable despite your undead nature, you may even have friends.",
                   3:"People trust you implicitly, and you easily make friends.",
@@ -124,7 +124,7 @@ const app = Vue.createApp({
                 id: 'Manipulation',
                 value: 1,
                 description:{
-                  0:"Manipulation is your ability to twist others to your point of view, lie convincingly, and walk away after duping a mark without anyone being any the wiser.",
+                  general:"Manipulation is your ability to twist others to your point of view, lie convincingly, and walk away after duping a mark without anyone being any the wiser.",
                   1:"As long as you stay honest, you can convince people to do what you want.",
                   2:"Your ability to deceive surpasses the will of the weakwilled and simpleminded.",
                   3:"You never have to pay full price for anything.",
@@ -136,7 +136,7 @@ const app = Vue.createApp({
                 id: 'Composure',
                 value: 1,
                 description:{
-                  0:"Composure allows you to remain calm, to command your emotions, and to put others at ease despite anxiety. It is also represents your ability to stay cool in everything from firefights to intimate encounters. Your Composure + Resolve equals your Willpower (p. 157).",
+                  general:"Composure allows you to remain calm, to command your emotions, and to put others at ease despite anxiety. It is also represents your ability to stay cool in everything from firefights to intimate encounters. Your Composure + Resolve equals your Willpower (p. 157).",
                   1:"The slightest insult or confrontation could drive you to frenzy.",
                   2:"You can subdue your predatory instincts in most nonhostile situations.",
                   3:"Others look to you for guidance when the blood spatter hits the fan.",
@@ -154,7 +154,7 @@ const app = Vue.createApp({
                 id: 'Intelligence',
                 value: 1,
                 description:{
-                  0:"Intelligence measures your ability to reason, research, and apply logic. You can recall and analyze information from books or from your senses. No puzzle or mystery can elude the truly intelligent.",
+                  general:"Intelligence measures your ability to reason, research, and apply logic. You can recall and analyze information from books or from your senses. No puzzle or mystery can elude the truly intelligent.",
                   1:"You can read and write competently, though some terms confound you.",
                   2:"You are smart enough to realize your limitations.",
                   3:"You are enlightened, able to piece together clues without difficulty.",
@@ -166,7 +166,7 @@ const app = Vue.createApp({
                 id: 'Wits',
                 value: 1,
                 description:{
-                  0:"Wits are for thinking quickly and reacting correctly on little information. “You hear a sound” is Wits; You hear two guards coming” is Intelligence. Wits let you smell an ambush or answer the Harpy back at court right away, instead of thinking of the best response the next night.",
+                  general:"Wits are for thinking quickly and reacting correctly on little information. “You hear a sound” is Wits; You hear two guards coming” is Intelligence. Wits let you smell an ambush or answer the Harpy back at court right away, instead of thinking of the best response the next night.",
                   1:"You get the point eventually, but it takes explaining.",
                   2:"You can bet the odds in poker or apply the emergency brakes in time. Usually.",
                   3:"You can analyze a situation and quickly work out the best escape route.CHARACTERS artist Artist",
@@ -178,7 +178,7 @@ const app = Vue.createApp({
                 id: 'Resolve',
                 value: 1,
                 description:{
-                  0:"Resolve provides focus and determination, and measures concentration and mental fortitude. Resolve powers allnight watches and blocks out distractions. Your Composure + Resolve equals your Willpower.",
+                  general:"Resolve provides focus and determination, and measures concentration and mental fortitude. Resolve powers allnight watches and blocks out distractions. Your Composure + Resolve equals your Willpower.",
                   1:"You have minimal attention for all but the most pressing things.",
                   2:"You can settle in for the long haul, as long as it’s not too long.",
                   3:"Distracting you takes more effort than most other people want to spend.",
@@ -202,7 +202,7 @@ const app = Vue.createApp({
                 id: 'Athlethics',
                 value: 0,
                 description:{
-                  0:"Athletics allows you to outpace someone in pursuit, leap out of the way of an oncoming car, and climb and swim like a healthy, robust living person. A character can use Athletics in place of any Physical combat Skill in a conflict roll, but in that case, they never inflict any hits on their opponent, no matter how many successes they roll.",
+                  general:"Athletics allows you to outpace someone in pursuit, leap out of the way of an oncoming car, and climb and swim like a healthy, robust living person. A character can use Athletics in place of any Physical combat Skill in a conflict roll, but in that case, they never inflict any hits on their opponent, no matter how many successes they roll.",
                   1:"You were always attentive in gym class and you still have a spring in your step.",
                   2:"Despite being dead, you are still as fit as a mortal doing regular exercise.",
                   3:"You are fit as a fiddle and could play professional sports. Night games, at least.",
@@ -215,7 +215,7 @@ const app = Vue.createApp({
                 id: 'Brawl',
                 value: 0,
                 description:{
-                  0:"Brawl enables characters to hit their target when they swing with fist, boot, or claw. As long as you have no weapon in hand, the attack constitutes a brawl, from elegant aikijutsu to dirty street fighting.",
+                  general:"Brawl enables characters to hit their target when they swing with fist, boot, or claw. As long as you have no weapon in hand, the attack constitutes a brawl, from elegant aikijutsu to dirty street fighting.",
                   1:"You had a tough upbringing and had to fight to justify your place. You still have some moves.",
                   2:"You received some training in hitting someone hard and accurately.",
                   3:"You more than hold your own in a scrap.",
@@ -228,7 +228,7 @@ const app = Vue.createApp({
                 id: 'Craft',
                 value: 0,
                 description:{
-                  0:"Craft broadly encompasses artistry, creation of items and utilities from the beautiful to the functional, and arts and crafts from throwing pottery all the way to building and reinforcing your own haven. When you take this Skill, you get a free specialty. Unlike most Skills, you can have more specialties in Craft than you have dots.",
+                  general:"Craft broadly encompasses artistry, creation of items and utilities from the beautiful to the functional, and arts and crafts from throwing pottery all the way to building and reinforcing your own haven. When you take this Skill, you get a free specialty. Unlike most Skills, you can have more specialties in Craft than you have dots.",
                   1:"You are an amateur, but you know what you are doing.",
                   2:"Your craftsmanship is admired for its functionality.",
                   3:"Your creations can be beautiful or horrifying, but their intent always clear.",
@@ -241,7 +241,7 @@ const app = Vue.createApp({
                 id: 'Drive',
                 value: 0,
                 description:{
-                  0:"Anyone (except perhaps 500-yearold vampires) can learn to drive a car. The Drive Skill connotes ability to drive fast and safely under 160 adverse conditions or in stressful situations: to drive offroad, speed away from ambushes, win street races, and get out of chases with the Second Inquisition.",
+                  general:"Anyone (except perhaps 500-yearold vampires) can learn to drive a car. The Drive Skill connotes ability to drive fast and safely under 160 adverse conditions or in stressful situations: to drive offroad, speed away from ambushes, win street races, and get out of chases with the Second Inquisition.",
                   1:"You are a cautious driver, unlikely to make any mistakes.",
                   2:"You can put your foot down without much fear of an accident, providing visibility is good.",
                   3:"You have won car chases, earning a cool reputation among the Anarchs.",
@@ -254,7 +254,7 @@ const app = Vue.createApp({
                 id: 'Firearms',
                 value: 0,
                 description:{
-                  0:"Firearms Cainites use Firearms not only for the human reasons (efficiency and thrill) but to preserve the Masquerade. This Skill comprises familiarity with small arms from holdout pistols to assault rifles. It also includes other triggeroperated weapons, such as crossbows and shoulderfired rocketpropelled grenades. Finally, it includes cleaning, unjamming, and rapidly reloading such weapons.",
+                  general:"Firearms Cainites use Firearms not only for the human reasons (efficiency and thrill) but to preserve the Masquerade. This Skill comprises familiarity with small arms from holdout pistols to assault rifles. It also includes other triggeroperated weapons, such as crossbows and shoulderfired rocketpropelled grenades. Finally, it includes cleaning, unjamming, and rapidly reloading such weapons.",
                   1:"You’ve fired a gun a few times, at the range or in lessformal circumstances.",
                   2:"You know (and know how) to keep your weapon clean, take it apart, and reassemble it.",
                   3:"You’ve been in the shit (“seen the elephant” if you’re older than a century) and come out the other side.",
@@ -267,7 +267,7 @@ const app = Vue.createApp({
                 id: 'Larceny',
                 value: 0,
                 description:{
-                  0:"This Skill entails familiarity with the tools and techniques for picking locks, planting bugs, deactivating standard burglar and car alarms, manual forgery, hot-wiring automobiles, or even safecracking, as well as countless forms of breaking and entering. Characters also use it for setting up “unbeatable” security systems or deducing how and where systems failed in a break-in. Ventrue probably call the skill “Security.” These days, most high-end security systems feature computer controls, video surveillance, or electronic alarms, so they might also involve the Technology Skill to defeat.",
+                  general:"This Skill entails familiarity with the tools and techniques for picking locks, planting bugs, deactivating standard burglar and car alarms, manual forgery, hot-wiring automobiles, or even safecracking, as well as countless forms of breaking and entering. Characters also use it for setting up “unbeatable” security systems or deducing how and where systems failed in a break-in. Ventrue probably call the skill “Security.” These days, most high-end security systems feature computer controls, video surveillance, or electronic alarms, so they might also involve the Technology Skill to defeat.",
                   1:"You can pick a simple lock or a careless pocket.",
                   2:"You can hotwire a car or shoplift with ease.",
                   3:"You can identify the locations of security cameras and alarms so to best bypass them.",
@@ -292,7 +292,7 @@ const app = Vue.createApp({
                 id: 'Stealth',
                 value: 0,
                 description:{
-                  0:"Stealth allows a character to shadow a target, making vampires with this ability superlative hunters. They benefit from the ability to spy, sneak, and blend in with crowds when needed.",
+                  general:"Stealth allows a character to shadow a target, making vampires with this ability superlative hunters. They benefit from the ability to spy, sneak, and blend in with crowds when needed.",
                   1:"Spotting you under the cover of darkness or in camouflage proves difficult.",
                   2:"You can sneak by casual observers and stalk unknowing victims without raising any hackles.",
                   3:"You evade patrolling guards, moving softly and hiding easily.",
@@ -305,7 +305,7 @@ const app = Vue.createApp({
                 id: 'Survival',
                 value: 0,
                 description:{
-                  0:"Survival conveys the ability to exist in the wild and other adverse conditions, and to return to civilization again: navigate by the stars, establish a makeshift haven, and notice werewolf signs before it’s too late. Some of its related functions apply in parks, brownfields, and other wastelands of the urban jungle.",
+                  general:"Survival conveys the ability to exist in the wild and other adverse conditions, and to return to civilization again: navigate by the stars, establish a makeshift haven, and notice werewolf signs before it’s too late. Some of its related functions apply in parks, brownfields, and other wastelands of the urban jungle.",
                   1:"You know the trails and wilderness around your domain.",
                   2:"You spend more time outdoors than inside, and you can track anyone who doesn’t possess woodcraft.",
                   3:"You can subsist outside the city, setting traps for mortals and a shelter for yourself.",
@@ -337,7 +337,7 @@ const app = Vue.createApp({
                 id: 'Etiquette',
                 value: 0,
                 description:{
-                  0:"Etiquette is the ability to identify and respond to the social conventions in the current scene, set new protocols, and please everyone around with your good graces. Use this Skill in both Kindred and mortal high society.",
+                  general:"Etiquette is the ability to identify and respond to the social conventions in the current scene, set new protocols, and please everyone around with your good graces. Use this Skill in both Kindred and mortal high society.",
                   1:"You know how to address your local ruler without causing a faux pas.",
                   2:"You know the rules of etiCHARACTERS quette in each of the domain’s popular nightspots.",
                   3:"You impress others with your command of politeness, deference, and grace.",
@@ -350,7 +350,7 @@ const app = Vue.createApp({
                 id: 'Insight',
                 value: 0,
                 description:{
-                  0:"Insight grants you the ability to interpret body language, note subtle cues in expression and tone, and determine truth from lies. It also allows you to perceive and understand the motives behind another’s actions.",
+                  general:"Insight grants you the ability to interpret body language, note subtle cues in expression and tone, and determine truth from lies. It also allows you to perceive and understand the motives behind another’s actions.",
                   1:"You can see straight through hollow boasts.",
                   2:"You pick up on the hidden emotion between humans and even sometimes between Kindred.",
                   3:"You can provide psychotherapy even more effectively than someone who doesn’t want to eat their patient.",
@@ -363,7 +363,7 @@ const app = Vue.createApp({
                 id: 'Intimidation',
                 value: 0,
                 description:{
-                  0:"Intimidation is the power to bully, coerce, threaten, and strongarm your way to a social victory. Vampires who rely on Intimidation do not hesitate to crush the wills – and occasionally the finger bones – of their foes.",
+                  general:"Intimidation is the power to bully, coerce, threaten, and strongarm your way to a social victory. Vampires who rely on Intimidation do not hesitate to crush the wills – and occasionally the finger bones – of their foes.",
                   1:"You can cut a scathing insult effectively.",
                   2:"You can push your way around most humans without difficulty.",
                   3:"Your swagger and your cruel behavior have earned you your reputation.",
@@ -376,7 +376,7 @@ const app = Vue.createApp({
                 id: 'Leadership',
                 value: 0,
                 description:{
-                  0:"Leadership grants you the ability to lead a crowd, command a detachment, boost the morale of your supporters, or subdue a riot.A strong Prince or Baron must possess Leadership or risk losing their throne.",
+                  general:"Leadership grants you the ability to lead a crowd, command a detachment, boost the morale of your supporters, or subdue a riot.A strong Prince or Baron must possess Leadership or risk losing their throne.",
                   1:"You have led informal clubs before and can organize Kindred of like mind.",
                   2:"Your voice makes itself heard in council, and even your superiors sometimes listen.",
                   3:"You can command on the battlefield and lead your soldiers into death.",
@@ -389,7 +389,7 @@ const app = Vue.createApp({
                 id: 'Performance',
                 value: 0,
                 description:{
-                  0:"Performance covers a range of arts, from dance to poetry and comedy to storytelling. You may be an inspired performer in your own right or simply an enthusiastic student of the arts. When you take this Skill, you get a free specialty.",
+                  general:"Performance covers a range of arts, from dance to poetry and comedy to storytelling. You may be an inspired performer in your own right or simply an enthusiastic student of the arts. When you take this Skill, you get a free specialty.",
                   1:"You are the life of the party, but you wouldn’t take your act on stage.",
                   2:"You have performed for others, to mixed reviews. Some love you, others hate you.",
                   3:"You are an expert student of your chosen performing art.",
@@ -402,7 +402,7 @@ const app = Vue.createApp({
                 id: 'Persuasion',
                 value: 0,
                 description:{
-                  0:"Use Persuasion when trying to convince others that you know what’s best for them, and that one bite won’t hurt at all. Skilled persuaders can play on victims’ emotions and appeal to peers’ reason. Persuasion applies in law courts and princely courts, in boardrooms, barrooms, and bedrooms.",
+                  general:"Use Persuasion when trying to convince others that you know what’s best for them, and that one bite won’t hurt at all. Skilled persuaders can play on victims’ emotions and appeal to peers’ reason. Persuasion applies in law courts and princely courts, in boardrooms, barrooms, and bedrooms.",
                   1:"You can sell to a motivated buyer.",
                   2:"You can always swing a discount or get on the inside track of the latest gossip.",
                   3:"You can always figure out a compromise in a given conflict.",
@@ -415,7 +415,7 @@ const app = Vue.createApp({
                 id: 'Streetwise',
                 value: 0,
                 description:{
-                  0:"Streetwise enables characters to talk the language and negotiate the societies of the streets and the underworld. You can understand code words and slang, interpret graffiti tags, and emulate gang signs.",
+                  general:"Streetwise enables characters to talk the language and negotiate the societies of the streets and the underworld. You can understand code words and slang, interpret graffiti tags, and emulate gang signs.",
                   1:"You know where to score drugs and sex in your domain.",
                   2:"You know which gangs operate in the area, including their colors and rivalries. You may have your own graffiti tag.",
                   3:"You can tell the good shit from bad, score guns, and blend in seamlessly with street people or gangbangers.",
@@ -428,7 +428,7 @@ const app = Vue.createApp({
                 id: 'Subterfuge',
                 value: 0,
                 description:{
-                  0:"Subterfuge is the art of lying convincingly, spinning a yarn, and making good excuses for bad actions. This Skill defines your talent for intrigue, secrets, and doubledealing. Subterfuge can also used for seduction and imitating mortal behavior.",
+                  general:"Subterfuge is the art of lying convincingly, spinning a yarn, and making good excuses for bad actions. This Skill defines your talent for intrigue, secrets, and doubledealing. Subterfuge can also used for seduction and imitating mortal behavior.",
                   1:"You can tell believable, simple lies.",
                   2:"You can hustle naive people, old and young, into giving you their things.",
                   3:"You can operate on multiple levels, telling lies intended to be uncovered to bolster other lies.",
@@ -447,7 +447,7 @@ const app = Vue.createApp({
                 id: 'Academics',
                 value: 0,
                 description:{
-                  0:"Academics reflects understanding, higher education, and ability to research fields within the humanities and the liberal arts. Historical study, for instance, is hardly “just academic” if your immortal enemies lived – and left traces – in that period. When you take this Skill, you get a free specialty. For foreign languages, use the Linguistics Merit",
+                  general:"Academics reflects understanding, higher education, and ability to research fields within the humanities and the liberal arts. Historical study, for instance, is hardly “just academic” if your immortal enemies lived – and left traces – in that period. When you take this Skill, you get a free specialty. For foreign languages, use the Linguistics Merit",
                   1:"Basic primary and secondary education; a night class at community college",
                   2:"Basic university education or tutelage from a mediocre mentor; a fouryear degree",
                   3:"Advanced university education or dedicated personal tuition; an excellent fouryear degree, a doctorate ",
@@ -460,7 +460,7 @@ const app = Vue.createApp({
                 id: 'Awareness',
                 value: 0,
                 description:{
-                  0:"Awareness handles your perceptions. You may spot a Child of Haqim before a strike occurs, spy a key dropped in the trash, or sense a lingering perfume.",
+                  general:"Awareness handles your perceptions. You may spot a Child of Haqim before a strike occurs, spy a key dropped in the trash, or sense a lingering perfume.",
                   1:"You have a history of knowing when something is out of place.",
                   2:"You can spot erratic or pattern behavior in an individual.",
                   3:"You can see through most disguises and sense concealed dangers or hidden clues.",
@@ -473,7 +473,7 @@ const app = Vue.createApp({
                 id: 'Finance',
                 value: 0,
                 description:{
-                  0:"Finance allows you to identify trends in the market, invest well, manipulate stock, and know when a fall is coming. It also allows you to assess – and trace – the wealth of others and broker financial deals. You can generally appraise art, property, or any other noncriminal good. Ventrue value this Skill more than some Disciplines.",
+                  general:"Finance allows you to identify trends in the market, invest well, manipulate stock, and know when a fall is coming. It also allows you to assess – and trace – the wealth of others and broker financial deals. You can generally appraise art, property, or any other noncriminal good. Ventrue value this Skill more than some Disciplines.",
                   1:"You can run a business and keep books.",
                   2:"You can manage a corporate division or bank branch; you file impeccably plausible tax returns.",
                   3:"Thanks to international tradCHARACTERS ing, you make a fine broker on foreign stock exchanges.",
@@ -486,7 +486,7 @@ const app = Vue.createApp({
                 id: 'Investigation',
                 value: 0,
                 description:{
-                  0:"Investigation allows you to unravel cases of mundane and mysterious means, spot clues, interpret them, and trace missing persons. Vampires find this Skill especially useful when a vessel escapes.",
+                  general:"Investigation allows you to unravel cases of mundane and mysterious means, spot clues, interpret them, and trace missing persons. Vampires find this Skill especially useful when a vessel escapes.",
                   1:"You love a good mystery novel and fancy yourself an amateur sleuth.",
                   2:"You have a firm knowledge of criminology and the signature acts of local rogues.",
                   3:"You are, or could be, a detective by trade. Nothing in a crime scene escapes you.",
@@ -499,7 +499,7 @@ const app = Vue.createApp({
                 id: 'Medicine',
                 value: 0,
                 description:{
-                  0:"Medicine allows you to fix people who are broken and diagnose causes of death or sickness in a victim. It also allows you to use medical equipment, prescribe drugs, and stanch (or encourage) rapid blood flow. Characters use Medicine to heal Aggravated Health damage in mortals (see p. 127).",
+                  general:"Medicine allows you to fix people who are broken and diagnose causes of death or sickness in a victim. It also allows you to use medical equipment, prescribe drugs, and stanch (or encourage) rapid blood flow. Characters use Medicine to heal Aggravated Health damage in mortals (see p. 127).",
                   1:"You know basic anatomy and the difference in blood flow from a vein and an artery. You can perform CPR and other first aid. You may have been a medical student in life.",
                   2:"You can comfortably treat minor traumas and illnesses and narrow down a diagnosis. You may have been a nurse or EMT in life.",
                   3:"Your training allows you to perform major operations and treat serious injuries. You may have been an internist, pediatrician, or general practitioner in life.",
@@ -512,7 +512,7 @@ const app = Vue.createApp({
                 id: 'Occult',
                 value: 0,
                 description:{
-                  0:"Occult represents knowledge of the mystical world, extending from the rites and practices of Freemasons and Rosicrucians, all the way to Noddist scholars and real mages. You can recognize occult sigils and folkmagic practices, effective or not.",
+                  general:"Occult represents knowledge of the mystical world, extending from the rites and practices of Freemasons and Rosicrucians, all the way to Noddist scholars and real mages. You can recognize occult sigils and folkmagic practices, effective or not.",
                   1:"You know the legends of Caine and the Antediluvians, and you may have read the Book of Nod.",
                   2:"You can sift the truth from pop occult nonsense.",
                   3:"You have firsthand experience of something inexplicable, even by Kindred standards.",
@@ -525,7 +525,7 @@ const app = Vue.createApp({
                 id: 'Politics',
                 value: 0,
                 description:{
-                  0:"Politics covers diplomacy and bureaucracy: both human and Kindred. You can work with, and possibly put pressure on, city government and perhaps higher levels. Among Kindred, you know the inside scoop on which sects are dominant where, who is at war with whom, and where the bodies are buried. Literally.",
+                  general:"Politics covers diplomacy and bureaucracy: both human and Kindred. You can work with, and possibly put pressure on, city government and perhaps higher levels. Among Kindred, you know the inside scoop on which sects are dominant where, who is at war with whom, and where the bodies are buried. Literally.",
                   1:"You follow mortal political affairs in your regnum, and you know at least what the elders reveal about Kindred politics.",
                   2:"You can apply influence at a local level, or you know who can.",
                   3:"You could run political campaigns or political machines, or make waves in your sect as an upandcomer.",
@@ -538,7 +538,7 @@ const app = Vue.createApp({
                 id: 'Science',
                 value: 0,
                 description:{
-                  0:"Science is a broad church, covering everything from basic principles of life to the understanding of universal entropy. The laws of science govern the mortal world, and vampires who wish to rule that world study them. Levels of the Science Skill roughly match those in Academics, from “some college” to “worldfamous scholar.” Also like Academics, characters with a rating in Science get a free specialty.",
+                  general:"Science is a broad church, covering everything from basic principles of life to the understanding of universal entropy. The laws of science govern the mortal world, and vampires who wish to rule that world study them. Levels of the Science Skill roughly match those in Academics, from “some college” to “worldfamous scholar.” Also like Academics, characters with a rating in Science get a free specialty.",
                   1:"You dabble in the sciences and understand the principles behind the building blocks of life.",
                   2:"You can accurately explain the competing scientific theories of the Embrace to another vampire.",
                   3:"You make an excellent scientific manager; you can run a laboratory, interpret scientific findings, and get up to speed on scientific research in most fields. You can repair scientific equipment.",
@@ -551,7 +551,7 @@ const app = Vue.createApp({
                 id: 'Technology',
                 value: 0,
                 description:{
-                  0:"Technology acts as something of a moving target; it governs the operation and understanding of “technical developments most vampires find mystifying.” In 1870, it might have governed steam engines and electricity; these nights, it governs computers and computer systems. Of course, now computers govern almost everything – including steam turbines in power plants and electrical systems in office buildings.",
+                  general:"Technology acts as something of a moving target; it governs the operation and understanding of “technical developments most vampires find mystifying.” In 1870, it might have governed steam engines and electricity; these nights, it governs computers and computer systems. Of course, now computers govern almost everything – including steam turbines in power plants and electrical systems in office buildings.",
                   1:"You know how to upgrade a home PC and keep it protected from viruses.",
                   2:"You can conceal your IP, operate drones, and fake a digital photograph.",
                   3:"You can create and unleash your own viruses without fear of detection.",
@@ -579,7 +579,7 @@ const app = Vue.createApp({
               5:['animal dominion','drawing out the beast']
             },
             description:{
-                  0:"Animalism is a Discipline that brings the vampire closer to their animalistic nature. This not only allows them to communicate with and gain dominance over creatures of nature, but gives them influence over the Beast itself.<ul><li> Type: Mental</li><li>Masquerade threat: Low to medium. While talking to animalsmight seem eccentric, only the most violent applications of the Discipline elicit more than a few raised eyebrows.</li><li>Blood Resonance: Animal blood, preferably feral.</li></ul>",
+                  general:"Animalism is a Discipline that brings the vampire closer to their animalistic nature. This not only allows them to communicate with and gain dominance over creatures of nature, but gives them influence over the Beast itself.<ul><li> Type: Mental</li><li>Masquerade threat: Low to medium. While talking to animalsmight seem eccentric, only the most violent applications of the Discipline elicit more than a few raised eyebrows.</li><li>Blood Resonance: Animal blood, preferably feral.</li></ul>",
                 }
           },
           {
@@ -593,7 +593,7 @@ const app = Vue.createApp({
               5:['clairvoyance','possession','telepathy']
             },
             description:{
-                  0:"Auspex is a Discipline that grants vampires supernatural senses.<ul><li> Type: Mental</li><li>Masquerade threat: Low. Auspex never by itself manifests in a way visible to the naked eye or causes effects that can’t be rationalized, if only as dumb luck.</li><li>Blood Resonance: Phlegmatic. Artists (especially photographers) and visionaries, certain schizophrenics, users of psychoactive substances, detectives.</li></ul>",
+                  general:"Auspex is a Discipline that grants vampires supernatural senses.<ul><li> Type: Mental</li><li>Masquerade threat: Low. Auspex never by itself manifests in a way visible to the naked eye or causes effects that can’t be rationalized, if only as dumb luck.</li><li>Blood Resonance: Phlegmatic. Artists (especially photographers) and visionaries, certain schizophrenics, users of psychoactive substances, detectives.</li></ul>",
                 }
           },
           {
@@ -607,7 +607,7 @@ const app = Vue.createApp({
               5:['baal’s caress','cauldron of blood']
             },
             description:{
-                  0:"Blood Magic, or Blood Sorcery, refers to the magic performed by vampires, fueled by religious or occult practices and the power of Cainite vitae. <ul><li>Type: Sorcery</li><li>Masquerade Threat:Low-High. The individual appearance of the powers and Rituals in Blood Sorcery varies as widely as their effects.</li><li>Blood Resonance: Sanguine. Although not inherent in the Blood itself, Blood Sorcery responds eagerly to blood from human occultists, sorcerers, and cult leaders, as well as hemophiles and bibliophiles.</li></ul>"
+                  general:"Blood Magic, or Blood Sorcery, refers to the magic performed by vampires, fueled by religious or occult practices and the power of Cainite vitae. <ul><li>Type: Sorcery</li><li>Masquerade Threat:Low-High. The individual appearance of the powers and Rituals in Blood Sorcery varies as widely as their effects.</li><li>Blood Resonance: Sanguine. Although not inherent in the Blood itself, Blood Sorcery responds eagerly to blood from human occultists, sorcerers, and cult leaders, as well as hemophiles and bibliophiles.</li></ul>"
                 }
           },
           {
@@ -621,7 +621,7 @@ const app = Vue.createApp({
               5:['lightning strike','split second']
             },
             description:{
-                  0:"Celerity is a Discipline that grants vampires supernatural quickness and reflexes.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
+                  general:"Celerity is a Discipline that grants vampires supernatural quickness and reflexes.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
                   
                 }
           },
@@ -636,7 +636,7 @@ const app = Vue.createApp({
               5:['mass manipulation','terminal decree']
             },
             description:{
-                  0:"Dominate grants the vampire the ability to control the actions of others, manipulate their memories, and force living creatures into acts they would not perform of their own volition.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Bar-ring someone Dominating an entire auditorium to jump off the cliffs of Dover, it remains one of the more subtle vampiric powers.</li><li>Blood Resonance: Phlegmatic. The blood of the submissive or the dominant, masters and slaves, captains of industry, power trippers, cult leaders and followers.</li></ul>",
+                  general:"Dominate grants the vampire the ability to control the actions of others, manipulate their memories, and force living creatures into acts they would not perform of their own volition.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Bar-ring someone Dominating an entire auditorium to jump off the cliffs of Dover, it remains one of the more subtle vampiric powers.</li><li>Blood Resonance: Phlegmatic. The blood of the submissive or the dominant, masters and slaves, captains of industry, power trippers, cult leaders and followers.</li></ul>",
                   
                 }
           },
@@ -651,7 +651,7 @@ const app = Vue.createApp({
               5:['flesh of marble','prowess from pain']
             },
             description:{
-                  0:"Fortitude is a Discipline that grants Kindred unearthly toughness, even to the point of resisting fire and sunlight. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium. Eyewitnesses undoubtedly react upon someone taking a terminal beating or a hail of bullets and getting back up seemingly unhurt. Favorite cover-up explanations include erroneous recollection in the excitement (the bullets only seemed to hit), special effects (YouTube prank), or the tried-and-tested “must have been on PCP” rationale.</li><li>Blood Resonance: Melancholic. Survivors of war, abuse, or misfortune; endurance runners; mountain climbers; infantry and special forces; those with very powerful immune systems.</li></ul>",
+                  general:"Fortitude is a Discipline that grants Kindred unearthly toughness, even to the point of resisting fire and sunlight. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium. Eyewitnesses undoubtedly react upon someone taking a terminal beating or a hail of bullets and getting back up seemingly unhurt. Favorite cover-up explanations include erroneous recollection in the excitement (the bullets only seemed to hit), special effects (YouTube prank), or the tried-and-tested “must have been on PCP” rationale.</li><li>Blood Resonance: Melancholic. Survivors of war, abuse, or misfortune; endurance runners; mountain climbers; infantry and special forces; those with very powerful immune systems.</li></ul>",
                 }
           },
           {
@@ -665,7 +665,7 @@ const app = Vue.createApp({
               5:['cloak the gathering','impostor’s guise']
             },
             description:{
-                  0:"Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen. <ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
+                  general:"Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen. <ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
                   
                 }
           },
@@ -680,7 +680,7 @@ const app = Vue.createApp({
               5:['earthshock','fist of caine']
             },
             description:{
-                  0:"Potence is the Discipline that endows vampires with physical vigor and preternatural strength. Vampires with the Potence Discipline possess physical prowess beyond mortal bounds. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium to high. Lesser exercises of the Discipline might be passed off as \“hysterical strength,\” but once pavement cracks and buildings start to crumble that explanation loses what little credibility it had.</li><li>Blood Resonance: Choleric. The strong and healthy; athletes and young men and women in their prime, gym rats, wrestlers, construction workers and lum-berjacks, longshoremen.</li></ul>"
+                  general:"Potence is the Discipline that endows vampires with physical vigor and preternatural strength. Vampires with the Potence Discipline possess physical prowess beyond mortal bounds. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium to high. Lesser exercises of the Discipline might be passed off as \“hysterical strength,\” but once pavement cracks and buildings start to crumble that explanation loses what little credibility it had.</li><li>Blood Resonance: Choleric. The strong and healthy; athletes and young men and women in their prime, gym rats, wrestlers, construction workers and lum-berjacks, longshoremen.</li></ul>"
                 }
           },
           {
@@ -694,7 +694,7 @@ const app = Vue.createApp({
               5:['majesty','star magnetism']
             },
             description:{
-                  0:"Presence is the Discipline of supernatural allure and emotional manipulation which allows Kindred to attract, sway, and control crowds. <ul><li>Type: Mental</li><li>Masquerade Threat: Low-Medium. A subtle power, people seldom realize Presence has affected them at all. As with most Disciplines, its higher powers can leave puzzled witnesses behind, especially once the effects wear off.</li><li>Blood Resonance: Sanguine. The beautiful and lustful, those completely infatuated with the vampire, models and actors and movie stars, compelling public and private speakers from politicians to car salesmen, YouTube sensations and Instagram influencers.</li></ul>"
+                  general:"Presence is the Discipline of supernatural allure and emotional manipulation which allows Kindred to attract, sway, and control crowds. <ul><li>Type: Mental</li><li>Masquerade Threat: Low-Medium. A subtle power, people seldom realize Presence has affected them at all. As with most Disciplines, its higher powers can leave puzzled witnesses behind, especially once the effects wear off.</li><li>Blood Resonance: Sanguine. The beautiful and lustful, those completely infatuated with the vampire, models and actors and movie stars, compelling public and private speakers from politicians to car salesmen, YouTube sensations and Instagram influencers.</li></ul>"
                 }
           },
           {
@@ -708,7 +708,7 @@ const app = Vue.createApp({
               5:['mist form','the unfettered heart']
             },
             description:{
-                  0:"Protean is a Discipline that gives vampires the ability to change form, from growing feral claws to evaporating into a cloud of mist. <ul><li>Type: Physical</li><li>Masquerade Threat: High. One of the most overt Disciplines available to vampires, more or less all Protean powers can breach the Masquerade on their own.</li><li>Blood Resonance: Animal blood, especially animals matching shapeshifted forms; the blood of werewolves, changelings, and other supernatural chimeras of man and beast.</li></ul>"
+                  general:"Protean is a Discipline that gives vampires the ability to change form, from growing feral claws to evaporating into a cloud of mist. <ul><li>Type: Physical</li><li>Masquerade Threat: High. One of the most overt Disciplines available to vampires, more or less all Protean powers can breach the Masquerade on their own.</li><li>Blood Resonance: Animal blood, especially animals matching shapeshifted forms; the blood of werewolves, changelings, and other supernatural chimeras of man and beast.</li></ul>"
                 }
           },
         ],
@@ -1057,11 +1057,11 @@ app.component('hover-window',{
       <div
         class="description"
         v-if = "data.stat">
-      <p v-html = "data.stat.description[0]"></p>
-      <p v-html = "data.stat.description[data.hoverPointer]"></p>
+      <p v-html = "data.stat.description.general"></p>
       <p
         v-if = "data.stat.description.specialties" 
         v-html = "data.stat.description.specialties"></p>
+      <p v-html = "data.stat.description[data.hoverPointer]"></p>
       </div>
       <div
         class=resource
