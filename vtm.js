@@ -106,7 +106,7 @@ const app = Vue.createApp({
           },
           {
             id: 'Social',
-            description:"As manipulative creatures, Kindred use humans as building blocks in their power structure, in addition to using them as food andCOREBOOK fuel. Social Attributes determine first impressions; the character’s ability to charm, inspire, and motivate people; and the nature of their interactions with others.",
+            description:"As manipulative creatures, Kindred use humans as building blocks in their power structure, in addition to using them as food and fuel. Social Attributes determine first impressions; the character’s ability to charm, inspire, and motivate people; and the nature of their interactions with others.",
             list: [
               {
                 id: 'Charisma',
@@ -148,7 +148,7 @@ const app = Vue.createApp({
           },
           {
             id: 'Mental',
-            description:"Mental Attributes represent the capacity for learning, intuition, and focus. High Mental Attributes might indicate native genius, superb education, or strong will. Low Mental Attributes might derive from naiveté, ignorance, or just incapacity at thinking. But that was in life; the Blood can awaken brains and nerve clusters just as 156",
+            description:"Mental Attributes represent the capacity for learning, intuition, and focus. High Mental Attributes might indicate native genius, superb education, or strong will. Low Mental Attributes might derive from naiveté, ignorance, or just incapacity at thinking. But that was in life",
             list: [
               {
                 id: 'Intelligence',
@@ -169,7 +169,7 @@ const app = Vue.createApp({
                   general:"Wits are for thinking quickly and reacting correctly on little information. “You hear a sound” is Wits; You hear two guards coming” is Intelligence. Wits let you smell an ambush or answer the Harpy back at court right away, instead of thinking of the best response the next night.",
                   1:"You get the point eventually, but it takes explaining.",
                   2:"You can bet the odds in poker or apply the emergency brakes in time. Usually.",
-                  3:"You can analyze a situation and quickly work out the best escape route.CHARACTERS artist Artist",
+                  3:"You can analyze a situation and quickly work out the best escape route.",
                   4:"You are never caught on the back foot and always come up with a smart riposte.",
                   5:"You think and respond more quickly than most people can comprehend."
                 }
@@ -811,7 +811,9 @@ app.component('attribute-section', {
       <div
         v-for= "category in stats.data"
         :key="category.id"
-        class="statList">
+        class="statList"
+        @mouseenter="$emit('statSectionHover', {category:category})"
+        @mouseleave="$emit('statSectionHover',null)">
         <h2>{{category.id}}</h2>
         <ul class="ulStats">
           <li
@@ -821,8 +823,8 @@ app.component('attribute-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedRef, resource: stats.resource})"
-              @stat-hover-end="$emit('statSectionHover', null)">
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, allocated:allocatedRef, resource: stats.resource});"
+              @stat-hover-end="$emit('statSectionHover', {category:category})">
             </stat>
           </li>
         </ul>
@@ -855,7 +857,9 @@ app.component('skill-section', {
       <div
         v-for= "category in stats.data"
         :key="category.id"
-        class="statList">
+        class="statList"
+        @mouseenter="$emit('statSectionHover', {category:category})"
+        @mouseleave="$emit('statSectionHover',null)">
         <h2>{{category.id}}</h2>
         <ul class="ulStats">
           <li
@@ -865,8 +869,8 @@ app.component('skill-section', {
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
-              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, category:category.id, section:stats.id, allocated:allocatedRef, resource: stats.resource})"
-              @stat-hover-end="$emit('statSectionHover', null)">
+              @stat-hover-start="$emit('statSectionHover',{stat:$event.stat, hoverPointer:$event.hoverPointer, allocated:allocatedRef, resource: stats.resource});"
+              @stat-hover-end="$emit('statSectionHover', {category:category})">
             </stat>
           </li>
         </ul>
@@ -1056,18 +1060,21 @@ app.component('hover-window',{
     <div class="hover">
       <div
         class=resource
-        v-if = "data.allocated && data.resource">
+        v-if="data.allocated && data.resource">
         <span
           :style="{display: 'block'}"
           v-for="(item,index) in data.allocated">{{item}}/{{data.resource[index]}} of {{index}}</span>
       </div>
+      <div v-if="data.category">
+        <p v-html="data.category.description"></p>
+      </div>
       <div
-        class="description"
-        v-if = "data.stat">
-      <p v-html = "data.stat.description.general"></p>
+        class="statDescription"
+        v-if="data.stat">
+      <p v-html="data.stat.description.general"></p>
       <p
-        v-if = "data.stat.description.specialties"
-        v-html = "data.stat.description.specialties"></p>
+        v-if="data.stat.description.specialties"
+        v-html="data.stat.description.specialties"></p>
       <div v-if="data.hoverPointer && data.allocated">
         <span
           v-for="i in data.allocated.length-1"
@@ -1076,11 +1083,11 @@ app.component('hover-window',{
         </span>
       </div>
       <p
-        v-if = "data.stat.description[data.hoverPointer]"
-        v-html = "data.stat.description[data.hoverPointer]"></p>
+        v-if="data.stat.description[data.hoverPointer]"
+        v-html="data.stat.description[data.hoverPointer]"></p>
       <p
-        v-if = "data.stat.abilities && !data.stat.description[data.hoverPointer]"
-        ><h4
+        v-if="data.stat.abilities && !data.stat.description[data.hoverPointer]">
+        <h4
           v-for="item in data.stat.abilities[data.hoverPointer]">{{item}}</h4></p>
       </div>
     </div>
