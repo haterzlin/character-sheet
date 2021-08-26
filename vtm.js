@@ -1055,12 +1055,26 @@ app.component('hover-window',{
   template:`
     <div class="hover">
       <div
+        class=resource
+        v-if = "data.allocated && data.resource">
+        <span 
+          :style="{display: 'block'}"
+          v-for="(item,index) in data.allocated">{{item}}/{{data.resource[index]}} of {{index}}</span>
+      </div>
+      <div
         class="description"
         v-if = "data.stat">
       <p v-html = "data.stat.description.general"></p>
       <p
         v-if = "data.stat.description.specialties" 
         v-html = "data.stat.description.specialties"></p>
+      <div v-if="data.hoverPointer && data.allocated">
+        <span 
+          v-for="i in data.allocated.length-1"
+          class="point"
+          :class="{fill : data.hoverPointer>=i}">
+        </span>
+      </div>
       <p
         v-if = "data.stat.description[data.hoverPointer]" 
         v-html = "data.stat.description[data.hoverPointer]"></p>
@@ -1068,13 +1082,6 @@ app.component('hover-window',{
         v-if = "data.stat.abilities && !data.stat.description[data.hoverPointer]" 
         ><h4 
           v-for="item in data.stat.abilities[data.hoverPointer]">{{item}}</h4></p>
-      </div>
-      <div
-        class=resource
-        v-if = "data.allocated && data.resource">
-        <span 
-          :style="{display: 'block'}"
-          v-for="(item,index) in data.allocated">{{item}}/{{data.resource[index]}} of {{index}}</span>
       </div>
     </div>
   `
