@@ -571,28 +571,56 @@ const app = Vue.createApp({
           {
             id: 'Animalism',
             value: 0,
-                description:{
+            abilities:{
+              1:['bond famulus', 'sense the beast'],
+              2:['feral whispers'],
+              3:['animal succulence','quell the beast','unliving hive'],
+              4:['subsume the spirit'],
+              5:['animal dominion','drawing out the beast']
+            },
+            description:{
                   0:"Animalism is a Discipline that brings the vampire closer to their animalistic nature. This not only allows them to communicate with and gain dominance over creatures of nature, but gives them influence over the Beast itself.<ul><li> Type: Mental</li><li>Masquerade threat: Low to medium. While talking to animalsmight seem eccentric, only the most violent applications of the Discipline elicit more than a few raised eyebrows.</li><li>Blood Resonance: Animal blood, preferably feral.</li></ul>",
                 }
           },
           {
             id: 'Auspex',
             value: 0,
-                description:{
+            abilities:{
+              1:['heightened senses', 'sense the unseen'],
+              2:['premonition'],
+              3:['scry the soul','share the senses'],
+              4:['spirit’s touch'],
+              5:['clairvoyance','possession','telepathy']
+            },
+            description:{
                   0:"Auspex is a Discipline that grants vampires supernatural senses.<ul><li> Type: Mental</li><li>Masquerade threat: Low. Auspex never by itself manifests in a way visible to the naked eye or causes effects that can’t be rationalized, if only as dumb luck.</li><li>Blood Resonance: Phlegmatic. Artists (especially photographers) and visionaries, certain schizophrenics, users of psychoactive substances, detectives.</li></ul>",
                 }
           },
           {
             id: 'Blood Sorcery',
             value: 0,
-                description:{
+            abilities:{
+              1:['corrosive vitae', 'a taste for blood'],
+              2:['extinguish vitae'],
+              3:['blood of potency','scorpion ’ s touch'],
+              4:['theft of vitae'],
+              5:['baal’s caress','cauldron of blood']
+            },
+            description:{
                   0:"Blood Magic, or Blood Sorcery, refers to the magic performed by vampires, fueled by religious or occult practices and the power of Cainite vitae. <ul><li>Type: Sorcery</li><li>Masquerade Threat:Low-High. The individual appearance of the powers and Rituals in Blood Sorcery varies as widely as their effects.</li><li>Blood Resonance: Sanguine. Although not inherent in the Blood itself, Blood Sorcery responds eagerly to blood from human occultists, sorcerers, and cult leaders, as well as hemophiles and bibliophiles.</li></ul>"
                 }
           },
           {
             id: 'Celerity',
             value: 0,
-                description:{
+            abilities:{
+              1:['cat’s grace', 'rapid reflexes'],
+              2:['fleetness'],
+              3:['traversal','blink'],
+              4:['draught of elegance','unerring aim'],
+              5:['lightning strike','split second']
+            },
+            description:{
                   0:"Celerity is a Discipline that grants vampires supernatural quickness and reflexes.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
                   
                 }
@@ -600,7 +628,14 @@ const app = Vue.createApp({
           {
             id: 'Dominate',
             value: 0,
-                description:{
+            abilities:{
+              1:['cloud memory', 'compel'],
+              2:['mesmerize','dementation'],
+              3:['the forgetful mind','submerged directive'],
+              4:['rationalize'],
+              5:['mass manipulation','terminal decree']
+            },
+            description:{
                   0:"Dominate grants the vampire the ability to control the actions of others, manipulate their memories, and force living creatures into acts they would not perform of their own volition.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Bar-ring someone Dominating an entire auditorium to jump off the cliffs of Dover, it remains one of the more subtle vampiric powers.</li><li>Blood Resonance: Phlegmatic. The blood of the submissive or the dominant, masters and slaves, captains of industry, power trippers, cult leaders and followers.</li></ul>",
                   
                 }
@@ -608,14 +643,28 @@ const app = Vue.createApp({
           {
             id: 'Fortitude',
             value: 0,
-                description:{
+            abilities:{
+              1:['resilience', 'unswayable mind'],
+              2:['toughness','enduring beasts'],
+              3:['defy bane','fortify the inner facade'],
+              4:['draught of endurance'],
+              5:['flesh of marble','prowess from pain']
+            },
+            description:{
                   0:"Fortitude is a Discipline that grants Kindred unearthly toughness, even to the point of resisting fire and sunlight. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium. Eyewitnesses undoubtedly react upon someone taking a terminal beating or a hail of bullets and getting back up seemingly unhurt. Favorite cover-up explanations include erroneous recollection in the excitement (the bullets only seemed to hit), special effects (YouTube prank), or the tried-and-tested “must have been on PCP” rationale.</li><li>Blood Resonance: Melancholic. Survivors of war, abuse, or misfortune; endurance runners; mountain climbers; infantry and special forces; those with very powerful immune systems.</li></ul>",
                 }
           },
           {
             id: 'Obfuscate',
             value: 0,
-                description:{
+            abilities:{
+              1:['cloak of shadows', 'silence of death'],
+              2:['unseen passage'],
+              3:['ghost in the machine','mask of a thousand faces'],
+              4:['conceal','vanish'],
+              5:['cloak the gathering','impostor’s guise']
+            },
+            description:{
                   0:"Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen. <ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
                   
                 }
@@ -623,21 +672,42 @@ const app = Vue.createApp({
           {
             id: 'Potence',
             value: 0,
-                description:{
+            abilities:{
+              1:['lethal body', 'soaring leap'],
+              2:['prowess'],
+              3:['brutal feed','spark of rage','uncanny grip'],
+              4:['draught of might'],
+              5:['earthshock','fist of caine']
+            },
+            description:{
                   0:"Potence is the Discipline that endows vampires with physical vigor and preternatural strength. Vampires with the Potence Discipline possess physical prowess beyond mortal bounds. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium to high. Lesser exercises of the Discipline might be passed off as \“hysterical strength,\” but once pavement cracks and buildings start to crumble that explanation loses what little credibility it had.</li><li>Blood Resonance: Choleric. The strong and healthy; athletes and young men and women in their prime, gym rats, wrestlers, construction workers and lum-berjacks, longshoremen.</li></ul>"
                 }
           },
           {
             id: 'Presence',
             value: 0,
-                description:{
+            abilities:{
+              1:['awe', 'daunt'],
+              2:['lingering kiss'],
+              3:['dread gaze','entrancement'],
+              4:['irresistible voice','summon'],
+              5:['majesty','star magnetism']
+            },
+            description:{
                   0:"Presence is the Discipline of supernatural allure and emotional manipulation which allows Kindred to attract, sway, and control crowds. <ul><li>Type: Mental</li><li>Masquerade Threat: Low-Medium. A subtle power, people seldom realize Presence has affected them at all. As with most Disciplines, its higher powers can leave puzzled witnesses behind, especially once the effects wear off.</li><li>Blood Resonance: Sanguine. The beautiful and lustful, those completely infatuated with the vampire, models and actors and movie stars, compelling public and private speakers from politicians to car salesmen, YouTube sensations and Instagram influencers.</li></ul>"
                 }
           },
           {
             id: 'Protean',
             value: 0,
-                description:{
+            abilities:{
+              1:['eyes of the beast', 'weight of the feather'],
+              2:['feral weapons'],
+              3:['earth meld','shapechange'],
+              4:['metamorphosis'],
+              5:['mist form','the unfettered heart']
+            },
+            description:{
                   0:"Protean is a Discipline that gives vampires the ability to change form, from growing feral claws to evaporating into a cloud of mist. <ul><li>Type: Physical</li><li>Masquerade Threat: High. One of the most overt Disciplines available to vampires, more or less all Protean powers can breach the Masquerade on their own.</li><li>Blood Resonance: Animal blood, especially animals matching shapeshifted forms; the blood of werewolves, changelings, and other supernatural chimeras of man and beast.</li></ul>"
                 }
           },
