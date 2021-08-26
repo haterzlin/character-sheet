@@ -1061,7 +1061,13 @@ app.component('hover-window',{
       <p
         v-if = "data.stat.description.specialties" 
         v-html = "data.stat.description.specialties"></p>
-      <p v-html = "data.stat.description[data.hoverPointer]"></p>
+      <p
+        v-if = "data.stat.description[data.hoverPointer]" 
+        v-html = "data.stat.description[data.hoverPointer]"></p>
+      <p
+        v-if = "data.stat.abilities && !data.stat.description[data.hoverPointer]" 
+        ><h4 
+          v-for="item in data.stat.abilities[data.hoverPointer]">{{item}}</h4></p>
       </div>
       <div
         class=resource
