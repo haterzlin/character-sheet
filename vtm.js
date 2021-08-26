@@ -12,15 +12,15 @@ const app = Vue.createApp({
         faction: null,
       },
       skillDistributions:[
-        { 
+        {
           id: "Balanced",
           resource: [12,7,5,3,0,0]
         },
-        { 
+        {
           id: "Jack-of-all-trades",
           resource: [8,10,8,1,0,0]
         },
-        { 
+        {
           id: "Specialist",
           resource: [17,3,3,3,1,0]
         },
@@ -208,7 +208,7 @@ const app = Vue.createApp({
                   3:"You are fit as a fiddle and could play professional sports. Night games, at least.",
                   4:"With your parkour abilities, why would you need to turn into a bat?",
                   5:"Olympic records await you; only a very few peak humans can achieve what you can. Vampires mistake your skill for Physical Disciplines.",
-                  specialties: "Specialties: Acrobatics, Archery, Climbing, Endurance, Jumping, Parkour, Swimming, Throwing" 
+                  specialties: "Specialties: Acrobatics, Archery, Climbing, Endurance, Jumping, Parkour, Swimming, Throwing"
                 }
              },
               {
@@ -298,7 +298,7 @@ const app = Vue.createApp({
                   3:"You evade patrolling guards, moving softly and hiding easily.",
                   4:"Your subtle, silent passage could make you a worthy ninja – or a worthy foe for ninja.",
                   5:"The Children of Haqim come to you for advice on stalking and hiding, if they can find you.",
-                  specialties: "Specialties: Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness" 
+                  specialties: "Specialties: Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness"
                 }
              },
               {
@@ -324,7 +324,7 @@ const app = Vue.createApp({
                 id: 'Animal Ken',
                 value: 0,
                 description:{
-                  0: "Animal Ken allows you to cow, pacify, and even befriend animals.This Skill allows you to predict how an animal might react in a given situation, train a domesticated creature, or even try to calm or enrage animals. Without this Skill, most creatures pointedly avoid or grow aggressive around vampires.",
+                  general:"Animal Ken allows you to cow, pacify, and even befriend animals.This Skill allows you to predict how an animal might react in a given situation, train a domesticated creature, or even try to calm or enrage animals. Without this Skill, most creatures pointedly avoid or grow aggressive around vampires.",
                   1:"Animals shy away from you but will not bolt or snap.",
                   2:"Animals are docile around you, acting as if you aren’t there, unless you build a rapport with them.",
                   3:"Animals treat you as if you were a warm, friendly owner, unless provoked to do otherwise.",
@@ -343,7 +343,7 @@ const app = Vue.createApp({
                   3:"You impress others with your command of politeness, deference, and grace.",
                   4:"Your behavior sets trends, especially if you do something to buck the norm of etiquette.",
                   5:"The Keeper of Elysium and the Harpies look to you to establish domain protocol.",
-                  specialties: "Specialties: Anarch, Camarilla, Celebrities, Corporate, Elysium, Feudal, OnePercenter, Secret Society" 
+                  specialties: "Specialties: Anarch, Camarilla, Celebrities, Corporate, Elysium, Feudal, OnePercenter, Secret Society"
                 }
              },
               {
@@ -622,7 +622,7 @@ const app = Vue.createApp({
             },
             description:{
                   general:"Celerity is a Discipline that grants vampires supernatural quickness and reflexes.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
-                  
+
                 }
           },
           {
@@ -637,7 +637,7 @@ const app = Vue.createApp({
             },
             description:{
                   general:"Dominate grants the vampire the ability to control the actions of others, manipulate their memories, and force living creatures into acts they would not perform of their own volition.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Bar-ring someone Dominating an entire auditorium to jump off the cliffs of Dover, it remains one of the more subtle vampiric powers.</li><li>Blood Resonance: Phlegmatic. The blood of the submissive or the dominant, masters and slaves, captains of industry, power trippers, cult leaders and followers.</li></ul>",
-                  
+
                 }
           },
           {
@@ -666,7 +666,7 @@ const app = Vue.createApp({
             },
             description:{
                   general:"Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen. <ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
-                  
+
                 }
           },
           {
@@ -715,25 +715,25 @@ const app = Vue.createApp({
       },
     };
   },
-  
+
   template: `
   <div class="sheet">
     <character-info
       :bio="biography"
       :clans="clans">
     </character-info>
-    <attribute-section 
+    <attribute-section
       :stats="attributes"
       @stat-section-change="$event[0].value=$event[1]"
       @stat-section-hover="mouseOverData=$event">
     </attribute-section>
-    <skill-section 
+    <skill-section
       :stats="skills"
       :distributions="skillDistributions"
       @stat-section-change="$event[0].value=$event[1]"
       @stat-section-hover="mouseOverData=$event">
     </skill-section>
-    <discipline-section 
+    <discipline-section
       v-if="biography.clan"
       :stats="disciplines"
       :clan="biography.clan"
@@ -749,7 +749,7 @@ const statSectionMixin = {
   props: ['stats'],
   emits: ['statSectionChange','statSectionHover'],
   methods: {
-    /** 
+    /**
       * if we are adding
       * checks if change is allowed
       * if change is not allowed, we will try lower value
@@ -757,8 +757,8 @@ const statSectionMixin = {
       * if we are not adding, no restriction check is needed, so we emit event
       */
     emitAllowedChange(received_event) {
-      var i = received_event[1];    
-      for (; i > received_event[0].value; i--) {      
+      var i = received_event[1];
+      for (; i > received_event[0].value; i--) {
         if (this.allocatedResources[i] < this.stats.resource[i])  {
           break;
         }
@@ -766,8 +766,8 @@ const statSectionMixin = {
       if (received_event[2]){
         i--;
       }
-      this.$emit('statSectionChange', [received_event[0], i]);           
-    }     
+      this.$emit('statSectionChange', [received_event[0], i]);
+    }
   },
   computed: {
     /** Returns reference to computed value allocated resource
@@ -808,16 +808,16 @@ app.component('attribute-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <div 
+      <div
         v-for= "category in stats.data"
         :key="category.id"
         class="statList">
         <h2>{{category.id}}</h2>
         <ul class="ulStats">
-          <li 
+          <li
             v-for="item in category.list"
             :key="item.id">
-            <stat 
+            <stat
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
@@ -826,7 +826,7 @@ app.component('attribute-section', {
             </stat>
           </li>
         </ul>
-      </div>      
+      </div>
     </div>`
 });
 
@@ -841,27 +841,27 @@ app.component('skill-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <select 
+      <select
         v-model="stats.resource"
         :style="{display:'block'}">
         <option disabled value="">Select a distribution</option>
-        <option 
+        <option
           v-for="distrib in distributions"
           :key = "distrib.id"
           :value="distrib.resource">
           {{distrib.id}}
         </option>
       </select>
-      <div 
+      <div
         v-for= "category in stats.data"
         :key="category.id"
         class="statList">
         <h2>{{category.id}}</h2>
         <ul class="ulStats">
-          <li 
+          <li
             v-for="item in category.list"
             :key="item.id">
-            <stat 
+            <stat
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
@@ -870,14 +870,14 @@ app.component('skill-section', {
             </stat>
           </li>
         </ul>
-      </div>     
+      </div>
     </div>`
 });
 
 /** displays clickable point representing number depending on scale and stat value
   * after click, change is emitted to parent component to decide if it is alright
   */
-app.component('stat', {  
+app.component('stat', {
   props: ['stat', 'scale'],
   emits: ['statChange','statHoverStart','statHoverEnd'],
   data() {
@@ -887,26 +887,26 @@ app.component('stat', {
     };
   },
   template: `
-    <div 
+    <div
       class="stat"
       @mouseover="$emit('statHoverStart',{stat:stat, hoverPointer:hoverPointer})"
       @mouseleave="$emit('statHoverEnd')">
       <div class="statName">{{stat.id}}</div>
-      <div class="points">  
+      <div class="points">
         <span
           v-for="i in scale"
           :class="{
             point: true,
             init: i <= initialValue,
             fill: i > initialValue && i <= stat.value,
-            active: hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value)         
-          }"      
+            active: hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value)
+          }"
           @click="$emit('statChange', [stat, i, ((stat.value >= i) && (i > initialValue))])"
           @mouseover = "hoverPointer = i"
-          @mouseleave = "hoverPointer = null"    
+          @mouseleave = "hoverPointer = null"
         >
-        </span>          
-      </div>             
+        </span>
+      </div>
     </div>`
 });
 
@@ -916,13 +916,13 @@ app.component('stat', {
   */
 app.component('character-info', {
   props: ['bio', 'clans'],
-  
+
   template: `
     <div class="char-info">
-      <input 
+      <input
         class="heading1"
         type="text"
-        v-model="bio.name" 
+        v-model="bio.name"
         :placeholder="bio.defaultName"
         />
       <b>Age:</b>
@@ -932,7 +932,7 @@ app.component('character-info', {
         type="number"
         :placeholder = '123'/>
       <b>Generation:</b>
-      <select 
+      <select
         v-model="bio.generation">
         <option>15th</option>
         <option>14th</option>
@@ -941,7 +941,7 @@ app.component('character-info', {
       <b>Clan:</b>
       <select v-model="bio.clan">
         <option disabled value="">Pick a Clan</option>
-        <option 
+        <option
           v-for="clan in clans"
           :key = "clan.id"
           :value="clan">
@@ -1001,10 +1001,10 @@ app.component('discipline-section', {
       <div class="statList">
         <h2>Primary</h2>
         <ul class="ulStats">
-          <li 
+          <li
             v-for="item in stats.data"
             :key="item.id">
-            <stat 
+            <stat
               v-show = "isPrimary(item)"
               :stat="item"
               :scale="stats.resource.length - 1"
@@ -1018,10 +1018,10 @@ app.component('discipline-section', {
       <div class="statList">
         <h2>Secondary</h2>
         <ul class="ulStats">
-          <li 
+          <li
             v-for="item in stats.data"
             :key="item.id">
-            <stat 
+            <stat
               v-show = "!isPrimary(item)"
               :stat="item"
               :scale="stats.resource.length - 1"
@@ -1031,7 +1031,7 @@ app.component('discipline-section', {
             </stat>
           </li>
         </ul>
-      </div>  
+      </div>
     </div>`
 });
 /** Displays details about the element that the mouse is over
@@ -1049,7 +1049,7 @@ app.component('hover-window',{
        handler(newVal){
           if (newVal) this.data = newVal;
         },
-        deep: true 
+        deep: true
       }
   },
   template:`
@@ -1057,7 +1057,7 @@ app.component('hover-window',{
       <div
         class=resource
         v-if = "data.allocated && data.resource">
-        <span 
+        <span
           :style="{display: 'block'}"
           v-for="(item,index) in data.allocated">{{item}}/{{data.resource[index]}} of {{index}}</span>
       </div>
@@ -1066,21 +1066,21 @@ app.component('hover-window',{
         v-if = "data.stat">
       <p v-html = "data.stat.description.general"></p>
       <p
-        v-if = "data.stat.description.specialties" 
+        v-if = "data.stat.description.specialties"
         v-html = "data.stat.description.specialties"></p>
       <div v-if="data.hoverPointer && data.allocated">
-        <span 
+        <span
           v-for="i in data.allocated.length-1"
           class="point"
           :class="{init : data.hoverPointer>=i}">
         </span>
       </div>
       <p
-        v-if = "data.stat.description[data.hoverPointer]" 
+        v-if = "data.stat.description[data.hoverPointer]"
         v-html = "data.stat.description[data.hoverPointer]"></p>
       <p
-        v-if = "data.stat.abilities && !data.stat.description[data.hoverPointer]" 
-        ><h4 
+        v-if = "data.stat.abilities && !data.stat.description[data.hoverPointer]"
+        ><h4
           v-for="item in data.stat.abilities[data.hoverPointer]">{{item}}</h4></p>
       </div>
     </div>
