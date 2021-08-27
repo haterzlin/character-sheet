@@ -566,7 +566,7 @@ const app = Vue.createApp({
       },
       disciplines:{
         id: "Disciplines",
-        resource: [0,1,1,0,0,0],
+        resource: [8,1,1,0,0,0],
         data: [
           {
             id: 'Animalism',
@@ -799,6 +799,49 @@ const attributesAndSkillsMixin = {
   },
 }
 
+/**
+ * displays state of current resource assigment
+ * there are two input arrays
+ * allocatedResources array contains number of attributes assigned to that value
+ * resourceRestrictions array contains number of attributes allowed
+ * this component will compute quotient allocated points vs. allowed 
+ * and display number of changes needed to finish
+ * */
+app.component('restriction-state', {
+  props: ['allocatedResources', 'resourceRestrictions'],
+  computed: { 
+    /**
+     * @returns array of [statValue, quotient] for easy display
+     */
+    toShow() {
+      var list = [];
+      for (var statValue = 0 ; statValue < this.resourceRestrictions.length; statValue++)  {
+        var quotient = this.resourceRestrictions[statValue] - this.allocatedResources[statValue];
+        if (quotient != 0) {
+          list.push([statValue, quotient])
+        }
+      }
+      return list;
+    },      
+  },
+  template: `
+    <div class="resourceCount">
+      <span v-show="toShow.length == 0"> All picked </span>
+      <span v-show="toShow.length > 0"> To pick: </span>
+      <span  v-for="(item, index) in toShow">         
+        <span :class="{ red: item[1]<0 }">
+          {{ item[1] }} x
+        </span>
+        <span v-if="item[0] == 0" class="point">
+        </span>
+        <span v-for="number in item[0]" class="point fill">
+        </span>
+        <span v-show="index < (toShow.length -1 )">, </span>        
+      </span>      
+    </div>
+  `  
+});
+
 /** Displays entire section of attributes
  * receives events from child component and check if change is possible in resources
  * if changes are possible, emit event to top component to make changes, otherwise don't
@@ -808,7 +851,12 @@ app.component('attribute-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <div
+      <restriction-state
+        class="resourceCount"
+        :allocatedResources="allocatedResources"
+        :resourceRestrictions="stats.resource">
+      </restriction-state>
+      <div 
         v-for= "category in stats.data"
         :key="category.id"
         class="statList"
@@ -843,18 +891,23 @@ app.component('skill-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
-      <select
-        v-model="stats.resource"
-        :style="{display:'block'}">
-        <option disabled value="">Select a distribution</option>
-        <option
-          v-for="distrib in distributions"
-          :key = "distrib.id"
-          :value="distrib.resource">
-          {{distrib.id}}
-        </option>
-      </select>
-      <div
+      <div id="skill-distribution">
+        Distribution: 
+        <select v-model="stats.resource">
+          <option 
+            v-for="distribution in distributions"
+            :key="distribution.id"
+            :value="distribution.resource">
+            {{ distribution.id }}
+          </option>
+        </select>
+      </div>
+      <restriction-state
+        class="resourceCount"
+        :allocatedResources="allocatedResources"
+        :resourceRestrictions="stats.resource">
+      </restriction-state>
+      <div 
         v-for= "category in stats.data"
         :key="category.id"
         class="statList"
@@ -1002,6 +1055,11 @@ app.component('discipline-section', {
   template: `
     <div class="statSection">
       <h2>{{stats.id}}</h2>
+      <restriction-state
+        class="resourceCount"
+        :allocatedResources="allocatedResources"
+        :resourceRestrictions="stats.resource">
+      </restriction-state>
       <div class="statList">
         <h2>Primary</h2>
         <ul class="ulStats">
@@ -1058,13 +1116,6 @@ app.component('hover-window',{
   },
   template:`
     <div class="hover">
-      <div
-        class=resource
-        v-if="data.allocated && data.resource">
-        <span
-          :style="{display: 'block'}"
-          v-for="(item,index) in data.allocated">{{item}}/{{data.resource[index]}} of {{index}}</span>
-      </div>
       <div v-if="data.category">
         <p v-html="data.category.description"></p>
       </div>

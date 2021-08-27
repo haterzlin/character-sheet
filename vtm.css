@@ -146,3 +146,15 @@ h4{
   margin-bottom: 0;
   text-transform: uppercase;
 }
+
+.red {
+  color: red;
+}
+
+div.resourceCount > span > span.point:hover {
+  cursor: default;
+}
+
+#skill-distribution {
+  float: left;
+}
