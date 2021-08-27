@@ -890,9 +890,7 @@ app.component('skill-section', {
   props:['distributions'],
   template: `
     <div class="statSection">
-      <h2>{{stats.id}}</h2>
-      <div id="skill-distribution">
-        Distribution: 
+      <h2>{{stats.id}}
         <select v-model="stats.resource">
           <option 
             v-for="distribution in distributions"
@@ -901,7 +899,7 @@ app.component('skill-section', {
             {{ distribution.id }}
           </option>
         </select>
-      </div>
+      </h2>
       <restriction-state
         class="resourceCount"
         :allocatedResources="allocatedResources"
