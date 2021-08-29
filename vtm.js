@@ -826,8 +826,7 @@ app.component('restriction-state', {
   },
   template: `
     <div class="resourceCount">
-      <span v-show="toShow.length == 0"> All picked </span>
-      <span v-show="toShow.length > 0"> To pick: </span>
+      <span> To pick: </span>
       <span  v-for="(item, index) in toShow">         
         <span :class="{ red: item[1]<0 }">
           {{ item[1] }} x
@@ -837,7 +836,8 @@ app.component('restriction-state', {
         <span v-for="number in item[0]" class="point fill">
         </span>
         <span v-show="index < (toShow.length -1 )">, </span>        
-      </span>      
+      </span>
+      <span v-show="toShow.length == 0"> All picked </span>
     </div>
   `  
 });
