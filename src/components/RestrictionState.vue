@@ -54,21 +54,4 @@ div.resourceCount > span > span.point:hover {
 #skill-distribution {
   float: left;
 }
-
-.point {
-  height: 14px;
-  width: 14px;
-  margin: 1px;
-  background-color: none;
-  border-radius: 50%;
-  border: 2px;
-  border-style: outset;
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-}
-
-.fill {
-  background: radial-gradient(#ff6666, #cc0000);
-}
 </style>

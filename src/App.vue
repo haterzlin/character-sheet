@@ -57,6 +57,27 @@ export default {
 </template>
 
 <style>
+.point {
+  height: 14px;
+  width: 14px;
+  margin: 1px;
+  background-color: none;
+  border-radius: 50%;
+  border: 2px;
+  border-style: outset;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.init {
+  background: radial-gradient(#ff6666, #660000);
+}
+
+.fill {
+  background: radial-gradient(#ff6666, #cc0000);
+}
+
 div.sheet {
   float: left;
 }
