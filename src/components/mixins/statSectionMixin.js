@@ -27,8 +27,7 @@ export const statSectionMixin = {
      * used to make mouse-over event data react to click
      */
     allocatedRef() {
-      //return Vue.computed(() => this.allocatedResources);
-      return null;
+      return Vue.computed(() => this.allocatedResources);
     },
   },
 };
