@@ -78,6 +78,28 @@ export default {
   background: radial-gradient(#ff6666, #cc0000);
 }
 
+h2 {
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+.statSection {
+  width: 800px;
+}
+div.statList {
+  width: 240px;
+  float: left;
+  padding: 10px;
+}
+.ulStats {
+  text-align: left;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 div.sheet {
   float: left;
 }

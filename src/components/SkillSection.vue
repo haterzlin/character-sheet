@@ -20,23 +20,27 @@ export default {
 
 <template>
   <div class="statSection">
-    <h2>{{ stats.id }}</h2>
+    <h2>{{ stats.id }}
+      <select
+        v-model="stats.resource"
+      >
+        <option disabled value="">Select a distribution</option>
+        <option
+          v-for="distrib in distributions"
+          :key="distrib.id"
+          :value="distrib.resource"
+        >
+        {{ distrib.id }}
+        </option>
+      </select>
+    </h2>
+
     <restrictionState
       class="resourceCount"
       :allocatedResources="allocatedResources"
       :resourceRestrictions="stats.resource"
     >
     </restrictionState>
-    <select v-model="stats.resource" :style="{ display: 'block' }">
-      <option disabled value="">Select a distribution</option>
-      <option
-        v-for="distrib in distributions"
-        :key="distrib.id"
-        :value="distrib.resource"
-      >
-        {{ distrib.id }}
-      </option>
-    </select>
     <div
       v-for="category in stats.data"
       :key="category.id"
@@ -68,25 +72,5 @@ export default {
 </template>
 
 <style scoped>
-h2 {
-  text-align: center;
-}
-
-h3 {
-  text-align: center;
-}
-.statSection {
-  width: 800px;
-}
-div.statList {
-  width: 240px;
-  float: left;
-  padding: 10px;
-}
-.ulStats {
-  text-align: left;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
+select {border: none}
 </style>

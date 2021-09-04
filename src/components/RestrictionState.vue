@@ -50,8 +50,4 @@ export default {
 div.resourceCount > span > span.point:hover {
   cursor: default;
 }
-
-#skill-distribution {
-  float: left;
-}
 </style>
