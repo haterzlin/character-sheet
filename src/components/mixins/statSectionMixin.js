@@ -22,12 +22,4 @@ export const statSectionMixin = {
       this.$emit('statSectionChange', [received_event[0], i]);
     },
   },
-  computed: {
-    /** Returns reference to computed value allocated resource
-     * used to make mouse-over event data react to click
-     */
-    allocatedRef() {
-      return Vue.computed(() => this.allocatedResources);
-    },
-  },
 };

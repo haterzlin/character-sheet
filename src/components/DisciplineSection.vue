@@ -69,7 +69,6 @@ export default {
                 hoverPointer: $event.hoverPointer,
                 category: 'Primary',
                 section: stats.id,
-                allocated: allocatedRef,
                 resource: stats.resource,
               })
             "
@@ -94,7 +93,6 @@ export default {
                 hoverPointer: $event.hoverPointer,
                 category: 'Secondary',
                 section: stats.id,
-                allocated: allocatedRef,
                 resource: stats.resource,
                 isCaitiff: clan.abilities === null,
               })

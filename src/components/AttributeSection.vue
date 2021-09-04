@@ -43,7 +43,6 @@ export default {
               $emit('statSectionHover', {
                 stat: $event.stat,
                 hoverPointer: $event.hoverPointer,
-                allocated: allocatedRef,
                 resource: stats.resource,
               })
             "

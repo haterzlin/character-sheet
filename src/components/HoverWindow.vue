@@ -24,14 +24,6 @@ export default {
 
 <template>
   <div class="hover">
-    <div v-if="data.allocated && data.resource">
-      <span
-        :style="{ display: 'block' }"
-        v-for="(item, index) in data.allocated"
-        :key="index"
-        >{{ item }}/{{ data.resource[index] }} of {{ index }}</span
-      >
-    </div>
     <div v-if="data.category">
       <p v-html="data.category.description"></p>
     </div>
@@ -41,9 +33,9 @@ export default {
         v-if="data.stat.description.specialties"
         v-html="data.stat.description.specialties"
       ></p>
-      <div v-if="data.hoverPointer && data.allocated">
+      <div v-if="data.hoverPointer">
         <span
-          v-for="i in data.allocated.length - 1"
+          v-for="i in 5"
           :key="i"
           class="point"
           :class="{ init: data.hoverPointer >= i }"
