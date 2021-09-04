@@ -47,7 +47,7 @@ export default {
         v-html="data.stat.description[data.hoverPointer]"
       ></p>
       <div v-if="data.stat.abilities && !data.stat.description[data.hoverPointer]">
-        <p class="small-caps" v-for="item in data.stat.abilities[data.hoverPointer]" :key="item">
+        <p class="ability" v-for="item in data.stat.abilities[data.hoverPointer]" :key="item">
           {{ item }}
         </p>
       </div>
@@ -56,8 +56,9 @@ export default {
 </template>
 
 <style scoped>
-.small-caps {
+.ability {
   font-variant: small-caps;
+  font-weight: bold;
 }
 div.hover {
   margin-left: 800px;
