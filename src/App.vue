@@ -5,9 +5,13 @@ import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue'
+<<<<<<< HEAD
 import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, powerStats, resonances } from "./data.js";
 import { ref } from 'vue'
 
+=======
+import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, resonances } from "./data.js";
+>>>>>>> sidebar w/ hide/show | data
 
 export default {
   data() {
@@ -22,9 +26,12 @@ export default {
       clans: clans,
       disciplines: disciplines,
       vitals:vitals,
+<<<<<<< HEAD
       /**
        * local states
        */
+=======
+>>>>>>> sidebar w/ hide/show | data
       mouseOverData: null,
     };
   },
@@ -34,6 +41,7 @@ export default {
     "discipline-section": DisciplineSection,
     "attribute-section": AttributeSection,
     "character-info": CharacterInfo,
+<<<<<<< HEAD
     'vitals': VitalsSideBar
   },
   computed:{
@@ -80,6 +88,9 @@ export default {
         });}
       return tmp;
     },
+=======
+    'vitals':VitalsSideBar
+>>>>>>> sidebar w/ hide/show | data
   },
 };
 </script>
@@ -87,9 +98,13 @@ export default {
 <template>
   <vitals
     :vitals="vitals"
+<<<<<<< HEAD
     :bio="biography"
     :dependencies="vitalsDependencies"
     @hover="mouseOverData = $event">
+=======
+    :bio="biography">
+>>>>>>> sidebar w/ hide/show | data
   </vitals>
   <div class="sheet">
     <character-info :bio="biography" :clans="clans"> </character-info>
