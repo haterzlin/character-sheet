@@ -1,3 +1,7 @@
+<!--
+  Displays vital stats such as health, willpower etc.
+  has a show/hide button
+--->
 <template>
   <div 
     class="sidebar"
@@ -10,27 +14,29 @@
       class="sidebarContent"     
       v-show="showHide"
       >
-      <stat
-        :stat="vitals.bloodPotency"
-        :scale="10"></stat>
-      
+      <vital-stat
+        v-for="stat in [vitals.health, vitals.willpower, vitals.humanity, vitals.hunger, vitals.bloodPotency]"
+        :key="stat.id"
+        :stat="stat"
+        :style-prop="stat.style"
+        :scale="stat.scale"></vital-stat>
     </div>
   </div>  
 </template>
 <script>
 
-import Stat from './Stat.vue'
+  import VitalStat from './VitalStat.vue'
 
 export default {
   props: ['bio', 'vitals', 'dependecies'],
   components:{
-    stat:Stat,
+    'vital-stat':VitalStat,
   },
   data(){
     return{
       showHide: true
     }
-  }
+  },
 }
 </script>
 <style scoped>
@@ -47,14 +53,14 @@ export default {
   .sidebar.show{
     position: fixed;
     background:white;
-    width: 450px;
+    width: 400px;
     opacity:1;
   }
   .sidebarContent{
-    width: 400px;
+    width: 350px;
   }
   .sidebar.hide{
-    width:0px
+    width:50px
   }
   span.button{
     display:block;
