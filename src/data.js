@@ -899,33 +899,41 @@ export const powerStats = {
 export const vitals = {
   bloodPotency:{
     id: "Blood Potency",
+    style: "point",
+    scale: 10,
     depends: 'generation.bloodPotency',
     value: null,
     defaultvalue: 0,
   },
-  experience:{
-    total: 0,
-    spent: 0
-  },
   health:{
+    id: "Health",
+    style: "healthPt",
+    scale: 15,
     depends: ['stamina.value', 3],
     value: null,
     defaultvalue: 0,
   },
   willpower:{
+    id: "Willpower",
+    style: "willPt",
+    scale: 15,
     depends: ['composure.value', 'resolve.value'],
     value: null,
     defaultvalue: 0,
   },
   hunger:{
+    id: "Hunger",
+    style: "hungerPt",
+    scale: 5,
     depends: [],
     value: null,
     defaultvalue: 0,
   },
   humanity:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
+    id: "Humanity",
+    style: "humanityPt",
+    scale: 10,
+    value: 7,    
   },
   bloodSurge:{
     depends: [],
@@ -959,7 +967,15 @@ export const vitals = {
   },
   resonance: null, //can pick null
   hunting: null, // null = N/A
+<<<<<<< HEAD
 >>>>>>> sidebar w/ hide/show | data
+=======
+  experience:{
+    id:"EXP",
+    total: 0,
+    spent: 0
+  },
+>>>>>>> vital stat component| display stat points
 };
 
 export const resonances = [
