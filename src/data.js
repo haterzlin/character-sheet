@@ -803,3 +803,82 @@ export const disciplines = {
     },
   ],
 };
+export const vitals = {
+  bloodPotency:{
+    id: "Blood Potency",
+    depends: 'generation.bloodPotency',
+    value: null,
+    defaultvalue: 0,
+  },
+  experience:{
+    total: 0,
+    spent: 0
+  },
+  health:{
+    depends: ['stamina.value', 3],
+    value: null,
+    defaultvalue: 0,
+  },
+  willpower:{
+    depends: ['composure.value', 'resolve.value'],
+    value: null,
+    defaultvalue: 0,
+  },
+  hunger:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  humanity:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  bloodSurge:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  power:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  feeding:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  mend:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  rouseReRoll:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  baneSeverity:{
+    depends: [],
+    value: null,
+    defaultvalue: 0,
+  },
+  resonance: null, //can pick null
+  hunting: null, // null = N/A
+};
+
+export const resonances = [
+  {
+    id:"choleric"
+  },
+  {
+    id:"flegmatic"
+  },
+  {
+    id:"melancholic"
+  },
+  {
+    id:"sanguine"
+  },
+];

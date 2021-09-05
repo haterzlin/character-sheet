@@ -4,7 +4,8 @@ import AttributeSection from "./components/AttributeSection.vue";
 import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
-import { biography, skillDistributions, clans, attributes, skills, disciplines } from "./data.js";
+import VitalsSideBar from './components/VitalsSideBar.vue'
+import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, resonances } from "./data.js";
 
 export default {
   data() {
@@ -15,6 +16,7 @@ export default {
       attributes: attributes,
       clans: clans,
       disciplines: disciplines,
+      vitals:vitals,
       mouseOverData: null,
     };
   },
@@ -24,11 +26,16 @@ export default {
     "discipline-section": DisciplineSection,
     "attribute-section": AttributeSection,
     "character-info": CharacterInfo,
+    'vitals':VitalsSideBar
   },
 };
 </script>
 
 <template>
+  <vitals
+    :vitals="vitals"
+    :bio="biography">
+  </vitals>
   <div class="sheet">
     <character-info :bio="biography" :clans="clans"> </character-info>
     <attribute-section
