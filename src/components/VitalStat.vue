@@ -73,9 +73,7 @@ export default {
     width: 350px;
     margin:auto;
     display:inline-block;
-  }
-  .box > div{
-    text-align: center;
+    margin-bottom: 10px;
   }
   .name{
     font-weight: 600;

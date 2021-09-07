@@ -8,8 +8,9 @@
     :class="{show:showHide}">
     <span
       @click="showHide=!showHide"
-      class="button"
-      :class="{show:!showHide,hide:showHide}">{{(!showHide)?'show':'hide'}}</span>
+      class="button">
+      {{(showHide)? '<':'>'}}
+    </span>
     <div 
       class="sidebarContent"     
       v-show="showHide"
@@ -41,42 +42,34 @@ export default {
 </script>
 <style scoped>
   .sidebar{
-    position: fixed;
-    background:white;
-    width:50px;
-    opacity: 0;
-    height:100%
-  }
-  .sidebar:hover{
-    opacity: 1;
+    position: sticky;
+    top:0;
+    width:20px;
+    float: inline-start;
+    margin-right: 5px;
   }
   .sidebar.show{
-    position: fixed;
-    background:white;
-    width: 400px;
-    opacity:1;
+    width: 370px;
   }
   .sidebarContent{
     width: 350px;
   }
   .sidebar.hide{
-    width:50px
+    width:20px
   }
   span.button{
-    display:block;
-    float:right;
-    color: blue;
-    height:100%
-    
+    float:inline-end;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: lightgrey;
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
   }
   span.button:hover{
-    color:black;
     font-weight: 600;
-  }
-  span.button.show:after{
-    content:">"
-  }
-  span.button.hide:after{
-    content:"<"
+    background-color: grey;
   }
 </style>

@@ -60,10 +60,12 @@ export default {
   font-weight: bold;
 }
 div.hover {
-  margin-left: 800px;
+  margin-left: 820px;
   float: right;
   z-index: 9;
   position: fixed;
   width: 600px;
+  background-color: white;
+  padding: 2px;
 }
 </style>
