@@ -803,7 +803,6 @@ export const disciplines = {
     },
   ],
 };
-<<<<<<< HEAD
 export const vitals = [
   {
     id: "Health",
@@ -895,87 +894,6 @@ export const powerStats = {
     total: 0,
     spent: 0
   },
-=======
-export const vitals = {
-  bloodPotency:{
-    id: "Blood Potency",
-    style: "point",
-    scale: 10,
-    depends: 'generation.bloodPotency',
-    value: null,
-    defaultvalue: 0,
-  },
-  health:{
-    id: "Health",
-    style: "healthPt",
-    scale: 15,
-    depends: ['stamina.value', 3],
-    value: null,
-    defaultvalue: 0,
-  },
-  willpower:{
-    id: "Willpower",
-    style: "willPt",
-    scale: 15,
-    depends: ['composure.value', 'resolve.value'],
-    value: null,
-    defaultvalue: 0,
-  },
-  hunger:{
-    id: "Hunger",
-    style: "hungerPt",
-    scale: 5,
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  humanity:{
-    id: "Humanity",
-    style: "humanityPt",
-    scale: 10,
-    value: 7,    
-  },
-  bloodSurge:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  power:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  feeding:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  mend:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  rouseReRoll:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  baneSeverity:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  resonance: null, //can pick null
-  hunting: null, // null = N/A
-<<<<<<< HEAD
->>>>>>> sidebar w/ hide/show | data
-=======
-  experience:{
-    id:"EXP",
-    total: 0,
-    spent: 0
-  },
->>>>>>> vital stat component| display stat points
 };
 
 export const resonances = [
@@ -983,11 +901,7 @@ export const resonances = [
     id:"choleric"
   },
   {
-<<<<<<< HEAD
     id:"phlegmatic"
-=======
-    id:"flegmatic"
->>>>>>> sidebar w/ hide/show | data
   },
   {
     id:"melancholic"
