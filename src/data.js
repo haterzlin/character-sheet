@@ -886,7 +886,7 @@ export const resonances = [
     id:"choleric"
   },
   {
-    id:"flegmatic"
+    id:"phlegmatic"
   },
   {
     id:"melancholic"
