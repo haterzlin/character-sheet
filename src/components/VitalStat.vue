@@ -1,8 +1,6 @@
 <!--
   Displays a read-only stat
-  @param stat {json} displayed object
-  @param styleProp {string} style of displayed stat points
-  @param scale {number} total number of points, split into groups of five
+  
 --->
 <template>
   <div
@@ -17,24 +15,44 @@
         <span
           v-for="i in (fives==numberOfFives && scale%5!=0) ? scale%5 : 5"
           :key="i"
-          :class="styleProp">
+          :class="{
+            point:styleProp=='point',
+            healthPt:styleProp=='healthPt',
+            willPt:styleProp=='willPt',
+            hungerPt:styleProp=='hungerPt',
+            humanityPt:styleProp=='humanityPt',
+            fill: i+((fives-1)*5) > initialValue && i+((fives-1)*5) <=stat.value,
+            init: i+((fives-1)*5) <= initialValue,
+          }">
         </span>
 
       </div>
     </div>
   </div>
 </template>
+
 <script>
+/**
+ *   Displays a read-only stat
+ * @param stat {JSON} displayed object
+ * @param styleProp {String} style of displayed stat points
+ * @param scale {Number} total number of points, split into groups of five
+ */
 export default {
   props:{'stat':Object, 'styleProp':String, 'scale':Number},
+  data(){
+    return{
+      initialValue:this.stat.value
+    }
+  },
   computed:{
-    /** Count amount of groups of five */
+    /** Counts amount of groups of five for @param scale */
     numberOfFives(){
       var tmp = 5;
       for (;tmp<this.scale;tmp+=5);
       return tmp/5
     }
-  }
+  },
 }
 </script>
 <style scoped>
@@ -52,8 +70,8 @@ export default {
   }
 
   .hungerPt,.humanityPt{
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     border: 1px;
     border-style: outset;
     display: inline-block;
@@ -61,7 +79,15 @@ export default {
     margin: 1px;
   }
   .humanityPt.fill{
-    color:blue;
+    background-color:blue;
+  }
+  .humanityPt.init{
+    background-color:black;
+    color:white;
+    cursor: pointer;
+  }
+  .humanityPt.init:hover:after{
+    content:"X";
   }
   .five{
     float:left;

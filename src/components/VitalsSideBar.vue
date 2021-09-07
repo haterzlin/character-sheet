@@ -27,7 +27,11 @@
 <script>
 
   import VitalStat from './VitalStat.vue'
-
+/**
+ * Displays vital stats such as health, willpower etc.
+ * has a show/hide button
+ * @param vitals {JSON} list of vital stats
+ */
 export default {
   props: ['bio', 'vitals', 'dependecies'],
   components:{
@@ -60,13 +64,13 @@ export default {
   span.button{
     float:inline-end;
     color: red;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
     border-radius: 50%;
     background-color: lightgrey;
-    height: 20px;
-    width: 20px;
-    vertical-align: middle;
+    height: 25px;
+    width: 25px;
+    text-align: center;
   }
   span.button:hover{
     font-weight: 600;

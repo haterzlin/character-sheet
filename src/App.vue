@@ -77,11 +77,11 @@ export default {
   cursor: pointer;
 }
 
-.init {
+.point.init {
   background: radial-gradient(#ff6666, #660000);
 }
 
-.fill {
+.point.fill {
   background: radial-gradient(#ff6666, #cc0000);
 }
 
