@@ -5,11 +5,14 @@ import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue'
-import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, resonances } from "./data.js";
+import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, powerStats, resonances } from "./data.js";
 
 export default {
   data() {
     return {
+      /**
+       * load externals
+       */
       biography: biography,
       skills: skills,
       skillDistributions: skillDistributions,
@@ -17,6 +20,9 @@ export default {
       clans: clans,
       disciplines: disciplines,
       vitals:vitals,
+      /**
+       * local states
+       */
       mouseOverData: null,
     };
   },

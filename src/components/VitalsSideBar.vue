@@ -6,17 +6,18 @@
   <div 
     class="sidebar"
     :class="{show:showHide}">
-    <span
-      @click="showHide=!showHide"
-      class="button">
-      {{(showHide)? '<':'>'}}
-    </span>
+      <div 
+        class="button"
+        @click="showHide=!showHide">
+        <span>
+          {{(showHide) ? '<' : '>'}}
+        </span>
+      </div>
     <div 
       class="sidebarContent"     
-      v-show="showHide"
-      >
+      v-show="showHide">      
       <vital-stat
-        v-for="stat in [vitals.health, vitals.willpower, vitals.humanity, vitals.hunger, vitals.bloodPotency]"
+        v-for="stat in vitals"
         :key="stat.id"
         :stat="stat"
         :style-prop="stat.style"
@@ -46,34 +47,35 @@ export default {
 </script>
 <style scoped>
   .sidebar{
-    position: sticky;
-    top:0;
-    width:20px;
     float: inline-start;
-    margin-right: 5px;
+    margin-right: 25px;
   }
   .sidebar.show{
-    width: 370px;
+    width: 350px;
   }
   .sidebarContent{
     width: 350px;
+    position: fixed;
   }
-  .sidebar.hide{
-    width:20px
-  }
-  span.button{
-    float:inline-end;
-    color: red;
-    font-size: 22px;
+  .button{
+    float: inline-end;
     cursor: pointer;
+    height:2em;
+    width:4px
+  }
+  .button>span{
+    position:fixed; 
+    color: red;
+    font-size: 20px;  
     border-radius: 50%;
     background-color: lightgrey;
     height: 25px;
     width: 25px;
     text-align: center;
+    vertical-align: center;
+    font-weight: bold;
   }
-  span.button:hover{
-    font-weight: 600;
+  .button:hover > span{
     background-color: grey;
   }
 </style>

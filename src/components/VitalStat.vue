@@ -5,7 +5,7 @@
 <template>
   <div
     class="box">
-    <div class="name">{{stat.id}}</div>
+    <div class="name">{{stat.id}}:</div>
     <div
       class="points">
       <div 
@@ -66,6 +66,7 @@ export default {
     border-style: outset;
     display: inline-block;
     vertical-align: middle;
+    text-align:center;
     margin: 1px;
   }
 
@@ -76,6 +77,7 @@ export default {
     border-style: outset;
     display: inline-block;
     vertical-align: middle;
+    text-align:center;
     margin: 1px;
   }
   .humanityPt.fill{
@@ -89,17 +91,29 @@ export default {
   .humanityPt.init:hover:after{
     content:"X";
   }
+  .healthPt.fill{
+     background: radial-gradient(#ff6666, #cc0000);
+  }
+  .healthPt.init{
+    background-color:#cc0000;
+    color:black;
+    cursor: pointer;
+  }
+  .healthPt.init:hover:after{
+    content:"/";
+  }
+  .healthPt.init.stake:hover:after{
+    content:"X";
+  }
   .five{
     float:left;
-    width: 100px;
-    height: 20px;
-    margin: 5px;
+    margin-right: 1ch;
   }
   .box{
     width: 350px;
     margin:auto;
     display:inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 1ch;
   }
   .name{
     font-weight: 600;

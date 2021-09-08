@@ -803,75 +803,85 @@ export const disciplines = {
     },
   ],
 };
-export const vitals = {
-  bloodPotency:{
+export const vitals = [
+  {
+    id: "Health",
+    style: "healthPt",
+    scale: 15,
+    depends: ['stamina'],
+    value: 3,
+    defaultvalue: 0,
+  },
+  {
+    id: "Willpower",
+    style: "willPt",
+    scale: 15,
+    depends: ['composure', 'resolve'],
+    value: 0,
+    defaultvalue: 0,
+  },
+  {
+    id: "Humanity",
+    style: "humanityPt",
+    scale: 10,
+    value: 7,
+    defaultvalue: 7, 
+  },
+  {
+    id: "Hunger",
+    style: "hungerPt",
+    scale: 5,
+    value: 0,
+    defaultvalue: 0,
+  },
+  {
     id: "Blood Potency",
     style: "point",
     scale: 10,
     depends: 'generation.bloodPotency',
-    value: null,
+    value: 0,
     defaultvalue: 0,
   },
-  health:{
-    id: "Health",
-    style: "healthPt",
-    scale: 15,
-    depends: ['stamina.value', 3],
-    value: null,
-    defaultvalue: 0,
-  },
-  willpower:{
-    id: "Willpower",
-    style: "willPt",
-    scale: 15,
-    depends: ['composure.value', 'resolve.value'],
-    value: null,
-    defaultvalue: 0,
-  },
-  hunger:{
-    id: "Hunger",
-    style: "hungerPt",
-    scale: 5,
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  humanity:{
-    id: "Humanity",
-    style: "humanityPt",
-    scale: 10,
-    value: 7,    
-  },
-  bloodSurge:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  power:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  feeding:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  mend:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  rouseReRoll:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
-  baneSeverity:{
-    depends: [],
-    value: null,
-    defaultvalue: 0,
-  },
+];
+export const powerStats = {
+  table:[
+    {
+      id:'blood surge',
+      depends: [],
+      value: null,
+      defaultvalue: 0,
+    },
+    {
+      id:'power',
+      depends: [],
+      value: null,
+      defaultvalue: 0,
+    },
+    {
+      id:'feeding',
+      depends: [],
+      value: null,
+      defaultvalue: 0,
+    },
+    {
+      id:'mend',
+      depends: [],
+      value: null,
+      defaultvalue: 0,
+    },
+    {
+      id:'rouse reroll',
+      depends: [],
+      value: null,
+      defaultvalue: 0,
+    },
+    {
+      id:'bane severity',
+      depends: [],
+      value: null,
+      defaultvalue: 0,
+    },
+  ],
   resonance: null, //can pick null
   hunting: null, // null = N/A
   experience:{
