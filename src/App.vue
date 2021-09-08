@@ -40,7 +40,8 @@ export default {
 <template>
   <vitals
     :vitals="vitals"
-    :bio="biography">
+    :bio="biography"
+    @hover="mouseOverData = $event">
   </vitals>
   <div class="sheet">
     <character-info :bio="biography" :clans="clans"> </character-info>

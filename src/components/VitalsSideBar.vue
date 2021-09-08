@@ -21,7 +21,11 @@
         :key="stat.id"
         :stat="stat"
         :style-prop="stat.style"
-        :scale="stat.scale"></vital-stat>
+        :scale="stat.scale"
+        @mouseenter="$emit('hover',{category:stat})"
+        @mouseleave="$emit('hover', null)">
+        </vital-stat>
+        
     </div>
   </div>  
 </template>
@@ -35,6 +39,7 @@
  */
 export default {
   props: ['bio', 'vitals', 'dependecies'],
+  emits:['hover'],
   components:{
     'vital-stat':VitalStat,
   },

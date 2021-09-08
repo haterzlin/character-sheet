@@ -810,7 +810,8 @@ export const vitals = [
     scale: 15,
     depends: ['stamina'],
     value: 3,
-    defaultvalue: 0,
+    defaultvalue: 3,
+    description:"Your Health; usually equals stamina + 3",
   },
   {
     id: "Willpower",
@@ -819,6 +820,7 @@ export const vitals = [
     depends: ['composure', 'resolve'],
     value: 0,
     defaultvalue: 0,
+    description:"Your Willpower; usually equals composure + resolve",
   },
   {
     id: "Humanity",
@@ -826,13 +828,15 @@ export const vitals = [
     scale: 10,
     value: 7,
     defaultvalue: 7, 
+    description:"Your Humanity, a measure of resistance against the beast",
   },
   {
     id: "Hunger",
     style: "hungerPt",
     scale: 5,
     value: 0,
-    defaultvalue: 0,
+    defaultvalue: 1,
+    description:"Your Hunger",
   },
   {
     id: "Blood Potency",
@@ -841,6 +845,7 @@ export const vitals = [
     depends: 'generation.bloodPotency',
     value: 0,
     defaultvalue: 0,
+    description:"Your Blood Potency: a measure of Caine's blood in Your character",
   },
 ];
 export const powerStats = {
