@@ -1,9 +1,8 @@
-<!--
-  displays clickable point representing number depending on scale and stat value
-  after click, change is emitted to parent component to decide if it is alright
- -->
-
 <script>
+/**
+ * displays clickable point representing number depending on scale and stat value
+ * after click, change is emitted to parent component to decide if it is alright
+ */
 export default defineComponent({
 name: "stat",
 data() {

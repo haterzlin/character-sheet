@@ -1,9 +1,5 @@
-<!--
-  displays inputs for name and age
-  displays selects for clan, generation, faction
- -->
-
 <script setup>
+/** displays inputs for name and age selects for clan, generation, faction */
 defineProps(["bio", "clans"]);
 </script>
 

@@ -1,11 +1,10 @@
-<!--
- Displays entire section of skills
- displays select for distribution of skills
- receives events from child component and check if change is possible in resources
- if changes are possible, emit event to top component to make changes, otherwise don't
- -->
-
 <script>
+/**
+ *  Displays entire section of skills
+ * displays select for distribution of skills
+ * receives events from child component and check if change is possible in resources
+ * if changes are possible, emit event to top component to make changes, otherwise don't
+ */
 export default defineComponent({
 mixins: [statSectionMixin, attributesAndSkillsMixin],
 });
