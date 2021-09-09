@@ -5,15 +5,9 @@
  -->
 
 <script>
-import { statSectionMixin } from "./mixins/statSectionMixin";
-import Stat from "./Stat.vue";
-import RestrictionState from "./RestrictionState.vue";
-
-export default {
-  mixins: [statSectionMixin],
-  components: { stat: Stat, restrictionState: RestrictionState },
-  props: ["clan"],
-  computed: {
+export default defineComponent({
+mixins: [statSectionMixin],
+computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
      * for example [0,9,0,0,0,0] means there are 9 attributes with value 1
@@ -28,7 +22,7 @@ export default {
       return tmp;
     },
   },
-  methods: {
+methods: {
     /**
      * @returns if discipline is primary or not
      */
@@ -42,7 +36,15 @@ export default {
       return false;
     },
   },
-};
+});
+</script>
+
+<script setup>
+import { statSectionMixin } from "./mixins/statSectionMixin";
+import Stat from "./Stat.vue";
+import RestrictionState from "./RestrictionState.vue";
+
+defineProps(["clan"]);
 </script>
 
 <template>

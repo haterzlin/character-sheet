@@ -8,9 +8,8 @@
  -->
 
 <script>
-export default {
-  props: ["allocatedResources", "resourceRestrictions"],
-  computed: {
+export default defineComponent({
+computed: {
     /**
      * @returns array of [statValue, quotient] for easy display
      */
@@ -26,7 +25,11 @@ export default {
       return list.reverse();
     },
   },
-};
+});
+</script>
+
+<script setup>
+defineProps(["allocatedResources", "resourceRestrictions"]);
 </script>
 
 <template>

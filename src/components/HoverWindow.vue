@@ -4,14 +4,13 @@ mostly works with stats so far
  -->
 
 <script>
-export default {
-  props: ["mouseOverData"],
-  data() {
+export default defineComponent({
+data() {
     return {
       data: "test",
     };
   },
-  watch: {
+watch: {
     mouseOverData: {
       handler(newVal) {
         if (newVal) this.data = newVal;
@@ -19,7 +18,11 @@ export default {
       deep: true,
     },
   },
-};
+});
+</script>
+
+<script setup>
+defineProps(["mouseOverData"]);
 </script>
 
 <template>

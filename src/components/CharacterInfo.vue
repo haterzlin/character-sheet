@@ -3,10 +3,8 @@
   displays selects for clan, generation, faction
  -->
 
-<script>
-export default {
-  props: ["bio", "clans"],
-};
+<script setup>
+defineProps(["bio", "clans"]);
 </script>
 
 <template>

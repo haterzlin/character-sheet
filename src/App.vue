@@ -1,13 +1,6 @@
 <script>
-import CharacterInfo from "./components/CharacterInfo.vue";
-import AttributeSection from "./components/AttributeSection.vue";
-import SkillSection from "./components/SkillSection.vue";
-import DisciplineSection from "./components/DisciplineSection.vue";
-import HoverWindow from "./components/HoverWindow.vue";
-import { biography, skillDistributions, clans, attributes, skills, disciplines } from "./data.js";
-
-export default {
-  data() {
+export default defineComponent({
+data() {
     return {
       biography: biography,
       skills: skills,
@@ -18,14 +11,16 @@ export default {
       mouseOverData: null,
     };
   },
-  components: {
-    "hover-window": HoverWindow,
-    "skill-section": SkillSection,
-    "discipline-section": DisciplineSection,
-    "attribute-section": AttributeSection,
-    "character-info": CharacterInfo,
-  },
-};
+});
+</script>
+
+<script setup>
+import CharacterInfo from "./components/CharacterInfo.vue";
+import AttributeSection from "./components/AttributeSection.vue";
+import SkillSection from "./components/SkillSection.vue";
+import DisciplineSection from "./components/DisciplineSection.vue";
+import HoverWindow from "./components/HoverWindow.vue";
+import { biography, skillDistributions, clans, attributes, skills, disciplines } from "./data.js";
 </script>
 
 <template>
