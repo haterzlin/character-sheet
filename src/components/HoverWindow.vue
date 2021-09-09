@@ -1,8 +1,3 @@
-<!--
-Displays details about the element that the mouse is over
-mostly works with stats so far
- -->
-
 <script>
 export default {
 data() {

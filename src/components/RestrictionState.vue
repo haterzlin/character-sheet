@@ -1,12 +1,3 @@
-<!--
- displays state of current resource assigment
- there are two input arrays
- allocatedResources array contains number of attributes assigned to that value
- resourceRestrictions array contains number of attributes allowed
- this component will compute quotient allocated points vs. allowed 
- and display number of changes needed to finish
- -->
-
 <script>
 export default {
 computed: {

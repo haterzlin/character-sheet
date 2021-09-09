@@ -1,9 +1,3 @@
-<!--
- Displays entire section of disciplines
- receives events from child component and check if change is possible in resources
- if changes are possible, emit event to top component to make changes, otherwise don't
- -->
-
 <script>
 export default {
 mixins: [statSectionMixin],
