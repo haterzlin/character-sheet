@@ -40,8 +40,8 @@ methods: {
 
 <script setup>
 import { statSectionMixin } from "./mixins/statSectionMixin";
-import Stat from "./Stat.vue";
-import RestrictionState from "./RestrictionState.vue";
+import stat from "./Stat.vue";
+import restrictionState from "./RestrictionState.vue";
 
 defineProps(["clan"]);
 </script>
