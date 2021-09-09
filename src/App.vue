@@ -1,5 +1,5 @@
 <script>
-export default defineComponent({
+export default {
 data() {
     return {
       biography: biography,
@@ -11,7 +11,7 @@ data() {
       mouseOverData: null,
     };
   },
-});
+};
 </script>
 
 <script setup>

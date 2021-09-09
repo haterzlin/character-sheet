@@ -4,7 +4,7 @@ mostly works with stats so far
  -->
 
 <script>
-export default defineComponent({
+export default {
 data() {
     return {
       data: "test",
@@ -18,7 +18,7 @@ watch: {
       deep: true,
     },
   },
-});
+};
 </script>
 
 <script setup>

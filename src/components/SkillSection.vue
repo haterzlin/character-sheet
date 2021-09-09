@@ -6,9 +6,9 @@
  -->
 
 <script>
-export default defineComponent({
+export default {
 mixins: [statSectionMixin, attributesAndSkillsMixin],
-});
+};
 </script>
 
 <script setup>

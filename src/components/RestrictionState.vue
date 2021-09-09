@@ -8,7 +8,7 @@
  -->
 
 <script>
-export default defineComponent({
+export default {
 computed: {
     /**
      * @returns array of [statValue, quotient] for easy display
@@ -25,7 +25,7 @@ computed: {
       return list.reverse();
     },
   },
-});
+};
 </script>
 
 <script setup>

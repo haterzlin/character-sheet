@@ -4,7 +4,7 @@
  -->
 
 <script>
-export default defineComponent({
+export default {
 name: "stat",
 data() {
     return {
@@ -12,7 +12,7 @@ data() {
       hoverPointer: null,
     };
   },
-});
+};
 </script>
 
 <script setup>

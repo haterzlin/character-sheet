@@ -5,7 +5,7 @@
  -->
 
 <script>
-export default defineComponent({
+export default {
 mixins: [statSectionMixin],
 computed: {
     /**
@@ -36,7 +36,7 @@ methods: {
       return false;
     },
   },
-});
+};
 </script>
 
 <script setup>
