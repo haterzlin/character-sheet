@@ -23,7 +23,7 @@ export default {
           list.push([statValue, quotient]);
         }
       }
-      return list;
+      return list.reverse();
     },
   },
 };
