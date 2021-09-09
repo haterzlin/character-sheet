@@ -4,17 +4,20 @@
  -->
 
 <script>
-export default {
-  name: "stat",
-  props: ["stat", "scale"],
-  emits: ["statChange", "statHoverStart", "statHoverEnd"],
-  data() {
+export default defineComponent({
+name: "stat",
+data() {
     return {
       initialValue: this.stat.value,
       hoverPointer: null,
     };
   },
-};
+});
+</script>
+
+<script setup>
+defineProps(["stat", "scale"]);
+defineEmits(["statChange", "statHoverStart", "statHoverEnd"]);
 </script>
 
 <template>

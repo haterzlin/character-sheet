@@ -6,16 +6,18 @@
  -->
 
 <script>
+export default defineComponent({
+mixins: [statSectionMixin, attributesAndSkillsMixin],
+});
+</script>
+
+<script setup>
 import { statSectionMixin } from "./mixins/statSectionMixin";
 import { attributesAndSkillsMixin } from "./mixins/attributesAndSkillsMixin";
 import Stat from "./Stat.vue";
 import RestrictionState from "./RestrictionState.vue";
 
-export default {
-  mixins: [statSectionMixin, attributesAndSkillsMixin],
-  props: ["distributions"],
-  components: { stat: Stat, restrictionState: RestrictionState },
-};
+defineProps(["distributions"]);
 </script>
 
 <template>
