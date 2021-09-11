@@ -1,9 +1,8 @@
-<!--
-  displays inputs for name and age
-  displays selects for clan, generation, faction
- -->
-
 <script>
+/**
+ *   displays inputs for name and age
+ * displays selects for clan, generation, faction
+ */
 export default {
   props: ["bio", "clans"],
 };
