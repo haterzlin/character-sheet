@@ -1,10 +1,4 @@
-<!--
- Displays entire section of disciplines
- receives events from child component and check if change is possible in resources
- if changes are possible, emit event to top component to make changes, otherwise don't
- -->
-
-<script>
+<script setup>
 /**
  *  Displays entire section of disciplines
  * receives events from child component and check if change is possible in resources
@@ -14,10 +8,15 @@ import { statSectionMixin } from "./mixins/statSectionMixin";
 import Stat from "./Stat.vue";
 import RestrictionState from "./RestrictionState.vue";
 
+const props = defineProps({
+  clan: Object,
+})
+</script>
+
+<script>
 export default {
   mixins: [statSectionMixin],
   components: { stat: Stat, restrictionState: RestrictionState },
-  props: ["clan"],
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned

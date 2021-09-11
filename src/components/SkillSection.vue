@@ -1,6 +1,6 @@
-<script>
+<script setup>
 /**
- *  Displays entire section of skills
+ * Displays entire section of skills
  * displays select for distribution of skills
  * receives events from child component and check if change is possible in resources
  * if changes are possible, emit event to top component to make changes, otherwise don't
@@ -10,9 +10,15 @@ import { attributesAndSkillsMixin } from "./mixins/attributesAndSkillsMixin";
 import Stat from "./Stat.vue";
 import RestrictionState from "./RestrictionState.vue";
 
+const props = defineProps({
+  distributions: Array
+})
+
+</script>
+
+<script>
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
-  props: ["distributions"],
   components: { stat: Stat, restrictionState: RestrictionState },
 };
 </script>

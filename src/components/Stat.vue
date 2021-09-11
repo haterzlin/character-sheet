@@ -1,16 +1,18 @@
-<!--
-  displays clickable point representing number depending on scale and stat value
-  after click, change is emitted to parent component to decide if it is alright
- -->
-
-<script>
+<script setup>
 /**
  * displays clickable point representing number depending on scale and stat value
  * after click, change is emitted to parent component to decide if it is alright
+ * also when we hover over the stat, we emit additional event to notify help change
  */
+const props = defineProps({
+  stat: Object,
+  scale: Number,
+})
+</script>
+
+<script>
 export default {
   name: "stat",
-  props: ["stat", "scale"],
   emits: ["statChange", "statHoverStart", "statHoverEnd"],
   data() {
     return {
