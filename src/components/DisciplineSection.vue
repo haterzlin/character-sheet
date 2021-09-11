@@ -11,6 +11,9 @@ import RestrictionState from "./RestrictionState.vue";
 const props = defineProps({
   clan: Object,
 })
+
+const emit = defineEmits(['statSectionHover'])
+
 </script>
 
 <script>

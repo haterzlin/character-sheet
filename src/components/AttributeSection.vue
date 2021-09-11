@@ -8,6 +8,9 @@ import { statSectionMixin } from "./mixins/statSectionMixin";
 import { attributesAndSkillsMixin } from "./mixins/attributesAndSkillsMixin";
 import Stat from "./Stat.vue";
 import RestrictionState from "./RestrictionState.vue";
+
+const emit = defineEmits(['statSectionHover'])
+
 </script>
 
 <script>

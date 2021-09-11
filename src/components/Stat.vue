@@ -8,12 +8,13 @@ const props = defineProps({
   stat: Object,
   scale: Number,
 })
+
+const emit = defineEmits(['statChange', 'statHoverStart', 'statHoverEnd'])
 </script>
 
 <script>
 export default {
   name: "stat",
-  emits: ["statChange", "statHoverStart", "statHoverEnd"],
   data() {
     return {
       initialValue: this.stat.value,

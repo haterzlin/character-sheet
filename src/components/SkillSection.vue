@@ -14,6 +14,8 @@ const props = defineProps({
   distributions: Array
 })
 
+const emit = defineEmits(['statSectionHover'])
+
 </script>
 
 <script>
