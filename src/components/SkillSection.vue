@@ -21,7 +21,6 @@ const emit = defineEmits(['statSectionHover'])
 <script>
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
-  components: { stat: Stat, restrictionState: RestrictionState },
 };
 </script>
 
@@ -42,12 +41,12 @@ export default {
       </select>
     </h2>
 
-    <restrictionState
+    <RestrictionState
       class="resourceCount"
       :allocatedResources="allocatedResources"
       :resourceRestrictions="stats.resource"
     >
-    </restrictionState>
+    </RestrictionState>
     <div
       v-for="category in stats.data"
       :key="category.id"
@@ -58,7 +57,7 @@ export default {
       <h2>{{ category.id }}</h2>
       <ul class="ulStats">
         <li v-for="item in category.list" :key="item.id">
-          <stat
+          <Stat
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="emitAllowedChange($event)"
@@ -71,7 +70,7 @@ export default {
             "
             @stat-hover-end="$emit('statSectionHover', { category: category })"
           >
-          </stat>
+          </Stat>
         </li>
       </ul>
     </div>
