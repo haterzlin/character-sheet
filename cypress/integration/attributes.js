@@ -57,7 +57,7 @@ describe('Attributes test', () => {
         cy.contains('Strength').next().children().last().should('not.have.class', 'fill')
         cy.contains('Strength').next().children().next().next().should('not.have.class', 'fill')
         cy.contains('Strength').next().children().next().should('not.have.class', 'fill')
-        cy.contains('Strength').next().children().first().should('have.class', 'fill')
+        cy.contains('Strength').next().children().first().should('not.have.class', 'fill')
         cy.contains('Strength').next().children().first().should('have.class', 'init')
     })
   })
