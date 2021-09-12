@@ -1,6 +1,17 @@
 describe('Attributes test', () => {
-    it('Click on Strength 2nd dot will add fill class', () => {
+    it('All Attributes has initial one dot', () => {
         cy.visit('http://localhost:3000')
+        const AttributeList = ["Strength","Dexterity", "Stamina", "Charisma", "Manipulation", "Composure", "Intelligence", "Wits", "Resolve"]
+        lvl3Attrs.forEach(element => {
+            cy.contains('Strength').next().children().first().should('have.class', 'init') 
+        })
+    })
+    it('Click on Strength 1st dot will not add fill class or remove init class', () => {
+        cy.contains('Strength').next().children().first().click()
+        cy.contains('Strength').next().children().first().should('not.have.class', 'fill')
+        cy.contains('Strength').next().children().first().should('have.class', 'init')
+    })   
+    it('Click on Strength 2nd dot will add fill class', () => {
         cy.contains('Strength').next().children().next().first().click()
         cy.contains('Strength').next().children().next().first().should('have.class', 'fill')
     })
@@ -35,11 +46,19 @@ describe('Attributes test', () => {
             cy.contains(element).next().children().next().should('have.class', 'fill')
         })
     })
-    it('When we click on 5th dot of Resolve, no dotis added', () => {                
+    it('When we click on 5th dot of Resolve, no dots added', () => {                
         cy.contains('Resolve').next().children().last().click()
         cy.contains('Resolve').next().children().last().should('not.have.class', 'fill')
         cy.contains('Resolve').next().children().next().next().should('not.have.class', 'fill')
         cy.contains('Resolve').next().children().next().should('not.have.class', 'fill')
+    })
+    it('When all dots are divided, we click on 1st dot of Strength and there will be only one dot there', () => {                
+        cy.contains('Strength').next().children().first().click()
+        cy.contains('Strength').next().children().last().should('not.have.class', 'fill')
+        cy.contains('Strength').next().children().next().next().should('not.have.class', 'fill')
+        cy.contains('Strength').next().children().next().should('not.have.class', 'fill')
+        cy.contains('Strength').next().children().first().should('have.class', 'fill')
+        cy.contains('Strength').next().children().first().should('have.class', 'init')
     })
   })
   
