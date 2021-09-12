@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "vue": "^3.2.6"
@@ -12,6 +13,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.2.6",
+    "cypress": "^8.3.1",
     "vite": "^2.5.2"
   }
 }
