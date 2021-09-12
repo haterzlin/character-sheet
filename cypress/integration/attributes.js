@@ -2,7 +2,7 @@ describe('Attributes test', () => {
     it('All Attributes has initial one dot', () => {
         cy.visit('http://localhost:3000')
         const AttributeList = ["Strength","Dexterity", "Stamina", "Charisma", "Manipulation", "Composure", "Intelligence", "Wits", "Resolve"]
-        lvl3Attrs.forEach(element => {
+        AttributeList.forEach(element => {
             cy.contains('Strength').next().children().first().should('have.class', 'init') 
         })
     })
