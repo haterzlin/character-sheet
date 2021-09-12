@@ -1,7 +1,10 @@
 describe('Attributes test', () => {
+    const AttributeList = ["Strength","Dexterity", "Stamina", "Charisma", "Manipulation", "Composure", "Intelligence", "Wits", "Resolve"]
+    const lvl3Attrs = ["Dexterity", "Stamina", "Charisma"]
+    const lvl2Attrs = ["Manipulation", "Composure", "Intelligence", "Wits"]
+
     it('All Attributes has initial one dot', () => {
-        cy.visit('http://localhost:3000')
-        const AttributeList = ["Strength","Dexterity", "Stamina", "Charisma", "Manipulation", "Composure", "Intelligence", "Wits", "Resolve"]
+        cy.visit('http://localhost:3000')        
         AttributeList.forEach(element => {
             cy.contains('Strength').next().children().first().should('have.class', 'init') 
         })
@@ -28,7 +31,6 @@ describe('Attributes test', () => {
         cy.contains('Strength').next().children().next().next().should('have.class', 'fill')
         cy.contains('Strength').next().children().next().should('have.class', 'fill')
     })
-    const lvl3Attrs = ["Dexterity", "Stamina", "Charisma"]
     lvl3Attrs.forEach(element => {
         it('When we click on 5th dot of ' + element + ', only three dots are allowed', () => {                
             cy.contains(element).next().children().last().click()
@@ -37,7 +39,6 @@ describe('Attributes test', () => {
             cy.contains(element).next().children().next().should('have.class', 'fill')
         })
     })
-    const lvl2Attrs = ["Manipulation", "Composure", "Intelligence", "Wits"]
     lvl2Attrs.forEach(element => {
         it('When we click on 5th dot of ' + element + ', only two dots are allowed', () => {                
             cy.contains(element).next().children().last().click()
