@@ -34,6 +34,49 @@ export default {
     "character-info": CharacterInfo,
     'vitals':VitalsSideBar
   },
+  created(){
+    vitals.forEach(element => {
+      if (element.depends) this.refreshDependecies(element)
+    });
+  },
+  computed:{
+    flatStats(){
+      let tmp = Array();
+      this.appendNested(tmp,attributes);
+      this.appendNested(tmp,skills);
+      disciplines.data.forEach(element => {
+        tmp.push(element)
+      });
+      tmp.push(biography.generation);
+      return tmp;
+    }
+  },
+  methods:{
+    appendNested(targetArray, append){
+      append.data.forEach(element => {
+        element.list.forEach(item => {
+          targetArray.push(item);
+          
+        });
+      });
+      return;
+    },
+    refreshDependecies(vitalStat){
+      let tmp = Array();
+      if (vitalStat.depends){
+        vitalStat.depends.forEach(element => {
+          if(element != "generation.bloodPotency"){
+            tmp.push(this.flatStats.find(item => item.id == element));
+          }
+        });}
+      vitalStat.value = vitalStat.defaultValue
+      if (tmp[0] != undefined) {
+        tmp.forEach(element => {
+          vitalStat.value += element.value
+        });
+      }
+    }
+  },
 };
 </script>
 
