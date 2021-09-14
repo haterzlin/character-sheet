@@ -35,9 +35,7 @@ export default {
     'vitals':VitalsSideBar
   },
   created(){
-    vitals.forEach(element => {
-      if (element.depends) this.refreshDependecies(element)
-    });
+    this.refreshVitals();
   },
   computed:{
     flatStats(){
@@ -52,11 +50,14 @@ export default {
     }
   },
   methods:{
+    setDataValue(event){
+      event[0].value = event[1];
+      this.refreshVitals();
+    },
     appendNested(targetArray, append){
       append.data.forEach(element => {
         element.list.forEach(item => {
           targetArray.push(item);
-          
         });
       });
       return;
@@ -65,7 +66,7 @@ export default {
       let tmp = Array();
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
-          if(element != "generation.bloodPotency"){
+          if (element != "generation.bloodPotency"){
             tmp.push(this.flatStats.find(item => item.id == element));
           }
         });}
@@ -75,12 +76,20 @@ export default {
           vitalStat.value += element.value
         });
       }
-    }
+    },
+    refreshVitals(){
+      vitals.forEach(element => {
+        if (element.depends){
+          this.refreshDependecies(element)
+        }
+      });
+    },
   },
 };
 </script>
 
 <template>
+{{vitals}}
   <vitals
     :vitals="vitals"
     :bio="biography"
@@ -90,14 +99,14 @@ export default {
     <character-info :bio="biography" :clans="clans"> </character-info>
     <attribute-section
       :stats="attributes"
-      @stat-section-change="$event[0].value = $event[1]"
+      @stat-section-change="setDataValue($event)"
       @stat-section-hover="mouseOverData = $event"
     >
     </attribute-section>
     <skill-section
       :stats="skills"
       :distributions="skillDistributions"
-      @stat-section-change="$event[0].value = $event[1]"
+      @stat-section-change="setDataValue($event)"
       @stat-section-hover="mouseOverData = $event"
     >
     </skill-section>
@@ -105,7 +114,7 @@ export default {
       v-if="biography.clan"
       :stats="disciplines"
       :clan="biography.clan"
-      @stat-section-change="$event[0].value = $event[1]"
+      @stat-section-change="setDataValue($event)"
       @stat-section-hover="mouseOverData = $event"
     >
     </discipline-section>
