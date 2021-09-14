@@ -5,7 +5,7 @@
 <template>
   <div
     class="box">
-    <div class="name">{{stat.id}}:</div>
+    <div class="name">{{stat.id}}:{{stat.value}}</div>
     <div
       class="points">
       <div 

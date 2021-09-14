@@ -82,9 +82,7 @@ export default {
     },
   },
   created(){
-    vitals.forEach(element => {
-      if (element.depends) this.refreshDependecies(element)
-    });
+    this.refreshVitals();
   },
   computed:{
     flatStats(){
@@ -99,11 +97,14 @@ export default {
     }
   },
   methods:{
+    setDataValue(event){
+      event[0].value = event[1];
+      this.refreshVitals();
+    },
     appendNested(targetArray, append){
       append.data.forEach(element => {
         element.list.forEach(item => {
           targetArray.push(item);
-          
         });
       });
       return;
@@ -112,7 +113,7 @@ export default {
       let tmp = Array();
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
-          if(element != "generation.bloodPotency"){
+          if (element != "generation.bloodPotency"){
             tmp.push(this.flatStats.find(item => item.id == element));
           }
         });}
@@ -122,12 +123,20 @@ export default {
           vitalStat.value += element.value
         });
       }
-    }
+    },
+    refreshVitals(){
+      vitals.forEach(element => {
+        if (element.depends){
+          this.refreshDependecies(element)
+        }
+      });
+    },
   },
 };
 </script>
 
 <template>
+{{vitals}}
   <vitals
     :vitals="vitals"
     :bio="biography"
