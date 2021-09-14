@@ -50,6 +50,8 @@ export default {
   }
   .sidebar.show{
     width: 350px;
+    position: absolute;
+    
   }
   
 </style>

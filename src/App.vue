@@ -99,9 +99,7 @@ h2 {
 h3 {
   text-align: center;
 }
-.statSection {
-  width: 800px;
-}
+
 div.statList {
   width: 240px;
   float: left;
@@ -115,5 +113,7 @@ div.statList {
 }
 div.sheet {
   float: left;
+  width: 800px;
+  margin-left: 350px;
 }
 </style>

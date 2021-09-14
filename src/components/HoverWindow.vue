@@ -64,7 +64,7 @@ div.hover {
   float: right;
   z-index: 9;
   position: fixed;
-  width: 400px;
+  width: 350px;
   background-color: white;
   padding: 2px;
 }
