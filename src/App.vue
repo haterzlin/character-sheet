@@ -113,7 +113,6 @@ div.statList {
   margin: 0;
   padding: 0;
 }
-
 div.sheet {
   float: left;
 }

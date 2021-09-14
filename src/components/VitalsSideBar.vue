@@ -6,13 +6,6 @@
   <div 
     class="sidebar"
     :class="{show:showHide}">
-      <div 
-        class="button"
-        @click="showHide=!showHide">
-        <span>
-          {{(showHide) ? '<' : '>'}}
-        </span>
-      </div>
     <div 
       class="sidebarContent"     
       v-show="showHide">      
@@ -53,34 +46,10 @@ export default {
 <style scoped>
   .sidebar{
     float: inline-start;
-    margin-right: 25px;
+    position: static;
   }
   .sidebar.show{
     width: 350px;
   }
-  .sidebarContent{
-    width: 350px;
-    position: fixed;
-  }
-  .button{
-    float: inline-end;
-    cursor: pointer;
-    height:2em;
-    width:4px
-  }
-  .button>span{
-    position:fixed; 
-    color: red;
-    font-size: 20px;  
-    border-radius: 50%;
-    background-color: lightgrey;
-    height: 25px;
-    width: 25px;
-    text-align: center;
-    vertical-align: center;
-    font-weight: bold;
-  }
-  .button:hover > span{
-    background-color: grey;
-  }
+  
 </style>
