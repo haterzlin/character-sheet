@@ -6,6 +6,8 @@ import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue'
 import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, powerStats, resonances } from "./data.js";
+import { ref } from 'vue'
+
 
 export default {
   data() {
@@ -34,9 +36,6 @@ export default {
     "character-info": CharacterInfo,
     'vitals':VitalsSideBar
   },
-  created(){
-    this.refreshVitals();
-  },
   computed:{
     flatStats(){
       let tmp = Array();
@@ -47,12 +46,21 @@ export default {
       });
       tmp.push(biography.generation);
       return tmp;
-    }
+    },
+    vitalsDependencies(){
+      let tmp = Array();
+      vitals.forEach(element => {
+        if (element.depends){
+          tmp.push(this.refreshDependecies(element))
+        }
+      });
+      return tmp;
+    },
   },
   methods:{
     setDataValue(event){
       event[0].value = event[1];
-      this.refreshVitals();
+      
     },
     appendNested(targetArray, append){
       append.data.forEach(element => {
@@ -67,32 +75,20 @@ export default {
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
           if (element != "generation.bloodPotency"){
-            tmp.push(this.flatStats.find(item => item.id == element));
+            tmp.push(ref(this.flatStats.find(item => item.id == element)));
           }
         });}
-      vitalStat.value = vitalStat.defaultValue
-      if (tmp[0] != undefined) {
-        tmp.forEach(element => {
-          vitalStat.value += element.value
-        });
-      }
-    },
-    refreshVitals(){
-      vitals.forEach(element => {
-        if (element.depends){
-          this.refreshDependecies(element)
-        }
-      });
+      return tmp;
     },
   },
 };
 </script>
 
 <template>
-{{vitals}}
   <vitals
     :vitals="vitals"
     :bio="biography"
+    :dependencies="vitalsDependencies"
     @hover="mouseOverData = $event">
   </vitals>
   <div class="sheet">

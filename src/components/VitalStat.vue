@@ -5,7 +5,7 @@
 <template>
   <div
     class="box">
-    <div class="name">{{stat.id}}:{{stat.value}}</div>
+    <div class="name">{{stat.id}}:</div>
     <div
       class="points">
       <div 
@@ -21,7 +21,7 @@
             willPt:styleProp=='willPt',
             hungerPt:styleProp=='hungerPt',
             humanityPt:styleProp=='humanityPt',
-            fill: i+((fives-1)*5) > initialValue && i+((fives-1)*5) <=stat.value,
+            fill: i+((fives-1)*5) > initialValue && i+((fives-1)*5) <= finalValue,
             init: i+((fives-1)*5) <= initialValue,
           }">
         </span>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+  import {unref} from 'vue'
 /**
  *   Displays a read-only stat
  * @param stat {JSON} displayed object
@@ -39,10 +40,10 @@
  * @param scale {Number} total number of points, split into groups of five
  */
 export default {
-  props:{'stat':Object, 'styleProp':String, 'scale':Number},
+  props:{'stat':JSON, 'styleProp':String, 'scale':Number, 'dependencies':Array},
   data(){
     return{
-      initialValue:this.stat.value
+      initialValue:this.calcValue()
     }
   },
   computed:{
@@ -50,7 +51,21 @@ export default {
     numberOfFives(){
       var tmp = 5;
       for (;tmp<this.scale;tmp+=5);
-      return tmp/5
+      return tmp/5;
+    },
+    finalValue(){
+      return this.calcValue();
+    }
+  },
+  methods: {
+    calcValue(){
+      let tmp=this.stat.defaultValue;
+      if (this.dependencies) {
+        this.dependencies.forEach(element => {
+          tmp+=unref(element).value;
+        });
+      };
+      return tmp;
     }
   },
 }
@@ -62,8 +77,6 @@ export default {
   .healthPt, .willPt{
     width: 16px;
     height: 20px;
-    border: 1px;
-    border-style: outset;
     display: inline-block;
     vertical-align: middle;
     text-align:center;
@@ -92,18 +105,30 @@ export default {
     content:"X";
   }
   .healthPt.fill{
-     background: radial-gradient(#ff6666, #cc0000);
+     background: radial-gradient(#cc0000, #ff6666);
   }
   .healthPt.init{
     background-color:#cc0000;
     color:black;
     cursor: pointer;
+    border: 1px;
+    border-style: outset;
   }
   .healthPt.init:hover:after{
     content:"/";
   }
   .healthPt.init.stake:hover:after{
     content:"X";
+  }
+  .willPt.fill{
+     background: radial-gradient(blue, #6666ff);
+  }
+  .willPt.init{
+    background-color:blue;
+    color:black;
+    cursor: pointer;
+    border: 1px;
+    border-style: outset;
   }
   .five{
     float:left;
