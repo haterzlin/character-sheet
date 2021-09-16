@@ -34,7 +34,7 @@ export default {
     "discipline-section": DisciplineSection,
     "attribute-section": AttributeSection,
     "character-info": CharacterInfo,
-    'vitals':VitalsSideBar
+    'vitals': VitalsSideBar
   },
   computed:{
     flatStats(){
