@@ -92,6 +92,7 @@ export default {
     vertical-align: middle;
     text-align:center;
     margin: 1px;
+    cursor: pointer;
   }
   .humanityPt.fill{
     background-color:blue;
@@ -129,6 +130,9 @@ export default {
     cursor: pointer;
     border: 1px;
     border-style: outset;
+  }
+  .hungerPt.init:after, .hungerPt.fill:after{
+    content: "X";
   }
   .five{
     float:left;
