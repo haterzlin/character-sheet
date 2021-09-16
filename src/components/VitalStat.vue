@@ -81,6 +81,9 @@ export default {
     vertical-align: middle;
     text-align:center;
     margin: 1px;
+    border: 1px;
+    border-style: solid;
+    border-color: white;
   }
 
   .hungerPt,.humanityPt{
