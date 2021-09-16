@@ -83,7 +83,7 @@ export default {
     margin: 1px;
     border: 1px;
     border-style: solid;
-    border-color: white;
+    border-color: transparent;
   }
 
   .hungerPt,.humanityPt{
