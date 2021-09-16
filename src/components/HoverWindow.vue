@@ -67,7 +67,5 @@ div.hover {
   width: 350px;
   background-color: white;
   padding: 2px;
-  border: 1px;
-  border-style: solid;
 }
 </style>
