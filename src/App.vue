@@ -73,7 +73,7 @@ export default {
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
           if (element != "generation.bloodPotency"){ /**TODO parser for '.' so we can remove this | also affects vitalStat*/
-            tmp.push(this.flatStats[element]);
+            tmp.push(ref(this.flatStats[element]));
           }
         });}
       return tmp;
