@@ -56,6 +56,27 @@ export default {
       return tmp;
     },
   },
+  computed:{
+    flatStats(){
+      var tmp = {};
+      this.appendNested(tmp,attributes);
+      this.appendNested(tmp,skills);
+      disciplines.data.forEach(element => {
+        tmp[element.id] = element
+      });
+      tmp['generation'] = biography.generation;
+      return tmp;
+    },
+    vitalsDependencies(){
+      let tmp = {};
+      vitals.forEach(element => {
+        if (element.depends){
+          tmp[element.id]=this.refreshDependecies(element);
+        }
+      });
+      return tmp;
+    },
+  },
   methods:{
     setDataValue(event){
       event[0].value = event[1];      
@@ -63,7 +84,7 @@ export default {
     appendNested(targetArray, append){
       append.data.forEach(element => {
         element.list.forEach(item => {
-          targetArray[item.id]=item;
+          targetArray[item.id]=item
         });
       });
       return;
@@ -73,52 +94,7 @@ export default {
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
           if (element != "generation.bloodPotency"){ /**TODO parser for '.' so we can remove this | also affects vitalStat*/
-            tmp.push(ref(this.flatStats[item.id]));
-          }
-        });}
-      return tmp;
-    },
-  },
-  computed:{
-    flatStats(){
-      let tmp = Array();
-      this.appendNested(tmp,attributes);
-      this.appendNested(tmp,skills);
-      disciplines.data.forEach(element => {
-        tmp[element.id]=element
-      });
-      tmp.push(biography.generation);
-      return tmp;
-    },
-    vitalsDependencies(){
-      let tmp = Array();
-      vitals.forEach(element => {
-        if (element.depends){
-          tmp[element.id]=this.refreshDependecies(element)
-        }
-      });
-      return tmp;
-    },
-  },
-  methods:{    
-    setDataValue(event){
-      event[0].value = event[1];
-      
-    },
-    appendNested(targetArray, append){
-      append.data.forEach(element => {
-        element.list.forEach(item => {
-          targetArray.push(item);
-        });
-      });
-      return;
-    },
-    refreshDependecies(vitalStat){
-      let tmp = Array();
-      if (vitalStat.depends){
-        vitalStat.depends.forEach(element => {
-          if (element != "generation.bloodPotency"){
-            tmp.push(ref(this.flatStats.find(item => item.id == element)));
+            tmp.push(ref(this.flatStats[element]));
           }
         });}
       return tmp;

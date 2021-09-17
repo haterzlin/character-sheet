@@ -64,7 +64,7 @@ export default {
         this.dependencies.forEach(element => {
           tmp+=unref(element).value;
         });
-      };
+      }
       return tmp;
     }
   },
