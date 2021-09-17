@@ -36,7 +36,7 @@ export default {
     'vitals': VitalsSideBar
   },
   computed:{
-    flatStats(){
+    flatStatsRef(){
       var tmp = {};
       this.refNested(tmp,attributes);
       this.refNested(tmp,skills);
@@ -63,7 +63,7 @@ export default {
     refNested(targetArray, append){
       append.data.forEach(element => {
         element.list.forEach(item => {
-          targetArray[item.id]=item
+          targetArray[item.id]=ref(item)
         });
       });
       return;
@@ -73,7 +73,7 @@ export default {
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
           if (element != "generation.bloodPotency"){ /**TODO parser for '.' so we can remove this | also affects vitalStat*/
-            tmp.push(ref(this.flatStats[element]));
+            tmp.push(this.flatStatsRef[element]);
           }
         });}
       return tmp;
