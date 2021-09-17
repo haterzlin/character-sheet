@@ -846,7 +846,7 @@ export const vitals = [
     value: 0,
     defaultValue: 0,
     description:"Your Blood Potency: a measure of Caine's blood in Your character",
-  },
+    },
 ];
 export const powerStats = {
   table:[

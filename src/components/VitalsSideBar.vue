@@ -15,7 +15,7 @@
         :stat="stat"
         :style-prop="stat.style"
         :scale="stat.scale"
-        :dependencies="provideDepend(stat.depends)"
+        :dependencies="dependencies[stat.id]"
         @mouseenter="$emit('hover',{category:stat})"
         @mouseleave="$emit('hover', null)">
         </vital-stat>
@@ -23,9 +23,7 @@
   </div>  
 </template>
 <script>
-
-  import VitalStat from './VitalStat.vue'
-  import {unref} from 'vue'
+import VitalStat from './VitalStat.vue'
 /**
  * Displays vital stats such as health, willpower etc.
  * has a show/hide button
@@ -41,35 +39,14 @@ export default {
     return{
       showHide: true
     }
-  },
-  methods: {
-    provideDepend(statDepends){
-      let dependency = undefined;
-      if (statDepends){
-         this.dependencies.forEach(element => {
-          let found = true;
-          let count = 0;
-          element.forEach((elem, index) => {
-            found = found && unref(elem).id==statDepends[index];
-            count++;
-          });
-          if (found && count) dependency = element;
-        });
-      }
-      return dependency;
-    }
-  },
+  },  
 }
 </script>
 <style scoped>
   .sidebar{
     float: inline-start;
-    position: static;
-  }
-  .sidebar.show{
-    width: 350px;
     position: absolute;
-    
+    width: 350px;
   }
   
 </style>

@@ -8,7 +8,6 @@ import VitalsSideBar from './components/VitalsSideBar.vue'
 import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, powerStats, resonances } from "./data.js";
 import { ref } from 'vue'
 
-
 export default {
   data() {
     return {
@@ -59,13 +58,12 @@ export default {
   },
   methods:{
     setDataValue(event){
-      event[0].value = event[1];
-      
+      event[0].value = event[1];      
     },
     appendNested(targetArray, append){
       append.data.forEach(element => {
         element.list.forEach(item => {
-          targetArray.push(item);
+          targetArray[item.id]=item;
         });
       });
       return;
@@ -74,8 +72,8 @@ export default {
       let tmp = Array();
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
-          if (element != "generation.bloodPotency"){
-            tmp.push(ref(this.flatStats.find(item => item.id == element)));
+          if (element != "generation.bloodPotency"){ /**TODO parser for '.' so we can remove this | also affects vitalStat*/
+            tmp.push(ref(this.flatStats[item.id]));
           }
         });}
       return tmp;
@@ -87,7 +85,7 @@ export default {
       this.appendNested(tmp,attributes);
       this.appendNested(tmp,skills);
       disciplines.data.forEach(element => {
-        tmp.push(element)
+        tmp[element.id]=element
       });
       tmp.push(biography.generation);
       return tmp;
@@ -96,13 +94,13 @@ export default {
       let tmp = Array();
       vitals.forEach(element => {
         if (element.depends){
-          tmp.push(this.refreshDependecies(element))
+          tmp[element.id]=this.refreshDependecies(element)
         }
       });
       return tmp;
     },
   },
-  methods:{
+  methods:{    
     setDataValue(event){
       event[0].value = event[1];
       

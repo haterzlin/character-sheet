@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import {unref} from 'vue'
+import {unref} from 'vue'
 /**
  *   Displays a read-only stat
  * @param stat {JSON} displayed object
