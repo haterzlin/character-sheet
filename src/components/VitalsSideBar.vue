@@ -28,9 +28,10 @@ import VitalStat from './VitalStat.vue'
  * Displays vital stats such as health, willpower etc.
  * has a show/hide button
  * @param vitals {JSON} list of vital stats
+ * @param dependecies {JSON} keyed array of reffed dependecies
  */
 export default {
-  props: ['bio', 'vitals', 'dependencies'],
+  props: {'vitals':JSON, 'dependencies':JSON},
   emits:['hover'],
   components:{
     'vital-stat':VitalStat,

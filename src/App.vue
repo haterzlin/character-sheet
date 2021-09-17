@@ -37,34 +37,13 @@ export default {
   },
   computed:{
     flatStats(){
-      let tmp = Array();
-      this.appendNested(tmp,attributes);
-      this.appendNested(tmp,skills);
-      disciplines.data.forEach(element => {
-        tmp.push(element)
-      });
-      tmp.push(biography.generation);
-      return tmp;
-    },
-    vitalsDependencies(){
-      let tmp = Array();
-      vitals.forEach(element => {
-        if (element.depends){
-          tmp.push(this.refreshDependecies(element))
-        }
-      });
-      return tmp;
-    },
-  },
-  computed:{
-    flatStats(){
       var tmp = {};
-      this.appendNested(tmp,attributes);
-      this.appendNested(tmp,skills);
+      this.refNested(tmp,attributes);
+      this.refNested(tmp,skills);
       disciplines.data.forEach(element => {
-        tmp[element.id] = element
+        tmp[element.id] = ref(element)
       });
-      tmp['generation'] = biography.generation;
+      tmp['generation'] = ref(biography.generation);
       return tmp;
     },
     vitalsDependencies(){
@@ -81,7 +60,7 @@ export default {
     setDataValue(event){
       event[0].value = event[1];      
     },
-    appendNested(targetArray, append){
+    refNested(targetArray, append){
       append.data.forEach(element => {
         element.list.forEach(item => {
           targetArray[item.id]=item
@@ -94,7 +73,7 @@ export default {
       if (vitalStat.depends){
         vitalStat.depends.forEach(element => {
           if (element != "generation.bloodPotency"){ /**TODO parser for '.' so we can remove this | also affects vitalStat*/
-            tmp.push(ref(this.flatStats[element]));
+            tmp.push(this.flatStats[element]);
           }
         });}
       return tmp;
@@ -106,7 +85,6 @@ export default {
 <template>
   <vitals
     :vitals="vitals"
-    :bio="biography"
     :dependencies="vitalsDependencies"
     @hover="mouseOverData = $event">
   </vitals>
