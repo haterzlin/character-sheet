@@ -15,7 +15,23 @@ const Jack2LvlSkills = [15,16,17]
 const Jack1LvlSkills = [18,19,20]
 const Jack0LvlSkills = [0,2]
 
-
+function checkNumberOfDots(Item, Expected) {
+    var i = 0;
+    var ExpectedResults = []
+    for (i; i < 5; i++) {
+        if (i<Expected) {
+            ExpectedResults.push('have.class')
+        }
+        else {
+            ExpectedResults.push('not.have.class')        
+        }     
+    }
+    cy.contains(Item).next().children().last().should(ExpectedResults[4], 'fill')
+    cy.contains(Item).next().children().next().next().next().should(ExpectedResults[3], 'fill')
+    cy.contains(Item).next().children().next().next().should(ExpectedResults[2], 'fill')        
+    cy.contains(Item).next().children().next().should(ExpectedResults[1], 'fill')
+    cy.contains(Item).next().children().first().should(ExpectedResults[0], 'fill')
+}
 
 describe('Skill test', () => {
 
@@ -27,74 +43,46 @@ describe('Skill test', () => {
     Balanced3LvlSkills.forEach(i => {
         it('When we click on 5th dot of ' + SkillList[i] + ', only three dots are allowed', () => {
             cy.contains(SkillList[i]).next().children().last().click()
-            cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().should('have.class', 'fill')        
-            cy.contains(SkillList[i]).next().children().next().should('have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+            checkNumberOfDots(SkillList[i], 3)
         })
     })
 
     Balanced2LvlSkills.forEach(i => {
         it('When we click on 5th dot of ' + SkillList[i] + ', only two dots are allowed', () => {
             cy.contains(SkillList[i]).next().children().last().click()
-            cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-            cy.contains(SkillList[i]).next().children().next().should('have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+            checkNumberOfDots(SkillList[i], 2)
         })
     })
 
     Balanced1LvlSkills.forEach(i => {
         it('When we click on 5th dot of ' + SkillList[i] + ', only one dot is allowed', () => {
             cy.contains(SkillList[i]).next().children().last().click()
-            cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-            cy.contains(SkillList[i]).next().children().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+            checkNumberOfDots(SkillList[i], 1)
         })
     })
 
-    it('When we click on 2nd dot of Brawl, two dots are removed as we are allowed to add only 1 lvlv skills now', () => {
+    it('When we click on 2nd dot of Brawl, two dots are removed as we are allowed to add only 1 lvl skills now', () => {
         var i = 1
         cy.contains(SkillList[i]).next().children().first().next().click()
-        cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-        cy.contains(SkillList[i]).next().children().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+        checkNumberOfDots(SkillList[i], 1)
     })
 
     it('When we click on 2nd dot of Brawl again, nothing changes', () => {
         var i = 1
         cy.contains(SkillList[i]).next().children().first().next().click()
-        cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-        cy.contains(SkillList[i]).next().children().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+        checkNumberOfDots(SkillList[i], 1)
     })
 
     it('When we click on 3rd dot of Brawl, three dots are set', () => {
         var i = 1
-        cy.contains(SkillList[i]).next().children().next().next().first().click()
-        cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().should('have.class', 'fill')        
-        cy.contains(SkillList[i]).next().children().next().should('have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+        cy.contains(SkillList[i]).next().children().first().next().next().click()
+        checkNumberOfDots(SkillList[i], 3)
     })
 
     it('When we click on 5th dot of Persuation, no dots are set as no picks are available now', () => {
         var i = 15
         cy.contains(SkillList[i]).next().children().last().click()
-        cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-        cy.contains(SkillList[i]).next().children().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().first().should('not.have.class', 'fill')
+        checkNumberOfDots(SkillList[i], 0)
     })
 
     it('Change skill distribution to Jack of all Trades', () => {
@@ -105,44 +93,28 @@ describe('Skill test', () => {
     Jack2LvlSkills.forEach(i => {
         it('When we click on 5th dot of ' + SkillList[i] + ', two dots is allowed', () => {
             cy.contains(SkillList[i]).next().children().last().click()
-            cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-            cy.contains(SkillList[i]).next().children().next().should('have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+            checkNumberOfDots(SkillList[i], 2)
         })
     })
 
     Jack1LvlSkills.forEach(i => {
         it('When we click on 5th dot of ' + SkillList[i] + ', only one dot is allowed', () => {
             cy.contains(SkillList[i]).next().children().last().click()
-            cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-            cy.contains(SkillList[i]).next().children().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+            checkNumberOfDots(SkillList[i], 1)
         })
     })
 
     Jack0LvlSkills.forEach(i => {
         it('When we click on 1st dot of ' + SkillList[i] + ', all dots are removed', () => {
             cy.contains(SkillList[i]).next().children().first().click()
-            cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-            cy.contains(SkillList[i]).next().children().next().should('not.have.class', 'fill')
-            cy.contains(SkillList[i]).next().children().first().should('not.have.class', 'fill')
+            checkNumberOfDots(SkillList[i], 0)
         })
     })
 
     it('When we click on 5th dot of Investigation, zero dots is added', () => {
         var i = 21
         cy.contains(SkillList[i]).next().children().last().click()
-        cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().should('not.have.class', 'fill')        
-        cy.contains(SkillList[i]).next().children().next().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().first().should('not.have.class', 'fill')
+        checkNumberOfDots(SkillList[i], 0)
     })
 
     it('Change skill distribution to Specialist', () => {
@@ -153,12 +125,7 @@ describe('Skill test', () => {
     it('When we click on 5th dot of Investigation, four dots are added', () => {
         var i = 21
         cy.contains(SkillList[i]).next().children().last().click()
-        cy.contains(SkillList[i]).next().children().last().should('not.have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().next().should('have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().next().next().should('have.class', 'fill')        
-        cy.contains(SkillList[i]).next().children().next().should('have.class', 'fill')
-        cy.contains(SkillList[i]).next().children().first().should('have.class', 'fill')
+        checkNumberOfDots(SkillList[i], 4)
     })
 
 })
-  
