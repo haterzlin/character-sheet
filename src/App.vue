@@ -6,7 +6,6 @@ import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue'
 import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, powerStats, resonances } from "./data.js";
-import { ref } from 'vue'
 
 export default {
   data() {
@@ -35,48 +34,9 @@ export default {
     "character-info": CharacterInfo,
     'vitals': VitalsSideBar
   },
-  computed:{
-    flatStatsRef(){
-      var tmp = {};
-      this.refNested(tmp,attributes);
-      this.refNested(tmp,skills);
-      disciplines.data.forEach(element => {
-        tmp[element.id] = ref(element)
-      });
-      tmp['generation'] = ref(biography.generation);
-      return tmp;
-    },
-    vitalsDependencies(){
-      let tmp = {};
-      vitals.forEach(element => {
-        if (element.depends){
-          tmp[element.id]=this.refreshDependecies(element);
-        }
-      });
-      return tmp;
-    },
-  },
   methods:{
     setDataValue(event){
       event[0].value = event[1];      
-    },
-    refNested(targetArray, append){
-      append.data.forEach(element => {
-        element.list.forEach(item => {
-          targetArray[item.id]=ref(item)
-        });
-      });
-      return;
-    },
-    refreshDependecies(vitalStat){
-      let tmp = Array();
-      if (vitalStat.depends){
-        vitalStat.depends.forEach(element => {
-          if (element != "generation.bloodPotency"){ /**TODO parser for '.' so we can remove this | also affects vitalStat*/
-            tmp.push(this.flatStatsRef[element]);
-          }
-        });}
-      return tmp;
     },
   },
 };
@@ -85,7 +45,10 @@ export default {
 <template>
   <vitals
     :vitals="vitals"
-    :dependencies="vitalsDependencies"
+    :stamina="attributes.data[0].list[2]"
+    :composure="attributes.data[1].list[2]"
+    :resolve="attributes.data[2].list[2]"
+    :bloodPotency="(biography.generation) ? biography.generation.bloodPotency : null"
     @hover="mouseOverData = $event">
   </vitals>
   <div class="sheet">

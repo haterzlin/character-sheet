@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import {unref} from 'vue'
 /**
  *   Displays a read-only stat
  * @param stat {JSON} displayed object
@@ -62,7 +61,7 @@ export default {
       let tmp=this.stat.defaultValue;
       if (this.dependencies) {
         this.dependencies.forEach(element => {
-          tmp+=unref(element).value;
+          tmp+=element;
         });
       }
       return tmp;

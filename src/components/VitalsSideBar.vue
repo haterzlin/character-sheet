@@ -10,12 +10,40 @@
       class="sidebarContent"     
       v-show="showHide">      
       <vital-stat
-        v-for="stat in vitals"
-        :key="stat.id"
-        :stat="stat"
-        :style-prop="stat.style"
-        :scale="stat.scale"
-        :dependencies="dependencies[stat.id]"
+        :stat="vitals[0]"
+        :style-prop="vitals[0].style"
+        :scale="vitals[0].scale"
+        :dependencies="[stamina.value]"
+        @mouseenter="$emit('hover',{category:stat})"
+        @mouseleave="$emit('hover', null)">
+        </vital-stat>
+        <vital-stat
+        :stat="vitals[1]"
+        :style-prop="vitals[1].style"
+        :scale="vitals[1].scale"
+        :dependencies="[composure.value, resolve.value]"
+        @mouseenter="$emit('hover',{category:stat})"
+        @mouseleave="$emit('hover', null)">
+        </vital-stat>
+        <vital-stat
+        :stat="vitals[2]"
+        :style-prop="vitals[2].style"
+        :scale="vitals[2].scale"
+        @mouseenter="$emit('hover',{category:stat})"
+        @mouseleave="$emit('hover', null)">
+        </vital-stat>
+        <vital-stat
+        :stat="vitals[3]"
+        :style-prop="vitals[3].style"
+        :scale="vitals[3].scale"
+        @mouseenter="$emit('hover',{category:stat})"
+        @mouseleave="$emit('hover', null)">
+        </vital-stat>
+        <vital-stat
+        :stat="vitals[4]"
+        :style-prop="vitals[4].style"
+        :scale="vitals[4].scale"
+        :dependencies="[(bloodPotency) ? bloodPotency.value : null]"
         @mouseenter="$emit('hover',{category:stat})"
         @mouseleave="$emit('hover', null)">
         </vital-stat>
@@ -31,7 +59,7 @@ import VitalStat from './VitalStat.vue'
  * @param dependecies {JSON} keyed array of reffed dependecies
  */
 export default {
-  props: {'vitals':JSON, 'dependencies':JSON},
+  props: {'vitals':JSON, 'stamina':JSON, 'composure':JSON,'resolve':JSON,'bloodPotency':JSON,},
   emits:['hover'],
   components:{
     'vital-stat':VitalStat,
