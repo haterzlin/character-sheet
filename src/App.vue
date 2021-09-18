@@ -45,10 +45,10 @@ export default {
 <template>
   <vitals
     :vitals="vitals"
-    :stamina="attributes.data[0].list[2]"
-    :composure="attributes.data[1].list[2]"
-    :resolve="attributes.data[2].list[2]"
-    :bloodPotency="(biography.generation) ? biography.generation.bloodPotency : null"
+    :stamina="attributes.data[0].list[2].value"
+    :composure="attributes.data[1].list[2].value"
+    :resolve="attributes.data[2].list[2].value"
+    :bloodPotency="biography.generation.value"
     @hover="mouseOverData = $event">
   </vitals>
   <div class="sheet">

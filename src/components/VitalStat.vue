@@ -5,7 +5,7 @@
 <template>
   <div
     class="box">
-    <div class="name">{{stat.id}}:</div>
+    <div class="name">{{ stat }}:</div>
     <div
       class="points">
       <div 
@@ -13,14 +13,14 @@
         v-for="fives in numberOfFives"
         :key="fives">
         <span
-          v-for="i in (fives==numberOfFives && scale%5!=0) ? scale%5 : 5"
-          :key="i"
+          v-for="i in (fives==numberOfFives && scale%5!=0) ? scale%5 : 5"          
+          :key="i"          
           :class="{
-            point:styleProp=='point',
-            healthPt:styleProp=='healthPt',
-            willPt:styleProp=='willPt',
-            hungerPt:styleProp=='hungerPt',
-            humanityPt:styleProp=='humanityPt',
+            healthPt: stat == 'Health',
+            willPt: stat == 'Willpower',
+            humanityPt: stat == 'Humanity',
+            hungerPt: stat == 'Hunger',
+            point: stat == 'Blood Potency',
             fill: i+((fives-1)*5) > initialValue && i+((fives-1)*5) <= finalValue,
             init: i+((fives-1)*5) <= initialValue,
           }">
@@ -39,12 +39,7 @@
  * @param scale {Number} total number of points, split into groups of five
  */
 export default {
-  props:{'stat':JSON, 'styleProp':String, 'scale':Number, 'dependencies':Array},
-  data(){
-    return{
-      initialValue:this.calcValue()
-    }
-  },
+  props:{'stat': String, 'scale': Number, 'initialValue': Number, 'value': Number},
   computed:{
     /** Counts amount of groups of five for @param scale */
     numberOfFives(){
@@ -52,19 +47,8 @@ export default {
       for (;tmp<this.scale;tmp+=5);
       return tmp/5;
     },
-    finalValue(){
-      return this.calcValue();
-    }
-  },
-  methods: {
-    calcValue(){
-      let tmp=this.stat.defaultValue;
-      if (this.dependencies) {
-        this.dependencies.forEach(element => {
-          tmp+=element;
-        });
-      }
-      return tmp;
+    finalValue() {
+      return this.initialValue + this.value
     }
   },
 }

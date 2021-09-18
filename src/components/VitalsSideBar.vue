@@ -10,43 +10,15 @@
       class="sidebarContent"     
       v-show="showHide">      
       <vital-stat
-        :stat="vitals[0]"
-        :style-prop="vitals[0].style"
-        :scale="vitals[0].scale"
-        :dependencies="[stamina.value]"
+        v-for="stat in vitals"
+        :key="stat.id"
+        :stat="stat.id"
+        :scale="stat.scale"
+        :initialValue="stat.defaultValue"
+        :value="values[stat.id]"
         @mouseenter="$emit('hover',{category:stat})"
         @mouseleave="$emit('hover', null)">
-        </vital-stat>
-        <vital-stat
-        :stat="vitals[1]"
-        :style-prop="vitals[1].style"
-        :scale="vitals[1].scale"
-        :dependencies="[composure.value, resolve.value]"
-        @mouseenter="$emit('hover',{category:stat})"
-        @mouseleave="$emit('hover', null)">
-        </vital-stat>
-        <vital-stat
-        :stat="vitals[2]"
-        :style-prop="vitals[2].style"
-        :scale="vitals[2].scale"
-        @mouseenter="$emit('hover',{category:stat})"
-        @mouseleave="$emit('hover', null)">
-        </vital-stat>
-        <vital-stat
-        :stat="vitals[3]"
-        :style-prop="vitals[3].style"
-        :scale="vitals[3].scale"
-        @mouseenter="$emit('hover',{category:stat})"
-        @mouseleave="$emit('hover', null)">
-        </vital-stat>
-        <vital-stat
-        :stat="vitals[4]"
-        :style-prop="vitals[4].style"
-        :scale="vitals[4].scale"
-        :dependencies="[(bloodPotency) ? bloodPotency.value : null]"
-        @mouseenter="$emit('hover',{category:stat})"
-        @mouseleave="$emit('hover', null)">
-        </vital-stat>
+      </vital-stat>
     </div>
   </div>  
 </template>
@@ -59,7 +31,7 @@ import VitalStat from './VitalStat.vue'
  * @param dependecies {JSON} keyed array of reffed dependecies
  */
 export default {
-  props: {'vitals':JSON, 'stamina':JSON, 'composure':JSON,'resolve':JSON,'bloodPotency':JSON,},
+  props: {'vitals':JSON, 'stamina': Number, 'composure':Number,'resolve':Number,'bloodPotency':Number,},
   emits:['hover'],
   components:{
     'vital-stat':VitalStat,
@@ -68,7 +40,19 @@ export default {
     return{
       showHide: true
     }
-  },  
+  },
+  computed: {
+    /** Computes values of attributes to send to vital stat component */
+    values(){
+      var valueArray = []
+      valueArray["Health"] = this.stamina
+      valueArray["Willpower"] = this.resolve + this.composure
+      valueArray["Humanity"] = 7
+      valueArray["Hunger"] = 1
+      valueArray["Blood Potency"] = 1
+      return valueArray      
+    }
+  },
 }
 </script>
 <style scoped>
