@@ -104,37 +104,37 @@ export default {
     color:white;
     cursor: pointer;
   }
-  .humanityPt.init:hover:after{
+  .humanityPt:hover:after, .healthPt.init:hover:after,.willPt.init:hover:after{
+    content: "/";
+  }
+  .humanityPt.init:hover:after,.hungerPt.init:after,.hungerPt:hover:after{
     content:"X";
   }
   .healthPt.fill{
-     background: radial-gradient(#cc0000, #ff6666);
+     background-color: #ff6666;
   }
   .healthPt.init{
     background-color:#cc0000;
-    color:black;
+    color:white;
     cursor: pointer;
     border: 1px;
     border-style: outset;
   }
-  .healthPt.init:hover:after{
-    content:"/";
-  }
-  .healthPt.init.stake:hover:after{
-    content:"X";
-  }
   .willPt.fill{
-     background: radial-gradient(blue, #6666ff);
+     background-color: #6666ff;
   }
   .willPt.init{
     background-color:blue;
-    color:black;
+    color:white;
     cursor: pointer;
     border: 1px;
     border-style: outset;
   }
-  .hungerPt.init:after, .hungerPt.fill:after{
-    content: "X";
+  .hungerPt:hover:after{
+    color: #666666;
+  }
+  .hungerPt.init:hover:after{
+    color: #999999;
   }
   .five{
     float:left;
