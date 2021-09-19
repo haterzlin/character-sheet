@@ -26,7 +26,7 @@ export const skillDistributions = [
 
 export const clans = [
   {
-    id: "Thin-blood",
+    id: "Thin-Blood",
     abilities: null,
   },
   {
