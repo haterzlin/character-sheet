@@ -3,9 +3,8 @@ const lvl3Attrs = ["Dexterity", "Stamina", "Charisma"]
 const lvl2Attrs = ["Manipulation", "Composure", "Intelligence", "Wits"]    
 
 function checkNumberOfDots(Item, Expected) {
-    var i = 0;
     var ExpectedResults = []
-    for (i; i < 5; i++) {
+    for (var i = 0; i < 5; i++) {
         if (i<Expected) {
             ExpectedResults.push('have.class')
         }

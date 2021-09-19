@@ -16,9 +16,8 @@ const Jack1LvlSkills = [18,19,20]
 const Jack0LvlSkills = [0,2]
 
 function checkNumberOfDots(Item, Expected) {
-    var i = 0;
     var ExpectedResults = []
-    for (i; i < 5; i++) {
+    for (var i = 0; i < 5; i++) {
         if (i<Expected) {
             ExpectedResults.push('have.class')
         }
