@@ -58,6 +58,9 @@ describe('Attributes test', () => {
         cy.contains('Resolve').next().children().last().click()
         checkNumberOfDots('Resolve', 1)
     })
+    it('All picked is displayed', () => {                
+        cy.contains('All picked')
+    })    
     it('When all dots are divided, we click on 1st dot of Strength and there will be only one dot there', () => {                
         cy.contains('Strength').next().children().first().click()
         checkNumberOfDots('Strength', 1)

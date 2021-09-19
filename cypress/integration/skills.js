@@ -84,6 +84,10 @@ describe('Skill test', () => {
         checkNumberOfDots(SkillList[i], 0)
     })
 
+    it('All picked is displayed', () => {                
+        cy.contains('All picked')
+    })  
+
     it('Change skill distribution to Jack of all Trades', () => {
         cy.contains('Skills').children().select(String(Distributions["Jack-of-all-trades"]))
         cy.contains('Skills').children().should('have.value', String(Distributions["Jack-of-all-trades"]))
