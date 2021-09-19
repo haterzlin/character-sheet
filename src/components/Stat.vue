@@ -6,7 +6,7 @@
  */
 export default {
   name: "stat",
-props: ["stat", "scale"],
+  props: ["stat", "scale"],
   emits: ["statChange", "statHoverStart", "statHoverEnd"],
   data() {
     return {
