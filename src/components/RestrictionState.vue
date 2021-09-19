@@ -1,21 +1,14 @@
-<script setup>
+<script>
 /**
- *  displays state of current resource assigment
+ * Displays state of current resource assigment
  * there are two input arrays
  * allocatedResources array contains number of attributes assigned to that value
  * resourceRestrictions array contains number of attributes allowed
  * this component will compute quotient allocated points vs. allowed 
  * and display number of changes needed to finish
  */
-
-const props = defineProps({
-  allocatedResources: Array,
-  resourceRestrictions: Array,
-})
-</script>
-
-<script>
 export default {
+  props: ["allocatedResources", "resourceRestrictions"],
   computed: {
     /**
      * @returns array of [statValue, quotient] for easy display

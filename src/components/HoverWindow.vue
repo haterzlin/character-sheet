@@ -1,16 +1,10 @@
-<script setup>
+<script>
 /**
  * Displays details about the element that the mouse is over
  * mostly works with stats so far
  */
-
-const props = defineProps({
-  mouseOverData: Object
-})
-</script>
-
-<script>
 export default {
+  props: ["mouseOverData"],
   data() {
     return {
       data: "test",

@@ -9,13 +9,12 @@ import { attributesAndSkillsMixin } from "./mixins/attributesAndSkillsMixin";
 import Stat from "./Stat.vue";
 import RestrictionState from "./RestrictionState.vue";
 
-const emit = defineEmits(['statSectionHover'])
-
 </script>
 
 <script>
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
+  emits: ['stat']
 };
 </script>
 

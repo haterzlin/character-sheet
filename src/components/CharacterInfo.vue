@@ -1,12 +1,11 @@
-<script setup>
+<script>
 /**
- * displays inputs for name and age
+ * Displays inputs for name and age
  * displays selects for clan, generation, faction
  */
-const props = defineProps({
-  bio: Object,
-  clans: Array,
-})
+export default {
+  props: ["bio", "clans"],
+};
 </script>
 
 <template>

@@ -9,18 +9,13 @@ import { statSectionMixin } from "./mixins/statSectionMixin";
 import { attributesAndSkillsMixin } from "./mixins/attributesAndSkillsMixin";
 import Stat from "./Stat.vue";
 import RestrictionState from "./RestrictionState.vue";
-
-const props = defineProps({
-  distributions: Array
-})
-
-const emit = defineEmits(['statSectionHover'])
-
 </script>
 
 <script>
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
+  props: ["distributions"],
+  emits: ["statSectionHover"],
 };
 </script>
 
