@@ -2,13 +2,13 @@ const ClanList = ["Brujah", "Gangrel", "Malkavian", "Nosferatu", "Toreador", "Tr
 const DisciplineList = ["Animalism", "Auspex", "Blood Sorcery", "Celerity", "Dominate", "Fortitude", 
                         "Obfuscate", "Potence", "Presence", "Protean"]
 const PrimaryDisciplines = []
-PrimaryDisciplines[0] = [1, 7, 8]
+PrimaryDisciplines[0] = [3, 7, 8]
 PrimaryDisciplines[1] = [0, 5, 9]
 PrimaryDisciplines[2] = [1, 4, 6]
 PrimaryDisciplines[3] = [0, 6, 7]
 PrimaryDisciplines[4] = [1, 3, 8]
 PrimaryDisciplines[5] = [1, 2, 4]
-PrimaryDisciplines[6] = [4, 5, 7]
+PrimaryDisciplines[6] = [4, 5, 8]
 
 function checkNumberOfDots(Item, Expected) {
     var i = 0;
@@ -41,12 +41,12 @@ describe('Clans & Disciplines test', () => {
         cy.contains('Primary').next().should('not.be.visible')
     })
 
-    ClanList.forEach((value, index) => {
-        it('Check primary disciplines when we choose clan ' + value , () => {
-            cy.contains('Clan:').next().select(value)
-            PrimaryDisciplines[index].forEach(j => {
-                console.log(value + " has primary discipline " + DisciplineList[j])
-                cy.contains('Primary').next().should.have("nefunguje" + DisciplineList[j])
+    ClanList.forEach((ClanName, ClanIndex) => {
+        it('Check primary disciplines when we choose clan ' + ClanName , () => {
+            cy.contains('Clan:').next().select(ClanName)
+            PrimaryDisciplines[ClanIndex].forEach(DisciplineIndex => {
+                // Primary Disciplines are first and if they are not active, they are just invisible
+                cy.contains(DisciplineList[DisciplineIndex]).should('be.visible')
             })
         })
     })
