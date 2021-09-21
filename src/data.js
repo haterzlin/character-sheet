@@ -51,11 +51,11 @@ export const clans = [
   },
   {
     id: "Toreador",
-    abilities: ["Celerity", "Potence", "Presence"],
+    abilities: ["Auspex", "Celerity", "Presence"],
   },
   {
     id: "Tremere",
-    abilities: ["Animalism", "Blood Sorcery", "Dominate"],
+    abilities: ["Auspex", "Blood Sorcery", "Dominate"],
   },
   {
     id: "Ventrue",
