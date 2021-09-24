@@ -22,7 +22,7 @@ function checkNumberOfDots(Item, Expected) {
 
 describe('Attributes test', () => {
     it('All Attributes has initial one dot', () => {
-        cy.visit('http://localhost:3000')
+        cy.visit('/')
         AttributeList.forEach(element => {
             cy.contains(element).next().children().first().should('have.class', 'init') 
         })

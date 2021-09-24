@@ -31,7 +31,7 @@ function checkNumberOfDots(Item, Expected) {
 describe('Clans & Disciplines test', () => {
 
     it('Thin-Blood has no Primary Disciplines', () => {
-        cy.visit('http://localhost:3000')
+        cy.visit('/')
         cy.contains('Clan:').next().select("Thin-Blood")
         cy.contains('Primary').next().should('not.be.visible')
     })
