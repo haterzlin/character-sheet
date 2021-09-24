@@ -50,4 +50,25 @@ describe('Clans & Disciplines test', () => {
             })
         })
     })
+
+    it('Check restriction works for Brujah clan', () => {
+        cy.contains('Clan:').next().select('Brujah')
+        cy.contains('Celerity').next().children().last().click()
+        checkNumberOfDots('Celerity', 2)
+        cy.contains('Potence').next().children().last().click()
+        checkNumberOfDots('Potence', 1)
+        cy.contains('Presence').next().children().last().click()
+        checkNumberOfDots('Presence', 0)
+        cy.contains('All picked')
+        cy.contains('Celerity').next().children().first().click()
+        checkNumberOfDots('Celerity', 0)
+        cy.contains('Secondary').parent().contains('Animalism').next().children().last().click()
+        cy.contains('Secondary').parent().contains('Animalism').next().children().first().should('not.have.class', 'fill')
+    })
+
+    it('Check we can add secondary discipline for Caitiff clan', () => {
+        cy.contains('Clan:').next().select('Caitiff')
+        cy.contains('Secondary').parent().contains("Animalism").next().children().last().click()
+        cy.contains('Secondary').parent().contains("Animalism").next().children().first().should('have.class', 'fill')
+    })
 })
