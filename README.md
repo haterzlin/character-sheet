@@ -12,10 +12,17 @@ In future we can try to use different than VTM5 model and try to use exported JS
 
 Installation on Ubuntu 20.04
 
-    sudo apt install snapd
-    sudo snap install node --classic --channel=14
-    sudo npm install vue@next
-    sudo npm install -g @vue/cli
+    cd /opt
+    wget https://nodejs.org/dist/v14.17.6/node-v14.17.6-linux-x64.tar.xz
+    tar -xf ./node-v14.17.6-linux-x64.tar.xz
+    export PATH="$PATH:/opt/node-v14.17.6-linux-x64/bin"
+    npm install vue@next
+    npm install -g @vue/cli
+    # what is important is to have correct version of npm and node, for example:
+    # $ npm --version
+    # 7.21.1
+    # $ node --version
+    # v14.17.6
 
     npm init vite@latest character-sheet -- --template vue
     cd character-sheet
@@ -30,7 +37,13 @@ Installation on Ubuntu 20.04
 
 ### Open Cypress to run the tests
 
+    export CYPRESS_baseUrl=http://localhost:3000
     npm run cypress:open
+
+### Run headless Cypress tests
+
+    export CYPRESS_baseUrl=http://localhost:3000
+    npm run cypress:run
 
 ### Build production files
 

@@ -35,7 +35,7 @@ function checkNumberOfDots(Item, Expected) {
 describe('Skill test', () => {
 
     it('Check skill distribution is Balanced', () => {
-        cy.visit('http://localhost:3000')
+        cy.visit('/')
         cy.contains('Skills').children().should('have.value', String(Distributions["Balanced"]))
     })
     
