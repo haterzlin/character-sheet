@@ -28,19 +28,16 @@ function checkNumberOfDots(Item, Expected) {
     cy.contains(Item).next().children().first().should(ExpectedResults[0], 'fill')
 }
 
-describe('Clans & Disciplines test', () => {
-
+describe('Clans & Disciplines relations test', () => {
     it('Thin-Blood has no Primary Disciplines', () => {
-        cy.visit('/')
+        cy.visit('/')        
         cy.contains('Clan:').next().select("Thin-Blood")
         cy.contains('Primary').next().should('not.be.visible')
-    })
-
+    })    
     it('Caitiff has no Primary Disciplines', () => {
         cy.contains('Clan:').next().select("Caitiff")
         cy.contains('Primary').next().should('not.be.visible')
     })
-
     ClanList.forEach((ClanName, ClanIndex) => {
         it('Check primary disciplines when we choose clan ' + ClanName , () => {
             cy.contains('Clan:').next().select(ClanName)
@@ -50,25 +47,39 @@ describe('Clans & Disciplines test', () => {
             })
         })
     })
+})
 
-    it('Check restriction works for Brujah clan', () => {
+describe('Restrictions test', () => {
+    it('Select Brujah clan and click on last dot of Celerity results in 2 dots', () => {
         cy.contains('Clan:').next().select('Brujah')
         cy.contains('Celerity').next().children().last().click()
         checkNumberOfDots('Celerity', 2)
+    })
+    it('Click on last dot of Potence results in 1 dots', () => {
         cy.contains('Potence').next().children().last().click()
         checkNumberOfDots('Potence', 1)
+    })
+    it('Click on last dot of Presence results in 0 dots', () => {        
         cy.contains('Presence').next().children().last().click()
         checkNumberOfDots('Presence', 0)
+    })
+    it('We can see "All picked"', () => { 
         cy.contains('All picked')
+    })
+    it('Click on first dot of Celerity results in 0 dots', () => {
         cy.contains('Celerity').next().children().first().click()
         checkNumberOfDots('Celerity', 0)
+    })
+    it('We can\'t add Animalism as it is Secondary Discipline', () => {
         cy.contains('Secondary').parent().contains('Animalism').next().children().last().click()
         cy.contains('Secondary').parent().contains('Animalism').next().children().first().should('not.have.class', 'fill')
     })
-
-    it('Check we can add secondary discipline for Caitiff clan', () => {
+    it('But we can add secondary discipline for Caitiff clan', () => {
         cy.contains('Clan:').next().select('Caitiff')
         cy.contains('Secondary').parent().contains("Animalism").next().children().last().click()
         cy.contains('Secondary').parent().contains("Animalism").next().children().first().should('have.class', 'fill')
+    })
+    it('We can see "All picked"', () => { 
+        cy.contains('All picked')
     })
 })
