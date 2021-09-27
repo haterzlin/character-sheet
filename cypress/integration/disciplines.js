@@ -11,9 +11,8 @@ PrimaryDisciplines[5] = [1, 2, 4]
 PrimaryDisciplines[6] = [4, 5, 8]
 
 function checkNumberOfDots(Item, Expected) {
-    var i = 0;
     var ExpectedResults = []
-    for (i; i < 5; i++) {
+    for (var i=0; i < 5; i++) {
         if (i<Expected) {
             ExpectedResults.push('have.class')
         }
