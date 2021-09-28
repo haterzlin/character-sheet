@@ -3,7 +3,7 @@ import CharacterInfo from "./components/CharacterInfo.vue";
 import AttributeSection from "./components/AttributeSection.vue";
 import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
-import HoverWindow from "./components/HoverWindow.vue";
+import HelpWindow from "./components/HelpWindow.vue";
 import { biography, skillDistributions, clans, attributes, skills, disciplines } from "./data.js";
 
 export default {
@@ -19,7 +19,7 @@ export default {
     };
   },
   components: {
-    "hover-window": HoverWindow,
+    "help-window": HelpWindow,
     "skill-section": SkillSection,
     "discipline-section": DisciplineSection,
     "attribute-section": AttributeSection,
@@ -53,7 +53,7 @@ export default {
     >
     </discipline-section>
   </div>
-  <hover-window :mouse-over-data="mouseOverData"> </hover-window>
+  <help-window :mouse-over-data="mouseOverData"> </help-window>
 </template>
 
 <style>
