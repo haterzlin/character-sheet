@@ -4,7 +4,7 @@ import AttributeSection from "./components/AttributeSection.vue";
 import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HelpWindow from "./components/HelpWindow.vue";
-import { biography, skillDistributions, clans, attributes, skills, disciplines } from "./data.js";
+import { biography, skillDistributions, clans, attributes, skills, disciplines, helpContent } from "./data.js";
 
 export default {
   data() {
@@ -15,20 +15,7 @@ export default {
       attributes: attributes,
       clans: clans,
       disciplines: disciplines,
-      helpContent: {
-        section: {
-          id: "",
-          description: ""
-        },
-        category: {
-          id: "",
-          description: ""
-        },
-        stat: {
-          id: "",
-          description: ""
-        }
-      }
+      helpContent: helpContent
     };
   },
   components: {
@@ -38,11 +25,6 @@ export default {
     "attribute-section": AttributeSection,
     "character-info": CharacterInfo,
   },
-  methods: {
-    log(message) {
-      console.log(message)
-    }
-  }
 };
 </script>
 
@@ -53,9 +35,8 @@ export default {
       :stats="attributes"
       @stat-section-change="$event[0].value = $event[1]"
       @change-help-content="
-        log($event);
-        helpContent.section.id = 'Attributes';
-        helpContent.section.description = 'Attributes description';
+        helpContent.section.id = attributes.id;
+        helpContent.section.description = attributes.description;
         helpContent.category = $event['category'];
         helpContent.stat = $event['stat'];" 
     >
@@ -65,8 +46,8 @@ export default {
       :distributions="skillDistributions"
       @stat-section-change="$event[0].value = $event[1]"
       @change-help-content="
-        helpContent['section']['id'] = 'Skills';
-        helpContent['section']['description'] = 'Skills description';
+        helpContent['section']['id'] = skills.id;
+        helpContent['section']['description'] = skills.description;
         helpContent['category'] = $event['category'];
         helpContent['stat'] = $event['stat'];"       
     >
@@ -77,14 +58,14 @@ export default {
       :clan="biography.clan"
       @stat-section-change="$event[0].value = $event[1]"
       @change-help-content="
-        helpContent['section']['id'] = 'Disciplines';
-        helpContent['section']['description'] = 'Disciplines description';
+        helpContent['section']['id'] = disciplines.id;
+        helpContent['section']['description'] = disciplines.description;
         helpContent['category'] = $event['category'];
         helpContent['stat'] = $event['stat'];" 
     >
     </discipline-section>
   </div>
-  <help-window :mouse-over-data="helpContent"> </help-window>
+  <help-window :helpData="helpContent"> </help-window>
 </template>
 
 <style>

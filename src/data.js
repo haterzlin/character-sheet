@@ -9,6 +9,24 @@ export const biography = {
   faction: null,
 };
 
+/**
+ * need empty data to be able to change them later
+ */
+export const helpContent = {
+  section: {
+    id: "",
+    description: ""
+  },
+  category: {
+    id: "",
+    description: ""
+  },
+  stat: {
+    id: "",
+    description: ""
+  }
+}
+
 export const skillDistributions = [
   {
     id: "Balanced",
@@ -65,7 +83,7 @@ export const clans = [
 
 export const attributes = {
   id: "Attributes",
-  description: "Attributes description",
+  description: "<p>Attributes are traits that measure a character's innate capabilities. There are three main categories:</p> <ul><li>Physical, <li>Social, <li>Mental.</ul> <p>And there are three different attributes in each,</p> <ul><li>one representing power, <li>second finesse <li>and third resistance.</ul><p>Normal mortal humans and most animals are limited to ratings of between 1 and 5, though in extreme cases they may have attribute ratings of zero. Especially large or fast animals may have Physical attributes beyond this range.</p> <p>Supernatural creatures are often capable of raising their attributes beyond mortal capability. These greater limits may be temporarily granted by the application of supernatural powers, or permanent, as the creature's supernatural body and mind have potential beyond the limitations of mortals.</p><p><b>Pick</b></p><table><tr><td>best attribute :</td><td>4 dots</td></tr><tr><td>three attributes :</td><td>3 dots each</td></tr><tr><td>four attributes :</td><td>2 dots each</td></tr><tr><td>worst attribute :</td><td>1 dot</td></tr></table>",
   resource: [
     0,
     1,
@@ -219,7 +237,7 @@ export const attributes = {
 
 export const skills = {
   id: "Skills",
-  description: "Skills description",
+  description: "<p>Skills are traits that represent a character's acquired capabilities. Typically a Skill is combined with an Attribute (and occasionally a third supernatural trait) to form a dice pool for an action, representing the character's natural prowess and learned ability coming together to perform a task. </p><p>Like Attributes, Skills are grouped into Physical, Social and Mental categories and are rated from 0 to 5 dots. There are eight Skills in each category for a total of 24 broad Skills, representing all possible learned activities.</p><p>Tasks which are instinctual rather than learned - like observing one's environment or resisting one's emotions - are generally resolved using Attributes only, and do not involve Skill use.</p><p>To represent more specific training, characters may nominate Specialties which effectively increase the Skill's rating by one for tasks within their purview. For example, a character with a Medicine Skill rating of 2 with a speciality in \"First Aid\" would have an effective Skill rating of 3 when administering CPR or applying a pressure bandage.</p><p>Attempting to perform an action \"untrained\" - with a rating of zero in the required Skill - imposes an additional penalty on that action. This penalty is higher for Mental skills than for the other two categories.</p><p>There are three  skill distributions, restricting how many dots you can pick:</p><ul><li>Balanced - Three Skills at 3; five Skills at 2; seven Skills at 1<li>Jack-of-all-trades - One Skill at 3; eight Skills at 2; ten Skills at 1<li>Specialist - One Skill at 4; three Skills at 3; three Skills at 2; three Skills at 1</ul>",
   resource: [12, 7, 5, 3, 0, 0],
   data: [
     {

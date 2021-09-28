@@ -4,18 +4,19 @@
  * mostly works with stats so far
  */
 export default {
-  props: ["mouseOverData"],
+  props: ["helpData"],
   data() {
     return {
       data: {
-        category: {
+        section: {
+          id: "Start",
           description: "Click on item to display help."
         }
       }
     };
   },
   watch: {
-    mouseOverData: {
+    helpData: {
       handler(newVal) {
         if (newVal) this.data = newVal;
       },
@@ -28,16 +29,16 @@ export default {
 <template>
   <div class="hover">
     <h3>Help</h3>
-    <div v-if="data.section">
+    <div v-if="data.section && ! data.category">
       <h4>{{ data.section.id}}</h4>
       <p v-html="data.section.description"></p>
     </div>
-    <div v-if="data.category">
-      <h4>{{ data.category.id}}</h4>
+    <div v-if="data.section && data.category && ! data.stat">
+      <h4>{{ data.category.id}} {{ data.section.id}}</h4>
       <p v-html="data.category.description"></p>
     </div>
     <div v-if="data.stat">
-      <h4>{{ data.stat.id}}</h4>
+      <h4>{{ data.stat.id}} ({{ data.category.id}} {{ data.section.id}})</h4>
       <p v-html="data.stat.description.general"></p>
       <p v-for="(item, index) in data.stat.description">
         <span v-if="index != 'general'"> 
@@ -54,34 +55,6 @@ export default {
         </span>
       </p>
     </div>      
-
-    <!--
-    <div class="statDescription" v-if="data.stat">
-      <p v-html="data.stat.description.general"></p>
-      <p
-        v-if="data.stat.description.specialties"
-        v-html="data.stat.description.specialties"
-      ></p>
-      <div v-if="data.hoverPointer">
-        <span
-          v-for="i in 5"
-          :key="i"
-          class="point"
-          :class="{ init: data.hoverPointer >= i }"
-        >
-        </span>
-      </div>
-      <p
-        v-if="data.stat.description[data.hoverPointer]"
-        v-html="data.stat.description[data.hoverPointer]"
-      ></p>
-      <div v-if="data.stat.abilities && !data.stat.description[data.hoverPointer]">
-        <p class="ability" v-for="item in data.stat.abilities[data.hoverPointer]" :key="item">
-          {{ item }}
-        </p>
-      </div>      
-    </div>
-    -->
   </div>
 </template>
 
