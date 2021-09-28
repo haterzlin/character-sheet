@@ -669,7 +669,7 @@ export const skills = {
 
 export const disciplines = {
   id: "Disciplines",
-  description: "Attributes description",
+  description: "<p>Discipline is a term used by vampires to describe their supernatural powers.</p><p>Aside from their inherent immortal condition and the ability to use vitae to regenerate wounds and improve their strength, dexterity and stamina, proficiency in a Discipline gives the vampire additional supernatural abilities of great strategic value.</p><p>Training in each of the Disciplines provides the Cainite with several related powers such as superhuman speed, strength, resilience, command over animals, shapeshifting abilities, sensory powers, the ability to dominate the minds of other creatures, and many more. </p><p>Clan Disciplines - Every clan has three inherent Disciplines which they pick up more readily and do not require training to learn. </p><p>Pick two of the Disciplines associated with your clan, and take two dots in one and one dot in the other.</p><p>If you are Caitiff, thus having no clan, pick any two Disciplines you like and take two dots in one and one dot in the other.</p>",
   resource: [8, 1, 1, 0, 0, 0],
   data: [
     {

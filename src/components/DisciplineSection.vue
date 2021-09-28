@@ -62,7 +62,7 @@ export default {
     <div class="statList">
       <h2 
         class="help"
-        @click="$emit('changeHelpContent', { category: {id: 'Primary', description: 'Clan primary disciplines'}})">
+        @click="$emit('changeHelpContent', { category: {id: 'Primary', description: 'Pick two of the Disciplines associated with your clan, and take two dots in one and one dot in the other.'}})">
         Primary
       </h2>
       <ul class="ulStats">
@@ -73,7 +73,7 @@ export default {
             :scale="stats.resource.length - 1"
             @stat-change="emitAllowedChange($event)"
             @change-help-content="$emit('changeHelpContent', { 
-                                          category: 'Primary', 
+                                          category: {id: 'Primary'}, 
                                           stat: $event 
                                   })"
           >
@@ -84,7 +84,7 @@ export default {
     <div class="statList">
       <h2 
         class="help"
-        @click="$emit('changeHelpContent', { category: {id: 'Secondary', description: 'Clan secondary disciplines'}})">
+        @click="$emit('changeHelpContent', { category: {id: 'Secondary', description: 'If you are Caitiff, thus having no clan, pick any two Disciplines you like and take two dots in one and one dot in the other.'}})">
         Secondary
       </h2>
       <ul class="ulStats">
@@ -95,7 +95,7 @@ export default {
             :scale="stats.resource.length - 1"
             @stat-change="!clan.abilities || $event[2] ? emitAllowedChange($event) : ''"
             @change-help-content="$emit('changeHelpContent', { 
-                                          category: 'Secondary', 
+                                          category: {id:'Secondary'}, 
                                           stat: $event 
                                   })"
           >
