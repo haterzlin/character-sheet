@@ -15,13 +15,18 @@ import RestrictionState from "./RestrictionState.vue";
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
   props: ["distributions"],
-  emits: ["statSectionHover"],
+  emits: ["changeHelpContent"],
 };
 </script>
 
 <template>
   <div class="statSection">
-    <h2>{{ stats.id }}
+    <h2>
+      <span
+      class="help"
+      @click="$emit('changeHelpContent', { section: stats })">
+      {{ stats.id }}
+      </span>
       <select
         v-model="stats.resource"
       >
@@ -45,25 +50,23 @@ export default {
     <div
       v-for="category in stats.data"
       :key="category.id"
-      class="statList"
-      @mouseenter="$emit('statSectionHover', { category: category })"
-      @mouseleave="$emit('statSectionHover', null)"
+      class="statList"      
     >
-      <h2>{{ category.id }}</h2>
+      <h2 
+        class="help"
+        @click="$emit('changeHelpContent', { category: category })">
+        {{ category.id }}
+      </h2>
       <ul class="ulStats">
         <li v-for="item in category.list" :key="item.id">
           <Stat
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="emitAllowedChange($event)"
-            @stat-hover-start="
-              $emit('statSectionHover', {
-                stat: $event.stat,
-                hoverPointer: $event.hoverPointer,
-                resource: stats.resource,
-              })
-            "
-            @stat-hover-end="$emit('statSectionHover', { category: category })"
+            @change-help-content="$emit('changeHelpContent', { 
+                                          category: category, 
+                                          stat: $event 
+                                  })"
           >
           </Stat>
         </li>

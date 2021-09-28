@@ -15,7 +15,20 @@ export default {
       attributes: attributes,
       clans: clans,
       disciplines: disciplines,
-      mouseOverData: null,
+      helpContent: {
+        section: {
+          id: "",
+          description: ""
+        },
+        category: {
+          id: "",
+          description: ""
+        },
+        stat: {
+          id: "",
+          description: ""
+        }
+      }
     };
   },
   components: {
@@ -25,6 +38,11 @@ export default {
     "attribute-section": AttributeSection,
     "character-info": CharacterInfo,
   },
+  methods: {
+    log(message) {
+      console.log(message)
+    }
+  }
 };
 </script>
 
@@ -34,14 +52,23 @@ export default {
     <attribute-section
       :stats="attributes"
       @stat-section-change="$event[0].value = $event[1]"
-      @stat-section-hover="mouseOverData = $event"
+      @change-help-content="
+        log($event);
+        helpContent.section.id = 'Attributes';
+        helpContent.section.description = 'Attributes description';
+        helpContent.category = $event['category'];
+        helpContent.stat = $event['stat'];" 
     >
     </attribute-section>
     <skill-section
       :stats="skills"
       :distributions="skillDistributions"
       @stat-section-change="$event[0].value = $event[1]"
-      @stat-section-hover="mouseOverData = $event"
+      @change-help-content="
+        helpContent['section']['id'] = 'Skills';
+        helpContent['section']['description'] = 'Skills description';
+        helpContent['category'] = $event['category'];
+        helpContent['stat'] = $event['stat'];"       
     >
     </skill-section>
     <discipline-section
@@ -49,11 +76,15 @@ export default {
       :stats="disciplines"
       :clan="biography.clan"
       @stat-section-change="$event[0].value = $event[1]"
-      @stat-section-hover="mouseOverData = $event"
+      @change-help-content="
+        helpContent['section']['id'] = 'Disciplines';
+        helpContent['section']['description'] = 'Disciplines description';
+        helpContent['category'] = $event['category'];
+        helpContent['stat'] = $event['stat'];" 
     >
     </discipline-section>
   </div>
-  <help-window :mouse-over-data="mouseOverData"> </help-window>
+  <help-window :mouse-over-data="helpContent"> </help-window>
 </template>
 
 <style>
@@ -102,5 +133,9 @@ div.statList {
 
 div.sheet {
   float: left;
+}
+
+.help {
+  cursor: help;
 }
 </style>

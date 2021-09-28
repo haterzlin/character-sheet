@@ -7,7 +7,7 @@
 export default {
   name: "stat",
   props: ["stat", "scale"],
-  emits: ["statChange", "statHoverStart", "statHoverEnd"],
+  emits: ["statChange", "changeHelpContent"],
   data() {
     return {
       initialValue: this.stat.value,
@@ -20,10 +20,12 @@ export default {
 <template>
   <div
     class="stat"
-    @mouseover="$emit('statHoverStart', { stat: stat, hoverPointer: hoverPointer })"
-    @mouseleave="$emit('statHoverEnd')"
   >
-    <div class="statName">{{ stat.id }}</div>
+    <div 
+      class="statName help" 
+      @click="$emit('changeHelpContent', stat )" >
+      {{ stat.id }}
+    </div>
     <div class="points">
       <span
         v-for="i in scale"
@@ -35,7 +37,7 @@ export default {
           active:
             hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value),
         }"
-        @click="$emit('statChange', [stat, i, stat.value >= i && i > initialValue])"
+        @click="$emit('statChange', [stat, i, stat.value >= i && i > initialValue]);"
         @mouseover="hoverPointer = i"
         @mouseleave="hoverPointer = null"
       >

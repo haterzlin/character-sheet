@@ -65,6 +65,7 @@ export const clans = [
 
 export const attributes = {
   id: "Attributes",
+  description: "Attributes description",
   resource: [
     0,
     1,
@@ -218,6 +219,7 @@ export const attributes = {
 
 export const skills = {
   id: "Skills",
+  description: "Skills description",
   resource: [12, 7, 5, 3, 0, 0],
   data: [
     {
@@ -649,6 +651,7 @@ export const skills = {
 
 export const disciplines = {
   id: "Disciplines",
+  description: "Attributes description",
   resource: [8, 1, 1, 0, 0, 0],
   data: [
     {

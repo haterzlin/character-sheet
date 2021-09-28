@@ -13,7 +13,7 @@ import RestrictionState from "./RestrictionState.vue";
 export default {
   mixins: [statSectionMixin],
   props: ["clan"],
-  emits: ["statSectionHover"],
+  emits: ["changeHelpContent"],
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
@@ -48,7 +48,11 @@ export default {
 
 <template>
   <div class="statSection">
-    <h2>{{ stats.id }}</h2>
+    <h2 
+      class="help"
+      @click="$emit('changeHelpContent', { section: stats })">
+      {{ stats.id }}
+    </h2>
     <RestrictionState
       class="resourceCount"
       :allocatedResources="allocatedResources"
@@ -56,7 +60,11 @@ export default {
     >
     </RestrictionState>
     <div class="statList">
-      <h2>Primary</h2>
+      <h2 
+        class="help"
+        @click="$emit('changeHelpContent', { category: {id: 'Primary', description: 'Clan primary disciplines'}})">
+        Primary
+      </h2>
       <ul class="ulStats">
         <li v-for="item in stats.data" :key="item.id">
           <Stat
@@ -64,43 +72,34 @@ export default {
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="emitAllowedChange($event)"
-            @stat-hover-start="
-              $emit('statSectionHover', {
-                stat: $event.stat,
-                hoverPointer: $event.hoverPointer,
-                category: 'Primary',
-                section: stats.id,
-                resource: stats.resource,
-              })
-            "
-            @stat-hover-end="$emit('statSectionHover', null)"
+            @change-help-content="$emit('changeHelpContent', { 
+                                          category: 'Primary', 
+                                          stat: $event 
+                                  })"
           >
           </Stat>
         </li>
       </ul>
     </div>
     <div class="statList">
-      <h2>Secondary</h2>
+      <h2 
+        class="help"
+        @click="$emit('changeHelpContent', { category: {id: 'Secondary', description: 'Clan secondary disciplines'}})">
+        Secondary
+      </h2>
       <ul class="ulStats">
         <li v-for="item in stats.data" :key="item.id">
-          <stat
+          <Stat
             v-show="!isPrimary(item)"
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="!clan.abilities || $event[2] ? emitAllowedChange($event) : ''"
-            @stat-hover-start="
-              $emit('statSectionHover', {
-                stat: $event.stat,
-                hoverPointer: $event.hoverPointer,
-                category: 'Secondary',
-                section: stats.id,
-                resource: stats.resource,
-                isCaitiff: clan.abilities === null,
-              })
-            "
-            @stat-hover-end="$emit('statSectionHover', null)"
+            @change-help-content="$emit('changeHelpContent', { 
+                                          category: 'Secondary', 
+                                          stat: $event 
+                                  })"
           >
-          </stat>
+          </Stat>
         </li>
       </ul>
     </div>

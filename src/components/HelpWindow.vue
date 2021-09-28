@@ -7,7 +7,11 @@ export default {
   props: ["mouseOverData"],
   data() {
     return {
-      data: "test",
+      data: {
+        category: {
+          description: "Click on item to display help."
+        }
+      }
     };
   },
   watch: {
@@ -23,9 +27,35 @@ export default {
 
 <template>
   <div class="hover">
+    <h3>Help</h3>
+    <div v-if="data.section">
+      <h4>{{ data.section.id}}</h4>
+      <p v-html="data.section.description"></p>
+    </div>
     <div v-if="data.category">
+      <h4>{{ data.category.id}}</h4>
       <p v-html="data.category.description"></p>
     </div>
+    <div v-if="data.stat">
+      <h4>{{ data.stat.id}}</h4>
+      <p v-html="data.stat.description.general"></p>
+      <p v-for="(item, index) in data.stat.description">
+        <span v-if="index != 'general'"> 
+          <span v-for="i in Number(index)" class="point fill"></span>
+          {{ item }} 
+        </span>
+      </p>
+    </div>
+    <div v-if="data.stat && data.stat.abilities">
+      <h4>Abilities</h4>
+      <p class="ability" v-for="(item, index) in data.stat.abilities" :key="item">
+        <span v-for="i in Number(index)" class="point fill"></span> &nbsp;        
+        <span v-for="(ability, index2) in item"> {{ ability }}<span v-if="Number(index2) < Number(item.length - 1 )">, </span>
+        </span>
+      </p>
+    </div>      
+
+    <!--
     <div class="statDescription" v-if="data.stat">
       <p v-html="data.stat.description.general"></p>
       <p
@@ -49,8 +79,9 @@ export default {
         <p class="ability" v-for="item in data.stat.abilities[data.hoverPointer]" :key="item">
           {{ item }}
         </p>
-      </div>
+      </div>      
     </div>
+    -->
   </div>
 </template>
 
