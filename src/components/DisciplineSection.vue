@@ -62,7 +62,7 @@ export default {
     <div class="statList">
       <h2 
         class="help"
-        @click="$emit('changeHelpContent', { category: {id: 'Primary', description: 'Pick two of the Disciplines associated with your clan, and take two dots in one and one dot in the other.'}})">
+        @click="$emit('changeHelpContent', stats.primaryDisciplines)">
         Primary
       </h2>
       <ul class="ulStats">
@@ -84,7 +84,7 @@ export default {
     <div class="statList">
       <h2 
         class="help"
-        @click="$emit('changeHelpContent', { category: {id: 'Secondary', description: 'If you are Caitiff, thus having no clan, pick any two Disciplines you like and take two dots in one and one dot in the other.'}})">
+        @click="$emit('changeHelpContent', stats.secondaryDisciplines)">
         Secondary
       </h2>
       <ul class="ulStats">
