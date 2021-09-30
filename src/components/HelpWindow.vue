@@ -20,7 +20,7 @@ export default {
       <p v-html="helpData.category.description"></p>
     </div>
     <div v-if="helpData.stat">
-      <h4>{{ helpData.stat.id}} ({{ helpData.category.id}} {{ helpData.section.id}})</h4>
+      <h4>{{ helpData.stat.id }} ({{ helpData.category.id }} {{ helpData.section.id }})</h4>
       <p v-html="helpData.stat.description.general"></p>
       <p v-for="(item, index) in helpData.stat.description">
         <span v-if="index != 'general'"> 
@@ -28,6 +28,7 @@ export default {
           {{ item }} 
         </span>
       </p>
+      <p v-if="helpData.stat.specialties">{{ helpData.stat.specialties }}</p>
     </div>
     <div v-if="helpData.stat && helpData.stat.abilities">
       <h4>Abilities</h4>
