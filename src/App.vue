@@ -25,6 +25,14 @@ export default {
     "attribute-section": AttributeSection,
     "character-info": CharacterInfo,
   },
+  methods: {
+    setHelpContent(incomingEvent, section) {
+      this.helpContent.section.id = section.id;
+      this.helpContent.section.description = section.description;
+      this.helpContent.category = incomingEvent['category'];
+      this.helpContent.stat = incomingEvent['stat'];
+    }
+  }
 };
 </script>
 
@@ -34,22 +42,14 @@ export default {
     <attribute-section
       :stats="attributes"
       @stat-section-change="$event[0].value = $event[1]"
-      @change-help-content="
-        helpContent.section.id = attributes.id;
-        helpContent.section.description = attributes.description;
-        helpContent.category = $event['category'];
-        helpContent.stat = $event['stat'];" 
+      @change-help-content="setHelpContent($event, attributes)"        
     >
     </attribute-section>
     <skill-section
       :stats="skills"
       :distributions="skillDistributions"
       @stat-section-change="$event[0].value = $event[1]"
-      @change-help-content="
-        helpContent['section']['id'] = skills.id;
-        helpContent['section']['description'] = skills.description;
-        helpContent['category'] = $event['category'];
-        helpContent['stat'] = $event['stat'];"       
+      @change-help-content="setHelpContent($event, skills)"
     >
     </skill-section>
     <discipline-section
@@ -57,11 +57,7 @@ export default {
       :stats="disciplines"
       :clan="biography.clan"
       @stat-section-change="$event[0].value = $event[1]"
-      @change-help-content="
-        helpContent['section']['id'] = disciplines.id;
-        helpContent['section']['description'] = disciplines.description;
-        helpContent['category'] = $event['category'];
-        helpContent['stat'] = $event['stat'];" 
+      @change-help-content="setHelpContent($event, disciplines)"
     >
     </discipline-section>
   </div>
