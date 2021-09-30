@@ -14,17 +14,10 @@ export const biography = {
  */
 export const helpContent = {
   section: {
-    id: "",
-    description: ""
+    id: "Start",
+    description: "Click on item to display help."
   },
-  category: {
-    id: "",
-    description: ""
-  },
-  stat: {
-    id: "",
-    description: ""
-  }
+
 }
 
 export const skillDistributions = [

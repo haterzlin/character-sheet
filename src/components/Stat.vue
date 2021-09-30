@@ -37,7 +37,7 @@ export default {
           active:
             hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value),
         }"
-        @click="$emit('statChange', [stat, i, stat.value >= i && i > initialValue]);"
+        @click="$emit('statChange', [stat, i, stat.value >= i && i > initialValue])"
         @mouseover="hoverPointer = i"
         @mouseleave="hoverPointer = null"
       >
