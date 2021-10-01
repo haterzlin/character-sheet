@@ -5,7 +5,7 @@ import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue'
-import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, powerStats, resonances } from "./data.js";
+import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, } from "./data.js";
 
 export default {
   data() {
@@ -48,7 +48,7 @@ export default {
     :stamina="attributes.data[0].list[2].value"
     :composure="attributes.data[1].list[2].value"
     :resolve="attributes.data[2].list[2].value"
-    :bloodPotency="biography.generation.value"
+    :bloodPotency="(biography.generation) ? biography.generation.bloodPotency : null"
     @hover="mouseOverData = $event">
   </vitals>
   <div class="sheet">

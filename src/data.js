@@ -5,7 +5,7 @@ export const biography = {
   defaultName: DEFAULTNAME /*make a set of names and randomly pick a default on page load*/,
   age: null /*why not age=0? bcuz if you use a value then placeholder does not apply in input box*/,
   clan: null,
-  generation: 13,
+  generation: null,
   faction: null,
 };
 
@@ -806,94 +806,43 @@ export const disciplines = {
 export const vitals = [
   {
     id: "Health",
+    style: "healthPt",
     scale: 15,
-    defaultValue: 3,
+    depends: ['Stamina'],
+    defaultModifier: 3,
     description:"Your Health; usually equals stamina + 3",
   },
   {
     id: "Willpower",
+    style: "willPt",
     scale: 15,
-    defaultValue: 0,
+    depends: ['Composure', 'Resolve'],
+    defaultModifier: 0,
     description:"Your Willpower; usually equals composure + resolve",
   },
   {
     id: "Humanity",
+    style: "humanityPt",
     scale: 10,
-    defaultValue: 0, 
+    value: null,
+    defaultValue: 7, 
     description:"Your Humanity, a measure of resistance against the beast",
   },
   {
     id: "Hunger",
+    style: "hungerPt",
     scale: 5,
-    defaultValue: 0,
+    value: null,
+    defaultValue: 1,
     description:"Your Hunger",
   },
   {
     id: "Blood Potency",
+    style: "point",
     scale: 10,
-    defaultValue: 0,
+    depends: ['generation.bloodPotency'],
+    value: 0,
+    defaultModifier: 0,
     description:"Your Blood Potency: a measure of Caine's blood in Your character",
     },
-];
-export const powerStats = {
-  table:[
-    {
-      id:'blood surge',
-      depends: [],
-      value: null,
-      defaultvalue: 0,
-    },
-    {
-      id:'power',
-      depends: [],
-      value: null,
-      defaultvalue: 0,
-    },
-    {
-      id:'feeding',
-      depends: [],
-      value: null,
-      defaultvalue: 0,
-    },
-    {
-      id:'mend',
-      depends: [],
-      value: null,
-      defaultvalue: 0,
-    },
-    {
-      id:'rouse reroll',
-      depends: [],
-      value: null,
-      defaultvalue: 0,
-    },
-    {
-      id:'bane severity',
-      depends: [],
-      value: null,
-      defaultvalue: 0,
-    },
-  ],
-  resonance: null, //can pick null
-  hunting: null, // null = N/A
-  experience:{
-    id:"EXP",
-    total: 0,
-    spent: 0
-  },
-};
-
-export const resonances = [
-  {
-    id:"choleric"
-  },
-  {
-    id:"phlegmatic"
-  },
-  {
-    id:"melancholic"
-  },
-  {
-    id:"sanguine"
-  },
 ];

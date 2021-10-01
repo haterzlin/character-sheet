@@ -3,30 +3,14 @@
   
 --->
 <template>
-  <div
-    class="box">
-    <div class="name">{{ stat }}:</div>
-    <div
-      class="points">
-      <div 
-        class="five"
-        v-for="fives in numberOfFives"
-        :key="fives">
+  <div class="box">
+    <div class="name">{{ stat.id }}:</div>
+    <div class="points">
         <span
-          v-for="i in (fives==numberOfFives && scale%5!=0) ? scale%5 : 5"          
+          v-for="i in scale"          
           :key="i"          
-          :class="{
-            healthPt: stat == 'Health',
-            willPt: stat == 'Willpower',
-            humanityPt: stat == 'Humanity',
-            hungerPt: stat == 'Hunger',
-            point: stat == 'Blood Potency',
-            fill: i+((fives-1)*5) > initialValue && i+((fives-1)*5) <= finalValue,
-            init: i+((fives-1)*5) <= initialValue,
-          }">
+          :class="classOfPoint(i)">
         </span>
-
-      </div>
     </div>
   </div>
 </template>
@@ -39,23 +23,34 @@
  * @param scale {Number} total number of points, split into groups of five
  */
 export default {
-  props:{'stat': String, 'scale': Number, 'initialValue': Number, 'value': Number},
-  computed:{
-    /** Counts amount of groups of five for @param scale */
-    numberOfFives(){
-      var tmp = 5;
-      for (;tmp<this.scale;tmp+=5);
-      return tmp/5;
-    },
-    finalValue() {
-      return this.initialValue + this.value
+  props:{'stat': Object, 'scale': Number, 'value': Number},
+  data(){
+    return{
+      initialValue:(this.stat.defaultValue) ? this.stat.defaultValue : this.finalValue()
     }
   },
+  computed:{    
+    },
+  methods:{
+    finalValue() {
+      return (this.stat.defaultModifier) ? this.stat.defaultModifier + this.value : this.value;
+    },
+    classOfPoint(valueOfPoint){
+      let classOfPoint = {};
+      classOfPoint[this.stat.style] = true;
+      classOfPoint['fill'] = valueOfPoint > this.initialValue && valueOfPoint <= this.finalValue();
+      classOfPoint['init'] = valueOfPoint <= this.initialValue;
+      return classOfPoint
+    }
+  }
 }
 </script>
 <style scoped>
   .point{
     cursor:default;
+  }
+  .points > :nth-child(5n+0){
+    margin-right: 10px;
   }
   .healthPt, .willPt{
     width: 16px;

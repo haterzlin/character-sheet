@@ -12,9 +12,8 @@
       <vital-stat
         v-for="stat in vitals"
         :key="stat.id"
-        :stat="stat.id"
+        :stat="stat"
         :scale="stat.scale"
-        :initialValue="stat.defaultValue"
         :value="values[stat.id]"
         @mouseenter="$emit('hover',{category:stat})"
         @mouseleave="$emit('hover', null)">
@@ -45,12 +44,26 @@ export default {
     /** Computes values of attributes to send to vital stat component */
     values(){
       var valueArray = []
-      valueArray["Health"] = this.stamina
-      valueArray["Willpower"] = this.resolve + this.composure
-      valueArray["Humanity"] = 7
-      valueArray["Hunger"] = 1
-      valueArray["Blood Potency"] = 1
+      
+      valueArray["Health"] = this.dependecySum([this.stamina])
+      valueArray["Willpower"] = this.dependecySum([this.resolve + this.composure])
+      valueArray["Humanity"] = this.dependecySum([])
+      valueArray["Hunger"] = this.dependecySum([])
+      valueArray["Blood Potency"] = this.dependecySum([])
+      
       return valueArray      
+    }
+  },
+  methods: {
+    /**
+     * returns sum of numbers in @param numberArray 
+     */
+    dependecySum(numberArray){
+      let sum = 0;
+      numberArray.forEach(element => {
+        sum+=element
+      });
+      return sum;
     }
   },
 }
