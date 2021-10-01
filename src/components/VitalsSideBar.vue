@@ -1,23 +1,3 @@
-
-<template>
-  <div 
-    class="sidebar"
-    :class="{show:showHide}">
-    <div 
-      class="sidebarContent"     
-      v-show="showHide">      
-      <vital-stat
-        v-for="stat in vitals"
-        :key="stat.id"
-        :stat="stat"
-        :scale="stat.scale"
-        :value="values[stat.id]"
-        @mouseenter="$emit('hover',{category:stat})"
-        @mouseleave="$emit('hover', null)">
-      </vital-stat>
-    </div>
-  </div>  
-</template>
 <script>
 import VitalStat from './VitalStat.vue'
 /**
@@ -65,6 +45,27 @@ export default {
   },
 }
 </script>
+
+<template>
+  <div 
+    class="sidebar"
+    :class="{show:showHide}">
+    <div 
+      class="sidebarContent"     
+      v-show="showHide">      
+      <vital-stat
+        v-for="stat in vitals"
+        :key="stat.id"
+        :stat="stat"
+        :scale="stat.scale"
+        :value="values[stat.id]"
+        @mouseenter="$emit('hover',{category:stat})"
+        @mouseleave="$emit('hover', null)">
+      </vital-stat>
+    </div>
+  </div>  
+</template>
+
 <style scoped>
   .sidebar{
     float: inline-start;

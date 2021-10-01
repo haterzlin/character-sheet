@@ -1,17 +1,3 @@
-
-<template>
-  <div class="box">
-    <div class="name">{{ stat.id }}:</div>
-    <div class="points">
-        <span
-          v-for="i in scale"          
-          :key="i"          
-          :class="classOfPoint(i)">
-        </span>
-    </div>
-  </div>
-</template>
-
 <script>
 /**
  *   Displays a read-only stat
@@ -42,6 +28,20 @@ export default {
   }
 }
 </script>
+    
+<template>
+  <div class="box">
+    <div class="name">{{ stat.id }}:</div>
+    <div class="points">
+        <span
+          v-for="i in scale"          
+          :key="i"          
+          :class="classOfPoint(i)">
+        </span>
+    </div>
+  </div>
+</template>
+
 <style scoped>
   .point{
     cursor:default;
