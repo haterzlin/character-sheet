@@ -1,7 +1,4 @@
-<!--
-  Displays a read-only stat
-  
---->
+
 <template>
   <div class="box">
     <div class="name">{{ stat.id }}:</div>
@@ -73,7 +70,6 @@ export default {
     vertical-align: middle;
     text-align:center;
     margin: 1px;
-    cursor: pointer;
   }
   .humanityPt.fill{
     background-color:blue;
@@ -81,7 +77,6 @@ export default {
   .humanityPt.init{
     background-color:black;
     color:white;
-    cursor: pointer;
   }
   .humanityPt:hover:after, .healthPt.init:hover:after,.willPt.init:hover:after{
     content: "/";
@@ -95,7 +90,6 @@ export default {
   .healthPt.init{
     background-color:#cc0000;
     color:white;
-    cursor: pointer;
     border: 1px;
     border-style: outset;
   }
@@ -105,7 +99,6 @@ export default {
   .willPt.init{
     background-color:blue;
     color:white;
-    cursor: pointer;
     border: 1px;
     border-style: outset;
   }
@@ -114,10 +107,6 @@ export default {
   }
   .hungerPt.init:hover:after{
     color: #999999;
-  }
-  .five{
-    float:left;
-    margin-right: 1ch;
   }
   .box{
     width: 350px;

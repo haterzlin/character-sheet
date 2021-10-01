@@ -1,7 +1,4 @@
-<!--
-  Displays vital stats such as health, willpower etc.
-  has a show/hide button
---->
+
 <template>
   <div 
     class="sidebar"

@@ -10,9 +10,8 @@ import { biography, skillDistributions, clans, attributes, skills, disciplines, 
 export default {
   data() {
     return {
-      /**
-       * load externals
-       */
+      
+      // load externals
       biography: biography,
       skills: skills,
       skillDistributions: skillDistributions,
@@ -20,9 +19,8 @@ export default {
       clans: clans,
       disciplines: disciplines,
       vitals:vitals,
-      /**
-       * local states
-       */
+
+      //local states
       mouseOverData: null,
     };
   },
