@@ -30,7 +30,7 @@ export default {
     "discipline-section": DisciplineSection,
     "attribute-section": AttributeSection,
     "character-info": CharacterInfo,
-    'vitals': VitalsSideBar
+    "vitals-sidebar": VitalsSideBar
   },
   methods:{
     setDataValue(event){
@@ -41,14 +41,14 @@ export default {
 </script>
 
 <template>
-  <vitals
+  <vitals-sidebar
     :vitals="vitals"
     :stamina="attributes.data[0].list[2].value"
     :composure="attributes.data[1].list[2].value"
     :resolve="attributes.data[2].list[2].value"
     :bloodPotency="(biography.generation) ? biography.generation.bloodPotency : null"
     @hover="mouseOverData = $event">
-  </vitals>
+  </vitals-sidebar>
   <div class="sheet">
     <character-info :bio="biography" :clans="clans"> </character-info>
     <attribute-section

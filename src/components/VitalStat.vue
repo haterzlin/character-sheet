@@ -12,8 +12,6 @@ export default {
       initialValue:(this.stat.defaultValue) ? this.stat.defaultValue : this.finalValue()
     }
   },
-  computed:{    
-    },
   methods:{
     finalValue() {
       return (this.stat.defaultModifier) ? this.stat.defaultModifier + this.value : this.value;
@@ -60,7 +58,6 @@ export default {
     border-style: solid;
     border-color: transparent;
   }
-
   .hungerPt,.humanityPt{
     width: 14px;
     height: 14px;
@@ -70,6 +67,27 @@ export default {
     vertical-align: middle;
     text-align:center;
     margin: 1px;
+  }
+  .healthPt.fill{
+    background-color: #ff6666;
+  }
+  .healthPt.init{
+    background-color:#cc0000;
+    color:#999999;;
+    border: 1px;
+    border-style: outset;
+  }
+  .willPt.fill{
+    background-color: #6666ff;
+  }
+  .willPt.init{
+    background-color:blue;
+    color:#999999;;
+    border: 1px;
+    border-style: outset;
+  }
+  .humanityPt{
+    color:#666666;
   }
   .humanityPt.fill{
     background-color:blue;
@@ -83,24 +101,6 @@ export default {
   }
   .humanityPt.init:hover:after,.hungerPt.init:after,.hungerPt:hover:after{
     content:"X";
-  }
-  .healthPt.fill{
-     background-color: #ff6666;
-  }
-  .healthPt.init{
-    background-color:#cc0000;
-    color:white;
-    border: 1px;
-    border-style: outset;
-  }
-  .willPt.fill{
-     background-color: #6666ff;
-  }
-  .willPt.init{
-    background-color:blue;
-    color:white;
-    border: 1px;
-    border-style: outset;
   }
   .hungerPt:hover:after{
     color: #666666;

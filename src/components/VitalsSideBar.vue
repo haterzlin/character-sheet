@@ -9,12 +9,7 @@ export default {
   props: {'vitals':JSON, 'stamina': Number, 'composure':Number,'resolve':Number,'bloodPotency':Number,},
   emits:['hover'],
   components:{
-    'vital-stat':VitalStat,
-  },
-  data(){
-    return{
-      showHide: true
-    }
+    "vital-stat":VitalStat,
   },
   computed: {
     /** Computes values of attributes to send to vital stat component */
@@ -46,12 +41,8 @@ export default {
 </script>
 
 <template>
-  <div 
-    class="sidebar"
-    :class="{show:showHide}">
-    <div 
-      class="sidebarContent"     
-      v-show="showHide">      
+  <div class="sidebar">
+    <div class="sidebarContent">      
       <vital-stat
         v-for="stat in vitals"
         :key="stat.id"
