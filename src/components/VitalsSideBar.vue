@@ -1,5 +1,5 @@
 <script>
-import VitalStat from './VitalStat.vue'
+import VitalStat from './VitalStat.vue';
 /**
  * Displays vital stats such as health, willpower etc.
  * @param vitals {JSON} list of vital stats
@@ -10,60 +10,69 @@ import VitalStat from './VitalStat.vue'
  * @param bloodPotency {JSON} dependency, @TODO
  */
 export default {
-  props: {'vitals':JSON, 'stamina': Number, 'composure':Number,'resolve':Number,'bloodPotency':Number,},
-  emits:['hover'],
-  components:{
-    "vital-stat":VitalStat,
+  props: {
+    vitals: JSON,
+    stamina: Number,
+    composure: Number,
+    resolve: Number,
+    bloodPotency: Number,
+  },
+  emits: ['hover'],
+  components: {
+    'vital-stat': VitalStat,
   },
   computed: {
     /** Computes values of attributes to send to vital stat component */
-    values(){
-      var valueArray = []
-      
-      valueArray["Health"] = this.dependecySum([this.stamina])
-      valueArray["Willpower"] = this.dependecySum([this.resolve + this.composure])
-      valueArray["Humanity"] = this.dependecySum([])
-      valueArray["Hunger"] = this.dependecySum([])
-      valueArray["Blood Potency"] = this.dependecySum([])
-      
-      return valueArray      
-    }
+    values() {
+      var valueArray = [];
+
+      valueArray['Health'] = this.dependecySum([this.stamina]);
+      valueArray['Willpower'] = this.dependecySum([
+        this.resolve + this.composure,
+      ]);
+      valueArray['Humanity'] = this.dependecySum([]);
+      valueArray['Hunger'] = this.dependecySum([]);
+      valueArray['Blood Potency'] = this.dependecySum([]);
+
+      return valueArray;
+    },
   },
   methods: {
     /**
-     * returns sum of numbers in @param numberArray 
+     * returns sum of numbers in @param numberArray
      */
-    dependecySum(numberArray){
+    dependecySum(numberArray) {
       let sum = 0;
-      numberArray.forEach(element => {
-        sum+=element
+      numberArray.forEach((element) => {
+        sum += element;
       });
       return sum;
-    }
+    },
   },
-}
+};
 </script>
 
 <template>
   <div class="sidebar">
-    <div class="sidebarContent">      
+    <div class="sidebarContent">
       <vital-stat
         v-for="stat in vitals"
         :key="stat.id"
         :stat="stat"
         :scale="stat.scale"
         :value="values[stat.id]"
-        @mouseenter="$emit('hover',{category:stat})"
-        @mouseleave="$emit('hover', null)">
+        @mouseenter="$emit('hover', { category: stat })"
+        @mouseleave="$emit('hover', null)"
+      >
       </vital-stat>
     </div>
-  </div>  
+  </div>
 </template>
 
 <style scoped>
-  .sidebar{
-    float: inline-start;
-    position: absolute;
-    width: 350px;
-  }
+.sidebar {
+  float: inline-start;
+  position: absolute;
+  width: 350px;
+}
 </style>
