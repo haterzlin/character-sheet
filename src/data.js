@@ -824,16 +824,15 @@ export const vitals = [
     id: "Humanity",
     style: "humanityPt",
     scale: 10,
-    value: null,
-    defaultValue: 7, 
+    defaultModifier: 7, 
     description:"Your Humanity, a measure of resistance against the beast",
   },
   {
     id: "Hunger",
     style: "hungerPt",
     scale: 5,
-    value: null,
     defaultValue: 1,
+    defaultModifier: 0,
     description:"Your Hunger",
   },
   {

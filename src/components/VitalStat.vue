@@ -1,8 +1,10 @@
 <script>
 /**
- *   Displays a read-only stat
+ * Displays one stat with @param stat.id as a name of stat
+ * Then @param scale number of points with css style @param stat.style
+ * And init and fill css style depending on computed @param value while looking
+ * at @param stat.defaultValue and @param stat.defaultModifier
  * @param stat {JSON} displayed object
- * @DEPRECATED @param styleProp {String} style of displayed stat points
  * @param scale {Number} total number of points, split into groups of five
  * @param value {Number} sum of dependency values
  */
@@ -10,19 +12,19 @@ export default {
   props: { stat: Object, scale: Number, value: Number },
   data() {
     return {
+      // initalValue is stat.defaultValue or this.finalValue
+      // finalValue is stat.defaultModifier + value or value
       initialValue: this.stat.defaultValue
         ? this.stat.defaultValue
-        : this.finalValue(),
+        : this.finalValue()
     };
   },
   methods: {
     /**
-     * @returns sum of dependecies + modifier
+     * @returns computed modifier + value
      */
     finalValue() {
-      return this.stat.defaultModifier
-        ? this.stat.defaultModifier + this.value
-        : this.value;
+      return this.stat.defaultModifier + this.value
     },
     /**
      * @returns keyed array of class for a point with value @param valueOfPoint

@@ -1,12 +1,12 @@
 <script>
 import VitalStat from './VitalStat.vue';
 /**
- * Displays vital stats such as health, willpower etc.
+ * Displays dependent stats in bar located to the left side, also contains algorithm
+ * how values are computed
  * @param vitals {JSON} list of vital stats
- * @DEPRECATED @param dependecies {JSON} keyed array of reffed dependecies
- * @param stamina {Number}  dependency, value of attribute stamina
- * @param composure {Number} dependency, value of attribute Composure
- * @param resolve {Number} dependency, value of attribute Resolve
+ * @param stamina {Number}  dependency, current value of attribute Stamina
+ * @param composure {Number} dependency, current value of attribute Composure
+ * @param resolve {Number} dependency, current value of attribute Resolve
  * @param bloodPotency {JSON} dependency, @TODO
  */
 export default {
