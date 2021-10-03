@@ -2,7 +2,7 @@
 /**
  *   Displays a read-only stat
  * @param stat {JSON} displayed object
- * DEPRECATED @param styleProp {String} style of displayed stat points
+ * @DEPRECATED @param styleProp {String} style of displayed stat points
  * @param scale {Number} total number of points, split into groups of five
  * @param value {Number} sum of dependency values
  */
@@ -14,9 +14,15 @@ export default {
     }
   },
   methods:{
+    /**
+     * @returns sum of dependecies + modifier
+     */
     finalValue() {
       return (this.stat.defaultModifier) ? this.stat.defaultModifier + this.value : this.value;
     },
+    /**
+     * @returns keyed array of class for a point with value @param valueOfPoint
+     */
     classOfPoint(valueOfPoint){
       let classOfPoint = {};
       classOfPoint[this.stat.style] = true;

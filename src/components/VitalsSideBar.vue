@@ -3,11 +3,11 @@ import VitalStat from './VitalStat.vue'
 /**
  * Displays vital stats such as health, willpower etc.
  * @param vitals {JSON} list of vital stats
- * DEPRECATED @param dependecies {JSON} keyed array of reffed dependecies
+ * @DEPRECATED @param dependecies {JSON} keyed array of reffed dependecies
  * @param stamina {Number}  dependency, value of attribute stamina
  * @param composure {Number} dependency, value of attribute Composure
  * @param resolve {Number} dependency, value of attribute Resolve
- * @param bloodPotency {JSON} dependency, TODO
+ * @param bloodPotency {JSON} dependency, @TODO
  */
 export default {
   props: {'vitals':JSON, 'stamina': Number, 'composure':Number,'resolve':Number,'bloodPotency':Number,},
