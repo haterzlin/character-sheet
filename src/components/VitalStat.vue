@@ -2,8 +2,9 @@
 /**
  *   Displays a read-only stat
  * @param stat {JSON} displayed object
- * @param styleProp {String} style of displayed stat points
+ * DEPRECATED @param styleProp {String} style of displayed stat points
  * @param scale {Number} total number of points, split into groups of five
+ * @param value {Number} sum of dependency values
  */
 export default {
   props:{'stat': Object, 'scale': Number, 'value': Number},
