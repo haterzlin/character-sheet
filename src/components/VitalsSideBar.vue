@@ -22,31 +22,17 @@ export default {
     'vital-stat': VitalStat,
   },
   computed: {
-    /** Computes values of attributes to send to vital stat component */
+    /** Computes values of attributes to send to vital stat component 
+     * TODO bind this to data so its less stupid and easier to modify from user side
+    */
     values() {
       var valueArray = [];
-
-      valueArray['Health'] = this.dependecySum([this.stamina]);
-      valueArray['Willpower'] = this.dependecySum([
-        this.resolve + this.composure,
-      ]);
-      valueArray['Humanity'] = this.dependecySum([]);
-      valueArray['Hunger'] = this.dependecySum([]);
-      valueArray['Blood Potency'] = this.dependecySum([]);
-
+      valueArray['Health'] = this.stamina;
+      valueArray['Willpower'] = this.resolve + this.composure;
+      valueArray['Humanity'] = 0;
+      valueArray['Hunger'] = 0;
+      valueArray['Blood Potency'] = 0;// bloodPotency.value
       return valueArray;
-    },
-  },
-  methods: {
-    /**
-     * returns sum of numbers in @param numberArray
-     */
-    dependecySum(numberArray) {
-      let sum = 0;
-      numberArray.forEach((element) => {
-        sum += element;
-      });
-      return sum;
     },
   },
 };

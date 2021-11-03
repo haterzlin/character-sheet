@@ -12,19 +12,17 @@ export default {
   props: { stat: Object, scale: Number, value: Number },
   data() {
     return {
-      // initalValue is stat.defaultValue or this.finalValue
-      // finalValue is stat.defaultModifier + value or value
-      initialValue: this.stat.defaultValue
-        ? this.stat.defaultValue
-        : this.finalValue()
+      initialValue: this.stat.value ? this.stat.value : this.finalValue()
     };
   },
   methods: {
     /**
-     * @returns computed modifier + value
+     * checks if default modifier exists, if not it is zero
+     * @returns computed modifier(value) + default modifier
      */
     finalValue() {
-      return this.stat.defaultModifier + this.value
+      let mod = (this.stat.defaultModifier) ? this.stat.defaultModifier : 0;
+      return mod + this.value
     },
     /**
      * @returns keyed array of class for a point with value @param valueOfPoint
