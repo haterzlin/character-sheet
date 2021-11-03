@@ -40,9 +40,9 @@ export default {
 </script>
 
 <template>
-  <div class="box">
-    <div class="name">{{ stat.id }}:</div>
-    <div class="points">
+  <div class="vitalStatBox">
+    <div class="vitalStatName">{{ stat.id }}:</div>
+    <div class="vitalStatPoints">
       <span v-for="i in scale" :key="i" :class="classOfPoint(i)"> </span>
     </div>
   </div>
@@ -52,7 +52,7 @@ export default {
 .point {
   cursor: default;
 }
-.points > :nth-child(5n + 0) {
+.vitalStatPoints > :nth-child(5n + 0) {
   margin-right: 10px;
 }
 .healthPt,
@@ -122,13 +122,12 @@ export default {
 .hungerPt.init:hover:after {
   color: #999999;
 }
-.box {
-  width: 350px;
+.vitalStatBox {
   margin: auto;
-  display: inline-block;
+  display: display-block;
   margin-bottom: 1ch;
 }
-.name {
+.vitalStatName {
   font-weight: 600;
 }
 </style>
