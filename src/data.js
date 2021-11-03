@@ -838,7 +838,6 @@ export const vitals = [
     style: "point",
     scale: 10,
     //TODO should contain sth like> depends: ['generation.bloodPotency'],
-    defaultModifier: 0,
     description:"Your Blood Potency: a measure of Caine's blood in Your character",
     },
 ];
