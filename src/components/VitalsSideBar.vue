@@ -58,7 +58,8 @@ export default {
 <style scoped>
 .sidebar {
   float: inline-start;
-  position: absolute;
+  position: relative;
   width: 350px;
+  top:0;
 }
 </style>
