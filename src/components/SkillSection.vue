@@ -20,7 +20,7 @@ export default {
 </script>
 
 <template>
-  <div class="statSection">
+  <div class="statSection" id="skills">
     <h2>{{ stats.id }}
       <select
         v-model="stats.resource"

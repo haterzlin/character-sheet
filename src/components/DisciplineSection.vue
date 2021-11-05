@@ -12,7 +12,7 @@ import RestrictionState from "./RestrictionState.vue";
 <script>
 export default {
   mixins: [statSectionMixin],
-  props: ["clan"],
+  props: ["selectedClan"],
   emits: ["statSectionHover"],
   computed: {
     /**
@@ -28,26 +28,12 @@ export default {
       }
       return tmp;
     },
-  },
-  methods: {
-    /**
-     * @returns if discipline is primary or not
-     */
-    isPrimary(discipline) {
-      if (!this.clan.abilities) return false;
-      for (var i = 0; i < this.clan.abilities.length; i++) {
-        if (discipline.id == this.clan.abilities[i]) {
-          return true;
-        }
-      }
-      return false;
-    },
-  },
+  }
 };
 </script>
 
 <template>
-  <div class="statSection">
+  <div class="statSection" id="disciplines">
     <h2>{{ stats.id }}</h2>
     <RestrictionState
       class="resourceCount"
@@ -60,7 +46,7 @@ export default {
       <ul class="ulStats">
         <li v-for="item in stats.data" :key="item.id">
           <Stat
-            v-show="isPrimary(item)"
+            v-show="item.clans.includes(selectedClan)"
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="emitAllowedChange($event)"
@@ -84,10 +70,10 @@ export default {
       <ul class="ulStats">
         <li v-for="item in stats.data" :key="item.id">
           <stat
-            v-show="!isPrimary(item)"
+            v-show="! item.clans.includes(selectedClan)"
             :stat="item"
             :scale="stats.resource.length - 1"
-            @stat-change="!clan.abilities || $event[2] ? emitAllowedChange($event) : ''"
+            @stat-change="selectedClan == 'Caitiff' || $event[2] ? emitAllowedChange($event) : ''"
             @stat-hover-start="
               $emit('statSectionHover', {
                 stat: $event.stat,
@@ -95,7 +81,7 @@ export default {
                 category: 'Secondary',
                 section: stats.id,
                 resource: stats.resource,
-                isCaitiff: clan.abilities === null,
+                isCaitiff: selectedClan == 'Caitiff',
               })
             "
             @stat-hover-end="$emit('statSectionHover', null)"

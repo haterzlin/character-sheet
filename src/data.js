@@ -1,12 +1,83 @@
+/* TODO make a set of names and randomly pick a default on page load*/
 const DEFAULTNAME = "A Kindred That Is Not To Be Named";
+const DEFAULTCONCEPT = "Hidden and invisible spy";
+const DEFAULTAMBITION = "Become master spy";
+const DEFAULTDESIRE = "Never be seen by any mortal";
+const DEFAULTSIRE = "Anonymous";
+const DEFAULTAGE = "26 by looks, 74 by birth";
+const DEFAULTDESC = "Entirely common guy";
 
 export const biography = {
-  name: "",
-  defaultName: DEFAULTNAME /*make a set of names and randomly pick a default on page load*/,
-  age: null /*why not age=0? bcuz if you use a value then placeholder does not apply in input box*/,
-  clan: null,
-  generation: null,
-  faction: null,
+  name: {
+    id: "Name",
+    value: "",
+    placeholder: DEFAULTNAME 
+  },
+  sex: {
+    id: "Sex",
+    value: "Male",
+    list: ["Male", "Female"],
+    disabledValue: "Choose sex"
+  },
+  concept: {
+    id: "Concept",
+    value: "",
+    placeholder: DEFAULTCONCEPT 
+  },
+  clan: {
+    id: "Clan",
+    value: "Thin-Blood",
+    list: ["Thin-Blood", "Caitiff" ,"Brujah", "Gangrel", "Malkavian", "Nosferatu", "Toreador", "Tremere", "Ventrue"],
+    disabledValue: "Pick a Clan"
+  },
+  generation: {
+    id: "Generation",
+    value: "16th",
+    list: ["16th", "15th", "14th", "13th", "12th", "11th", "10th"],
+    disabledValue: "Pick generation"
+  },
+  faction: {
+    id: "Faction",
+    value: "Camarilla",
+    list: ["Anarch", "Autarki", "Camarilla", "Sabbat"],
+    disabledValue: "Pick faction"
+  },
+  predator: {
+    id: "Predator Type",
+    value: "Alleycat",
+    list: ["Alleycat", "Bagger", "Blood Leech", "Cleaver", "Consensualist", "Farmer", "Osiris", "Sandman", "Scene Queen", "Siren"],
+    disabledValue: "Choose Your Predator Type"
+  },
+  ambition: {
+    id: "Ambition",
+    value: "",
+    placeholder: DEFAULTAMBITION
+  },
+  desire: {
+    id: "Desire",
+    value: "",
+    placeholder: DEFAULTDESIRE
+  },
+  sire: {
+    id: "Sire",
+    value: "",
+    placeholder: DEFAULTSIRE
+  },
+  age: {
+    id: "Age",
+    value: "",
+    placeholder: DEFAULTAGE
+  },
+  description: {
+    id: "Description",
+    value: "",
+    placeholder: DEFAULTDESC
+  },
+  image: {
+    id: "Image",
+    value: "data:image/png;base64,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"
+  }
+
 };
 
 export const skillDistributions = [
@@ -21,45 +92,6 @@ export const skillDistributions = [
   {
     id: "Specialist",
     resource: [17, 3, 3, 3, 1, 0],
-  },
-];
-
-export const clans = [
-  {
-    id: "Thin-Blood",
-    abilities: null,
-  },
-  {
-    id: "Caitiff",
-    abilities: null,
-  },
-  {
-    id: "Brujah",
-    abilities: ["Celerity", "Potence", "Presence"],
-  },
-  {
-    id: "Gangrel",
-    abilities: ["Animalism", "Fortitude", "Protean"],
-  },
-  {
-    id: "Malkavian",
-    abilities: ["Auspex", "Dominate", "Obfuscate"],
-  },
-  {
-    id: "Nosferatu",
-    abilities: ["Animalism", "Obfuscate", "Potence"],
-  },
-  {
-    id: "Toreador",
-    abilities: ["Auspex", "Celerity", "Presence"],
-  },
-  {
-    id: "Tremere",
-    abilities: ["Auspex", "Blood Sorcery", "Dominate"],
-  },
-  {
-    id: "Ventrue",
-    abilities: ["Dominate", "Fortitude", "Presence"],
   },
 ];
 
@@ -652,8 +684,8 @@ export const disciplines = {
   resource: [8, 1, 1, 0, 0, 0],
   data: [
     {
-      id: "Animalism",
-      value: 0,
+      id: "Animalism",      
+      value: 0,      
       abilities: {
         1: ["bond famulus", "sense the beast"],
         2: ["feral whispers"],
@@ -661,6 +693,7 @@ export const disciplines = {
         4: ["subsume the spirit"],
         5: ["animal dominion", "drawing out the beast"],
       },
+      clans: ["Gangrel", "Nosferatu"],
       description: {
         general:
           "Animalism is a Discipline that brings the vampire closer to their animalistic nature. This not only allows them to communicate with and gain dominance over creatures of nature, but gives them influence over the Beast itself.<ul><li> Type: Mental</li><li>Masquerade threat: Low to medium. While talking to animalsmight seem eccentric, only the most violent applications of the Discipline elicit more than a few raised eyebrows.</li><li>Blood Resonance: Animal blood, preferably feral.</li></ul>",
@@ -676,6 +709,7 @@ export const disciplines = {
         4: ["spirit’s touch"],
         5: ["clairvoyance", "possession", "telepathy"],
       },
+      clans: ["Malkavian", "Toreador", "Tremere"],
       description: {
         general:
           "Auspex is a Discipline that grants vampires supernatural senses.<ul><li> Type: Mental</li><li>Masquerade threat: Low. Auspex never by itself manifests in a way visible to the naked eye or causes effects that can’t be rationalized, if only as dumb luck.</li><li>Blood Resonance: Phlegmatic. Artists (especially photographers) and visionaries, certain schizophrenics, users of psychoactive substances, detectives.</li></ul>",
@@ -691,6 +725,7 @@ export const disciplines = {
         4: ["theft of vitae"],
         5: ["baal’s caress", "cauldron of blood"],
       },
+      clans: ["Tremere"],
       description: {
         general:
           "Blood Magic, or Blood Sorcery, refers to the magic performed by vampires, fueled by religious or occult practices and the power of Cainite vitae. <ul><li>Type: Sorcery</li><li>Masquerade Threat:Low-High. The individual appearance of the powers and Rituals in Blood Sorcery varies as widely as their effects.</li><li>Blood Resonance: Sanguine. Although not inherent in the Blood itself, Blood Sorcery responds eagerly to blood from human occultists, sorcerers, and cult leaders, as well as hemophiles and bibliophiles.</li></ul>",
@@ -706,6 +741,7 @@ export const disciplines = {
         4: ["draught of elegance", "unerring aim"],
         5: ["lightning strike", "split second"],
       },
+      clans: ["Brujah", "Toreador"],
       description: {
         general:
           "Celerity is a Discipline that grants vampires supernatural quickness and reflexes.<ul><li>Type: Physical</li><li>Masquerade Threat: Medium-High. Most Celerity powers are clearly inhuman, the only saving grace being that they’re very hard to catch on film or photograph.</li><li>Blood Resonance: Choleric. Fear and utter terror, runners, athletes, amphetamine and alkaloid users, habitual players of first-person shooters and other twitch games.</li></ul>",
@@ -721,6 +757,7 @@ export const disciplines = {
         4: ["rationalize"],
         5: ["mass manipulation", "terminal decree"],
       },
+      clans: ["Malkavian", "Tremere", "Ventrue"],
       description: {
         general:
           "Dominate grants the vampire the ability to control the actions of others, manipulate their memories, and force living creatures into acts they would not perform of their own volition.<ul><li>Type: Mental</li><li>Masquerade Threat: Low. Bar-ring someone Dominating an entire auditorium to jump off the cliffs of Dover, it remains one of the more subtle vampiric powers.</li><li>Blood Resonance: Phlegmatic. The blood of the submissive or the dominant, masters and slaves, captains of industry, power trippers, cult leaders and followers.</li></ul>",
@@ -736,6 +773,7 @@ export const disciplines = {
         4: ["draught of endurance"],
         5: ["flesh of marble", "prowess from pain"],
       },
+      clans: ["Gangrel", "Ventrue"],
       description: {
         general:
           "Fortitude is a Discipline that grants Kindred unearthly toughness, even to the point of resisting fire and sunlight. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium. Eyewitnesses undoubtedly react upon someone taking a terminal beating or a hail of bullets and getting back up seemingly unhurt. Favorite cover-up explanations include erroneous recollection in the excitement (the bullets only seemed to hit), special effects (YouTube prank), or the tried-and-tested “must have been on PCP” rationale.</li><li>Blood Resonance: Melancholic. Survivors of war, abuse, or misfortune; endurance runners; mountain climbers; infantry and special forces; those with very powerful immune systems.</li></ul>",
@@ -751,6 +789,7 @@ export const disciplines = {
         4: ["conceal", "vanish"],
         5: ["cloak the gathering", "impostor’s guise"],
       },
+      clans: ["Malkavian", "Nosferatu"],
       description: {
         general:
           "Obfuscate is a Discipline that allows vampires to conceal themselves, deceive the mind of others, or make them ignore what the user does not want to be seen. <ul><li>Type: Mental</li><li>Masquerade Threat: Low. Avoiding detection is the whole point of this Discipline.</li><li>Blood Resonance: Melancholic. The ignored and unseen, the homeless, forgotten, and depressed; spies, pickpockets, excellent servants, roadies and stagehands, and all the background people.</li></ul>",
@@ -766,6 +805,7 @@ export const disciplines = {
         4: ["draught of might"],
         5: ["earthshock", "fist of caine"],
       },
+      clans: ["Brujah", "Nosferatu"],
       description: {
         general:
           "Potence is the Discipline that endows vampires with physical vigor and preternatural strength. Vampires with the Potence Discipline possess physical prowess beyond mortal bounds. <ul><li>Type: Physical</li><li>Masquerade Threat: Medium to high. Lesser exercises of the Discipline might be passed off as \“hysterical strength,\” but once pavement cracks and buildings start to crumble that explanation loses what little credibility it had.</li><li>Blood Resonance: Choleric. The strong and healthy; athletes and young men and women in their prime, gym rats, wrestlers, construction workers and lum-berjacks, longshoremen.</li></ul>",
@@ -781,6 +821,7 @@ export const disciplines = {
         4: ["irresistible voice", "summon"],
         5: ["majesty", "star magnetism"],
       },
+      clans: ["Brujah", "Toreador", "Ventrue"],
       description: {
         general:
           "Presence is the Discipline of supernatural allure and emotional manipulation which allows Kindred to attract, sway, and control crowds. <ul><li>Type: Mental</li><li>Masquerade Threat: Low-Medium. A subtle power, people seldom realize Presence has affected them at all. As with most Disciplines, its higher powers can leave puzzled witnesses behind, especially once the effects wear off.</li><li>Blood Resonance: Sanguine. The beautiful and lustful, those completely infatuated with the vampire, models and actors and movie stars, compelling public and private speakers from politicians to car salesmen, YouTube sensations and Instagram influencers.</li></ul>",
@@ -796,6 +837,7 @@ export const disciplines = {
         4: ["metamorphosis"],
         5: ["mist form", "the unfettered heart"],
       },
+      clans: ["Gangrel"],
       description: {
         general:
           "Protean is a Discipline that gives vampires the ability to change form, from growing feral claws to evaporating into a cloud of mist. <ul><li>Type: Physical</li><li>Masquerade Threat: High. One of the most overt Disciplines available to vampires, more or less all Protean powers can breach the Masquerade on their own.</li><li>Blood Resonance: Animal blood, especially animals matching shapeshifted forms; the blood of werewolves, changelings, and other supernatural chimeras of man and beast.</li></ul>",
@@ -838,83 +880,6 @@ export const vitals = [
     id: "Blood Potency",
     style: "point",
     scale: 10,
-    //TODO should contain sth like> depends: ['generation.bloodPotency'],
     description:"Your Blood Potency: a measure of Caine's blood in Your character",
     },
-];
-
-export const generations = [
-  {
-    id: "16th",
-    bloodPotencyMin: 0,
-    bloodPotencyMax: 0,
-  },
-  {
-    id: "15th",
-    bloodPotencyMin: 0,
-    bloodPotencyMax: 0,
-  },
-  {
-    id: "14th",
-    bloodPotencyMin: 0,
-    bloodPotencyMax: 0,
-  },
-  {
-    id: "13th",
-    bloodPotencyMin: 1,
-    bloodPotencyMax: 3,
-  },
-  {
-    id: "12th",
-    bloodPotencyMin: 1,
-    bloodPotencyMax: 3,
-  },    
-  {
-    id: "11th",
-    bloodPotencyMin: 1,
-    bloodPotencyMax: 4,
-    startingBloodPotency: 2
-  },  
-  {
-    id: "10th",
-    bloodPotencyMin: 1,
-    bloodPotencyMax: 4,
-    startingBloodPotency: 2
-  },  
-  {
-    id: "9th",
-    bloodPotencyMin: 2,
-    bloodPotencyMax: 5,
-    NPCOnly: true
-  },  
-  {
-    id: "8th",
-    bloodPotencyMin: 2,
-    bloodPotencyMax: 6,
-    NPCOnly: true
-  },
-  {
-    id: "7th",
-    bloodPotencyMin: 3,
-    bloodPotencyMax: 7,
-    NPCOnly: true
-  },
-  {
-    id: "6th",
-    bloodPotencyMin: 3,
-    bloodPotencyMax: 8,
-    NPCOnly: true
-  },
-  {
-    id: "5th",
-    bloodPotencyMin: 4,
-    bloodPotencyMax: 9,
-    NPCOnly: true
-  },
-  {
-    id: "4th",
-    bloodPotencyMin: 5,
-    bloodPotencyMax: 10,
-    NPCOnly: true
-  },
 ];

@@ -15,14 +15,75 @@ export default {
     stamina: Number,
     composure: Number,
     resolve: Number,
-    bloodPotency: {
-       type: Number,
-       default: 0,
-    }
+    generation: String,        
   },
   emits: ['hover'],
   components: {
     'vital-stat': VitalStat,
+  },
+  data() {
+    return {
+      BloodPGensTable: {
+        "16th": {
+          bloodPotencyMin: 0,
+          startingBloodPotency: 0,
+          bloodPotencyMax: 0,  
+        },
+        "15th": {
+          bloodPotencyMin: 0,
+          startingBloodPotency: 0,
+          bloodPotencyMax: 0,
+        },
+        "14th": {
+          bloodPotencyMin: 0,
+          startingBloodPotency: 0,
+          bloodPotencyMax: 0,
+        },
+        "13th": {
+          bloodPotencyMin: 1,
+          startingBloodPotency: 1,
+          bloodPotencyMax: 3,
+        },
+        "12th": {
+          bloodPotencyMin: 1,
+          bloodPotencyMax: 3,
+        },
+        "11th": {
+          bloodPotencyMin: 1,
+          startingBloodPotency: 2,
+          bloodPotencyMax: 3,
+        },
+        "10th": {
+          bloodPotencyMin: 1,
+          startingBloodPotency: 2,
+          bloodPotencyMax: 4,
+        },
+        "9th": {
+          bloodPotencyMin: 2,
+          bloodPotencyMax: 5,
+        },
+        "8th": {
+          bloodPotencyMin: 2,
+          bloodPotencyMax: 6,
+        },
+        "7th": {
+          bloodPotencyMin: 3,
+          bloodPotencyMax: 7,
+        },
+        "6th": {
+          bloodPotencyMin: 3,
+          bloodPotencyMax: 8,
+        },
+        "5th": {
+          bloodPotencyMin: 4,
+          bloodPotencyMax: 9,
+        },
+        "4th": {
+          bloodPotencyMin: 5,
+          bloodPotencyMax: 10,
+        },
+      }
+    }
   },
   computed: {
     /** Computes values of attributes to send to vital stat component 
@@ -34,7 +95,7 @@ export default {
       valueArray['Willpower'] = this.resolve + this.composure;
       valueArray['Humanity'] = 0;
       valueArray['Hunger'] = 0;
-      valueArray['Blood Potency'] = this.bloodPotency;// bloodPotency.value
+      valueArray['Blood Potency'] = this.BloodPGensTable[this.generation].startingBloodPotency 
       return valueArray;
     },
   },

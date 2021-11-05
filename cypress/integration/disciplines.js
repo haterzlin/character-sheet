@@ -67,7 +67,7 @@ describe('Restrictions test', () => {
         checkNumberOfDots('Presence', 0)
     })
     it('We can see "All picked"', () => { 
-        cy.contains('All picked')
+        cy.get('#disciplines').contains('All picked').should('be.visible')
     })
     it('Click on first dot of Celerity results in 0 dots', () => {
         cy.contains('Celerity').next().children().first().click()
@@ -83,6 +83,6 @@ describe('Restrictions test', () => {
         cy.contains('Secondary').parent().contains("Animalism").next().children().first().should('have.class', 'fill')
     })
     it('We can see "All picked"', () => { 
-        cy.contains('All picked')
+        cy.get('#disciplines').contains('All picked').should('be.visible')
     })
 })

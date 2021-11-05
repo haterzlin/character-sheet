@@ -1,70 +1,81 @@
+<script setup>
+import CharacterInfoInput from "./CharacterInfoInput.vue";
+import CharacterInfoSelect from "./CharacterInfoSelect.vue";
+import CharacterInfoPortrait from "./CharacterInfoPortrait.vue";
+</script>
+
 <script>
 /**
- * Displays inputs for name and age
- * displays selects for clan, generation, faction
+ * Displays basic character info in inputs or selects,
+ * emits detected changes upwards to have data fresh for export or potential other work
  */
 export default {
-  props: ["bio", "clans", "generations"],
+  props: ["bio", "generations"],
+  emits: ["bioChange"]
 };
 </script>
 
 <template>
-  <div class="char-info">
-    <input
-      class="heading1"
-      type="text"
-      v-model="bio.name"
-      :placeholder="bio.defaultName"
-    />
-    <b>Age:</b>
-    <input
-      :style="{ width: 7 + 'ch' }"
-      v-model="bio.age"
-      type="number"
-      :placeholder="123"
-    />
-    <b>Generation:</b>
-    <select v-model="bio.generation">
-      <option v-for="generation in generations" :key="generation.id" :value="generation">
-        {{ generation.id }}</option>
-    </select>
-    <b>Clan:</b>
-    <select v-model="bio.clan">
-      <option disabled value="">Pick a Clan</option>
-      <option v-for="clan in clans" :key="clan.id" :value="clan">
-        {{ clan.id }}
-      </option>
-    </select>
-    <b>Faction:</b>
-    <select v-model="bio.faction">
-      <option disabled value="">Choose Your Coterie's Faction</option>
-      <option value="Anarch">Anarch</option>
-      <option value="Autarki">Autarki</option>
-      <option value="Camarilla">Camarilla</option>
-      <option value="Sabbat">Sabbat</option>
-    </select>
+  <div class="char-info" id="char-info">
+    <div class="char-info-group">
+      <CharacterInfoInput 
+        :item="bio.concept" 
+        @char-item-change="$emit('bioChange', [bio.concept, $event])"></CharacterInfoInput>
+      <CharacterInfoSelect 
+        :item="bio.sex"
+        @char-item-change="$emit('bioChange', [bio.sex, $event])" ></CharacterInfoSelect>
+      <CharacterInfoInput 
+        :item="bio.age" 
+        @char-item-change="$emit('bioChange', [bio.age, $event])"></CharacterInfoInput>
+      <CharacterInfoInput 
+        :item="bio.description" 
+        @char-item-change="$emit('bioChange', [bio.description, $event])"></CharacterInfoInput>
+      <CharacterInfoInput 
+        :item="bio.ambition"
+        @char-item-change="$emit('bioChange', [bio.ambition, $event])"></CharacterInfoInput>
+      <CharacterInfoInput 
+        :item="bio.desire"
+        @char-item-change="$emit('bioChange', [bio.desire, $event])"></CharacterInfoInput>
+    </div>
+    <div class="char-info-group">
+      <CharacterInfoPortrait
+        :item="bio.image"
+        @char-item-change="$emit('bioChange', [bio.image, $event])"
+      ></CharacterInfoPortrait>
+      <CharacterInfoInput 
+        :item="bio.name"
+        @char-item-change="$emit('bioChange', [bio.name, $event])"></CharacterInfoInput>
+    </div>
+    <div class="char-info-group">
+      <CharacterInfoSelect 
+        :item="bio.generation"
+        @char-item-change="$emit('bioChange', [bio.generation, $event])"></CharacterInfoSelect>         
+      <CharacterInfoSelect 
+        :item="bio.clan"
+        @char-item-change="$emit('bioChange', [bio.clan, $event])"></CharacterInfoSelect>
+      <CharacterInfoInput 
+        :item="bio.sire" 
+        @char-item-change="$emit('bioChange', [bio.sire, $event])"></CharacterInfoInput>     
+      <CharacterInfoSelect 
+        :item="bio.faction"
+        @char-item-change="$emit('bioChange', [bio.faction, $event])"></CharacterInfoSelect>
+      <CharacterInfoSelect 
+        :item="bio.predator"
+        @char-item-change="$emit('bioChange', [bio.predator, $event])"></CharacterInfoSelect>
+
+    </div>
+    <div class="clear"></div>
   </div>
 </template>
 
 <style scoped>
-input {
-  border: none;
+.char-info-group {
+  width: 32%;
+  float: left
 }
-input.heading1 {
-  display: block;
-  font-family: Serif;
-  font-size: 2em;
-  font-weight: bolder;
-  width: 100%;
+
+.clear {
+  clear: both;
 }
-input:hover {
-  background-color: #dddddd;
-}
-select {
-  border: none;
-}
-select:hover {
-  background-color: #dddddd;
-  cursor: pointer;
-}
+
 </style>

@@ -89,7 +89,7 @@ describe('Skill test', () => {
     })
 
     it('All picked is displayed', () => {                
-        cy.contains('All picked')
+        cy.get('#skills').contains('All picked').should('be.visible')
     })  
 
     it('Change skill distribution to Jack of all Trades', () => {

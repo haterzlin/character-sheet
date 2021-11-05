@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-  <div class="statSection">
+  <div class="statSection" id="attributes">
     <h2>{{ stats.id }}</h2>
     <RestrictionState
       class="resourceCount"

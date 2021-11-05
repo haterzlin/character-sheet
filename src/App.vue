@@ -4,8 +4,8 @@ import AttributeSection from "./components/AttributeSection.vue";
 import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
-import VitalsSideBar from './components/VitalsSideBar.vue'
-import { biography, skillDistributions, clans, attributes, skills, disciplines, vitals, generations} from "./data.js";
+import VitalsSideBar from './components/VitalsSideBar.vue';
+import {biography, skillDistributions, attributes, skills, disciplines, vitals} from "./data.js";
 
 export default {
   data() {
@@ -16,10 +16,8 @@ export default {
       skills: skills,
       skillDistributions: skillDistributions,
       attributes: attributes,
-      clans: clans,
       disciplines: disciplines,
       vitals:vitals,
-      generations: generations,
 
       //local states
       mouseOverData: null,
@@ -47,14 +45,14 @@ export default {
     :stamina="attributes.data[0].list[2].value"
     :composure="attributes.data[1].list[2].value"
     :resolve="attributes.data[2].list[2].value"
-    :bloodPotency="(biography.generation) ? ((biography.generation.startingBloodPotency) ? biography.generation.startingBloodPotency : biography.generation.bloodPotencyMin) : null"
+    :generation="biography.generation.value"
     @hover="mouseOverData = $event">
   </vitals-sidebar>
   <div class="sheet">
     <character-info 
       :bio="biography" 
-      :clans="clans"
-      :generations="generations.filter(elem => !elem.NPCOnly)"> </character-info>
+      @bio-change="$event[0].value = $event[1]">
+    </character-info>
     <attribute-section
       :stats="attributes"
       @stat-section-change="setDataValue($event)"
@@ -69,9 +67,8 @@ export default {
     >
     </skill-section>
     <discipline-section
-      v-if="biography.clan"
       :stats="disciplines"
-      :clan="biography.clan"
+      :selectedClan="biography.clan.value"
       @stat-section-change="setDataValue($event)"
       @stat-section-hover="mouseOverData = $event"
     >
