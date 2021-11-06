@@ -843,57 +843,70 @@ export const vitals = [
     },
 ];
 
-export const generations = {
-  4: {
+export const generations = [
+  {
+    id: "4th",
     bloodPotencyMin:5,
     bloodPotencyMax:10
   },
-  5: {
+  {
+    id: "5th",
     bloodPotencyMin:4,
     bloodPotencyMax:9
   },
-  6: {
+  {
+    id: "6th",
     bloodPotencyMin:3,
     bloodPotencyMax:8
   },
-  7: {
+  {
+    id: "7th",
     bloodPotencyMin:3,
     bloodPotencyMax:7
   },
-  8: {
+  {
+    id: "8th",
     bloodPotencyMin:2,
     bloodPotencyMax:6
   },
-  9: {
+  {
+    id: "9th",
     bloodPotencyMin:2,
     bloodPotencyMax:5
   },    
-  10: {
+  {
+    id: "10th",
     bloodPotencyMin:1,
     bloodPotencyMax:4
   },
-  11: {
+  {
+    id: "11th",
     bloodPotencyMin:1,
     bloodPotencyMax:4
   },
-  12: {
+  {
+    id: "12th",
     bloodPotencyMin:1,
     bloodPotencyMax:3
   },    
-  13: {
+  {
+    id: "13th",
     bloodPotencyMin:1,
     bloodPotencyMax:3
   },
-  14: {
+  {
+    id: "14th",
     bloodPotencyMin:0,
     bloodPotencyMax:0
   },
-  15: {
+  {
+    id: "15th",
     bloodPotencyMin:0,
     bloodPotencyMax:0
   },
-  16: {
+  {
+    id: "16th",
     bloodPotencyMin:0,
     bloodPotencyMax:0
   },
-};
+];
