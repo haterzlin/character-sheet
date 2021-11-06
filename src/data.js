@@ -847,37 +847,44 @@ export const generations = [
   {
     id: "16th",
     bloodPotencyMin:0,
-    bloodPotencyMax:0
+    bloodPotencyMax:0,
+    PCBloodPotency:0
   },
   {
     id: "15th",
     bloodPotencyMin:0,
-    bloodPotencyMax:0
+    bloodPotencyMax:0,
+    PCBloodPotency:0
   },
   {
     id: "14th",
     bloodPotencyMin:0,
-    bloodPotencyMax:0
+    bloodPotencyMax:0,
+    PCBloodPotency:0
   },
   {
     id: "13th",
     bloodPotencyMin:1,
-    bloodPotencyMax:3
+    bloodPotencyMax:3,
+    PCBloodPotency:1
   },
   {
     id: "12th",
     bloodPotencyMin:1,
-    bloodPotencyMax:3
+    bloodPotencyMax:3,
+    PCBloodPotency:1
   },    
   {
     id: "11th",
     bloodPotencyMin:1,
-    bloodPotencyMax:4
+    bloodPotencyMax:4,
+    PCBloodPotency:2
   },  
   {
     id: "10th",
     bloodPotencyMin:1,
-    bloodPotencyMax:4
+    bloodPotencyMax:4,
+    PCBloodPotency:2
   },  
   {
     id: "9th",

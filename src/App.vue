@@ -47,7 +47,7 @@ export default {
     :stamina="attributes.data[0].list[2].value"
     :composure="attributes.data[1].list[2].value"
     :resolve="attributes.data[2].list[2].value"
-    :bloodPotency="(biography.generation) ? biography.generation.bloodPotencyMin : null"
+    :bloodPotency="(biography.generation) ? ((biography.generation.PCBloodPotency) ? biography.generation.PCBloodPotency : biography.generation.bloodPotencyMin) : null"
     @hover="mouseOverData = $event">
   </vitals-sidebar>
   <div class="sheet">
