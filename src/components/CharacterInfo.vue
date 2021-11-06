@@ -4,7 +4,7 @@
  * displays selects for clan, generation, faction
  */
 export default {
-  props: ["bio", "clans"],
+  props: ["bio", "clans", "generations"],
 };
 </script>
 
@@ -25,9 +25,8 @@ export default {
     />
     <b>Generation:</b>
     <select v-model="bio.generation">
-      <option>15th</option>
-      <option>14th</option>
-      <option>13th</option>
+      <option v-for="generation in generations" :key="generation.id" :value="clan">
+        {{ generation.id }}</option>
     </select>
     <b>Clan:</b>
     <select v-model="bio.clan">

@@ -845,57 +845,7 @@ export const vitals = [
 
 export const generations = [
   {
-    id: "4th",
-    bloodPotencyMin:5,
-    bloodPotencyMax:10
-  },
-  {
-    id: "5th",
-    bloodPotencyMin:4,
-    bloodPotencyMax:9
-  },
-  {
-    id: "6th",
-    bloodPotencyMin:3,
-    bloodPotencyMax:8
-  },
-  {
-    id: "7th",
-    bloodPotencyMin:3,
-    bloodPotencyMax:7
-  },
-  {
-    id: "8th",
-    bloodPotencyMin:2,
-    bloodPotencyMax:6
-  },
-  {
-    id: "9th",
-    bloodPotencyMin:2,
-    bloodPotencyMax:5
-  },    
-  {
-    id: "10th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:4
-  },
-  {
-    id: "11th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:4
-  },
-  {
-    id: "12th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:3
-  },    
-  {
-    id: "13th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:3
-  },
-  {
-    id: "14th",
+    id: "16th",
     bloodPotencyMin:0,
     bloodPotencyMax:0
   },
@@ -905,8 +855,58 @@ export const generations = [
     bloodPotencyMax:0
   },
   {
-    id: "16th",
+    id: "14th",
     bloodPotencyMin:0,
     bloodPotencyMax:0
+  },
+  {
+    id: "13th",
+    bloodPotencyMin:1,
+    bloodPotencyMax:3
+  },
+  {
+    id: "12th",
+    bloodPotencyMin:1,
+    bloodPotencyMax:3
+  },    
+  {
+    id: "11th",
+    bloodPotencyMin:1,
+    bloodPotencyMax:4
+  },  
+  {
+    id: "10th",
+    bloodPotencyMin:1,
+    bloodPotencyMax:4
+  },  
+  {
+    id: "9th",
+    bloodPotencyMin:2,
+    bloodPotencyMax:5
+  },  
+  {
+    id: "8th",
+    bloodPotencyMin:2,
+    bloodPotencyMax:6
+  },
+  {
+    id: "7th",
+    bloodPotencyMin:3,
+    bloodPotencyMax:7
+  },
+  {
+    id: "6th",
+    bloodPotencyMin:3,
+    bloodPotencyMax:8
+  },
+  {
+    id: "5th",
+    bloodPotencyMin:4,
+    bloodPotencyMax:9
+  },
+  {
+    id: "4th",
+    bloodPotencyMin:5,
+    bloodPotencyMax:10
   },
 ];
