@@ -803,6 +803,7 @@ export const disciplines = {
     },
   ],
 };
+
 export const vitals = [
   {
     id: "Health",
@@ -841,3 +842,58 @@ export const vitals = [
     description:"Your Blood Potency: a measure of Caine's blood in Your character",
     },
 ];
+
+export const generations = {
+  4: {
+    bloodPotencyMin:5,
+    bloodPotencyMax:10
+  },
+  5: {
+    bloodPotencyMin:4,
+    bloodPotencyMax:9
+  },
+  6: {
+    bloodPotencyMin:3,
+    bloodPotencyMax:8
+  },
+  7: {
+    bloodPotencyMin:3,
+    bloodPotencyMax:7
+  },
+  8: {
+    bloodPotencyMin:2,
+    bloodPotencyMax:6
+  },
+  9: {
+    bloodPotencyMin:2,
+    bloodPotencyMax:5
+  },    
+  10: {
+    bloodPotencyMin:1,
+    bloodPotencyMax:4
+  },
+  11: {
+    bloodPotencyMin:1,
+    bloodPotencyMax:4
+  },
+  12: {
+    bloodPotencyMin:1,
+    bloodPotencyMax:3
+  },    
+  13: {
+    bloodPotencyMin:1,
+    bloodPotencyMax:3
+  },
+  14: {
+    bloodPotencyMin:0,
+    bloodPotencyMax:0
+  },
+  15: {
+    bloodPotencyMin:0,
+    bloodPotencyMax:0
+  },
+  16: {
+    bloodPotencyMin:0,
+    bloodPotencyMax:0
+  },
+};
