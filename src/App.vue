@@ -98,6 +98,10 @@ export default {
   background: radial-gradient(#ff6666, #cc0000);
 }
 
+.stat:hover > .statName {
+  color:#cc0000
+}
+
 h2 {
   text-align: center;
 }
