@@ -25,7 +25,7 @@ export default {
     />
     <b>Generation:</b>
     <select v-model="bio.generation">
-      <option v-for="generation in generations" :key="generation.id" :value="clan">
+      <option v-for="generation in generations" :key="generation.id" :value="generation">
         {{ generation.id }}</option>
     </select>
     <b>Clan:</b>

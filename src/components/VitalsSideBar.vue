@@ -15,7 +15,10 @@ export default {
     stamina: Number,
     composure: Number,
     resolve: Number,
-    bloodPotency: Number,
+    bloodPotency: {
+       type: Number,
+       default: 0,
+    }
   },
   emits: ['hover'],
   components: {
@@ -31,7 +34,7 @@ export default {
       valueArray['Willpower'] = this.resolve + this.composure;
       valueArray['Humanity'] = 0;
       valueArray['Hunger'] = 0;
-      valueArray['Blood Potency'] = 0;// bloodPotency.value
+      valueArray['Blood Potency'] = this.bloodPotency;// bloodPotency.value
       return valueArray;
     },
   },
