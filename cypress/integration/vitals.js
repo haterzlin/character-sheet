@@ -15,12 +15,12 @@ function getNthPointOf(Item, Number) {
 function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
     var CurrentItem=cy.contains(Item).next().children()
     var i = 1
-    while ('D33Z NU7$'){
+    while ('UP DOG'){
         if (i<=ExpectedFill) {
             CurrentItem.first().should('have.class', (i<=ExpectedInit) ? 'init' : 'fill')
         }
         else {
-            CurrentItem.first().should('not.have.class','fill').and('not.have.class','init')      
+            CurrentItem.first().should('not.have.class','fill').or('not.have.class','init')      
         }
         if (i !== Scale){
             break
