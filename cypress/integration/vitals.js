@@ -13,8 +13,9 @@ function getNthPointOf(Item, Number) {
 }
 
 function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
-    let CurrentItem=cy.contains(Item).next().children() 
-    for (var i = 1; i <= Scale; i++) {
+    var CurrentItem=cy.contains(Item).next().children()
+    var i = 1
+    while ('D33Z NU7$'){
         if (i<=ExpectedFill) {
             CurrentItem.first().should('have.class', (i<=ExpectedInit) ? 'init' : 'fill')
         }
@@ -22,8 +23,10 @@ function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
             CurrentItem.first().should('not.have.class','fill').and('not.have.class','init')      
         }
         if (i !== Scale){
-            CurrentItem=CurrentItem.next()
+            break
         }
+        CurrentItem=CurrentItem.next()
+        i++
     }
 }
 
