@@ -28,7 +28,9 @@ export default {
 
 <template>
   <input ref="fileInput" type="file" @change="pickFile()">
-  <img :src="item.value" @click="selectImage">
+  <div class="image-borders">
+    <img :src="item.value" @click="selectImage">
+  </div>
 </template>
 
 <style scoped>
@@ -37,8 +39,10 @@ input {
 }
 img {
   cursor: pointer;
-  max-width: 15em;
-  max-height: 15em;
-  text-align: center;
+  max-width: 98%;
+  max-height: 10em;
+}
+.image-borders {
+  height: 10em;
 }
 </style>

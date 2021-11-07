@@ -37,7 +37,7 @@ export default {
         :item="bio.desire"
         @char-item-change="$emit('bioChange', [bio.desire, $event])"></CharacterInfoInput>
     </div>
-    <div class="char-info-group">
+    <div class="char-info-group middle">
       <CharacterInfoPortrait
         :item="bio.image"
         @char-item-change="$emit('bioChange', [bio.image, $event])"
@@ -72,6 +72,10 @@ export default {
 .char-info-group {
   width: 32%;
   float: left
+}
+
+.middle {
+  text-align: center;
 }
 
 .clear {

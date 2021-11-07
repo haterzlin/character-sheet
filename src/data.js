@@ -2,7 +2,7 @@
 const DEFAULTNAME = "A Kindred That Is Not To Be Named";
 const DEFAULTCONCEPT = "Hidden and invisible spy";
 const DEFAULTAMBITION = "Become master spy";
-const DEFAULTDESIRE = "Never be seen by any mortal";
+const DEFAULTDESIRE = "Creep up on current master spy";
 const DEFAULTSIRE = "Anonymous";
 const DEFAULTAGE = "26 by looks, 74 by birth";
 const DEFAULTDESC = "Entirely common guy";
