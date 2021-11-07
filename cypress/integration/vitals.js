@@ -13,13 +13,17 @@ function getNthPointOf(Item, Number) {
 }
 
 function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
-    for (var i = 1; i <= Scale; i++) {        
+    let CurrentItem=cy.contains(Item).next().children() 
+    for (var i = 1; i <= Scale; i++) {
         if (i<=ExpectedFill) {
-            getNthPointOf(Item,i).should('have.class', (i<=ExpectedInit) ? 'init' : 'fill')
+            CurrentItem.first().should('have.class', (i<=ExpectedInit) ? 'init' : 'fill')
         }
         else {
-            getNthPointOf(Item,i).should('not.have.class','fill').and('not.have.class','init')      
-        }     
+            CurrentItem.first().should('not.have.class','fill').and('not.have.class','init')      
+        }
+        if (i !== Scale){
+            CurrentItem=CurrentItem.next()
+        }
     }
 }
 
