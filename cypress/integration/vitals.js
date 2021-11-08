@@ -20,7 +20,8 @@ function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
             CurrentItem.first().should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
         }
         else {
-            CurrentItem.first().should('not.have.class', 'fill').or('not.have.class', 'init')      
+            CurrentItem.first().should('not.have.class', 'fill')
+            CurrentItem.first().should('not.have.class', 'init')      
         }
         if (i !== Scale){
             break
@@ -38,22 +39,22 @@ describe('Vitals test',()=>{
         checkNumberOfPoints('Stamina', 1, 1, 5)
         checkNumberOfPoints('Composure', 1, 1, 5)
         checkNumberOfPoints('Resolve', 1, 1, 5)
-        checkNumberOfPoints('Health', 4, 4, 15) // health = stamina + 3
-        checkNumberOfPoints('Willpower', 2, 2, 15) // willpower = resolve + composure
+        checkNumberOfPoints('Health', 4, 4, 15)
+        checkNumberOfPoints('Willpower', 2, 2, 15)
     })
     it('Click on Stamina 4th dot will add fill class and Health will have added fill class up to 7th Point', () => {
         getNthPointOf('Stamina', 4).click()
         checkNumberOfPoints('Stamina', 1, 4, 5)
-        checkNumberOfPoints('Health', 4, 7, 15) // health = stamina + 3
+        checkNumberOfPoints('Health', 4, 7, 15)
     })
     it('Click on Composure 3rd dot will add fill class and Willpower shall have added fill class up to 4th Point', () => {
         getNthPointOf('Composure', 3).click()
         checkNumberOfPoints('Composure', 1, 3, 5)
-        checkNumberOfPoints('Willpower', 2, 4, 15) // willpower = resolve + composure
+        checkNumberOfPoints('Willpower', 2, 4, 15)
     })
     it('Click on Resolve 3rd dot will add fill class and Willpower shall have added fill class up to 4th Point', () => {
         getNthPointOf('Resolve', 3).click()
         checkNumberOfPoints('Resolve', 1, 3, 5)
-        checkNumberOfPoints('Willpower', 2, 6, 15) // willpower = resolve + composure
+        checkNumberOfPoints('Willpower', 2, 6, 15)
     })
 })
