@@ -54,7 +54,7 @@ export default {
     <character-info 
       :bio="biography" 
       :clans="clans"
-      :generations="generations"> </character-info>
+      :generations="generations.filter(elem => !elem.NPCOnly)"> </character-info>
     <attribute-section
       :stats="attributes"
       @stat-section-change="setDataValue($event)"

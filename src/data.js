@@ -846,74 +846,75 @@ export const vitals = [
 export const generations = [
   {
     id: "16th",
-    bloodPotencyMin:0,
-    bloodPotencyMax:0,
-    PCBloodPotency:0
+    bloodPotencyMin: 0,
+    bloodPotencyMax: 0,
   },
   {
     id: "15th",
-    bloodPotencyMin:0,
-    bloodPotencyMax:0,
-    PCBloodPotency:0
+    bloodPotencyMin: 0,
+    bloodPotencyMax: 0,
   },
   {
     id: "14th",
-    bloodPotencyMin:0,
-    bloodPotencyMax:0,
-    PCBloodPotency:0
+    bloodPotencyMin: 0,
+    bloodPotencyMax: 0,
   },
   {
     id: "13th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:3,
-    PCBloodPotency:1
+    bloodPotencyMin: 1,
+    bloodPotencyMax: 3,
   },
   {
     id: "12th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:3,
-    PCBloodPotency:1
+    bloodPotencyMin: 1,
+    bloodPotencyMax: 3,
   },    
   {
     id: "11th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:4,
-    PCBloodPotency:2
+    bloodPotencyMin: 1,
+    bloodPotencyMax: 4,
+    PCBloodPotency: 2
   },  
   {
     id: "10th",
-    bloodPotencyMin:1,
-    bloodPotencyMax:4,
-    PCBloodPotency:2
+    bloodPotencyMin: 1,
+    bloodPotencyMax: 4,
+    PCBloodPotency: 2
   },  
   {
     id: "9th",
-    bloodPotencyMin:2,
-    bloodPotencyMax:5
+    bloodPotencyMin: 2,
+    bloodPotencyMax: 5,
+    NPCOnly: true
   },  
   {
     id: "8th",
-    bloodPotencyMin:2,
-    bloodPotencyMax:6
+    bloodPotencyMin: 2,
+    bloodPotencyMax: 6,
+    NPCOnly: true
   },
   {
     id: "7th",
-    bloodPotencyMin:3,
-    bloodPotencyMax:7
+    bloodPotencyMin: 3,
+    bloodPotencyMax: 7,
+    NPCOnly: true
   },
   {
     id: "6th",
-    bloodPotencyMin:3,
-    bloodPotencyMax:8
+    bloodPotencyMin: 3,
+    bloodPotencyMax: 8,
+    NPCOnly: true
   },
   {
     id: "5th",
-    bloodPotencyMin:4,
-    bloodPotencyMax:9
+    bloodPotencyMin: 4,
+    bloodPotencyMax: 9,
+    NPCOnly: true
   },
   {
     id: "4th",
-    bloodPotencyMin:5,
-    bloodPotencyMax:10
+    bloodPotencyMin: 5,
+    bloodPotencyMax: 10,
+    NPCOnly: true
   },
 ];
