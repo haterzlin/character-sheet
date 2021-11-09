@@ -13,25 +13,25 @@ function getNthPointOf(Item, Number) {
 }
 
 function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
-    var CurrentItem = cy.contains(Item).next().children()
+    var CurrentChildren = cy.contains(Item).next().children()
     var i = 1
     while ('UP DOG'){
         if (i <= ExpectedFill) {
-            CurrentItem.first().should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
+            CurrentChildren.first().should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
         }
         else {
-            CurrentItem.first().should('not.have.class', 'fill')
-            CurrentItem.first().should('not.have.class', 'init')      
+            CurrentChildren.first().should('not.have.class', 'fill')
+            CurrentChildren.first().should('not.have.class', 'init')      
         }
-        if (i !== Scale){
+        if (i === Scale){
             break
         }
-        CurrentItem = CurrentItem.next()
+        CurrentChildren = CurrentChildren.next()
         i++
     }
 }
 
-describe('Vitals test',()=>{
+describe('Vitals test', () => {
     it('Page Exists', () => {
         cy.visit('/')
     })
@@ -53,5 +53,13 @@ describe('Vitals test',()=>{
     it('Click on Resolve 3rd dot will add fill class and Willpower shall have added fill class up to 4th Point', () => {
         getNthPointOf('Resolve', 3).click()
         checkNumberOfPoints('Willpower', 2, 6, 15)
+    })
+    it('Click on Stamina 3rd dot will remove fill class and Health will have removed fill class up to 6th Point', () => {
+        getNthPointOf('Stamina', 3).click()
+        checkNumberOfPoints('Health', 4, 5, 15)
+    })
+    it('Click on Composure 3rd dot will remove fill class and Willpower shall have removed fill class at 4th Point', () => {
+        getNthPointOf('Composure', 3).click()
+        checkNumberOfPoints('Willpower', 2, 5, 15)
     })
 })
