@@ -10,22 +10,29 @@ PrimaryDisciplines[4] = [1, 3, 8]
 PrimaryDisciplines[5] = [1, 2, 4]
 PrimaryDisciplines[6] = [4, 5, 8]
 
-function checkNumberOfDots(Item, Expected) {
-    var ExpectedResults = []
-    for (var i=0; i < 5; i++) {
-        if (i<Expected) {
-            ExpectedResults.push('have.class')
+function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
+    var CurrentChildren = cy.contains(Item).next().children()
+    var i = 1
+    while ('UP DOG'){
+        if (i <= ExpectedFill) {
+            CurrentChildren.first().should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
         }
         else {
-            ExpectedResults.push('not.have.class')        
-        }     
+            CurrentChildren.first().should('not.have.class', 'fill')
+            CurrentChildren.first().should('not.have.class', 'init')      
+        }
+        if (i === Scale){
+            break
+        }
+        CurrentChildren = CurrentChildren.next()
+        i++
     }
-    cy.contains(Item).next().children().last().should(ExpectedResults[4], 'fill')
-    cy.contains(Item).next().children().next().next().next().should(ExpectedResults[3], 'fill')
-    cy.contains(Item).next().children().next().next().should(ExpectedResults[2], 'fill')        
-    cy.contains(Item).next().children().next().should(ExpectedResults[1], 'fill')
-    cy.contains(Item).next().children().first().should(ExpectedResults[0], 'fill')
 }
+
+function checkNumberOfDots(Item, Expected) {
+    checkNumberOfPoints(Item, 0, Expected, 5)
+}
+
 
 describe('Clans & Disciplines relations test', () => {
     it('Thin-Blood has no Primary Disciplines', () => {
