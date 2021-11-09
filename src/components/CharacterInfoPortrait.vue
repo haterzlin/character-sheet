@@ -35,12 +35,12 @@ export default {
 
 <style scoped>
 input {
-  display: none; 
+  display: none;   
 }
 img {
   cursor: pointer;
   max-width: 98%;
-  max-height: 10em;
+  max-height: 9.5em;
 }
 .image-borders {
   height: 10em;

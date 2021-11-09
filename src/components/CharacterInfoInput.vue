@@ -36,4 +36,9 @@ input {
 input:hover {
   background-color: #dddddd;
 }
+
+.middle input {
+  text-align: center;
+}
+
 </style>
