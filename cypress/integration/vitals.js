@@ -1,11 +1,11 @@
 const Generation2BloodPotency = [
-    {generation: '16th', bloodPotency:0},
-    {generation: '15th', bloodPotency:0},
-    {generation: '14th', bloodPotency:0},
-    {generation: '13th', bloodPotency:1},
-    {generation: '12th', bloodPotency:1},
-    {generation: '11th', bloodPotency:2},
-    {generation: '10th', bloodPotency:2}
+    { generation: '16th', bloodPotency: 0 },
+    { generation: '15th', bloodPotency: 0 },
+    { generation: '14th', bloodPotency: 0 },
+    { generation: '13th', bloodPotency: 1 },
+    { generation: '12th', bloodPotency: 1 },
+    { generation: '11th', bloodPotency: 2 },
+    { generation: '10th', bloodPotency: 2 }
 ]
 
 function nthChild(CyElement, Iterator) {
