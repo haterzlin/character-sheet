@@ -24,14 +24,14 @@ export default {
 <template>
   <div class="helpWindow">
     <div class="helpHeader">
-      <div :style="{float:'left',position:'fixed'}">
+      <div :style="{float:'left'}">
         <span class="helpIcon">?</span>
         <select class="helpDataSelect">
-          <option>1</option>
+          <option>something</option>
         </select>
       </div>
-      <h3 class="helpHeading">HELP</h3>
       <span class="helpExit"></span>
+      <h3 class="helpHeading">HELP</h3>
     </div>
     <div class="helpContent">
       <div v-if="data.category">
@@ -63,7 +63,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="helpFooter"><span class="resize"></span></div>
+    <div class="helpFooter"><span class="resize"></span>text</div>
   </div>
 </template>
 
@@ -74,18 +74,79 @@ export default {
 }
 .helpHeading {  
   margin: 0;
+  flex-basis: 100%;
 }
 .helpContent {
   padding: 0px 5px;
   overflow-y: scroll;
 }
+.helpHeader {
+  display:flex;
+  width:100%;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding: 5px 0px;
+  background-color: #aaaaaa;
+}
+.helpExit {
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+  color: #666666;  
+  margin: 0px 5px;
+  align-self: flex-start;
+  justify-self: flex-end;
+  cursor: pointer;
+  display: inline-flex;  
+  align-items: center;
+  justify-content: center;
+
+}
+.helpExit:after {
+  content:'\00D7';
+}
+.helpExit:hover {
+  color: black;
+}
+.helpIcon {
+  height: 15px;
+  width: 15px;
+  margin: 0px 5px;
+  cursor:pointer;
+  border: black outset 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; 
+}
+.helpIcon:hover {  
+  color: #ff6666;
+  border-color: #ff6666;
+}
 div.helpWindow {
   margin-left: 1150px;
   float: right;
+  position:fixed;
   z-index: 9;
-  position: fixed;
   width: 350px;
   background-color: white;
   border: 1px solid black;
+}
+span.resize {
+  display:inline-block;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #666666;
+  border-left: 10px solid #666666;
+  cursor: sw-resize;
+}
+span.resize:hover {
+  border-bottom-color: black;
+  border-left-color: black;
+}
+.helpFooter {
+  bottom: 0;
+  text-align : justify;
+  border-top: 1px solid #333333;
 }
 </style>
