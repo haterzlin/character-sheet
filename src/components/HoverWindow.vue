@@ -23,34 +23,45 @@ export default {
 
 <template>
   <div class="hover">
-    <div v-if="data.category">
-      <p v-html="data.category.description"></p>
+    <div class="helpHeader">
+      <span class="helpIcon">?</span>
+      <select class="helpDataSelect">
+        <option>1</option>
+      </select>
+      <h2>Did You Know?</h2>
+      <span class="helpExit"></span>
     </div>
-    <div class="statDescription" v-if="data.stat">
-      <p v-html="data.stat.description.general"></p>
-      <p
-        v-if="data.stat.description.specialties"
-        v-html="data.stat.description.specialties"
-      ></p>
-      <div v-if="data.hoverPointer">
-        <span
-          v-for="i in 5"
-          :key="i"
-          class="point"
-          :class="{ init: data.hoverPointer >= i }"
-        >
-        </span>
+    <div class="helpContent">
+      <div v-if="data.category">
+        <p v-html="data.category.description"></p>
       </div>
-      <p
-        v-if="data.stat.description[data.hoverPointer]"
-        v-html="data.stat.description[data.hoverPointer]"
-      ></p>
-      <div v-if="data.stat.abilities && !data.stat.description[data.hoverPointer]">
-        <p class="ability" v-for="item in data.stat.abilities[data.hoverPointer]" :key="item">
-          {{ item }}
-        </p>
+      <div class="statDescription" v-if="data.stat">
+        <p v-html="data.stat.description.general"></p>
+        <p
+          v-if="data.stat.description.specialties"
+          v-html="data.stat.description.specialties"
+        ></p>
+        <div v-if="data.hoverPointer">
+          <span
+            v-for="i in 5"
+            :key="i"
+            class="point"
+            :class="{ init: data.hoverPointer >= i }"
+          >
+          </span>
+        </div>
+        <p
+          v-if="data.stat.description[data.hoverPointer]"
+          v-html="data.stat.description[data.hoverPointer]"
+        ></p>
+        <div v-if="data.stat.abilities && !data.stat.description[data.hoverPointer]">
+          <p class="ability" v-for="item in data.stat.abilities[data.hoverPointer]" :key="item">
+            {{ item }}
+          </p>
+        </div>
       </div>
     </div>
+    <div class="helpFooter"><span class="resize"></span></div>
   </div>
 </template>
 
