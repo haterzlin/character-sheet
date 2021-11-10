@@ -16,21 +16,18 @@ const Jack1LvlSkills = [18,19,20]
 const Jack0LvlSkills = [0,2]
 
 function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
-    var CurrentChildren = cy.contains(Item).next().children()
-    var i = 1
-    while ('UP DOG'){
+    var CurrentChild = cy.contains(Item).next().children().first()
+    for (var i=1; i <= Scale; i++) {        
+        if (i != 1) {
+            CurrentChild = CurrentChild.next().first()
+        }
         if (i <= ExpectedFill) {
-            CurrentChildren.first().should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
+            CurrentChild.should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
         }
         else {
-            CurrentChildren.first().should('not.have.class', 'fill')
-            CurrentChildren.first().should('not.have.class', 'init')      
-        }
-        if (i === Scale){
-            break
-        }
-        CurrentChildren = CurrentChildren.next()
-        i++
+            CurrentChild.should('not.have.class', 'fill')
+            CurrentChild.should('not.have.class', 'init')      
+        }        
     }
 }
 

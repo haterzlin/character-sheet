@@ -11,21 +11,18 @@ PrimaryDisciplines[5] = [1, 2, 4]
 PrimaryDisciplines[6] = [4, 5, 8]
 
 function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
-    var CurrentChildren = cy.contains(Item).next().children()
-    var i = 1
-    while ('UP DOG'){
+    var CurrentChild = cy.contains(Item).next().children().first()
+    for (var i=1; i <= Scale; i++) {        
+        if (i != 1) {
+            CurrentChild = CurrentChild.next().first()
+        }
         if (i <= ExpectedFill) {
-            CurrentChildren.first().should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
+            CurrentChild.should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
         }
         else {
-            CurrentChildren.first().should('not.have.class', 'fill')
-            CurrentChildren.first().should('not.have.class', 'init')      
-        }
-        if (i === Scale){
-            break
-        }
-        CurrentChildren = CurrentChildren.next()
-        i++
+            CurrentChild.should('not.have.class', 'fill')
+            CurrentChild.should('not.have.class', 'init')      
+        }        
     }
 }
 
