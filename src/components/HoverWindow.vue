@@ -24,15 +24,13 @@ export default {
 <template>
   <div class="helpWindow">
     <div class="helpHeader">
-      <div :style="{float:'left'}">
-        <span class="helpIcon">?</span>
-        <select class="helpDataSelect">
-          <option>something</option>
-        </select>
-      </div>
-      <span class="helpExit"></span>
+      <span class="helpIcon">?</span>      
       <h3 class="helpHeading">HELP</h3>
+      <span class="helpExit"></span>
     </div>
+    <select class="helpDataSelect">
+      <option>something</option>
+    </select>
     <div class="helpContent">
       <div v-if="data.category">
         <p v-html="data.category.description"></p>
@@ -63,7 +61,7 @@ export default {
         </div>
       </div>
     </div>
-    <div class="helpFooter"><span class="resize"></span>text</div>
+    <div class="helpFooter"><span class="resize"></span></div>
   </div>
 </template>
 
@@ -74,7 +72,7 @@ export default {
 }
 .helpHeading {  
   margin: 0;
-  flex-basis: 100%;
+  cursor: grab;
 }
 .helpContent {
   padding: 0px 5px;
@@ -134,19 +132,21 @@ div.helpWindow {
 }
 span.resize {
   display:inline-block;
-  border-top: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid #666666;
-  border-left: 10px solid #666666;
+  border-top: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #666666;
+  border-left: 6px solid #666666;
   cursor: sw-resize;
+  vertical-align: bottom;
 }
 span.resize:hover {
   border-bottom-color: black;
   border-left-color: black;
 }
 .helpFooter {
-  bottom: 0;
-  text-align : justify;
-  border-top: 1px solid #333333;
+  clear: both;
+}
+.helpDataSelect {
+  cursor: pointer;
 }
 </style>
