@@ -873,13 +873,13 @@ export const generations = [
     id: "11th",
     bloodPotencyMin: 1,
     bloodPotencyMax: 4,
-    PCBloodPotency: 2
+    startingBloodPotency: 2
   },  
   {
     id: "10th",
     bloodPotencyMin: 1,
     bloodPotencyMax: 4,
-    PCBloodPotency: 2
+    startingBloodPotency: 2
   },  
   {
     id: "9th",
