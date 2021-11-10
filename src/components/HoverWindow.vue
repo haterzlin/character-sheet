@@ -22,13 +22,15 @@ export default {
 </script>
 
 <template>
-  <div class="hover">
+  <div class="helpWindow">
     <div class="helpHeader">
-      <span class="helpIcon">?</span>
-      <select class="helpDataSelect">
-        <option>1</option>
-      </select>
-      <h2>Did You Know?</h2>
+      <div :style="{float:'left',position:'fixed'}">
+        <span class="helpIcon">?</span>
+        <select class="helpDataSelect">
+          <option>1</option>
+        </select>
+      </div>
+      <h3 class="helpHeading">HELP</h3>
       <span class="helpExit"></span>
     </div>
     <div class="helpContent">
@@ -70,13 +72,20 @@ export default {
   font-variant: small-caps;
   font-weight: bold;
 }
-div.hover {
+.helpHeading {  
+  margin: 0;
+}
+.helpContent {
+  padding: 0px 5px;
+  overflow-y: scroll;
+}
+div.helpWindow {
   margin-left: 1150px;
   float: right;
   z-index: 9;
   position: fixed;
   width: 350px;
   background-color: white;
-  padding: 2px;
+  border: 1px solid black;
 }
 </style>
