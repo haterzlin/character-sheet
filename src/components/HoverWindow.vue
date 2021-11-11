@@ -28,6 +28,7 @@ export default {
       right: 0,
       top: 0,
       zmazat: null,
+      isGrabbed : false,
     };
   },
   computed: {
@@ -44,6 +45,7 @@ export default {
     },
   },
   methods:{
+    /** method for resizing window */
     resize(mouseEvent){
       if (mouseEvent.buttons !== 1) return;
       let x = - mouseEvent.offsetX;
@@ -52,7 +54,16 @@ export default {
       this.width += x;
       this.height += y;
     },
+    /**method for help window drag and drop */
+    dragNDrop(mouseEvent){
+      if (mouseEvent.buttons !== 1) {
+        this.isGrabbed = false;
+        return;
+      } else {
+        this.isGrabbed = true;
+      }
 
+    }
   },
 };  
 </script>
@@ -66,8 +77,12 @@ export default {
   <div 
     class="helpWindow"
     v-if="!hide"
-    :style="{width : width + 'px'}">
-    <div class="helpHeader">
+    :style="{width : width + 'px', right : right, top : top}">
+    <div 
+      class="helpHeader"
+      :style="{cursor: (isGrabbed) ? 'grabbing' : 'grab'}"
+      @mousedown="isGrabbed = true"
+      @mousemove="dragNDrop($event)">
       <span class="helpIcon">?</span>      
       <h3 class="helpHeading">HELP</h3>
       <span 
@@ -135,7 +150,6 @@ export default {
 }
 .helpHeading {  
   margin: 0;
-  cursor: grab;
 }
 .helpContent {
   padding: 0px 5px;
@@ -212,12 +226,9 @@ export default {
 .helpOpen:after {
   content: '?'
 }
-div.helpWindow {
-  right:0;
-  top:0;
+div.helpWindow {  
   position:fixed;
   z-index: 9;
-  
   background-color: #f0f0f0;
 }
 span.resize {
