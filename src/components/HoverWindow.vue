@@ -1,14 +1,4 @@
 <script>
-const pageWidth = window.innerWidth;
-/*
-const pageWidth = { 
-  'window.innerWidth' : window.innerWidth,
-  'document.body.scrollWidth':document.body.scrollWidth,
-  'document.documentElement.scrollWidth':document.documentElement.scrollWidth,
-  'document.body.offsetWidth':document.body.offsetWidth,
-  'document.documentElement.offsetWidth':document.documentElement.offsetWidth,
-  'document.documentElement.clientWidth':document.documentElement.clientWidth,
-}*/
 import DisciplineSection from './DisciplineSection.vue';
 /**
  * Displays details about the element that the mouse is over
@@ -58,7 +48,7 @@ export default {
       if (this.width < this.minWidth) this.width = this.minWidth;
       if (this.height < this.minHeight) this.height = this.minHeight;
     },
-    /**method for help window drag and drop */
+    /**method for window drag and drop */
     dragNDrop(mouseEvent){
       let pageWidth = window.innerWidth;
       if (mouseEvent.buttons !== 1) {
@@ -71,7 +61,6 @@ export default {
       this.top = mouseEvent.y - 20;
       if (this.right < this.initRight) this.right = this.initRight;
       if (this.top < this.initTop) this.top = this.initTop;
-      
     }
   },
 };  
