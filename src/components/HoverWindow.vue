@@ -21,10 +21,10 @@ export default {
     return {
       data: "test",
       hide: false,
-      minWidth: 274,
-      width: 300,
-      minHeight: 274,
-      height: 274,
+      minWidth: 200,
+      width: 400,
+      minHeight: 200,
+      height: 400,
       right: 0,
       top: 0,
       zmazat: null,
@@ -53,6 +53,8 @@ export default {
       this.zmazat = mouseEvent;
       this.width += x;
       this.height += y;
+      if (this.width < this.minWidth) this.width = this.minWidth;
+      if (this.height < this.minHeight) this.height = this.minHeight;
     },
     /**method for help window drag and drop */
     dragNDrop(mouseEvent){
