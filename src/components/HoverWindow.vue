@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       data: "test",
+      hide: false,
     };
   },
   watch: {
@@ -24,13 +25,21 @@ export default {
 </script>
 
 <template>
-  <div class="helpOpen"></div>
   <div 
-    class="helpWindow">
+    class="helpOpen"
+    v-if="hide"
+    @click="hide=false">
+  </div>
+  <div 
+    class="helpWindow"
+    v-show="!hide">
     <div class="helpHeader">
       <span class="helpIcon">?</span>      
       <h3 class="helpHeading">HELP</h3>
-      <span class="helpExit"></span>
+      <span 
+        class="helpExit"
+        @click="hide=true">
+      </span>
     </div>
     <select class="helpDataSelect">
       <option>something</option>
@@ -138,20 +147,23 @@ export default {
   font-size: 50px;
   margin: 0px 5px;
   cursor:pointer;
-  border: black outset 2px;
+  border: black solid 1px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%; 
+  background-color: #f0f0f0;
+  opacity: 0.5;
 }
 .helpOpen:hover {
-  border: black solid 2px;
+  opacity: 1;
 }
 .helpOpen:after {
   content: '?'
 }
 div.helpWindow {
-  margin-left: 1150px;
+  right:0;
+  top:0;
   float: right;
   position:fixed;
   z-index: 9;
