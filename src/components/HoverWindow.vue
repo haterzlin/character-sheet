@@ -46,15 +46,13 @@ export default {
   methods:{
     resize(mouseEvent){
       if (mouseEvent.buttons !== 1) return;
-      let x = 5 - mouseEvent.offsetX;
-      let y = mouseEvent.offsetY + 5;
+      let x = - mouseEvent.offsetX;
+      let y = mouseEvent.offsetY - 5;
       this.zmazat = mouseEvent;
       this.width += x;
       this.height += y;
-      //this.width = document.documentElement.clientWidth - mouseEvent.x;
-      
-      //this.height = mouseEvent.y;
-    }
+    },
+
   },
 };  
 </script>
@@ -228,7 +226,7 @@ span.resize {
   border-right: 10px solid transparent;
   border-bottom: 10px solid #666666;
   border-left: 10px solid #666666;
-  cursor: sw-resize;
+  
   vertical-align: bottom;
 }
 span.resize:hover {
