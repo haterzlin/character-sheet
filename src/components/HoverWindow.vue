@@ -25,7 +25,9 @@ export default {
       width: 400,
       minHeight: 200,
       height: 400,
+      initRight: 0,
       right: 0,
+      initTop: 0,
       top: 0,
       zmazat: null,
       isGrabbed : false,
@@ -58,12 +60,17 @@ export default {
     },
     /**method for help window drag and drop */
     dragNDrop(mouseEvent){
+      let pageWidth = window.innerWidth;
       if (mouseEvent.buttons !== 1) {
         this.isGrabbed = false;
         return;
       } else {
         this.isGrabbed = true;
       }
+      this.right = pageWidth - mouseEvent.x - this.width/2
+      this.top = mouseEvent.y - 20;
+      if (this.right < this.initRight) this.right = this.initRight;
+      if (this.top < this.initTop) this.top = this.initTop;
       
     }
   },
@@ -73,17 +80,16 @@ export default {
 <template>
   <div 
     class="helpOpen"
-    v-if="hide"
-    @click="hide=false;width=minWidth;height=minHeight">
+    @click="hide=false; width=minWidth; height=minHeight; right=initRight; top=initTop">
   </div>
   <div 
     class="helpWindow"
     v-if="!hide"
-    :style="{width : width + 'px', right : right, top : top}">
+    :style="{width : width + 'px', right : right + 'px', top : top + 'px'}">
     <div 
       class="helpHeader"
       :style="{cursor: (isGrabbed) ? 'grabbing' : 'grab'}"
-      @mousedown="isGrabbed = true"
+      @mousedown.prevent="isGrabbed = true"
       @mousemove="dragNDrop($event)">
       <span class="helpIcon">?</span>      
       <h3 class="helpHeading">HELP</h3>
