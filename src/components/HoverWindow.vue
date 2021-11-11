@@ -62,7 +62,7 @@ export default {
       } else {
         this.isGrabbed = true;
       }
-
+      
     }
   },
 };  
@@ -237,7 +237,7 @@ span.resize {
   border-right: 10px solid transparent;
   border-bottom: 10px solid #666666;
   border-left: 10px solid #666666;
-  
+  cursor: sw-resize;
   vertical-align: bottom;
 }
 span.resize:hover {
