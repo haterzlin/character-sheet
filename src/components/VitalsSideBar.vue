@@ -46,6 +46,7 @@ export default {
         },
         "12th": {
           bloodPotencyMin: 1,
+          startingBloodPotency: 1,
           bloodPotencyMax: 3,
         },
         "11th": {
