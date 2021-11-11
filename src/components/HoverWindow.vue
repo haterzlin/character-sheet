@@ -1,4 +1,14 @@
 <script>
+const pageWidth = window.innerWidth;
+/*
+const pageWidth = { 
+  'window.innerWidth' : window.innerWidth,
+  'document.body.scrollWidth':document.body.scrollWidth,
+  'document.documentElement.scrollWidth':document.documentElement.scrollWidth,
+  'document.body.offsetWidth':document.body.offsetWidth,
+  'document.documentElement.offsetWidth':document.documentElement.offsetWidth,
+  'document.documentElement.clientWidth':document.documentElement.clientWidth,
+}*/
 import DisciplineSection from './DisciplineSection.vue';
 /**
  * Displays details about the element that the mouse is over
@@ -11,7 +21,19 @@ export default {
     return {
       data: "test",
       hide: false,
+      minWidth: 274,
+      width: 300,
+      minHeight: 274,
+      height: 274,
+      right: 0,
+      top: 0,
+      zmazat: null,
     };
+  },
+  computed: {
+    contentHeight(){
+      return this.height - 74
+    }
   },
   watch: {
     mouseOverData: {
@@ -21,18 +43,32 @@ export default {
       deep: true,
     },
   },
-};
+  methods:{
+    resize(mouseEvent){
+      if (mouseEvent.buttons !== 1) return;
+      let x = 5 - mouseEvent.offsetX;
+      let y = mouseEvent.offsetY + 5;
+      this.zmazat = mouseEvent;
+      this.width += x;
+      this.height += y;
+      //this.width = document.documentElement.clientWidth - mouseEvent.x;
+      
+      //this.height = mouseEvent.y;
+    }
+  },
+};  
 </script>
 
 <template>
   <div 
     class="helpOpen"
     v-if="hide"
-    @click="hide=false">
+    @click="hide=false;width=minWidth;height=minHeight">
   </div>
   <div 
     class="helpWindow"
-    v-show="!hide">
+    v-if="!hide"
+    :style="{width : width + 'px'}">
     <div class="helpHeader">
       <span class="helpIcon">?</span>      
       <h3 class="helpHeading">HELP</h3>
@@ -44,7 +80,18 @@ export default {
     <select class="helpDataSelect">
       <option>something</option>
     </select>
-    <div class="helpContent">
+    <div 
+      class="helpContent"
+      :style="{height : contentHeight + 'px'}">
+      <p v-if="zmazat">
+        x:{{zmazat.clientX}}<br/>
+        y:{{zmazat.clientY}}<br/>
+        x->{{zmazat.offsetX}} <br/>
+        y->{{zmazat.offsetY}}<br/>
+        width:{{width}}<br/>
+        height:{{height}}<br/>
+        
+      </p>
       <div v-if="data.category">
         <p v-html="data.category.description"></p>
       </div>
@@ -74,7 +121,12 @@ export default {
         </div>
       </div>
     </div>
-    <div class="helpFooter"><span class="resize"></span></div>
+    <div class="helpFooter">
+      <span 
+        class="resize"
+        @mousedown.prevent=""
+        @mousemove="resize($event)"
+        ></span></div>
   </div>
 </template>
 
@@ -90,6 +142,7 @@ export default {
 .helpContent {
   padding: 0px 5px;
   overflow-y: scroll;
+  background-color: white;
 }
 .helpHeader {
   display:flex;
@@ -164,19 +217,17 @@ export default {
 div.helpWindow {
   right:0;
   top:0;
-  float: right;
   position:fixed;
   z-index: 9;
-  width: 350px;
-  background-color: #f0f0f0;
   
+  background-color: #f0f0f0;
 }
 span.resize {
   display:inline-block;
-  border-top: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-bottom: 6px solid #666666;
-  border-left: 6px solid #666666;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #666666;
+  border-left: 10px solid #666666;
   cursor: sw-resize;
   vertical-align: bottom;
 }
