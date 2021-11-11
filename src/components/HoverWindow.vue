@@ -1,9 +1,11 @@
 <script>
+import DisciplineSection from './DisciplineSection.vue';
 /**
  * Displays details about the element that the mouse is over
  * mostly works with stats so far
  */
 export default {
+  components: { DisciplineSection },
   props: ["mouseOverData"],
   data() {
     return {
@@ -22,7 +24,9 @@ export default {
 </script>
 
 <template>
-  <div class="helpWindow">
+  <div class="helpOpen"></div>
+  <div 
+    class="helpWindow">
     <div class="helpHeader">
       <span class="helpIcon">?</span>      
       <h3 class="helpHeading">HELP</h3>
@@ -105,6 +109,7 @@ export default {
 }
 .helpExit:hover {
   color: black;
+  background-color: #cccccc;
 }
 .helpIcon {
   height: 15px;
@@ -113,6 +118,7 @@ export default {
   cursor:pointer;
   border: black outset 2px;
   display: inline-flex;
+  align-self: center;
   align-items: center;
   justify-content: center;
   border-radius: 50%; 
@@ -120,6 +126,29 @@ export default {
 .helpIcon:hover {  
   color: #ff6666;
   border-color: #ff6666;
+  border-style: solid;
+}
+.helpOpen {
+  bottom: 5px;
+  left: 5px;
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  font: 700;
+  font-size: 50px;
+  margin: 0px 5px;
+  cursor:pointer;
+  border: black outset 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%; 
+}
+.helpOpen:hover {
+  border: black solid 2px;
+}
+.helpOpen:after {
+  content: '?'
 }
 div.helpWindow {
   margin-left: 1150px;
@@ -127,8 +156,8 @@ div.helpWindow {
   position:fixed;
   z-index: 9;
   width: 350px;
-  background-color: white;
-  border: 1px solid black;
+  background-color: #f0f0f0;
+  
 }
 span.resize {
   display:inline-block;

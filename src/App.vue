@@ -125,6 +125,6 @@ div.statList {
 div.sheet {
   float: left;
   width: 800px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 </style>
