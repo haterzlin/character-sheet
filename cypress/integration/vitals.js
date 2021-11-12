@@ -1,3 +1,13 @@
+const Generation2BloodPotency = [
+    { generation: '16th', bloodPotency: 0 },
+    { generation: '15th', bloodPotency: 0 },
+    { generation: '14th', bloodPotency: 0 },
+    { generation: '13th', bloodPotency: 1 },
+    { generation: '12th', bloodPotency: 1 },
+    { generation: '11th', bloodPotency: 2 },
+    { generation: '10th', bloodPotency: 2 }
+]
+
 function nthChild(CyElement, Iterator) {
     if (Iterator < 1 ){
         return undefined
@@ -58,5 +68,18 @@ describe('Vitals test', () => {
     it('Click on Composure 3rd dot will remove fill class and Willpower shall have removed fill class at 4th Point', () => {
         getNthPointOf('Composure', 3).click()
         checkNumberOfPoints('Willpower', 2, 5, 15)
+    })
+})
+
+describe('Generation 2 Blood Potency test', () => {
+    it('Initialization check of Blood Potency', () => {
+        checkNumberOfPoints('Blood Potency', 0, 0, 10)
+    })
+
+    Generation2BloodPotency.forEach(item => {
+        it('Select ' + item.generation + ' generation and check that the value of blood potency is ' + item.bloodPotency, () => {
+            cy.contains('Generation').get('select:first').select(item.generation)
+            checkNumberOfPoints('Blood Potency', 0, item.bloodPotency, 10)
+        })
     })
 })
