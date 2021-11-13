@@ -78,7 +78,7 @@ describe('Generation 2 Blood Potency test', () => {
 
     Generation2BloodPotency.forEach(item => {
         it('Select ' + item.generation + ' generation and check that the value of blood potency is ' + item.bloodPotency, () => {
-            cy.contains('Generation').get('select:first').select(item.generation)
+            cy.contains('Generation').next().select(item.generation)
             checkNumberOfPoints('Blood Potency', 0, item.bloodPotency, 10)
         })
     })
