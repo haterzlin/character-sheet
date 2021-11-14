@@ -10,24 +10,8 @@ PrimaryDisciplines[4] = [1, 3, 8]
 PrimaryDisciplines[5] = [1, 2, 4]
 PrimaryDisciplines[6] = [4, 5, 8]
 
-function checkNumberOfPoints(Item, ExpectedInit, ExpectedFill, Scale) {
-    var CurrentChild = cy.contains(Item).next().children().first()
-    for (var i=1; i <= Scale; i++) {        
-        if (i != 1) {
-            CurrentChild = CurrentChild.next().first()
-        }
-        if (i <= ExpectedFill) {
-            CurrentChild.should('have.class', (i <= ExpectedInit) ? 'init' : 'fill')
-        }
-        else {
-            CurrentChild.should('not.have.class', 'fill')
-            CurrentChild.should('not.have.class', 'init')      
-        }        
-    }
-}
-
 function checkNumberOfDots(Item, Expected) {
-    checkNumberOfPoints(Item, 0, Expected, 5)
+    cy.checkNumberOfPoints(Item, 0, Expected, 5)
 }
 
 
@@ -55,22 +39,22 @@ describe('Clans & Disciplines relations test', () => {
 describe('Restrictions test', () => {
     it('Select Brujah clan and click on last dot of Celerity results in 2 dots', () => {
         cy.contains('Clan:').next().select('Brujah')
-        cy.contains('Celerity').next().children().last().click()
+        cy.getNthPointOf('Celerity', 5).click()
         checkNumberOfDots('Celerity', 2)
     })
     it('Click on last dot of Potence results in 1 dots', () => {
-        cy.contains('Potence').next().children().last().click()
+        cy.getNthPointOf('Potence', 5).click()
         checkNumberOfDots('Potence', 1)
     })
-    it('Click on last dot of Presence results in 0 dots', () => {        
-        cy.contains('Presence').next().children().last().click()
+    it('Click on last dot of Presence results in 0 dots', () => {    
+        cy.getNthPointOf('Presence', 5).click()    
         checkNumberOfDots('Presence', 0)
     })
     it('We can see "All picked"', () => { 
         cy.get('#disciplines').contains('All picked').should('be.visible')
     })
     it('Click on first dot of Celerity results in 0 dots', () => {
-        cy.contains('Celerity').next().children().first().click()
+        cy.getNthPointOf('Celerity', 1).click()
         checkNumberOfDots('Celerity', 0)
     })
     it('We can\'t add Animalism as it is Secondary Discipline', () => {
