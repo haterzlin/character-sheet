@@ -20,7 +20,7 @@ export default {
 <template>
   <div
     class="stat"
-    @mouseover="$emit('statHoverStart', { stat: stat, hoverPointer: hoverPointer })"
+    @mouseover="$emit('statHoverStart', { stat: stat })"
     @mouseleave="$emit('statHoverEnd')"
   >
     <div class="statName">{{ stat.id }}</div>

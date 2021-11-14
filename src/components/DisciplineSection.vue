@@ -53,9 +53,6 @@ export default {
             @stat-hover-start="
               $emit('statSectionHover', {
                 stat: $event.stat,
-                hoverPointer: $event.hoverPointer,
-                category: 'Primary',
-                section: stats.id,
                 resource: stats.resource,
               })
             "
@@ -77,11 +74,7 @@ export default {
             @stat-hover-start="
               $emit('statSectionHover', {
                 stat: $event.stat,
-                hoverPointer: $event.hoverPointer,
-                category: 'Secondary',
-                section: stats.id,
                 resource: stats.resource,
-                isCaitiff: selectedClan == 'Caitiff',
               })
             "
             @stat-hover-end="$emit('statSectionHover', null)"

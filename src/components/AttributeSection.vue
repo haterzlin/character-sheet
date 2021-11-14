@@ -44,7 +44,6 @@ export default {
             @stat-hover-start="
               $emit('statSectionHover', {
                 stat: $event.stat,
-                hoverPointer: $event.hoverPointer,
                 resource: stats.resource,
               })
             "

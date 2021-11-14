@@ -35,15 +35,16 @@ export default {
   computed: {
     dataWithPath() {      
       var tmp = {};
-      this.refNested(tmp, attributes,);
-      this.refNested(tmp, skills);
+      this.path4Nested(tmp, attributes,);
+      this.path4Nested(tmp, skills);
       disciplines.data.forEach(element => {
         let dataPath = "Disciplines/" + element.id + '/';
         tmp[dataPath] = { 
-            data: { stat: element },
+            data: { stat: element, resource: disciplines.resource},
             path2Data: dataPath
           }
       });
+      // TODO sort(tmp)
       return tmp;      
     }
   },
@@ -51,18 +52,18 @@ export default {
     setDataValue(event) {
       event[0].value = event[1];      
     },
-    refNested(targetArray, append){
+    path4Nested(targetArray, append){
       let dataPath;
       append.data.forEach(element => {
         dataPath = append.id + '/' + element.id + '/'
         targetArray[dataPath] = {          
-            data: { category: element}, 
+            data: { category: element},
             path2Data: dataPath
           }
         element.list.forEach(item => {
           dataPath = append.id + '/' + element.id + '/' + item.id + '/'
           targetArray[dataPath] = { 
-            data: { stat: item }, 
+            data: { stat: item, resource: append.resource }, 
             path2Data: dataPath
           }
         });

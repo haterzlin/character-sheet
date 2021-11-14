@@ -47,7 +47,8 @@ export default {
         }
       },
       //deep: true,
-    },/* NEFUNGUJE
+    },
+    /* NEFUNGUJE
     data: {
       handler(newVal) {
         if(newVal) {
