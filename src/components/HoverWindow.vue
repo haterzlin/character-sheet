@@ -1,4 +1,10 @@
 <script>
+const HELP_DATA = {
+  data: {
+    description: "help window"
+    },
+  path2Data: "Help/"
+};
 import DisciplineSection from './DisciplineSection.vue';
 /**
  * Displays details about the element that the mouse is over
@@ -6,10 +12,12 @@ import DisciplineSection from './DisciplineSection.vue';
  */
 export default {
   components: { DisciplineSection },
-  props: ["mouseOverData"],
+  props: { mouseOverData: JSON, descriptionsWithPath: JSON},
   data() {
-    return {
-      data: "test",
+    return {      
+      data: HELP_DATA.data,
+      path2Data: HELP_DATA.path2Data,
+      defaultData: HELP_DATA,
       hide: false,
       minWidth: 200,
       initWidth: 400,
@@ -33,10 +41,18 @@ export default {
   watch: {
     mouseOverData: {
       handler(newVal) {
-        if (newVal) this.data = newVal;
+        if (newVal) {
+         this.data = newVal;
+        }
       },
       deep: true,
     },
+    data: {
+      handler(newVal) {
+        if(newVal.path2Data) this.path2Data = newVal.path2Data;
+        else path2Data = null;
+      }
+    }
   },
   methods:{
     /** method for resizing window 
@@ -47,6 +63,7 @@ export default {
         this.isGrabbed=false;
         return;
         }
+      //TODO make this like dragNdrop, so it feels smoother
       let x = - mouseEvent.offsetX;
       let y = mouseEvent.offsetY - 5;
       this.zmazat = mouseEvent;
@@ -66,6 +83,7 @@ export default {
       } else {
         this.isGrabbed = true;
       }
+      //TODO make offset for right and top variables acquired when grabbed of use it instead of width/2 and 20
       this.right = pageWidth - mouseEvent.x - this.width/2
       this.top = mouseEvent.y - 20;
       if (this.right < this.initRight) this.right = this.initRight;
@@ -96,8 +114,11 @@ export default {
         @click="hide=true">
       </span>
     </div>
-    <select class="helpDataSelect">
-      <option>something</option>
+    <select 
+      class="helpDataSelect"
+      v-model.lazy="data">
+      <option v-for="elem in descriptionsWithPath" :key="elem.path2Data" :value="elem.data">{{elem.path2Data}}</option>
+      <option :value="defaultData.data">{{defaultData.path2Data}}</option>
     </select>
     <div 
       class="helpContent"
@@ -111,6 +132,8 @@ export default {
         height:{{height}}<br/>
         
       </p>
+      {{}}
+      <p v-if="data.description">{{data.description}}</p>
       <div v-if="data.category">
         <p v-html="data.category.description"></p>
       </div>
@@ -146,7 +169,8 @@ export default {
         :style="{cursor: (isGrabbed) ? 'sw-resize' : 'grab'}"
         @mousedown.prevent="isGrabbed=true"
         @mousemove="resize($event)"
-        ></span></div>
+        ></span>
+    </div>
   </div>
 </template>
 
