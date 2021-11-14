@@ -12,8 +12,10 @@ export default {
       data: "test",
       hide: false,
       minWidth: 200,
+      initWidth: 400,
       width: 400,
       minHeight: 200,
+      initHeight: 400,
       height: 400,
       initRight: 0,
       right: 0,
@@ -37,7 +39,9 @@ export default {
     },
   },
   methods:{
-    /** method for resizing window */
+    /** method for resizing window 
+     * @param mouseEvent{MouseEvent}
+    */
     resize(mouseEvent){
       if (mouseEvent.buttons !== 1) {
         this.isGrabbed=false;
@@ -51,7 +55,9 @@ export default {
       if (this.width < this.minWidth) this.width = this.minWidth;
       if (this.height < this.minHeight) this.height = this.minHeight;
     },
-    /**method for window drag and drop */
+    /**method for window drag and drop 
+     * @param mouseEvent{MouseEvent}
+    */
     dragNDrop(mouseEvent){
       let pageWidth = window.innerWidth;
       if (mouseEvent.buttons !== 1) {
@@ -66,13 +72,13 @@ export default {
       if (this.top < this.initTop) this.top = this.initTop;
     }
   },
-};  
+};
 </script>
 
 <template>
   <div 
     class="helpOpen"
-    @click="hide=false; width=minWidth; height=minHeight; right=initRight; top=initTop">
+    @click="hide=false; width=initWidth; height=initHeight; right=initRight; top=initTop">
   </div>
   <div 
     class="helpWindow"
