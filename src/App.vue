@@ -38,9 +38,10 @@ export default {
       this.refNested(tmp, attributes,);
       this.refNested(tmp, skills);
       disciplines.data.forEach(element => {
-        tmp[element.id] = { 
-            data: { stat: ref(element) },
-            path2Data: "Disciplines/" + element.id + '/'
+        let dataPath = "Disciplines/" + element.id + '/';
+        tmp[dataPath] = { 
+            data: { stat: element },
+            path2Data: dataPath
           }
       });
       return tmp;      
@@ -51,11 +52,18 @@ export default {
       event[0].value = event[1];      
     },
     refNested(targetArray, append){
+      let dataPath;
       append.data.forEach(element => {
+        dataPath = append.id + '/' + element.id + '/'
+        targetArray[dataPath] = {          
+            data: { category: element}, 
+            path2Data: dataPath
+          }
         element.list.forEach(item => {
-          targetArray[item.id] = { 
-            data: { stat: ref(item) }, 
-            path2Data: append.id + '/' + element.id + '/' + item.id + '/'
+          dataPath = append.id + '/' + element.id + '/' + item.id + '/'
+          targetArray[dataPath] = { 
+            data: { stat: item }, 
+            path2Data: dataPath
           }
         });
       });

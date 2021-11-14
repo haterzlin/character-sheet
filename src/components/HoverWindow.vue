@@ -43,12 +43,19 @@ export default {
     mouseOverData: {
       handler(newVal) {
         if (newVal) {
-         this.data = newVal;
-         
+         this.data = newVal;         
         }
       },
       //deep: true,
-    },
+    },/* NEFUNGUJE
+    data: {
+      handler(newVal) {
+        if(newVal) {
+          let dataPath = (this.data.stat.id && this.descriptionsWithPath[this.data.stat.id]) ? this.descriptionsWithPath[this.data.stat.id] : null
+          this.path2Data = dataPath;
+        }
+      }
+    }*/
   },
   methods:{
     /** method for resizing window 
@@ -148,6 +155,7 @@ export default {
               :class="{ init: j >= i }"
             >
             </span>
+            {{(j == data.stat.value)? '(current value of ' + data.stat.id + ')' : ''}}
             <p
               v-if="data.stat.description[j]"
               v-html="data.stat.description[j]"
@@ -173,6 +181,9 @@ export default {
 </template>
 
 <style scoped>
+.point {
+  cursor: default;
+}
 .ability {
   font-variant: small-caps;
   font-weight: bold;
