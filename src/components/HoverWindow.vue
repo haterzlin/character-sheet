@@ -39,7 +39,10 @@ export default {
   methods:{
     /** method for resizing window */
     resize(mouseEvent){
-      if (mouseEvent.buttons !== 1) return;
+      if (mouseEvent.buttons !== 1) {
+        this.isGrabbed=false;
+        return;
+        }
       let x = - mouseEvent.offsetX;
       let y = mouseEvent.offsetY - 5;
       this.zmazat = mouseEvent;
@@ -134,7 +137,8 @@ export default {
     <div class="helpFooter">
       <span 
         class="resize"
-        @mousedown.prevent=""
+        :style="{cursor: (isGrabbed) ? 'sw-resize' : 'grab'}"
+        @mousedown.prevent="isGrabbed=true"
         @mousemove="resize($event)"
         ></span></div>
   </div>
@@ -234,7 +238,6 @@ span.resize {
   border-right: 10px solid transparent;
   border-bottom: 10px solid #666666;
   border-left: 10px solid #666666;
-  cursor: sw-resize;
   vertical-align: bottom;
 }
 span.resize:hover {
