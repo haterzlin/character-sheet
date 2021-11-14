@@ -44,6 +44,7 @@ export default {
             path2Data: dataPath
           }
       });
+      // TODO add vitals
       // TODO sort(tmp)
       return tmp;      
     }
