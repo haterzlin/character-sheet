@@ -6,6 +6,7 @@ import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HoverWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue';
 import {biography, skillDistributions, attributes, skills, disciplines, vitals} from "./data.js";
+import {ref} from "vue"
 
 export default {
   data() {
@@ -31,9 +32,34 @@ export default {
     "character-info": CharacterInfo,
     "vitals-sidebar": VitalsSideBar
   },
-  methods:{
-    setDataValue(event){
+  computed: {
+    dataWithPath() {      
+      var tmp = {};
+      this.refNested(tmp, attributes,);
+      this.refNested(tmp, skills);
+      disciplines.data.forEach(element => {
+        tmp[element.id] = { 
+            data: { stat: ref(element) },
+            path2Data: "Disciplines/" + element.id + '/'
+          }
+      });
+      return tmp;      
+    }
+  },
+  methods: {
+    setDataValue(event) {
       event[0].value = event[1];      
+    },
+    refNested(targetArray, append){
+      append.data.forEach(element => {
+        element.list.forEach(item => {
+          targetArray[item.id] = { 
+            data: { stat: ref(item) }, 
+            path2Data: append.id + '/' + element.id + '/' + item.id + '/'
+          }
+        });
+      });
+      return;
     },
   },
 };
@@ -74,7 +100,10 @@ export default {
     >
     </discipline-section>
   </div>
-  <hover-window :mouse-over-data="mouseOverData"> </hover-window>
+  <hover-window 
+    :mouse-over-data="mouseOverData"
+    :descriptions-with-path="dataWithPath">
+  </hover-window>
 </template>
 
 <style>

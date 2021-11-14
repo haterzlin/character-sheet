@@ -6,6 +6,7 @@ const HELP_DATA = {
   path2Data: "Help/"
 };
 import DisciplineSection from './DisciplineSection.vue';
+import {unref} from "vue"
 /**
  * Displays details about the element that the mouse is over
  * mostly works with stats so far
@@ -43,16 +44,11 @@ export default {
       handler(newVal) {
         if (newVal) {
          this.data = newVal;
+         
         }
       },
-      deep: true,
+      //deep: true,
     },
-    data: {
-      handler(newVal) {
-        if(newVal.path2Data) this.path2Data = newVal.path2Data;
-        else path2Data = null;
-      }
-    }
   },
   methods:{
     /** method for resizing window 
@@ -80,9 +76,8 @@ export default {
       if (mouseEvent.buttons !== 1) {
         this.isGrabbed = false;
         return;
-      } else {
-        this.isGrabbed = true;
-      }
+      } 
+      
       //TODO make offset for right and top variables acquired when grabbed of use it instead of width/2 and 20
       this.right = pageWidth - mouseEvent.x - this.width/2
       this.top = mouseEvent.y - 20;
@@ -116,7 +111,7 @@ export default {
     </div>
     <select 
       class="helpDataSelect"
-      v-model.lazy="data">
+      v-model="data">
       <option v-for="elem in descriptionsWithPath" :key="elem.path2Data" :value="elem.data">{{elem.path2Data}}</option>
       <option :value="defaultData.data">{{defaultData.path2Data}}</option>
     </select>
@@ -143,23 +138,26 @@ export default {
           v-if="data.stat.description.specialties"
           v-html="data.stat.description.specialties"
         ></p>
-        <div v-if="data.hoverPointer">
-          <span
-            v-for="i in 5"
-            :key="i"
-            class="point"
-            :class="{ init: data.hoverPointer >= i }"
-          >
-          </span>
-        </div>
-        <p
-          v-if="data.stat.description[data.hoverPointer]"
-          v-html="data.stat.description[data.hoverPointer]"
-        ></p>
-        <div v-if="data.stat.abilities && !data.stat.description[data.hoverPointer]">
-          <p class="ability" v-for="item in data.stat.abilities[data.hoverPointer]" :key="item">
-            {{ item }}
-          </p>
+        <div>
+          <div
+            v-for="j in 5" :key="j">
+            <span
+              v-for="i in 5"
+              :key="i"
+              class="point"
+              :class="{ init: j >= i }"
+            >
+            </span>
+            <p
+              v-if="data.stat.description[j]"
+              v-html="data.stat.description[j]"
+            ></p>
+            <div v-if="data.stat.abilities && !data.stat.description[j]">
+              <p class="ability" v-for="item in data.stat.abilities[j]" :key="item">
+                {{ item }}
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -178,6 +176,7 @@ export default {
 .ability {
   font-variant: small-caps;
   font-weight: bold;
+  margin-left: 10px;
 }
 .helpHeading {  
   margin: 0;
