@@ -21,7 +21,8 @@ export default {
       vitals:vitals,
 
       //local states
-      mouseOverData: null,
+      helpData: null,
+      help: false,
     };
   },
   components: {
@@ -53,7 +54,11 @@ export default {
     setDataValue(event) {
       event[0].value = event[1];      
     },
-    path4Nested(targetArray, append){
+    handleHelp(event) {
+      this.help = false;
+      this.helpData = event;
+    },
+    path4Nested(targetArray, append) {
       let dataPath;
       append.data.forEach(element => {
         dataPath = append.id + '/' + element.id + '/'
@@ -82,9 +87,12 @@ export default {
     :composure="attributes.data[1].list[2].value"
     :resolve="attributes.data[2].list[2].value"
     :generation="biography.generation.value"
-    @hover="mouseOverData = $event">
+    :style="{cursor: (help) ? 'help' : null}"
+    @hover="helpData = $event">
   </vitals-sidebar>
-  <div class="sheet">
+  <div 
+    class="sheet"
+    :style="{cursor: (help) ? 'help' : null}">
     <character-info 
       :bio="biography" 
       @bio-change="$event[0].value = $event[1]">
@@ -92,27 +100,29 @@ export default {
     <attribute-section
       :stats="attributes"
       @stat-section-change="setDataValue($event)"
-      @stat-section-hover="mouseOverData = $event"
+      @stat-section-hover="helpData = $event"
     >
     </attribute-section>
     <skill-section
       :stats="skills"
       :distributions="skillDistributions"
       @stat-section-change="setDataValue($event)"
-      @stat-section-hover="mouseOverData = $event"
+      @stat-section-hover="helpData = $event"
     >
     </skill-section>
     <discipline-section
       :stats="disciplines"
       :selectedClan="biography.clan.value"
       @stat-section-change="setDataValue($event)"
-      @stat-section-hover="mouseOverData = $event"
+      @stat-section-hover="helpData = $event"
     >
     </discipline-section>
   </div>
   <hover-window 
-    :mouse-over-data="mouseOverData"
-    :descriptions-with-path="dataWithPath">
+    :mouse-over-data="helpData"
+    :descriptions-with-path="dataWithPath"
+    @help-click="help=true"
+    @get-help="helpData = $event">
   </hover-window>
 </template>
 

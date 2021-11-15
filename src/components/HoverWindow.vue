@@ -1,7 +1,7 @@
 <script>
 const HELP_DATA = {
   data: {
-    description: "help window"
+    description: "help window \n click on (?) and then click another element to see info \n or use select and simply pick it\n mousedown on header to drag n drop this element \n mouse drop at bottom left of this element (the triangle) to resize \n click 'x' to hide this element"
     },
   path2Data: "Help/"
 };
@@ -13,6 +13,7 @@ import {unref} from "vue"
  */
 export default {
   components: { DisciplineSection },
+  emits: ['helpClick'],
   props: { mouseOverData: JSON, descriptionsWithPath: JSON},
   data() {
     return {      
@@ -37,7 +38,14 @@ export default {
   computed: {
     contentHeight(){
       return this.height - 74
-    }
+    },
+    /** returns scale if either scale or resource exists*/
+    scaleOfPoints(){
+      let tmp = (this.data.scale) ? this.data.scale : null;
+      tmp = (!tmp && this.data.resource) ? this.data.resource.length - 1 : tmp;
+      tmp = (!tmp) ? 0 : tmp;
+      return tmp;
+    },
   },
   watch: {
     mouseOverData: {
@@ -110,7 +118,9 @@ export default {
       :style="{cursor: (isGrabbed) ? 'grabbing' : 'grab'}"
       @mousedown.prevent="isGrabbed = true"
       @mousemove="dragNDrop($event)">
-      <span class="helpIcon">?</span>      
+      <span 
+        class="helpIcon"
+        @click="$emit('helpClick')">?</span>      
       <h3 class="helpHeading">HELP</h3>
       <span 
         class="helpExit"
@@ -148,9 +158,9 @@ export default {
         ></p>
         <div>
           <div
-            v-for="j in 5" :key="j">
+            v-for="j in scaleOfPoints" :key="j">
             <span
-              v-for="i in 5"
+              v-for="i in scaleOfPoints"
               :key="i"
               class="point"
               :class="{ init: j >= i }"
