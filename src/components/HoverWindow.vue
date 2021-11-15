@@ -20,7 +20,7 @@ export default {
       data: HELP_DATA.data,
       path2Data: HELP_DATA.path2Data,
       defaultData: HELP_DATA,
-      hide: false,
+      hide: true,
       minWidth: 200,
       initWidth: 400,
       width: 400,
