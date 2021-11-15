@@ -50,13 +50,12 @@ export default {
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="emitAllowedChange($event)"
-            @stat-hover-start="
-              $emit('statSectionHover', {
+            @stat-click="
+              $emit('statHelp', {
                 stat: $event.stat,
                 resource: stats.resource,
               })
-            "
-            @stat-hover-end="$emit('statSectionHover', null)"
+            "            
           >
           </Stat>
         </li>
@@ -71,13 +70,12 @@ export default {
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="selectedClan == 'Caitiff' || $event[2] ? emitAllowedChange($event) : ''"
-            @stat-hover-start="
-              $emit('statSectionHover', {
+            @stat-click="
+              $emit('statHelp', {
                 stat: $event.stat,
                 resource: stats.resource,
               })
             "
-            @stat-hover-end="$emit('statSectionHover', null)"
           >
           </stat>
         </li>

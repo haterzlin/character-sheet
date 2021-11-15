@@ -15,7 +15,6 @@ import RestrictionState from "./RestrictionState.vue";
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
   props: ["distributions"],
-  emits: ["statSectionHover"],
 };
 </script>
 
@@ -46,8 +45,7 @@ export default {
       v-for="category in stats.data"
       :key="category.id"
       class="statList"
-      @mouseenter="$emit('statSectionHover', { category: category })"
-      @mouseleave="$emit('statSectionHover', null)"
+      @click="$emit('statHelp', { category: category })"      
     >
       <h2>{{ category.id }}</h2>
       <ul class="ulStats">
@@ -56,13 +54,12 @@ export default {
             :stat="item"
             :scale="stats.resource.length - 1"
             @stat-change="emitAllowedChange($event)"
-            @stat-hover-start="
-              $emit('statSectionHover', {
+            @stat-click="
+              $emit('statHelp', {
                 stat: $event.stat,
                 resource: stats.resource,
               })
-            "
-            @stat-hover-end="$emit('statSectionHover', { category: category })"
+            "            
           >
           </Stat>
         </li>

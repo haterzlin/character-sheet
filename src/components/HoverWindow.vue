@@ -1,7 +1,7 @@
 <script>
 const HELP_DATA = {
   data: {
-    description: "help window \n click on (?) and then click another element to see info \n or use select and simply pick it\n mousedown on header to drag n drop this element \n mouse drop at bottom left of this element (the triangle) to resize \n click 'x' to hide this element"
+    description: "<b>help window -- ?</b><p>click on (?) and then click another element to see info</p><p>or use select and simply pick it</p><p>mousedown on header to drag n drop this element</p><p>mousedown at bottom left of this element (the triangle) to resize</p><p>click 'x' to hide this element</p>"
     },
   path2Data: "Help/"
 };
@@ -13,7 +13,7 @@ import {unref} from "vue"
  */
 export default {
   components: { DisciplineSection },
-  emits: ['helpClick'],
+  emits: ['helpClick', 'getHelp'],
   props: { mouseOverData: JSON, descriptionsWithPath: JSON},
   data() {
     return {      
@@ -107,10 +107,12 @@ export default {
 <template>
   <div 
     class="helpOpen"
+    id="helpOpen"
     @click="hide=false; width=initWidth; height=initHeight; right=initRight; top=initTop">
   </div>
   <div 
     class="helpWindow"
+    id="help"
     v-if="!hide"
     :style="{width : width + 'px', right : right + 'px', top : top + 'px'}">
     <div 
@@ -124,14 +126,15 @@ export default {
       <h3 class="helpHeading">HELP</h3>
       <span 
         class="helpExit"
+        id="helpClose"
         @click="hide=true">
       </span>
     </div>
     <select 
       class="helpDataSelect"
       v-model="data">
-      <option v-for="elem in descriptionsWithPath" :key="elem.path2Data" :value="elem.data">{{elem.path2Data}}</option>
       <option :value="defaultData.data">{{defaultData.path2Data}}</option>
+      <option v-for="elem in descriptionsWithPath" :key="elem.path2Data" :value="elem.data">{{elem.path2Data}}</option>
     </select>
     <div 
       class="helpContent"
@@ -146,7 +149,9 @@ export default {
         
       </p>
       {{}}
-      <p v-if="data.description">{{data.description}}</p>
+      <p 
+        v-if="data.description"
+        v-html="data.description"></p>
       <div v-if="data.category">
         <p v-html="data.category.description"></p>
       </div>

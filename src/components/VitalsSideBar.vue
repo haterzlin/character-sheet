@@ -17,7 +17,7 @@ export default {
     resolve: Number,
     generation: String,        
   },
-  emits: ['hover'],
+  emits: ['vitalStatHelp'],
   components: {
     'vital-stat': VitalStat,
   },
@@ -60,8 +60,7 @@ export default {
         :stat="stat"
         :scale="stat.scale"
         :value="values[stat.id]"
-        @mouseenter="$emit('hover', { category: stat })"
-        @mouseleave="$emit('hover', null)"
+        @click="$emit('vitalStatHelp', { category: stat })"
       >
       </vital-stat>
     </div>

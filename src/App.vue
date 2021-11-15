@@ -37,15 +37,21 @@ export default {
     dataWithPath() {      
       var tmp = {};
       this.path4Nested(tmp, attributes,);
-      this.path4Nested(tmp, skills);
       disciplines.data.forEach(element => {
         let dataPath = "Disciplines/" + element.id + '/';
         tmp[dataPath] = { 
             data: { stat: element, resource: disciplines.resource},
             path2Data: dataPath
           }
+      });      
+      this.path4Nested(tmp, skills);
+      vitals.forEach(element => {
+        let dataPath = "Vitals/" + element.id + '/';
+        tmp[dataPath] = { 
+            data: { category: element },
+            path2Data: dataPath
+          }
       });
-      // TODO add vitals
       // TODO sort(tmp)
       return tmp;      
     }
@@ -55,8 +61,10 @@ export default {
       event[0].value = event[1];      
     },
     handleHelp(event) {
-      this.help = false;
-      this.helpData = event;
+      if (this.help){
+        this.help = false;
+        this.helpData = event;
+      }
     },
     path4Nested(targetArray, append) {
       let dataPath;
@@ -88,7 +96,7 @@ export default {
     :resolve="attributes.data[2].list[2].value"
     :generation="biography.generation.value"
     :style="{cursor: (help) ? 'help' : null}"
-    @hover="helpData = $event">
+    @vital-stat-help="handleHelp($event)">
   </vitals-sidebar>
   <div 
     class="sheet"
@@ -100,21 +108,21 @@ export default {
     <attribute-section
       :stats="attributes"
       @stat-section-change="setDataValue($event)"
-      @stat-section-hover="helpData = $event"
+      @stat-help="handleHelp($event)"
     >
     </attribute-section>
     <skill-section
       :stats="skills"
       :distributions="skillDistributions"
       @stat-section-change="setDataValue($event)"
-      @stat-section-hover="helpData = $event"
+      @stat-help="handleHelp($event)"
     >
     </skill-section>
     <discipline-section
       :stats="disciplines"
       :selectedClan="biography.clan.value"
       @stat-section-change="setDataValue($event)"
-      @stat-section-hover="helpData = $event"
+      @stat-help="handleHelp($event)"
     >
     </discipline-section>
   </div>
@@ -122,7 +130,7 @@ export default {
     :mouse-over-data="helpData"
     :descriptions-with-path="dataWithPath"
     @help-click="help=true"
-    @get-help="helpData = $event">
+    @get-help="handleHelp($event)">
   </hover-window>
 </template>
 

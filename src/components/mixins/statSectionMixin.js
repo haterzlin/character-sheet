@@ -1,6 +1,6 @@
 export const statSectionMixin = {
   props: ['stats'],
-  emits: ['statSectionChange', 'statSectionHover'],
+  emits: ['statSectionChange', 'statHelp'],
   methods: {
     /**
      * if we are adding

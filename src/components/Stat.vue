@@ -7,7 +7,7 @@
 export default {
   name: "stat",
   props: ["stat", "scale"],
-  emits: ["statChange", "statHoverStart", "statHoverEnd"],
+  emits: ["statChange", "statClick"],
   data() {
     return {
       initialValue: this.stat.value,
@@ -20,8 +20,7 @@ export default {
 <template>
   <div
     class="stat"
-    @mouseover="$emit('statHoverStart', { stat: stat })"
-    @mouseleave="$emit('statHoverEnd')"
+    @click="$emit('statClick', { stat: stat })"    
   >
     <div class="statName">{{ stat.id }}</div>
     <div class="points">
