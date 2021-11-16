@@ -3,7 +3,7 @@ const HELP_DATA = {
   data: {
     description: "<b>help window -- ?</b><p>click on (?) and then click another element to see info</p><p>or use select and simply pick it</p><p>mousedown on header to drag n drop this element</p><p>mousedown at bottom left of this element (the triangle) to resize</p><p>click 'x' to hide this element</p>"
     },
-  path2Data: "Help/"
+  path2Data: "Help?"
 };
 import DisciplineSection from './DisciplineSection.vue';
 import {unref} from "vue"

@@ -36,17 +36,19 @@ export default {
   computed: {
     dataWithPath() {      
       var tmp = {};
-      this.path4Nested(tmp, attributes,);
+      let separator = '>'
+      let terminalSymbol = '?'
+      this.path4Nested(tmp, attributes, separator, terminalSymbol);
       disciplines.data.forEach(element => {
-        let dataPath = "Disciplines/" + element.id + '/';
+        let dataPath = "Disciplines" + separator + element.id + terminalSymbol;
         tmp[dataPath] = { 
             data: { stat: element, resource: disciplines.resource},
             path2Data: dataPath
           }
       });      
-      this.path4Nested(tmp, skills);
+      this.path4Nested(tmp, skills, separator, terminalSymbol);
       vitals.forEach(element => {
-        let dataPath = "Vitals/" + element.id + '/';
+        let dataPath = "Vitals" + separator + element.id + terminalSymbol;
         tmp[dataPath] = { 
             data: { category: element },
             path2Data: dataPath
@@ -66,16 +68,16 @@ export default {
         this.helpData = event;
       }
     },
-    path4Nested(targetArray, append) {
+    path4Nested(targetArray, append, separator, terminalSymbol) {
       let dataPath;
       append.data.forEach(element => {
-        dataPath = append.id + '/' + element.id + '/'
+        dataPath = append.id + separator + element.id + terminalSymbol;
         targetArray[dataPath] = {          
             data: { category: element},
             path2Data: dataPath
           }
         element.list.forEach(item => {
-          dataPath = append.id + '/' + element.id + '/' + item.id + '/'
+          dataPath = append.id + separator + element.id + separator + item.id + terminalSymbol;
           targetArray[dataPath] = { 
             data: { stat: item, resource: append.resource }, 
             path2Data: dataPath
