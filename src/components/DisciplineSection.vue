@@ -4,16 +4,17 @@
  * receives events from child component and check if change is possible in resources
  * if changes are possible, emit event to top component to make changes, otherwise don't
  */
-import { statSectionMixin } from "./mixins/statSectionMixin";
-import Stat from "./Stat.vue";
+
+import Discipline from "./Discipline.vue";
 import RestrictionState from "./RestrictionState.vue";
+import {disciplinesDefinition} from "../data.js";
+
 </script>
 
 <script>
 export default {
-  mixins: [statSectionMixin],
-  props: ["selectedClan"],
-  emits: ["statSectionHover"],
+  props: ["disciplines", "selectedClan"],
+  emits: ["disciplinesChange", "statSectionHover"],
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
@@ -22,68 +23,49 @@ export default {
      * 3 attributes with value 3, 1 attribute with value 4 and 0 attributes with value 5
      */
     allocatedResources() {
-      let tmp = Array(this.stats.resource.length).fill(0);
-      for (var i = 0; i < this.stats.data.length; i++) {
-        tmp[this.stats.data[i].value]++;
+      let tmp = Array(this.disciplinesDefinition.resource.length).fill(0);
+      for (var i = 0; i < this.disciplines.length; i++) {
+        tmp[this.disciplines[i].value]++
       }
-      return tmp;
+      return tmp
     },
+  },
+  methods: {
+    getDisciplineDefinition(disciplineId) {
+      for (var i=0; i < this.disciplinesDefinition.data.length; i++) {
+        if (this.disciplinesDefinition.data[i].id == disciplineId) {
+          return this.disciplinesDefinition.data[i]
+        }
+      }
+      return null
+    }
   }
 };
 </script>
 
 <template>
-  <div 
-    class="statSection" 
-    id="disciplines"
-    @click="$emit('statHelp', { category: stats })">
-    <h2>{{ stats.id }}</h2>
+
+  <div class="statSection" id="disciplines" @click="$emit('statHelp', { category: disciplinesDefinition })">
+    
+    <h2>{{ disciplinesDefinition.id }}</h2>
+
     <RestrictionState
       class="resourceCount"
       :allocatedResources="allocatedResources"
-      :resourceRestrictions="stats.resource"
+      :resourceRestrictions="disciplinesDefinition.resource"
     >
     </RestrictionState>
-    <div class="statList">
-      <h2>Primary</h2>
-      <ul class="ulStats">
-        <li v-for="item in stats.data" :key="item.id">
-          <Stat
-            v-show="item.clans.includes(selectedClan)"
-            :stat="item"
-            :scale="stats.resource.length - 1"
-            @stat-change="emitAllowedChange($event)"
-            @stat-click="
-              $emit('statHelp', {
-                stat: $event.stat,
-                resource: stats.resource,
-              })
-            "            
-          >
-          </Stat>
-        </li>
-      </ul>
-    </div>
-    <div class="statList">
-      <h2>Secondary</h2>
-      <ul class="ulStats">
-        <li v-for="item in stats.data" :key="item.id">
-          <stat
-            v-show="! item.clans.includes(selectedClan)"
-            :stat="item"
-            :scale="stats.resource.length - 1"
-            @stat-change="selectedClan == 'Caitiff' || $event[2] ? emitAllowedChange($event) : ''"
-            @stat-click="
-              $emit('statHelp', {
-                stat: $event.stat,
-                resource: stats.resource,
-              })
-            "
-          >
-          </stat>
-        </li>
-      </ul>
-    </div>
+
+    <Discipline
+      v-for="discipline in disciplines"
+      :discipline="discipline"
+      :disciplines="disciplines"
+      :clan="selectedClan"
+      @disciplineChange="$emit('disciplinesChange', disciplines);"
+      @click="$emit('statHelp', { stat: getDisciplineDefinition(discipline.id), resource: disciplinesDefinition.resource })"
+
+    ></Discipline>
+    
   </div>
 </template>
 

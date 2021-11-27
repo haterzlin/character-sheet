@@ -15,7 +15,7 @@ import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HelpWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue';
-import {biography, skillDistributions, attributes, skills, disciplines, vitals} from "./data.js";
+import {biography, skillDistributions, attributes, skills, disciplines, disciplinesDefinition, vitals} from "./data.js";
 
 export default {
   data() {
@@ -27,7 +27,8 @@ export default {
       skillDistributions: skillDistributions,
       attributes: attributes,
       disciplines: disciplines,
-      vitals:vitals,
+      disciplinesDefinition: disciplinesDefinition,
+      vitals: vitals,
 
       //local states
       helpData: null,
@@ -52,15 +53,15 @@ export default {
       var tmp = {};
       tmp[HELP_DATA.name] = HELP_DATA;
       this.restructureNested(tmp, attributes);
-      tmp[disciplines.id] = {
+      tmp[disciplinesDefinition.id] = {
         data: { category: disciplines },
         items: {},
-        name: disciplines.id,
-        path2Data: disciplines.path2Data
+        name: disciplinesDefinition.id,
+        path2Data: disciplinesDefinition.path2Data
       };
-      disciplines.data.forEach(element => {
-        tmp[disciplines.id].items[element.id] = { 
-            data: { stat: element, resource: disciplines.resource},
+      disciplinesDefinition.data.forEach(element => {
+        tmp[disciplinesDefinition.id].items[element.id] = { 
+            data: { stat: element, resource: disciplinesDefinition.resource},
             items: {}, //add empty array to avoid v-for/v-if collision, could be used to show abilities
             name: element.id,
             path2Data: element.path2Data
@@ -105,9 +106,10 @@ export default {
       let terminalSymbol = TERMINALSYMBOL;
       this.bindPath4Nested(attributes, separator, terminalSymbol);
       this.bindPath4Nested(skills, separator, terminalSymbol);
-      disciplines.path2Data = disciplines.id + terminalSymbol;
-      disciplines.data.forEach(element => {
-        element.path2Data = disciplines.id + separator + element.id + terminalSymbol;
+      
+      disciplinesDefinition.path2Data = disciplinesDefinition.id + terminalSymbol;
+      disciplinesDefinition.data.forEach(element => {
+        element.path2Data = disciplinesDefinition.id + separator + element.id + terminalSymbol;
       });      
       vitals.forEach(element => {
         element.path2Data = element.id + terminalSymbol;
@@ -194,9 +196,9 @@ export default {
     >
     </skill-section>
     <discipline-section
-      :stats="disciplines"
+      :disciplines="disciplines"
       :selectedClan="biography.clan.value"
-      @stat-section-change="setDataValue($event)"
+      @disciplines-change="disciplines = $event"
       @stat-help="handleHelp($event)"
     >
     </discipline-section>
@@ -258,5 +260,13 @@ div.sheet {
   float: left;
   width: 800px;
   margin-bottom: 60px;
+}
+select {
+  border: none;
+  width: 95%;
+}
+select:hover {
+  background-color: #dddddd;
+  cursor: pointer;
 }
 </style>

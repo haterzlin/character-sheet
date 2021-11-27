@@ -31,13 +31,4 @@ label {
   font-variant: small-caps;
   display: block;
 }
-
-select {
-  border: none;
-  width: 95%;
-}
-select:hover {
-  background-color: #dddddd;
-  cursor: pointer;
-}
 </style>

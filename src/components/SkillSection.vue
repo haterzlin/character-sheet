@@ -72,5 +72,5 @@ export default {
 </template>
 
 <style scoped>
-select {border: none}
+select {width: 10em}
 </style>
