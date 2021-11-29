@@ -31,7 +31,7 @@ export default {
       right: 0,
       initTop: 0,
       top: 0,
-      zmazat: "scroll-test<br/>",
+      zmazat: "scroll-test | riadok: ",
       isGrabbed : false,
     };
   },
@@ -174,7 +174,7 @@ export default {
           </div>
         </div>
       </div>
-      <p class="ZMAZTO" v-for="row in 30" :key="row">scroll-test</p>
+      <p class="ZMAZTO" v-for="row in 30" :key="row">{{ zmazat }} {{ row }}/30</p>
     </div>
     <div class="helpFooter">
       <span 
