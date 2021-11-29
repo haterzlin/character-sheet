@@ -31,6 +31,10 @@ export default {
     },
   },
   methods: {
+    /**
+     * @returns JSON definition of disciplineId from data
+     * which is meant to be displayed in help
+     */
     getDisciplineDefinition(disciplineId) {
       for (var i=0; i < this.disciplinesDefinition.data.length; i++) {
         if (this.disciplinesDefinition.data[i].id == disciplineId) {

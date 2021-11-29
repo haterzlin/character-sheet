@@ -11,7 +11,10 @@ import {disciplinesDefinition} from "../data.js";
 export default {
   props: ["discipline", "disciplines", "clan"],
   emits: ["disciplineChange"],
-  computed: {    
+  computed: {
+    /**
+     * @returns {List} of clan disciplines to recognize clan disciplines
+     */
     clanDisciplineList() {
       var list = []
       for (var i = 0; i < disciplinesDefinition.data.length; i++) {
@@ -21,6 +24,9 @@ export default {
       }
       return list
     },
+    /**
+    * @returns {List} of disciplines to display in select
+    */
     disciplineList() {
       var list = []
       for (var i = 0; i < disciplinesDefinition.data.length; i++) {
@@ -30,6 +36,9 @@ export default {
       }
       return list
     },
+    /**
+    * @returns {List} of disciplines which are already selected to exclude from discipline selects
+    */
     choosenDisciplines() {
       var list = []
       for (var i = 0; i < this.disciplines.length; i++) {
@@ -40,6 +49,10 @@ export default {
     }
   },
   methods: {
+    /**
+    * @returns {Array} of abilities defined in disciplineDefinition
+    * based on disciplineId and abilityLevel
+    */
     abilityList(disciplineId, abilityLevel) {
       for (var i = 0; i < disciplinesDefinition.data.length; i++) {
         if (disciplinesDefinition.data[i].id == disciplineId) {
@@ -47,7 +60,12 @@ export default {
         }
       }
       return null
-    },    
+    },
+    /**
+    * create discipline instance based on input
+    * newid, newvalue, newabilities
+    * and then emits new discipline values upwards
+    */    
     emitChangedDiscipline(newid, newvalue, newabilities) {
       var newdisc = this.discipline
       newdisc.id = newid
