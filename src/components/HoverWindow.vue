@@ -23,7 +23,7 @@ export default {
       hide: true,
       minWidth: 200,
       initWidth: 400,
-      width: 800,
+      width: 600,
       minHeight: 200,
       initHeight: 400,
       height: 400,
@@ -230,7 +230,6 @@ export default {
   display: inline-flex;  
   align-items: center;
   justify-content: center;
-
 }
 .helpExit:after {
   content:'\00D7';
