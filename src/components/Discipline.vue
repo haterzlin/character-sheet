@@ -144,6 +144,10 @@ export default {
 .discipline-ability-select {
   width: 90%;
 }
+
+.discipline-ability-select:disabled {
+  cursor: default;
+}
 .clanDiscipline {
   text-decoration: none;
 }
