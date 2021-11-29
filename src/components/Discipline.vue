@@ -9,11 +9,6 @@ import {disciplinesDefinition} from "../data.js";
 
 <script>
 export default {
-  data() {
-    return {
-      disciplinesDefinition: disciplinesDefinition,
-    }
-  },
   props: ["discipline", "disciplines", "clan"],
   emits: ["disciplineChange"],
   computed: {    
@@ -102,15 +97,15 @@ export default {
       :key="item.level"
       :index="item.level">
     {{ item.level }}
-    <select 
-      class="discipline-ability-select"
-      :disabled="this.discipline.value < item.level ? 1 : 0"
-      v-model="item.value"
-    >
-      <option disabled value="">Choose ability</option>
-      <option v-for="option in abilityList(discipline.id, item.level)" :key="option">
-            {{ option }}
-      </option>
+      <select 
+        class="discipline-ability-select"
+        :disabled="this.discipline.value < item.level ? 1 : 0"
+        v-model="item.value"
+      >
+        <option disabled value="">Choose ability</option>
+        <option v-for="option in abilityList(discipline.id, item.level)" :key="option">
+          {{ option }}
+        </option>
     </select>
     </div>
 

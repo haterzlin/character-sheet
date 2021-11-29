@@ -1,20 +1,3 @@
-const ClanList = ["Brujah", "Gangrel", "Malkavian", "Nosferatu", "Toreador", "Tremere", "Ventrue"]
-const DisciplineList = ["Animalism", "Auspex", "Blood Sorcery", "Celerity", "Dominate", "Fortitude", 
-                        "Obfuscate", "Potence", "Presence", "Protean"]
-const PrimaryDisciplines = []
-PrimaryDisciplines[0] = [3, 7, 8]
-PrimaryDisciplines[1] = [0, 5, 9]
-PrimaryDisciplines[2] = [1, 4, 6]
-PrimaryDisciplines[3] = [0, 6, 7]
-PrimaryDisciplines[4] = [1, 3, 8]
-PrimaryDisciplines[5] = [1, 2, 4]
-PrimaryDisciplines[6] = [4, 5, 8]
-
-function checkNumberOfDots(Item, Expected) {
-    cy.checkNumberOfPoints(Item, 0, Expected, 5)
-}
-
-
 describe('Adding discipline', () => {
     it('Select Animalism and then add two points', () => {
         cy.visit('/')
