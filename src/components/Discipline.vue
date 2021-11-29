@@ -83,7 +83,7 @@ export default {
       <select
         class="discipline-select" 
         :class="{
-          notClanDiscipline: ! clanDisciplineList.includes(discipline.id),
+          clanDiscipline: clanDisciplineList.includes(discipline.id),
         }"
 
         @change="emitChangedDiscipline($event.target.value, discipline.value, discipline.abilities)"
@@ -139,11 +139,12 @@ export default {
 .discipline-select {
   width: 50%;
   margin-right: 15px;
+  text-decoration: line-through;
 }
 .discipline-ability-select {
   width: 90%;
 }
-.notClanDiscipline {
-  text-decoration: line-through
+.clanDiscipline {
+  text-decoration: none;
 }
 </style>

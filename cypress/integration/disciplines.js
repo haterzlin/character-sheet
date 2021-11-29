@@ -27,8 +27,8 @@ describe('Adding discipline', () => {
     })
     it('Select different clans and check Clan disciplines', () => {
         cy.contains('Clan:').next().select('Brujah')
-        cy.get('.discipline-select').eq(0).should('have.class', 'notClanDiscipline')
-        cy.get('.discipline-select').eq(1).should('not.have.class', 'notClanDiscipline')
+        cy.get('.discipline-select').eq(0).should('not.have.class', 'clanDiscipline')
+        cy.get('.discipline-select').eq(1).should('have.class', 'clanDiscipline')
     })
     it('Can\'t select same discipline twice', () => {
         cy.get('.discipline-select').eq(2).should('not.contain','Potence')
