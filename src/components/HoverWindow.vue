@@ -23,7 +23,7 @@ export default {
       hide: true,
       minWidth: 200,
       initWidth: 400,
-      width: 400,
+      width: 800,
       minHeight: 200,
       initHeight: 400,
       height: 400,
@@ -31,14 +31,17 @@ export default {
       right: 0,
       initTop: 0,
       top: 0,
-      zmazat: null,
+      zmazat: "scroll-test<br/>",
       isGrabbed : false,
     };
   },
   computed: {
     contentHeight(){
-      return this.height - 74
+      return Math.max(this.height, window.innerHeight) - 54
     },
+    contentWidth(){
+      return Math.min(this.width, window.innerWidth)
+    },    
     /** returns scale if either scale or resource exists*/
     scaleOfPoints(){
       let tmp = (this.data.scale) ? this.data.scale : null;
@@ -51,7 +54,8 @@ export default {
     mouseOverData: {
       handler(newVal) {
         if (newVal) {
-         this.data = newVal;         
+         this.data = newVal;
+         this.hide = false;         
         }
       },
       //deep: true,
@@ -108,18 +112,14 @@ export default {
   <div 
     class="helpOpen"
     id="helpOpen"
-    @click="hide=false; width=initWidth; height=initHeight; right=initRight; top=initTop">
+    @click="hide=false;">
   </div>
   <div 
     class="helpWindow"
     id="help"
-    v-if="!hide"
-    :style="{width : width + 'px', right : right + 'px', top : top + 'px'}">
+    v-if="!hide">
     <div 
-      class="helpHeader"
-      :style="{cursor: (isGrabbed) ? 'grabbing' : 'grab'}"
-      @mousedown.prevent="isGrabbed = true"
-      @mousemove="dragNDrop($event)">
+      class="helpHeader">
       <span 
         class="helpIcon"
         @click="$emit('helpClick')">?</span>      
@@ -138,17 +138,7 @@ export default {
     </select>
     <div 
       class="helpContent"
-      :style="{height : contentHeight + 'px'}">
-      <p v-if="zmazat">
-        x:{{zmazat.clientX}}<br/>
-        y:{{zmazat.clientY}}<br/>
-        x->{{zmazat.offsetX}} <br/>
-        y->{{zmazat.offsetY}}<br/>
-        width:{{width}}<br/>
-        height:{{height}}<br/>
-        
-      </p>
-      {{}}
+      :style="{height : contentHeight + 'px', width : contentWidth + 'px'}">
       <p 
         v-if="data.description"
         v-html="data.description"></p>
@@ -184,6 +174,7 @@ export default {
           </div>
         </div>
       </div>
+      <p class="ZMAZTO" v-for="row in 30" :key="row">scroll-test</p>
     </div>
     <div class="helpFooter">
       <span 
@@ -208,10 +199,16 @@ export default {
 .helpHeading {  
   margin: 0;
 }
+.helpWindow {
+  top: 0;
+  right: 0;
+  width: 100%;
+}
 .helpContent {
   padding: 0px 5px;
   overflow-y: scroll;
   background-color: white;
+  margin: auto;
 }
 .helpHeader {
   display:flex;
