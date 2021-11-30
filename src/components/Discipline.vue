@@ -13,12 +13,24 @@ export default {
   emits: ["disciplineChange"],
   computed: {
     /**
-     * @returns {List} of clan disciplines to recognize clan disciplines
+     * @returns {List} of clan disciplines
      */
     clanDisciplineList() {
       var list = []
       for (var i = 0; i < disciplinesDefinition.data.length; i++) {
         if (disciplinesDefinition.data[i].clans.includes(this.clan)) {
+          list.push(disciplinesDefinition.data[i].id)
+        }
+      }
+      return list
+    },
+    /**
+     * @returns {List} of non clan disciplines
+     */
+    notClanDisciplineList() {
+      var list = []
+      for (var i = 0; i < disciplinesDefinition.data.length; i++) {
+        if (! disciplinesDefinition.data[i].clans.includes(this.clan)) {
           list.push(disciplinesDefinition.data[i].id)
         }
       }
@@ -82,17 +94,22 @@ export default {
     <div>      
       <select
         class="discipline-select" 
-        :class="{
-          clanDiscipline: clanDisciplineList.includes(discipline.id),
-        }"
-
+        :class="{ clanDiscipline: clanDisciplineList.includes(discipline.id) }"
         @change="emitChangedDiscipline($event.target.value, discipline.value, discipline.abilities)"
         :value="discipline.id"
       >
         <option disabled value="">Choose discipline</option>
-        <option v-for="option in disciplineList" :key="option">
-              {{ option }}
-        </option>
+        <optgroup label="Clan disciplines">
+          <option v-for="option in clanDisciplineList">
+            {{ option }}
+          </option>
+        </optgroup>
+
+        <optgroup label="Other disciplines">
+          <option v-for="option in notClanDisciplineList">
+            {{ option }}
+          </option>
+        </optgroup>
       </select>   
 
       <span class="points">
@@ -139,7 +156,6 @@ export default {
 .discipline-select {
   width: 50%;
   margin-right: 15px;
-  text-decoration: line-through;
 }
 .discipline-ability-select {
   width: 90%;
@@ -149,6 +165,7 @@ export default {
   cursor: default;
 }
 .clanDiscipline {
-  text-decoration: none;
+  font-weight: bold
 }
+
 </style>
