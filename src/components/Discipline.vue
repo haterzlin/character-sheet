@@ -18,7 +18,8 @@ export default {
     clanDisciplineList() {
       var list = []
       for (var i = 0; i < disciplinesDefinition.data.length; i++) {
-        if (disciplinesDefinition.data[i].clans.includes(this.clan)) {
+        if ( disciplinesDefinition.data[i].clans.includes(this.clan) &&
+             ! this.choosenDisciplines.includes(disciplinesDefinition.data[i].id)) {
           list.push(disciplinesDefinition.data[i].id)
         }
       }
@@ -30,7 +31,8 @@ export default {
     notClanDisciplineList() {
       var list = []
       for (var i = 0; i < disciplinesDefinition.data.length; i++) {
-        if (! disciplinesDefinition.data[i].clans.includes(this.clan)) {
+        if (! disciplinesDefinition.data[i].clans.includes(this.clan) &&
+            ! this.choosenDisciplines.includes(disciplinesDefinition.data[i].id)) {
           list.push(disciplinesDefinition.data[i].id)
         }
       }
