@@ -3,7 +3,7 @@ import CharacterInfo from "./components/CharacterInfo.vue";
 import AttributeSection from "./components/AttributeSection.vue";
 import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
-import HoverWindow from "./components/HoverWindow.vue";
+import HoverWindow from "./components/HelpWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue';
 import {biography, skillDistributions, attributes, skills, disciplines, vitals} from "./data.js";
 import {ref} from "vue"
@@ -41,7 +41,7 @@ export default {
       this.path4Nested(tmp, attributes, separator, terminalSymbol);
       let path = disciplines.id + terminalSymbol
       tmp[path] = {
-        data: {category: disciplines},
+        data: { category: disciplines },
         path2Data: path        
       }
       disciplines.data.forEach(element => {
