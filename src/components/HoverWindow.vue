@@ -1,7 +1,7 @@
 <script>
 const HELP_DATA = {
   data: {
-    description: "<b>help window -- ?</b><p>click on (?) and then click another element to see info</p><p>or use select and simply pick it</p><p>mousedown on header to drag n drop this element</p><p>mousedown at bottom left of this element (the triangle) to resize</p><p>click 'x' to hide this element</p>"
+    description: "<b>help window -- ?</b><p>click on (?) and then click another element to see info</p><p>or use select and simply pick it</p><p>click 'x' to hide this element</p>"
     },
   path2Data: "Help?"
 };
@@ -70,41 +70,6 @@ export default {
       }
     }*/
   },
-  methods:{
-    /** method for resizing window 
-     * @param mouseEvent{MouseEvent}
-    */
-    resize(mouseEvent){
-      if (mouseEvent.buttons !== 1) {
-        this.isGrabbed=false;
-        return;
-        }
-      //TODO make this like dragNdrop, so it feels smoother
-      let x = - mouseEvent.offsetX;
-      let y = mouseEvent.offsetY - 5;
-      this.zmazat = mouseEvent;
-      this.width += x;
-      this.height += y;
-      if (this.width < this.minWidth) this.width = this.minWidth;
-      if (this.height < this.minHeight) this.height = this.minHeight;
-    },
-    /**method for window drag and drop 
-     * @param mouseEvent{MouseEvent}
-    */
-    dragNDrop(mouseEvent){
-      let pageWidth = window.innerWidth;
-      if (mouseEvent.buttons !== 1) {
-        this.isGrabbed = false;
-        return;
-      } 
-      
-      //TODO make offset for right and top variables acquired when grabbed of use it instead of width/2 and 20
-      this.right = pageWidth - mouseEvent.x - this.width/2
-      this.top = mouseEvent.y - 20;
-      if (this.right < this.initRight) this.right = this.initRight;
-      if (this.top < this.initTop) this.top = this.initTop;
-    }
-  },
 };
 </script>
 
@@ -112,7 +77,7 @@ export default {
   <div 
     class="helpOpen"
     id="helpOpen"
-    @click="hide=false;">
+    @click="hide=false; $emit('getHelp', defaultData.data)">
   </div>
   <div 
     class="helpWindow"
@@ -122,7 +87,7 @@ export default {
       class="helpHeader">
       <span 
         class="helpIcon"
-        @click="$emit('helpClick')">?</span>      
+        @click="$emit('helpClick'); hide=true;">?</span>      
       <h3 class="helpHeading">HELP</h3>
       <span 
         class="helpExit"
@@ -177,12 +142,6 @@ export default {
       <p class="ZMAZTO" v-for="row in 30" :key="row">{{ zmazat }} {{ row }}/30</p>
     </div>
     <div class="helpFooter">
-      <span 
-        class="resize"
-        :style="{cursor: (isGrabbed) ? 'sw-resize' : 'grab'}"
-        @mousedown.prevent="isGrabbed=true"
-        @mousemove="resize($event)"
-        ></span>
     </div>
   </div>
 </template>
