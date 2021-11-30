@@ -39,6 +39,11 @@ export default {
       let separator = '>'
       let terminalSymbol = '?'
       this.path4Nested(tmp, attributes, separator, terminalSymbol);
+      let path = disciplines.id + terminalSymbol
+      tmp[path] = {
+        data: {category: disciplines},
+        path2Data: path        
+      }
       disciplines.data.forEach(element => {
         let dataPath = "Disciplines" + separator + element.id + terminalSymbol;
         tmp[dataPath] = { 
@@ -69,7 +74,11 @@ export default {
       }
     },
     path4Nested(targetArray, append, separator, terminalSymbol) {
-      let dataPath;
+      let dataPath = append.id + terminalSymbol;
+      targetArray[dataPath] = {
+        data: { category: append },
+        path2Data: dataPath
+      }
       append.data.forEach(element => {
         dataPath = append.id + separator + element.id + terminalSymbol;
         targetArray[dataPath] = {          

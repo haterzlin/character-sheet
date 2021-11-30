@@ -18,7 +18,10 @@ export default {
 </script>
 
 <template>
-  <div class="statSection" id="attributes">
+  <div 
+    class="statSection" 
+    id="attributes"
+    @click="$emit('statHelp', { category: stats })">
     <h2>{{ stats.id }}</h2>
     <RestrictionState
       class="resourceCount"
