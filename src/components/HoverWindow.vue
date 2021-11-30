@@ -1,7 +1,7 @@
 <script>
 const HELP_DATA = {
   data: {
-    description: "<b>help window -- ?</b><p>click on (?) and then click another element to see info</p><p>or use select and simply pick it</p><p>click 'x' to hide this element</p>"
+    description: "<b>help window -- ?</b><p>click on (?) to hide this window so then you can click another element to see info</p><p>or use select and simply pick it</p><p>click 'x' to dismiss this element</p>"
     },
   path2Data: "Help?"
 };
@@ -21,16 +21,8 @@ export default {
       path2Data: HELP_DATA.path2Data,
       defaultData: HELP_DATA,
       hide: true,
-      minWidth: 200,
-      initWidth: 400,
       width: 600,
-      minHeight: 200,
-      initHeight: 400,
       height: 400,
-      initRight: 0,
-      right: 0,
-      initTop: 0,
-      top: 0,
       zmazat: "scroll-test | riadok: ",
       isGrabbed : false,
     };
@@ -60,15 +52,6 @@ export default {
       },
       //deep: true,
     },
-    /* NEFUNGUJE
-    data: {
-      handler(newVal) {
-        if(newVal) {
-          let dataPath = (this.data.stat.id && this.descriptionsWithPath[this.data.stat.id]) ? this.descriptionsWithPath[this.data.stat.id] : null
-          this.path2Data = dataPath;
-        }
-      }
-    }*/
   },
 };
 </script>
