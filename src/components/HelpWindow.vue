@@ -69,12 +69,13 @@ export default {
     <div 
       class="helpHeader">
       <span 
+        id="helpClick"
         class="helpIcon"
         @click="$emit('helpClick'); hide=true; emitHelp=true;">?</span>      
       <h3 class="helpHeading">HELP</h3>
       <span 
         class="helpExit"
-        id="helpClose"
+        id="helpExit"
         @click="hide=true">
       </span>
     </div>
