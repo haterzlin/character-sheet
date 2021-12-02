@@ -20,7 +20,8 @@ export default {
       path2Data: HELP_DATA.path2Data,
       defaultData: HELP_DATA,
       hide: true,
-      width: 600,
+      emitHelp: false,
+      width: 700,
       height: 400,
     };
   },
@@ -44,7 +45,8 @@ export default {
       handler(newVal) {
         if (newVal) {
          this.data = newVal;
-         this.hide = false;         
+         this.hide = false;
+         this.emitHelp = false;         
         }
       },
       //deep: true,
@@ -57,7 +59,8 @@ export default {
   <div 
     class="helpOpen"
     id="helpOpen"
-    @click="hide=false; $emit('getHelp', defaultData.data)">
+    :style="{cursor: (emitHelp) ? 'help' : 'pointer'}"
+    @click="hide=false; $emit('getHelp', defaultData.data);">
   </div>
   <div 
     class="helpWindow"
@@ -67,7 +70,7 @@ export default {
       class="helpHeader">
       <span 
         class="helpIcon"
-        @click="$emit('helpClick'); hide=true;">?</span>      
+        @click="$emit('helpClick'); hide=true; emitHelp=true;">?</span>      
       <h3 class="helpHeading">HELP</h3>
       <span 
         class="helpExit"
@@ -202,7 +205,6 @@ export default {
   font: 700;
   font-size: 50px;
   margin: 0px 5px;
-  cursor:pointer;
   border: black solid 1px;
   display: inline-flex;
   align-items: center;
