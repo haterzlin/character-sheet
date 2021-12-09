@@ -3,6 +3,7 @@ const HELP_DATA = {
   data: {
     description: "<b>help window -- ?</b><p>click on (?) to hide this window so then you can click another element to see info</p><p>or use select and simply pick it</p><p>click 'x' to dismiss this element</p>"
     },
+  name: "Help",
   path2Data: "Help?"
 };
 import DisciplineSection from './DisciplineSection.vue';
@@ -21,7 +22,7 @@ export default {
       defaultData: HELP_DATA,
       hide: true,
       emitHelp: false,
-      width: 700,
+      width: 600,
       height: 400,
     };
   },
@@ -46,7 +47,8 @@ export default {
         if (newVal) {
          this.data = newVal;
          this.hide = false;
-         this.emitHelp = false;         
+         this.emitHelp = false;
+         this.path2Data = "";
         }
       },
       //deep: true,
@@ -79,15 +81,49 @@ export default {
         @click="hide=true">
       </span>
     </div>
-    <select 
+    <ul 
       class="helpDataSelect"
-      v-model="data">
-      <option :value="defaultData.data">{{defaultData.path2Data}}</option>
-      <option v-for="elem in descriptionsWithPath" :key="elem.path2Data" :value="elem.data">{{elem.path2Data}}</option>
-    </select>
+      :style="{height : contentHeight + 'px'}"
+      >
+      <li
+      class="helpItem"
+      :class="{selected: defaultData.path2Data == path2Data}"
+      @click="data=defaultData.data; path2Data = defaultData.path2Data">
+      <div>{{defaultData.path2Data}}</div></li>
+      <li v-for="elem in descriptionsWithPath"
+      class="helpItem"
+      :class="{selected: elem.path2Data == path2Data}" 
+      :key="elem.path2Data"
+      >
+      <div 
+        @click="data=elem.data; path2Data = elem.path2Data">
+        {{elem.name}}
+      </div>
+      <ul class="margin10"><li v-for="item in elem.items"
+        class="helpItem"
+        :class="{selected: item.path2Data == path2Data}" 
+        :key="item.path2Data">
+        <div 
+          @click="data = item.data; path2Data = item.path2Data">
+          {{item.name}}
+        </div>
+        <ul class="margin20"><li v-for="subitem in item.items"
+          class="helpItem"
+          :class="{selected: subitem.path2Data == path2Data}" 
+          :key="subitem.path2Data">
+          <div 
+            @click="data=subitem.data; path2Data = subitem.path2Data">
+            {{subitem.name}}
+          </div>
+        </li></ul>
+      </li></ul>
+      </li>
+    </ul>
     <div 
       class="helpContent"
       :style="{height : contentHeight + 'px', width : contentWidth + 'px'}">
+      <h4 v-if="data.categ">{{data.categ.id}}</h4>
+      <h4 v-if="data.stat">{{data.stat.id}}</h4>
       <p 
         v-if="data.description"
         v-html="data.description"></p>
@@ -241,6 +277,18 @@ span.resize:hover {
   clear: both;
 }
 .helpDataSelect {
+  float:left;
+  overflow-y: scroll;
+}
+.helpItem {
   cursor: pointer;
+  color: blue;
+}
+.helpItem:hover {
+  color: purple;
+}
+.helpItem.selected{
+  color: black;
+  font: 700;
 }
 </style>

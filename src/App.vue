@@ -33,6 +33,9 @@ export default {
     "character-info": CharacterInfo,
     "vitals-sidebar": VitalsSideBar
   },
+  /**
+   * TODO explain this computed
+   */
   computed: {
     dataWithPath() {      
       var tmp = {};
@@ -40,22 +43,29 @@ export default {
       let terminalSymbol = '?'
       this.path4Nested(tmp, attributes, separator, terminalSymbol);
       let path = disciplines.id + terminalSymbol
-      tmp[path] = {
+      tmp[disciplines.id] = {
         data: { category: disciplines },
-        path2Data: path        
-      }
+        items: {},
+        name: disciplines.id,
+        path2Data: path
+      };
       disciplines.data.forEach(element => {
-        let dataPath = "Disciplines" + separator + element.id + terminalSymbol;
-        tmp[dataPath] = { 
+        let dataPath = disciplines.id + separator + element.id + terminalSymbol;
+        let name = disciplines.id
+        tmp[disciplines.id].items[element.id] = { 
             data: { stat: element, resource: disciplines.resource},
+            items: {}, //add empty array to avoid v-for/v-if collision, could be used to show abilities
+            name: element.id,
             path2Data: dataPath
-          }
+          };
       });      
       this.path4Nested(tmp, skills, separator, terminalSymbol);
       vitals.forEach(element => {
         let dataPath = "Vitals" + separator + element.id + terminalSymbol;
-        tmp[dataPath] = { 
+        tmp[element.id] = { 
             data: { category: element },
+            items: {},
+            name: element.id,
             path2Data: dataPath
           }
       });
@@ -67,28 +77,42 @@ export default {
     setDataValue(event) {
       event[0].value = event[1];      
     },
+    /**
+     * TODO explain this method, better
+     * event handler, if help==true send data to helpWidnow; help -> false
+     */
     handleHelp(event) {
       if (this.help){
         this.help = false;
         this.helpData = event;
       }
     },
+
+    /**
+     * TODO explain this method
+     */
     path4Nested(targetArray, append, separator, terminalSymbol) {
       let dataPath = append.id + terminalSymbol;
-      targetArray[dataPath] = {
+      targetArray[append.id] = {
         data: { category: append },
+        items: {},
+        name: append.id,
         path2Data: dataPath
       }
       append.data.forEach(element => {
         dataPath = append.id + separator + element.id + terminalSymbol;
-        targetArray[dataPath] = {          
+        targetArray[append.id].items[element.id] = {          
             data: { category: element},
+            items: {},
+            name: element.id,
             path2Data: dataPath
           }
         element.list.forEach(item => {
           dataPath = append.id + separator + element.id + separator + item.id + terminalSymbol;
-          targetArray[dataPath] = { 
-            data: { stat: item, resource: append.resource }, 
+          targetArray[append.id].items[element.id].items[item.id]  = { 
+            data: { stat: item, resource: append.resource },
+            items: {},
+            name: item.id,
             path2Data: dataPath
           }
         });
