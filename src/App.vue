@@ -1,4 +1,14 @@
 <script>
+const SEPARATOR = '>'
+const TERMINALSYMBOL = '?'
+const HELP_DATA = {
+  data: {
+    description: "<b>help window -- ?</b><p>click on (?) to hide this window so then you can click another element to see info</p><p>or use select and simply pick it</p><p>click 'x' to dismiss this element</p>"
+    },
+  name: "Help",
+  path2Data: "Help" + TERMINALSYMBOL
+};
+
 import CharacterInfo from "./components/CharacterInfo.vue";
 import AttributeSection from "./components/AttributeSection.vue";
 import SkillSection from "./components/SkillSection.vue";
@@ -39,39 +49,37 @@ export default {
   computed: {
     dataWithPath() {      
       var tmp = {};
-      let separator = '>'
-      let terminalSymbol = '?'
-      this.path4Nested(tmp, attributes, separator, terminalSymbol);
-      let path = disciplines.id + terminalSymbol
+      tmp[HELP_DATA.name] = HELP_DATA;
+      this.path4Nested(tmp, attributes);
       tmp[disciplines.id] = {
         data: { category: disciplines },
         items: {},
         name: disciplines.id,
-        path2Data: path
+        path2Data: disciplines.path2Data
       };
       disciplines.data.forEach(element => {
-        let dataPath = disciplines.id + separator + element.id + terminalSymbol;
-        let name = disciplines.id
         tmp[disciplines.id].items[element.id] = { 
             data: { stat: element, resource: disciplines.resource},
             items: {}, //add empty array to avoid v-for/v-if collision, could be used to show abilities
             name: element.id,
-            path2Data: dataPath
+            path2Data: element.path2Data
           };
-      });      
-      this.path4Nested(tmp, skills, separator, terminalSymbol);
+      });
+      this.path4Nested(tmp, skills);
       vitals.forEach(element => {
-        let dataPath = "Vitals" + separator + element.id + terminalSymbol;
         tmp[element.id] = { 
             data: { category: element },
             items: {},
             name: element.id,
-            path2Data: dataPath
+            path2Data: element.path2Data
           }
       });
       // TODO sort(tmp)
       return tmp;      
     }
+  },
+  created(){
+    this.bindPathToData();
   },
   methods: {
     setDataValue(event) {
@@ -87,33 +95,60 @@ export default {
         this.helpData = event;
       }
     },
+    /**
+     * TODO
+     * 
+     * is called when created, binds paths to data
+     */
+    bindPathToData(){
+      let separator = SEPARATOR;
+      let terminalSymbol = TERMINALSYMBOL;
+      this.bindPath4Nested(attributes, separator, terminalSymbol);
+      this.bindPath4Nested(skills, separator, terminalSymbol);
+      disciplines.path2Data = disciplines.id + terminalSymbol;
+      disciplines.data.forEach(element => {
+        element.path2Data = disciplines.id + separator + element.id + terminalSymbol;
+      });      
+      vitals.forEach(element => {
+        element.path2Data = element.id + terminalSymbol;
+      });
+    },
+    /**
+     * TODO explain this method
+     */
+    bindPath4Nested(append, separator, terminalSymbol) {
+      append.path2Data = append.id + terminalSymbol;
+      append.data.forEach(element => {
+        element.path2Data = append.id + separator + element.id + terminalSymbol;
+        element.list.forEach(item => {
+          item.path2Data = append.id + separator + element.id + separator + item.id + terminalSymbol;
+        });
+      });
+    },
 
     /**
      * TODO explain this method
      */
-    path4Nested(targetArray, append, separator, terminalSymbol) {
-      let dataPath = append.id + terminalSymbol;
+    path4Nested(targetArray, append) {
       targetArray[append.id] = {
         data: { category: append },
         items: {},
         name: append.id,
-        path2Data: dataPath
+        path2Data: append.path2Data
       }
       append.data.forEach(element => {
-        dataPath = append.id + separator + element.id + terminalSymbol;
         targetArray[append.id].items[element.id] = {          
             data: { category: element},
             items: {},
             name: element.id,
-            path2Data: dataPath
+            path2Data: element.path2Data
           }
         element.list.forEach(item => {
-          dataPath = append.id + separator + element.id + separator + item.id + terminalSymbol;
           targetArray[append.id].items[element.id].items[item.id]  = { 
             data: { stat: item, resource: append.resource },
             items: {},
             name: item.id,
-            path2Data: dataPath
+            path2Data: item.path2Data
           }
         });
       });

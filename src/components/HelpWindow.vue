@@ -1,11 +1,5 @@
 <script>
-const HELP_DATA = {
-  data: {
-    description: "<b>help window -- ?</b><p>click on (?) to hide this window so then you can click another element to see info</p><p>or use select and simply pick it</p><p>click 'x' to dismiss this element</p>"
-    },
-  name: "Help",
-  path2Data: "Help?"
-};
+
 import DisciplineSection from './DisciplineSection.vue';
 /**
  * Displays details about the element that the mouse is over
@@ -17,9 +11,9 @@ export default {
   props: { mouseOverData: JSON, descriptionsWithPath: JSON},
   data() {
     return {      
-      data: HELP_DATA.data,
-      path2Data: HELP_DATA.path2Data,
-      defaultData: HELP_DATA,
+      data: this.descriptionsWithPath.Help.data,
+      path2Data: this.descriptionsWithPath.Help.path2Data,
+      defaultData: this.descriptionsWithPath.Help,
       hide: true,
       emitHelp: false,
       width: 600,
@@ -48,7 +42,8 @@ export default {
          this.data = newVal;
          this.hide = false;
          this.emitHelp = false;
-         this.path2Data = "";
+         let value = (newVal.category) ? newVal.category : (newVal.stat) ? newVal.stat : value.path2Data = "" // vazne by som mal najst nejaky syntakticky cukor na priradzovanie ak hodnota existuje
+         this.path2Data = value.path2Data;
         }
       },
       //deep: true,
@@ -85,11 +80,6 @@ export default {
       class="helpDataSelect"
       :style="{height : contentHeight + 'px'}"
       >
-      <li
-      class="helpItem"
-      :class="{selected: defaultData.path2Data == path2Data}"
-      @click="data=defaultData.data; path2Data = defaultData.path2Data">
-      <div>{{defaultData.path2Data}}</div></li>
       <li v-for="elem in descriptionsWithPath"
       class="helpItem"
       :class="{selected: elem.path2Data == path2Data}" 
@@ -122,8 +112,7 @@ export default {
     <div 
       class="helpContent"
       :style="{height : contentHeight + 'px', width : contentWidth + 'px'}">
-      <h4 v-if="data.categ">{{data.categ.id}}</h4>
-      <h4 v-if="data.stat">{{data.stat.id}}</h4>
+      <h4 v-if="path2Data">{{path2Data}}</h4>
       <p 
         v-if="data.description"
         v-html="data.description"></p>
