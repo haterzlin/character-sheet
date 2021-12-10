@@ -1,12 +1,9 @@
 <script>
-
-import DisciplineSection from './DisciplineSection.vue';
 /**
  * Displays details about the element that the mouse is over
  * mostly works with stats so far
  */
 export default {
-  components: { DisciplineSection },
   emits: ['helpClick', 'getHelp'],
   props: { mouseOverData: JSON, descriptionsWithPath: JSON},
   data() {
@@ -42,7 +39,9 @@ export default {
          this.data = newVal;
          this.hide = false;
          this.emitHelp = false;
-         let value = (newVal.category) ? newVal.category : (newVal.stat) ? newVal.stat : value.path2Data = "" // vazne by som mal najst nejaky syntakticky cukor na priradzovanie ak hodnota existuje
+         let value = (newVal.category) ? newVal.category : null;
+         value = (newVal.stat) ? newVal.stat : value;
+         value = (!value) ? value.path2Data = "" : value; // vazne by som mal najst nejaky syntakticky cukor na priradzovanie ak hodnota existuje
          this.path2Data = value.path2Data;
         }
       },
