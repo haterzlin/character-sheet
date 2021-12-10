@@ -78,6 +78,7 @@ export default {
     </div>
     <ul 
       class="helpDataSelect"
+      id="helpSelect"
       :style="{height : contentHeight + 'px'}"
       >
       <li v-for="elem in descriptionsWithPath"
