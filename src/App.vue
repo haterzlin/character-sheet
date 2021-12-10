@@ -45,12 +45,13 @@ export default {
   },
   /**
    * TODO explain this computed
+   * restructure data to make select/menu in help-window simple
    */
   computed: {
     dataWithPath() {      
       var tmp = {};
       tmp[HELP_DATA.name] = HELP_DATA;
-      this.path4Nested(tmp, attributes);
+      this.restructureNested(tmp, attributes);
       tmp[disciplines.id] = {
         data: { category: disciplines },
         items: {},
@@ -65,7 +66,7 @@ export default {
             path2Data: element.path2Data
           };
       });
-      this.path4Nested(tmp, skills);
+      this.restructureNested(tmp, skills);
       vitals.forEach(element => {
         tmp[element.id] = { 
             data: { category: element },
@@ -96,8 +97,7 @@ export default {
       }
     },
     /**
-     * TODO
-     * 
+     * TODO explain this method, maybe better
      * is called when created, binds paths to data
      */
     bindPathToData(){
@@ -115,6 +115,8 @@ export default {
     },
     /**
      * TODO explain this method
+     * binds path {String} for @param append {JSON} and its nested children
+     * uses @param separator {String} to separate ids and @param terminalSymbol to indicate there is no additional id
      */
     bindPath4Nested(append, separator, terminalSymbol) {
       append.path2Data = append.id + terminalSymbol;
@@ -128,8 +130,11 @@ export default {
 
     /**
      * TODO explain this method
+     * restructure data for data such as skills or attributes
+     * @param targetArray {JSON} data is restructured to this array
+     * @param append {JSON} data that is to be restructured, should be structured @param append.data{JSON} JSON @param append.data.list{JSON} JSON
      */
-    path4Nested(targetArray, append) {
+    restructureNested(targetArray, append) {
       targetArray[append.id] = {
         data: { category: append },
         items: {},
