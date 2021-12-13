@@ -20,7 +20,7 @@ describe('Help test', () => {
         cy.get('#help').contains('Strength governs').should('be.visible')
     })
     it('After selecting Dexterity in select, help for Dexterity should be visible', () => {
-        cy.get('#helpSelect').contains('Dexterity').click()
+        cy.get('#helpSelect').contains('Dexterity').click().parent().should('have.class','selected')
         cy.get('#help').contains('Dexterity governs').should('be.visible')
     })
 })
