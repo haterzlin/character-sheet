@@ -16,50 +16,33 @@ export default {
      * @returns {List} of clan disciplines
      */
     clanDisciplineList() {
-      var list = []
-      for (var i = 0; i < disciplinesDefinition.data.length; i++) {
-        if ( disciplinesDefinition.data[i].clans.includes(this.clan) &&
-             ! this.choosenDisciplines.includes(disciplinesDefinition.data[i].id)) {
-          list.push(disciplinesDefinition.data[i].id)
-        }
-      }
-      return list
+      return disciplinesDefinition.data.filter(
+        discipline => discipline.clans.includes(this.clan) && ! this.choosenDisciplines.includes(discipline.id)
+      ).map(({id}) => id)      
     },
     /**
      * @returns {List} of non clan disciplines
      */
     notClanDisciplineList() {
-      var list = []
-      for (var i = 0; i < disciplinesDefinition.data.length; i++) {
-        if (! disciplinesDefinition.data[i].clans.includes(this.clan) &&
-            ! this.choosenDisciplines.includes(disciplinesDefinition.data[i].id)) {
-          list.push(disciplinesDefinition.data[i].id)
-        }
-      }
-      return list
+      return disciplinesDefinition.data.filter(
+        discipline => ! discipline.clans.includes(this.clan) && ! this.choosenDisciplines.includes(discipline.id)
+      ).map(({id}) => id)
     },
     /**
     * @returns {List} of disciplines to display in select
     */
     disciplineList() {
-      var list = []
-      for (var i = 0; i < disciplinesDefinition.data.length; i++) {
-        if (! this.choosenDisciplines.includes(disciplinesDefinition.data[i].id) ) {
-          list.push(disciplinesDefinition.data[i].id)
-        }
-      }
-      return list
+      return disciplinesDefinition.data.filter(
+        discipline =>  ! this.choosenDisciplines.includes(discipline.id)
+      ).map(({id}) => id)
     },
     /**
     * @returns {List} of disciplines which are already selected to exclude from discipline selects
     */
     choosenDisciplines() {
-      var list = []
-      for (var i = 0; i < this.disciplines.length; i++) {
-        if (this.disciplines[i].id != null && this.disciplines[i].id != this.discipline.id)
-        list.push(this.disciplines[i].id)
-      }
-      return list
+      return this.disciplines.filter(
+        discipline =>  discipline.id != null && discipline.id != this.discipline.id
+      ).map(({id}) => id)
     }
   },
   methods: {
