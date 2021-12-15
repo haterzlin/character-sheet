@@ -62,6 +62,7 @@ export default {
 
     <Discipline
       v-for="discipline in disciplines"
+      :key="discipline"
       :discipline="discipline"
       :disciplines="disciplines"
       :clan="selectedClan"

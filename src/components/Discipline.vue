@@ -102,13 +102,13 @@ export default {
       >
         <option disabled value="">Choose discipline</option>
         <optgroup label="Clan disciplines">
-          <option v-for="option in clanDisciplineList">
+          <option v-for="option in clanDisciplineList" :key="option">
             {{ option }}
           </option>
         </optgroup>
 
         <optgroup label="Other disciplines">
-          <option v-for="option in notClanDisciplineList">
+          <option v-for="option in notClanDisciplineList" :key="option">
             {{ option }}
           </option>
         </optgroup>
