@@ -24,7 +24,7 @@ export default {
     contentWidth(){
       return Math.min(this.width, window.innerWidth)
     },    
-    /** returns scale if either scale or resource exists*/
+    /** @returns {number} scale if either scale or resource exists*/
     scaleOfPoints(){
       let tmp = (this.data.scale) ? this.data.scale : null;
       tmp = (!tmp && this.data.resource) ? this.data.resource.length - 1 : tmp;

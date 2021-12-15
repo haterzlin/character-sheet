@@ -16,7 +16,6 @@ import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HelpWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue';
 import {biography, skillDistributions, attributes, skills, disciplines, vitals} from "./data.js";
-import {ref} from "vue"
 
 export default {
   data() {
@@ -43,11 +42,12 @@ export default {
     "character-info": CharacterInfo,
     "vitals-sidebar": VitalsSideBar
   },
-  /**
-   * TODO explain this computed
-   * restructure data to make select/menu in help-window simple
-   */
   computed: {
+    /**
+     * TODO explain this computed
+     * @returns {JSON}
+     * restructure data to make select/menu in help-window simple
+     */
     dataWithPath() {      
       var tmp = {};
       tmp[HELP_DATA.name] = HELP_DATA;
