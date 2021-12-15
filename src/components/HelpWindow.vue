@@ -18,9 +18,11 @@ export default {
     };
   },
   computed: {
+    /**@returns {number} height of content*/
     contentHeight(){
       return Math.max(this.height, window.innerHeight) - 54
     },
+    /**@returns {number} width of content box */
     contentWidth(){
       return Math.min(this.width, window.innerWidth)
     },    
