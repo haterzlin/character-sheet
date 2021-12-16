@@ -14,7 +14,7 @@ import {disciplinesDefinition} from "../data.js";
 <script>
 export default {
   props: ["disciplines", "selectedClan"],
-  emits: ["disciplinesChange", "statSectionHover"],
+  emits: ["disciplinesChange"],
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
@@ -67,8 +67,6 @@ export default {
       :disciplines="disciplines"
       :clan="selectedClan"
       @disciplineChange="$emit('disciplinesChange', disciplines);"
-      @click="$emit('statHelp', { stat: getDisciplineDefinition(discipline.id), resource: disciplinesDefinition.resource })"
-
     ></Discipline>
     
   </div>
