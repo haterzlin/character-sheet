@@ -14,7 +14,7 @@ import {disciplinesDefinition} from "../data.js";
 <script>
 export default {
   props: ["disciplines", "selectedClan"],
-  emits: ["disciplinesChange"],
+  emits: ["disciplinesChange", "statHelp"],
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
@@ -49,9 +49,9 @@ export default {
 
 <template>
 
-  <div class="statSection" id="disciplines" @click="$emit('statHelp', { category: disciplinesDefinition })">
+  <div class="statSection" id="disciplines">
     
-    <h2>{{ disciplinesDefinition.id }}</h2>
+    <h2 @click="$emit('statHelp', { category: disciplinesDefinition })">{{ disciplinesDefinition.id }}</h2>
 
     <RestrictionState
       class="resourceCount"
@@ -66,7 +66,8 @@ export default {
       :discipline="discipline"
       :disciplines="disciplines"
       :clan="selectedClan"
-      @disciplineChange="$emit('disciplinesChange', disciplines);"
+      @disciplineChange="$emit('disciplinesChange', disciplines); $emit('statHelp', { stat: getDisciplineDefinition(discipline.id), resource: disciplinesDefinition.resource })"
+
     ></Discipline>
     
   </div>
