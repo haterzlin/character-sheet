@@ -1,6 +1,13 @@
 describe('Adding discipline', () => {
-    it('Select Animalism and then add two points', () => {
+    it('Select try to add two points without selecting discipline', () => {
         cy.visit('/')
+        cy.get('#disciplines').within(() => {
+            cy.get('.points').first().children().next().first().click()
+            cy.get('.points').first().children().next().first().should('not.have.class', 'fill')
+            cy.get('.discipline-ability').next().first().children().should('be.disabled')
+        })
+    })
+    it('Select Animalism and then add two points', () => {
         cy.get('.discipline-select').first().select('Animalism')
         cy.get('#disciplines').within(() => {
             cy.get('.points').first().children().next().first().click()
