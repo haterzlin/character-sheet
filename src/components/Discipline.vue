@@ -155,4 +155,13 @@ export default {
   font-weight: bold
 }
 
+.points:hover span {
+  background-color: #ff9999;
+}
+.points span:hover {
+  background-color: #ff9999;
+}
+.points span:hover ~ span {
+  background-color: white;
+}
 </style>
