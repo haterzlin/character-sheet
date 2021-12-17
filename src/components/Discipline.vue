@@ -64,11 +64,13 @@ export default {
     * and then emits new discipline values upwards
     */    
     emitChangedDiscipline(newid, newvalue, newabilities) {
-      var newdisc = this.discipline
-      newdisc.id = newid
-      newdisc.value = newvalue
-      newdisc.abilities = newabilities
-      this.$emit('disciplineChange', newdisc)
+      if (this.discipline.id != null || newid != null) {
+        var newdisc = this.discipline
+        newdisc.id = newid
+        newdisc.value = newvalue
+        newdisc.abilities = newabilities
+        this.$emit('disciplineChange', newdisc)
+      }      
     }
   }
 };
