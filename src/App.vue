@@ -233,6 +233,18 @@ export default {
   background: radial-gradient(#ff6666, #cc0000);
 }
 
+.point.active {
+  background-color: #ff9999;
+}
+
+.fill.active {
+  background: radial-gradient(#ff6666, #ff6666);
+}
+
+.init.active {
+  background: radial-gradient(#ff6666, #660000);
+}
+
 .stat:hover > .statName {
   color:#cc0000
 }

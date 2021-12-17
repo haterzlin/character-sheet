@@ -160,14 +160,4 @@ export default {
 .clanDiscipline {
   font-weight: bold
 }
-
-
-
-.point.active {
-  background-color: #ff9999;
-}
-
-.fill.active {
-  background: radial-gradient(#ff6666, #ff6666);
-}
 </style>
