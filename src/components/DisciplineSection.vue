@@ -66,9 +66,7 @@ export default {
       :discipline="discipline"
       :disciplines="disciplines"
       :clan="selectedClan"
-      @disciplineChange="$emit('disciplinesChange', disciplines); 
-        $emit('statHelp', { stat: getDisciplineDefinition(discipline.id), resource: disciplinesDefinition.resource })"
-
+      @disciplineChange="$emit('disciplinesChange', disciplines)"
     ></Discipline>
     
   </div>
