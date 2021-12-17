@@ -9,6 +9,9 @@ import {disciplinesDefinition} from "../data.js";
 
 <script>
 export default {
+  data() {
+    return { hoverValue: null }
+  },
   props: ["discipline", "disciplines", "clan"],
   emits: ["disciplineChange"],
   computed: {
@@ -106,8 +109,11 @@ export default {
           :class="{
             point: true,
             fill: i <= discipline.value,
+            active: hoverValue && (i === hoverValue || i > hoverValue !== i > discipline.value),
           }"
           @click="if (discipline.value == i) { i-- }; emitChangedDiscipline(discipline.id, i, discipline.abilities)"
+          @mouseover="hoverValue = i"
+          @mouseout="hoverValue = null"
         >
         </span>
       </span>
@@ -155,13 +161,13 @@ export default {
   font-weight: bold
 }
 
-.points:hover span {
+
+
+.point.active {
   background-color: #ff9999;
 }
-.points span:hover {
-  background-color: #ff9999;
-}
-.points span:hover ~ span {
-  background-color: white;
+
+.fill.active {
+  background: radial-gradient(#ff6666, #ff6666);
 }
 </style>
