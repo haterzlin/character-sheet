@@ -48,19 +48,31 @@ describe('Skill test', () => {
         })
     })
 
-    it('When we click on 2nd dot of Brawl, two dots are removed as we are allowed to add only 1 lvl skills now', () => {
+    it('When we click on 1st dot of Brawl, two dots removed as we are allowed to remove', () => {
         var i = 1
-        cy.getNthPointOf(SkillList[i], 2).click()
+        cy.getNthPointOf(SkillList[i], 1).click()
         checkNumberOfDots(SkillList[i], 1)
     })
 
-    it('When we click on 2nd dot of Brawl again, nothing changes', () => {
+    it('When we click on 1st dot of Brawl, additional dot is removed', () => {
         var i = 1
-        cy.getNthPointOf(SkillList[i], 2).click()
-        checkNumberOfDots(SkillList[i], 1)
+        cy.getNthPointOf(SkillList[i], 1).click()
+        checkNumberOfDots(SkillList[i], 0)
     })
 
-    it('When we click on 3rd dot of Brawl, three dots are set', () => {
+    it('When we click on 1st dot of Brawl, nothing changes as we are not allowed to add one dot', () => {
+        var i = 1
+        cy.getNthPointOf(SkillList[i], 1).click()
+        checkNumberOfDots(SkillList[i], 0)
+    })
+
+    it('When we click on 2nd dot of Brawl, nothing changes as we are not allowed to add two dots', () => {
+        var i = 1
+        cy.getNthPointOf(SkillList[i], 2).click()
+        checkNumberOfDots(SkillList[i], 0)
+    })
+
+    it('But when we click on 3rd dot of Brawl, three dots are set as we are allowed to add three dots', () => {
         var i = 1
         cy.getNthPointOf(SkillList[i], 3).click()
         checkNumberOfDots(SkillList[i], 3)
@@ -96,8 +108,8 @@ describe('Skill test', () => {
     })
 
     Jack0LvlSkills.forEach(i => {
-        it('When we click on 1st dot of ' + SkillList[i] + ', all dots are removed', () => {
-            cy.getNthPointOf(SkillList[i], 1).click()
+        it('When we click on 1st dot of ' + SkillList[i] + ' twice, all dots are removed', () => {
+            cy.getNthPointOf(SkillList[i], 1).click().click()
             checkNumberOfDots(SkillList[i], 0)
         })
     })

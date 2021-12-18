@@ -31,8 +31,8 @@ describe('Vitals test', () => {
         cy.getNthPointOf('Resolve', 3).click()
         cy.checkNumberOfPoints('Willpower', 2, 6, 15)
     })
-    it('Click on Stamina 3rd dot will remove fill class and Health will have removed fill class up to 6th Point', () => {
-        cy.getNthPointOf('Stamina', 3).click()
+    it('Click on Stamina 2nd dot will remove fill class and Health will have removed fill class up to 6th Point', () => {
+        cy.getNthPointOf('Stamina', 2).click()
         cy.checkNumberOfPoints('Health', 4, 5, 15)
     })
     it('Click on Composure 3rd dot will remove fill class and Willpower shall have removed fill class at 4th Point', () => {
