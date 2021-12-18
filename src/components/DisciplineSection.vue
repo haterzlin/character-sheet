@@ -5,16 +5,15 @@
  * if changes are possible, emit event to top component to make changes, otherwise don't
  */
 
-import Discipline from "./Discipline.vue";
-import RestrictionState from "./RestrictionState.vue";
-import {disciplinesDefinition} from "../data.js";
-
+import Discipline from './Discipline.vue';
+import RestrictionState from './RestrictionState.vue';
+import { disciplinesDefinition } from '../data.js';
 </script>
 
 <script>
 export default {
-  props: ["disciplines", "selectedClan"],
-  emits: ["disciplinesChange", "statHelp"],
+  props: ['disciplines', 'selectedClan'],
+  emits: ['disciplinesChange', 'statHelp'],
   computed: {
     /**
      * @returns {Array} of numbers describing how many points are currently assigned
@@ -25,9 +24,9 @@ export default {
     allocatedResources() {
       let tmp = Array(this.disciplinesDefinition.resource.length).fill(0);
       for (var i = 0; i < this.disciplines.length; i++) {
-        tmp[this.disciplines[i].value]++
+        tmp[this.disciplines[i].value]++;
       }
-      return tmp
+      return tmp;
     },
   },
   methods: {
@@ -36,22 +35,22 @@ export default {
      * which is meant to be displayed in help
      */
     getDisciplineDefinition(disciplineId) {
-      for (var i=0; i < this.disciplinesDefinition.data.length; i++) {
+      for (var i = 0; i < this.disciplinesDefinition.data.length; i++) {
         if (this.disciplinesDefinition.data[i].id == disciplineId) {
-          return this.disciplinesDefinition.data[i]
+          return this.disciplinesDefinition.data[i];
         }
       }
-      return null
-    }
-  }
+      return null;
+    },
+  },
 };
 </script>
 
 <template>
-
   <div class="statSection" id="disciplines">
-    
-    <h2 @click="$emit('statHelp', { category: disciplinesDefinition })">{{ disciplinesDefinition.id }}</h2>
+    <h2 @click="$emit('statHelp', { category: disciplinesDefinition })">
+      {{ disciplinesDefinition.id }}
+    </h2>
 
     <RestrictionState
       class="resourceCount"
@@ -68,9 +67,7 @@ export default {
       :clan="selectedClan"
       @disciplineChange="$emit('disciplinesChange', disciplines)"
     ></Discipline>
-    
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>

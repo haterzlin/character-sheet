@@ -16,9 +16,6 @@ export const statSectionMixin = {
           break;
         }
       }
-      if (received_event[2]) {
-        i--;
-      }
       this.$emit('statSectionChange', [received_event[0], i]);
     },
   },

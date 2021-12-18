@@ -212,43 +212,6 @@ export default {
 </template>
 
 <style>
-.point {
-  height: 14px;
-  width: 14px;
-  margin: 1px;
-  background-color: none;
-  border-radius: 50%;
-  border: 2px;
-  border-style: outset;
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-}
-
-.point.init {
-  background: radial-gradient(#ff6666, #660000);
-}
-
-.point.fill {
-  background: radial-gradient(#ff6666, #cc0000);
-}
-
-.point.active {
-  background-color: #ff9999;
-}
-
-.fill.active {
-  background: radial-gradient(#ff6666, #ff6666);
-}
-
-.init.active {
-  background: radial-gradient(#ff6666, #660000);
-}
-
-.stat:hover > .statName {
-  color:#cc0000
-}
-
 h2 {
   text-align: center;
 }

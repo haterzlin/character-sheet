@@ -5,87 +5,104 @@
  * and display selects with abilities
  */
 import {disciplinesDefinition} from "../data.js";
+import Dots from "./Dots.vue";
 </script>
 
 <script>
 export default {
-  data() {
-    return { hoverValue: null }
-  },
-  props: ["discipline", "disciplines", "clan"],
-  emits: ["disciplineChange"],
+  props: ['discipline', 'disciplines', 'clan'],
+  emits: ['disciplineChange'],
   computed: {
     /**
      * @returns {List} of clan disciplines
      */
     clanDisciplineList() {
-      return disciplinesDefinition.data.filter(
-        discipline => discipline.clans.includes(this.clan) && ! this.choosenDisciplines.includes(discipline.id)
-      ).map(({id}) => id)      
+      return disciplinesDefinition.data
+        .filter(
+          (discipline) =>
+            discipline.clans.includes(this.clan) &&
+            !this.chosenDisciplines.includes(discipline.id)
+        )
+        .map(({ id }) => id);
     },
     /**
      * @returns {List} of non clan disciplines
      */
     notClanDisciplineList() {
-      return disciplinesDefinition.data.filter(
-        discipline => ! discipline.clans.includes(this.clan) && ! this.choosenDisciplines.includes(discipline.id)
-      ).map(({id}) => id)
+      return disciplinesDefinition.data
+        .filter(
+          (discipline) =>
+            !discipline.clans.includes(this.clan) &&
+            !this.chosenDisciplines.includes(discipline.id)
+        )
+        .map(({ id }) => id);
     },
     /**
-    * @returns {List} of disciplines to display in select
-    */
+     * @returns {List} of disciplines to display in select
+     */
     disciplineList() {
-      return disciplinesDefinition.data.filter(
-        discipline =>  ! this.choosenDisciplines.includes(discipline.id)
-      ).map(({id}) => id)
+      return disciplinesDefinition.data
+        .filter(
+          (discipline) => !this.chosenDisciplines.includes(discipline.id)
+        )
+        .map(({ id }) => id);
     },
     /**
-    * @returns {List} of disciplines which are already selected to exclude from discipline selects
-    */
-    choosenDisciplines() {
-      return this.disciplines.filter(
-        discipline =>  discipline.id != null && discipline.id != this.discipline.id
-      ).map(({id}) => id)
-    }
+     * @returns {List} of disciplines which are already selected to exclude from discipline selects
+     */
+    chosenDisciplines() {
+      return this.disciplines
+        .filter(
+          (discipline) =>
+            discipline.id != null && discipline.id != this.discipline.id
+        )
+        .map(({ id }) => id);
+    },
   },
   methods: {
     /**
-    * @returns {Array} of abilities defined in disciplineDefinition
-    * based on disciplineId and abilityLevel
-    */
+     * @returns {Array} of abilities defined in disciplineDefinition
+     * based on disciplineId and abilityLevel
+     */
     abilityList(disciplineId, abilityLevel) {
       for (var i = 0; i < disciplinesDefinition.data.length; i++) {
         if (disciplinesDefinition.data[i].id == disciplineId) {
-          return disciplinesDefinition.data[i].abilities[abilityLevel]
+          return disciplinesDefinition.data[i].abilities[abilityLevel];
         }
       }
-      return null
+      return null;
     },
     /**
-    * create discipline instance based on input
-    * newid, newvalue, newabilities
-    * and then emits new discipline values upwards
-    */    
+     * create discipline instance based on input
+     * newid, newvalue, newabilities
+     * and then emits new discipline values upwards
+     */
     emitChangedDiscipline(newid, newvalue, newabilities) {
       if (this.discipline.id != null || newid != null) {
-        var newdisc = this.discipline
-        newdisc.id = newid
-        newdisc.value = newvalue
-        newdisc.abilities = newabilities
-        this.$emit('disciplineChange', newdisc)
-      }      
+        var newdisc = this.discipline;
+        newdisc.id = newid;
+        newdisc.value = newvalue;
+        newdisc.abilities = newabilities;
+        this.$emit('disciplineChange', newdisc);
+      }
     }
-  }
+  },
 };
 </script>
 
 <template>
   <div class="discipline-item">
-    <div>      
+    <div>
       <select
-        class="discipline-select" 
+        class="discipline-select"
         :class="{ clanDiscipline: clanDisciplineList.includes(discipline.id) }"
-        @change="emitChangedDiscipline($event.target.value, discipline.value, discipline.abilities)"
+        @change="
+          emitChangedDiscipline(
+            $event.target.value,
+            discipline.value,
+            discipline.abilities
+          )
+        "
         :value="discipline.id"
       >
         <option disabled value="">Choose discipline</option>
@@ -100,43 +117,43 @@ export default {
             {{ option }}
           </option>
         </optgroup>
-      </select>   
+      </select>
 
-      <span class="points">
-        <span
-          v-for="i in 5"
-          :key="i"
-          :class="{
-            point: true,
-            fill: i <= discipline.value,
-            active: hoverValue && (i === hoverValue || i > hoverValue !== i > discipline.value),
-          }"
-          @click="if (discipline.value == i) { i-- }; emitChangedDiscipline(discipline.id, i, discipline.abilities)"
-          @mouseover="hoverValue = i"
-          @mouseout="hoverValue = null"
-        >
-        </span>
-      </span>
-    </div>   
+      <Dots
+        :value="discipline.value"
+        :initialValue="0"
+        :scale="5"
+        @valueChange="
+          emitChangedDiscipline(
+            discipline.id,
+            $event,
+            discipline.abilities
+        )"
+      >
+      </Dots>
+    </div>
 
     <div
       class="discipline-ability"
       v-for="item in discipline.abilities"
       :key="item.level"
-      :index="item.level">
-    {{ item.level }}
-      <select 
+      :index="item.level"
+    >
+      {{ item.level }}
+      <select
         class="discipline-ability-select"
         :disabled="this.discipline.value < item.level ? 1 : 0"
         v-model="item.value"
       >
         <option disabled value="">Choose ability</option>
-        <option v-for="option in abilityList(discipline.id, item.level)" :key="option">
+        <option
+          v-for="option in abilityList(discipline.id, item.level)"
+          :key="option"
+        >
           {{ option }}
         </option>
-    </select>
+      </select>
     </div>
-
   </div>
 </template>
 
@@ -158,6 +175,6 @@ export default {
   cursor: default;
 }
 .clanDiscipline {
-  font-weight: bold
+  font-weight: bold;
 }
 </style>

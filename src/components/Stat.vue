@@ -1,9 +1,13 @@
-<script>
+<script setup>
 /**
- * displays clickable point representing number depending on scale and stat value
- * after click, change is emitted to parent component to decide if it is alright
- * also when we hover over the stat, we emit additional event to notify help change
+ * displays attribute or skill name and uses Dots.vue to display clickable dots enabling to change value
+ * after change new value is emitted to parent component to decide if it is alright
+ * also we emit statClick to send message to help which attribute was chosen
  */
+import Dots from "./Dots.vue";
+</script>
+
+<script>
 export default {
   name: "stat",
   props: ["stat", "scale"],
@@ -23,33 +27,19 @@ export default {
     @click="$emit('statClick', { stat: stat })"    
   >
     <div class="statName">{{ stat.id }}</div>
-    <div class="points">
-      <span
-        v-for="i in scale"
-        :key="i"
-        :class="{
-          point: true,
-          init: i <= initialValue,
-          fill: i > initialValue && i <= stat.value,
-          active:
-            hoverPointer && (i === hoverPointer || i > hoverPointer !== i > stat.value),
-        }"
-        @click="$emit('statChange', [stat, i, stat.value >= i && i > initialValue])"
-        @mouseover="hoverPointer = i"
-        @mouseleave="hoverPointer = null"
-      >
-      </span>
-    </div>
+
+    <Dots
+      :value="stat.value"
+      :initialValue="initialValue"
+      :scale="scale"
+      @valueChange="$emit('statChange', [stat, $event, stat.value >= $event && $event > initialValue])"
+    >
+    </Dots>
+
   </div>
 </template>
 
 <style scoped>
-.points {
-  float: right;
-  height: 20px;
-  overflow: hidden;
-  width: 100px;
-}
 
 .statName {
   float: left;
@@ -61,5 +51,9 @@ export default {
 
 .statName:after {
   content: " ________________";
+}
+
+.stat:hover > .statName {
+  color:#cc0000
 }
 </style>
