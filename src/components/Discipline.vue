@@ -10,7 +10,7 @@ import Dots from "./Dots.vue";
 
 <script>
 export default {
-  props: ['discipline', 'disciplines', 'clan'],
+  props: ['discipline', 'disciplines', 'clan', 'allocatedResources'],
   emits: ['disciplineChange'],
   computed: {
     /**
@@ -73,15 +73,29 @@ export default {
       return null;
     },
     /**
-     * create discipline instance based on input
+     * method will check if change is allowed and return lowest allowed value
+     */
+    returnLowestAllowedValue(newvalue) {
+      var i = newvalue
+      if (newvalue > this.discipline.value) {
+        for (; i > this.discipline.value; i--) {
+          if (this.allocatedResources[i] < this.disciplinesDefinition.resource[i]) {
+            break;
+          }
+        }
+      }
+      return i
+    },
+    /**
+     * create discipline instance based on input, can't add value until id is specified
      * newid, newvalue, newabilities
      * and then emits new discipline values upwards
-     */
+     */    
     emitChangedDiscipline(newid, newvalue, newabilities) {
       if (this.discipline.id != null || newid != null) {
         var newdisc = this.discipline;
         newdisc.id = newid;
-        newdisc.value = newvalue;
+        newdisc.value = this.returnLowestAllowedValue(newvalue);
         newdisc.abilities = newabilities;
         this.$emit('disciplineChange', newdisc);
       }

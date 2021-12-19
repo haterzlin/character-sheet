@@ -40,13 +40,12 @@ describe('Adding discipline', () => {
     it('Can\'t select same discipline twice', () => {
         cy.get('.discipline-select').eq(2).should('not.contain','Potence')
     })
-    it('Can select third discipline despite restrictions and assign level 5', () => {
+    it('Can\'t select third discipline despite restrictions and assign level 5', () => {
         cy.get('.discipline-select').eq(2).select('Celerity')
         cy.get('#disciplines').within(() => {
             cy.get('.points').eq(2).children().last().click()
-            cy.get('.points').eq(2).children().last().should('have.class', 'fill')
-            cy.get('.discipline-ability').eq(14).first().children().should('not.be.disabled')
-            cy.get('.discipline-ability').eq(14).first().children().should('contain', 'split second')
+            cy.get('.points').eq(2).children().last().should('not.have.class', 'fill')
+            cy.get('.discipline-ability').eq(14).first().children().should('be.disabled')
         })
     })
     it('Second click will lower discipline level by 1', () => {

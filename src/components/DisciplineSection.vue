@@ -65,6 +65,7 @@ export default {
       :discipline="discipline"
       :disciplines="disciplines"
       :clan="selectedClan"
+      :allocatedResources="allocatedResources"
       @disciplineChange="$emit('disciplinesChange', disciplines)"
     ></Discipline>
   </div>
