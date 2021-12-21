@@ -4,7 +4,7 @@
  * @param value {Number} - selected number of dots
  * @param scale {Number} - how many dots to display
  *
- * data hoveringOver - which dot is cursor over, paint previous or next with appropriate color
+ * data hoveringOver - which dot is cursor over, to be able to paint previous or next with appropriate color
  */
 </script>
 
@@ -12,58 +12,69 @@
 export default {
   data() {
     return {
-      hoveringOver: null
+      hoveringOver: null,
     };
   },
   props: ['initialValue', 'value', 'scale'],
   emits: ['valueChange'],
   computed: {
+    /**
+     * @returns {Array} of dots which will be added if we click on dot cursor is hovering over
+     */
     addPointHover() {
-      var list = []
-      if (this.hoveringOver != null) {        
+      var list = [];
+      if (this.hoveringOver != null) {
         for (let i = this.initialValue + 1; i <= this.scale; i++) {
-          if (this.hoveringOver > this.value &&  i <= this.hoveringOver) {
-            list.push(i)
+          if (this.hoveringOver > this.value && i <= this.hoveringOver) {
+            list.push(i);
           }
           if (this.hoveringOver < this.value && i <= this.hoveringOver) {
-            list.push(i) 
+            list.push(i);
           }
         }
       }
       //console.log("add list: " + list)
-      return list
+      return list;
     },
+    /**
+     * @returns {Array} of dots which will be removed if we click on dot cursor is hovering over
+     */
     deletePointHover() {
-      var list = []
-      if (this.hoveringOver != null) {        
+      var list = [];
+      if (this.hoveringOver != null) {
         for (let i = this.initialValue + 1; i <= this.scale; i++) {
           if (this.hoveringOver == this.value && i <= this.value) {
-            list.push(i) 
+            list.push(i);
           }
-          if (this.hoveringOver < this.value && (i > this.hoveringOver && i <= this.value )) {
-            list.push(i) 
+          if (
+            this.hoveringOver < this.value &&
+            i > this.hoveringOver &&
+            i <= this.value
+          ) {
+            list.push(i);
           }
         }
       }
       //console.log("remove list: " + list)
-      return list
-    },    
+      return list;
+    },
   },
   methods: {
     /**
+     * should notify parent component of value change
+     * we also do checks:
      * if selectedValue is greater than initialValue
      *    if we click on already assigned dot, it will be set to initialValue
      *    else it will be set
      */
     emitValueChange(i) {
-      i > this.initialValue ?
-        (this.value == i ?
-          this.$emit('valueChange', this.initialValue) :
-          this.$emit('valueChange', i)
-        ) :
-        this.$emit('valueChange', i)
-    }
-  }
+      i > this.initialValue
+        ? this.value == i
+          ? this.$emit('valueChange', this.initialValue)
+          : this.$emit('valueChange', i)
+        : this.$emit('valueChange', i);
+    },
+  },
 };
 </script>
 

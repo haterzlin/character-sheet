@@ -4,8 +4,8 @@
  * And dots allowing change of number of dots in discipline
  * and display selects with abilities
  */
-import {disciplinesDefinition} from "../data.js";
-import Dots from "./Dots.vue";
+import { disciplinesDefinition } from '../data.js';
+import Dots from './Dots.vue';
 </script>
 
 <script>
@@ -42,9 +42,7 @@ export default {
      */
     disciplineList() {
       return disciplinesDefinition.data
-        .filter(
-          (discipline) => !this.chosenDisciplines.includes(discipline.id)
-        )
+        .filter((discipline) => !this.chosenDisciplines.includes(discipline.id))
         .map(({ id }) => id);
     },
     /**
@@ -73,24 +71,30 @@ export default {
       return null;
     },
     /**
-     * method will check if change is allowed and return lowest allowed value
+     * method will check if change is allowed and
+     * @returns {Number} lowest allowed value
      */
     returnLowestAllowedValue(newvalue) {
-      var i = newvalue
+      var i = newvalue;
       if (newvalue > this.discipline.value) {
         for (; i > this.discipline.value; i--) {
-          if (this.allocatedResources[i] < this.disciplinesDefinition.resource[i]) {
+          if (
+            this.allocatedResources[i] < this.disciplinesDefinition.resource[i]
+          ) {
             break;
           }
         }
       }
-      return i
+      return i;
     },
     /**
-     * create discipline instance based on input, can't add value until id is specified
-     * newid, newvalue, newabilities
-     * and then emits new discipline values upwards
-     */    
+     * Used to emit discipline changes upwards
+     * check if discipline id is specified, if not we don't emit
+     * create discipline instance based on input parameters
+     * @param {String} newid
+     * @param {Number} newvalue - restricted by returnLowestAllowedValue method
+     * @param {Array} newabilities
+     */
     emitChangedDiscipline(newid, newvalue, newabilities) {
       if (this.discipline.id != null || newid != null) {
         var newdisc = this.discipline;
@@ -99,7 +103,7 @@ export default {
         newdisc.abilities = newabilities;
         this.$emit('disciplineChange', newdisc);
       }
-    }
+    },
   },
 };
 </script>
@@ -138,11 +142,8 @@ export default {
         :initialValue="0"
         :scale="5"
         @valueChange="
-          emitChangedDiscipline(
-            discipline.id,
-            $event,
-            discipline.abilities
-        )"
+          emitChangedDiscipline(discipline.id, $event, discipline.abilities)
+        "
       >
       </Dots>
     </div>
@@ -192,7 +193,5 @@ export default {
 .discipline-ability-select:disabled {
   cursor: default;
 }
-.clanDiscipline {
-  font-weight: bold;
-}
+
 </style>
