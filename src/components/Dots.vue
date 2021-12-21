@@ -25,6 +25,9 @@ export default {
           if (this.hoveringOver > this.value &&  i <= this.hoveringOver) {
             list.push(i)
           }
+          if (this.hoveringOver < this.value && i <= this.hoveringOver) {
+            list.push(i) 
+          }
         }
       }
       //console.log("add list: " + list)
@@ -37,7 +40,7 @@ export default {
           if (this.hoveringOver == this.value && i <= this.value) {
             list.push(i) 
           }
-          if (this.hoveringOver < this.value && i <= this.hoveringOver) {
+          if (this.hoveringOver < this.value && (i > this.hoveringOver && i <= this.value )) {
             list.push(i) 
           }
         }
