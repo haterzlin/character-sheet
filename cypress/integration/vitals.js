@@ -37,7 +37,7 @@ describe('Vitals test', () => {
     })
     it('Click on Composure 3rd dot will remove fill class and Willpower shall have removed fill class at 4th Point', () => {
         cy.getNthPointOf('Composure', 3).click()
-        cy.checkNumberOfPoints('Willpower', 2, 5, 15)
+        cy.checkNumberOfPoints('Willpower', 2, 4, 15)
     })
 })
 

@@ -27,7 +27,7 @@ export default {
           }
         }
       }
-      console.log("add list: " + list)
+      //console.log("add list: " + list)
       return list
     },
     deletePointHover() {
@@ -42,7 +42,7 @@ export default {
           }
         }
       }
-      console.log("remove list: " + list)
+      //console.log("remove list: " + list)
       return list
     },    
   },
