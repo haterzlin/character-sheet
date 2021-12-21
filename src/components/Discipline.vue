@@ -177,6 +177,10 @@ export default {
   float: left;
   margin: 5px;
 }
+
+.discipline-item:hover {
+  background-color: #f5f5f5;
+}
 .discipline-select {
   width: 50%;
   margin-right: 15px;
