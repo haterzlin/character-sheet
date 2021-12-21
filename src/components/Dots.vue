@@ -1,32 +1,64 @@
 <script setup>
 /**
- * Displays five dots selector possibly with initial value
- * initialValue 
- * value
- * scale - how many dots to display
- * hoveringOver - if cursor is over one of the dots, paint previous or next with appropriate color
+ * @param initialValue {Number} - lowest available value
+ * @param value {Number} - selected number of dots
+ * @param scale {Number} - how many dots to display
+ *
+ * data hoveringOver - which dot is cursor over, paint previous or next with appropriate color
  */
 </script>
 
 <script>
 export default {
   data() {
-    return { hoveringOver: null };
+    return {
+      hoveringOver: null
+    };
   },
   props: ['initialValue', 'value', 'scale'],
   emits: ['valueChange'],
+  computed: {
+    addPointHover() {
+      var list = []
+      if (this.hoveringOver != null) {        
+        for (let i = this.initialValue + 1; i <= this.scale; i++) {
+          if (this.hoveringOver > this.value &&  i <= this.hoveringOver) {
+            list.push(i)
+          }
+        }
+      }
+      console.log("add list: " + list)
+      return list
+    },
+    deletePointHover() {
+      var list = []
+      if (this.hoveringOver != null) {        
+        for (let i = this.initialValue + 1; i <= this.scale; i++) {
+          if (this.hoveringOver == this.value && i <= this.value) {
+            list.push(i) 
+          }
+          if (this.hoveringOver < this.value && i <= this.hoveringOver) {
+            list.push(i) 
+          }
+        }
+      }
+      console.log("remove list: " + list)
+      return list
+    },    
+  },
   methods: {
     /**
-     * intialValue can't be replaced
-     * if we click on assigned dot, it will be removed
-     * else it will be set     
+     * if selectedValue is greater than initialValue
+     *    if we click on already assigned dot, it will be set to initialValue
+     *    else it will be set
      */
     emitValueChange(i) {
-      this.initialValue >= i ?
-        this.$emit('valueChange', i) :
-        this.value == i ?
-          this.$emit('valueChange', i -1) :
+      i > this.initialValue ?
+        (this.value == i ?
+          this.$emit('valueChange', this.initialValue) :
           this.$emit('valueChange', i)
+        ) :
+        this.$emit('valueChange', i)
     }
   }
 };
@@ -41,9 +73,8 @@ export default {
         point: true,
         init: i <= initialValue,
         fill: i > initialValue && i <= value,
-        active:
-          hoveringOver &&
-          (i === hoveringOver || i > hoveringOver !== i > value),
+        add: addPointHover.includes(i),
+        remove: deletePointHover.includes(i),
       }"
       @click="emitValueChange(i)"
       @mouseover="hoveringOver = i"
@@ -75,15 +106,11 @@ export default {
   background: radial-gradient(#ff6666, #cc0000);
 }
 
-.point.active {
-  background-color: #ff9999;
-}
-
-.fill.active {
+.point.add {
   background: radial-gradient(#ff6666, #ff6666);
 }
 
-.init.active {
-  background: radial-gradient(#ff6666, #660000);
+.point.remove {
+  background: radial-gradient(#ff9999, #ff9999);
 }
 </style>
