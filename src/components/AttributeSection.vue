@@ -1,9 +1,4 @@
 <script setup>
-/**
- * Displays entire section of attributes
- * receives events from child component and check if change is possible in resources
- * if changes are possible, emit event to top component to make changes, otherwise don't
- */
 import { statSectionMixin } from "./mixins/statSectionMixin";
 import { attributesAndSkillsMixin } from "./mixins/attributesAndSkillsMixin";
 import Stat from "./Stat.vue";
@@ -12,6 +7,11 @@ import RestrictionState from "./RestrictionState.vue";
 </script>
 
 <script>
+/**
+ * Displays entire section of attributes
+ * receives events from child component and check if change is possible in resources
+ * if changes are possible, emit event to top component to make changes, otherwise don't
+ */
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
 };

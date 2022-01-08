@@ -1,4 +1,4 @@
-<script setup>
+<script>
 /**
  * @param initialValue {Number} - lowest available value
  * @param value {Number} - selected number of dots
@@ -6,9 +6,6 @@
  *
  * data hoveringOver - which dot is cursor over, to be able to paint previous or next with appropriate color
  */
-</script>
-
-<script>
 export default {
   data() {
     return {
