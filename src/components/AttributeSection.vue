@@ -14,6 +14,7 @@ import RestrictionState from "./RestrictionState.vue";
  */
 export default {
   mixins: [statSectionMixin, attributesAndSkillsMixin],
+  components: [Stat, RestrictionState],
 };
 </script>
 

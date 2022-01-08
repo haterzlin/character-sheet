@@ -13,6 +13,7 @@ import RestrictionState from "./RestrictionState.vue";
  * if changes are possible, emit event to top component to make changes, otherwise don't
  */
 export default {
+  components: [Stat, RestrictionState],
   mixins: [statSectionMixin, attributesAndSkillsMixin],
   props: ["distributions"],
 };

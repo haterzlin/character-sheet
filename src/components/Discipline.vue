@@ -10,6 +10,7 @@ import Dots from './Dots.vue';
  * and display selects with abilities
  */
 export default {
+  components: [Dots],
   props: ['discipline', 'disciplines', 'clan', 'allocatedResources'],
   emits: ['disciplineChange'],
   computed: {

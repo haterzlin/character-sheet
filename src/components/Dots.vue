@@ -7,13 +7,13 @@
  * data hoveringOver - which dot is cursor over, to be able to paint previous or next with appropriate color
  */
 export default {
+  props: ['initialValue', 'value', 'scale'],
+  emits: ['valueChange'],
   data() {
     return {
       hoveringOver: null,
     };
   },
-  props: ['initialValue', 'value', 'scale'],
-  emits: ['valueChange'],
   
   methods: {
     /**

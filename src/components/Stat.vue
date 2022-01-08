@@ -10,6 +10,7 @@ import Dots from "./Dots.vue";
  */
 export default {
   name: "stat",
+  components: [Dots],
   props: ["stat", "scale"],
   emits: ["statChange", "statClick"],
   data() {

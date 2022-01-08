@@ -10,6 +10,9 @@ import VitalStat from './VitalStat.vue';
  * @param bloodPotency {JSON} dependency, @TODO
  */
 export default {
+  components: {
+    'vital-stat': VitalStat,
+  },
   props: {
     vitals: JSON,
     stamina: Number,
@@ -18,9 +21,6 @@ export default {
     generation: String,        
   },
   emits: ['vitalStatHelp'],
-  components: {
-    'vital-stat': VitalStat,
-  },
   data() {
     return {
       BloodPGensTable: {

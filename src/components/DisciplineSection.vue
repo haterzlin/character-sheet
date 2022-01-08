@@ -11,6 +11,7 @@ import RestrictionState from './RestrictionState.vue';
  * if changes are possible, emit event to top component to make changes, otherwise don't
  */
 export default {
+  components: [Discipline, RestrictionState],
   props: ['disciplines', 'selectedClan', 'disciplinesDefinition'],
   emits: ['disciplinesChange', 'statHelp'],
   computed: {

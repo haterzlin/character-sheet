@@ -10,8 +10,9 @@ import CharacterInfoPortrait from "./CharacterInfoPortrait.vue";
  * emits detected changes upwards to have data fresh for export or potential other work
  */
 export default {
+  components: [CharacterInfoInput, CharacterInfoSelect, CharacterInfoPortrait],
   props: ["bio", "generations"],
-  emits: ["bioChange"]
+  emits: ["bioChange"],
 };
 </script>
 
