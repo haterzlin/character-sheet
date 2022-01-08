@@ -34,8 +34,8 @@ export default {
       :initialValue="initialValue"
       :scale="scale"
       @valueChange="$emit('statChange', [stat, $event, stat.value >= $event && $event > initialValue])"
-    >
-    </Dots>
+    />
+    
 
   </div>
 </template>

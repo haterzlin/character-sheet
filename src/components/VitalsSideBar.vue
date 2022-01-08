@@ -61,8 +61,7 @@ export default {
         :scale="stat.scale"
         :value="values[stat.id]"
         @click="$emit('vitalStatHelp', { category: stat })"
-      >
-      </vital-stat>
+      />
     </div>
   </div>
 </template>

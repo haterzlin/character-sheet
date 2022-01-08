@@ -42,9 +42,7 @@ export default {
       class="resourceCount"
       :allocatedResources="allocatedResources"
       :resourceRestrictions="disciplinesDefinition.resource"
-    >
-    </RestrictionState>
-
+    />
     <Discipline
       v-for="discipline in disciplines"
       :key="discipline"
@@ -53,7 +51,7 @@ export default {
       :clan="selectedClan"
       :allocatedResources="allocatedResources"
       @disciplineChange="$emit('disciplinesChange', disciplines)"
-    ></Discipline>
+    />
   </div>
 </template>
 

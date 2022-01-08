@@ -145,8 +145,7 @@ export default {
         @valueChange="
           emitChangedDiscipline(discipline.id, $event, discipline.abilities)
         "
-      >
-      </Dots>
+      />
     </div>
 
     <div

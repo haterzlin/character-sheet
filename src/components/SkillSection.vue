@@ -43,8 +43,7 @@ export default {
       class="resourceCount"
       :allocatedResources="allocatedResources"
       :resourceRestrictions="stats.resource"
-    >
-    </RestrictionState>
+    />
     <div
       v-for="category in stats.data"
       :key="category.id"
@@ -64,8 +63,7 @@ export default {
                 resource: stats.resource,
               })
             "            
-          >
-          </Stat>
+          />
         </li>
       </ul>
     </div>
