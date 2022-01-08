@@ -198,6 +198,7 @@ export default {
     <discipline-section
       :disciplines="disciplines"
       :selectedClan="biography.clan.value"
+      :disciplines-definition="disciplinesDefinition"
       @disciplines-change="disciplines = $event"
       @stat-help="handleHelp($event)"
     >

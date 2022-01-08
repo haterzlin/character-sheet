@@ -1,4 +1,5 @@
 <script setup>
+import { disciplinesDefinition } from '../data';
 /**
  * Displays entire section of disciplines
  * receives events from child component and check if change is possible in resources
@@ -7,12 +8,11 @@
 
 import Discipline from './Discipline.vue';
 import RestrictionState from './RestrictionState.vue';
-import { disciplinesDefinition } from '../data.js';
 </script>
 
 <script>
 export default {
-  props: ['disciplines', 'selectedClan'],
+  props: ['disciplines', 'selectedClan', 'disciplinesDefinition'],
   emits: ['disciplinesChange', 'statHelp'],
   computed: {
     /**
