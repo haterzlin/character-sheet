@@ -157,7 +157,7 @@ export default {
       {{ item.level }}
       <select
         class="discipline-ability-select"
-        :disabled="this.discipline.value < item.level ? 1 : 0"
+        :disabled="discipline.value < item.level ? 1 : 0"
         v-model="item.value"
       >
         <option disabled value="">Choose ability</option>
