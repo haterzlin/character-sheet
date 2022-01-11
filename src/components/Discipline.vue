@@ -80,7 +80,7 @@ export default {
       if (newvalue > this.discipline.value) {
         for (; i > this.discipline.value; i--) {
           if (
-            this.allocatedResources[i] < this.disciplinesDefinition.resource[i]
+            this.allocatedResources[i] < disciplinesDefinition.resource[i]
           ) {
             break;
           }
