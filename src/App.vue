@@ -15,7 +15,7 @@ import SkillSection from "./components/SkillSection.vue";
 import DisciplineSection from "./components/DisciplineSection.vue";
 import HoverWindow from "./components/HelpWindow.vue";
 import VitalsSideBar from './components/VitalsSideBar.vue';
-import {biography, skillDistributions, attributes, skills, disciplines, disciplinesDefinition, vitals} from "./data.js";
+import {biography, skillDistributions, attributes, skills, disciplines, disciplinesDefinition, predatorDefinitions, vitals} from "./data.js";
 
 export default {
   data() {
@@ -28,6 +28,7 @@ export default {
       attributes: attributes,
       disciplines: disciplines,
       disciplinesDefinition: disciplinesDefinition,
+      predatorDefinitions: predatorDefinitions,
       vitals: vitals,
 
       //local states
@@ -180,6 +181,7 @@ export default {
     :style="{cursor: (help) ? 'help' : null}">
     <character-info 
       :bio="biography" 
+      :predator-definitions="predatorDefinitions"
       @bio-change="$event[0].value = $event[1]">
     </character-info>
     <attribute-section
@@ -199,6 +201,7 @@ export default {
       :disciplines="disciplines"
       :selectedClan="biography.clan.value"
       :disciplines-definition="disciplinesDefinition"
+      :predatorDiscipline="biography.predator.choosenDiscipline"
       @disciplines-change="disciplines = $event"
       @stat-help="handleHelp($event)"
     >

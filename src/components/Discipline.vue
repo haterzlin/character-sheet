@@ -11,7 +11,7 @@ import Dots from './Dots.vue';
  */
 export default {
   components: [Dots],
-  props: ['discipline', 'disciplines', 'clan', 'allocatedResources'],
+  props: ['discipline', 'disciplines', 'clan', 'allocatedResources', 'predatorDiscipline'],
   emits: ['disciplineChange'],
   computed: {
     /**
@@ -57,6 +57,16 @@ export default {
         )
         .map(({ id }) => id);
     },
+    computeBonus() {
+      /**
+       * compute bonus for predator discipline
+       * @returns {Int}
+       */
+      if (!this.discipline.id | this.discipline.id != this.predatorDiscipline) {
+        return 0
+      }
+      return 1
+    }
   },
   methods: {
     /**
@@ -142,6 +152,7 @@ export default {
         :value="discipline.value"
         :initialValue="0"
         :scale="5"
+        :bonus="computeBonus"
         @valueChange="
           emitChangedDiscipline(discipline.id, $event, discipline.abilities)
         "
@@ -157,7 +168,7 @@ export default {
       {{ item.level }}
       <select
         class="discipline-ability-select"
-        :disabled="discipline.value < item.level ? 1 : 0"
+        :disabled="this.discipline.value + computeBonus < item.level  ? 1 : 0"
         v-model="item.value"
       >
         <option disabled value="">Choose ability</option>

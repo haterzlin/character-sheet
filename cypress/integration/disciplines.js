@@ -55,4 +55,17 @@ describe('Adding discipline', () => {
             cy.get('.discipline-ability').eq(14).first().children().should('be.disabled')
         })
     })
+    it('Predator type discipline', () => {
+        cy.contains('Predator Type:').next().select('Cleaver')
+        cy.contains('Predator Discipline:').next().select('Animalism')
+        cy.get('#disciplines').within(() => {
+            cy.get('.points').first().children().next().first().should('have.class', 'fill')
+            cy.get('.points').first().children().next().next().first().should('have.class', 'bonus')
+            cy.get('.points').first().children().next().next().next().first().should('not.have.class', 'fill')
+            cy.get('.points').first().children().next().next().next().first().should('not.have.class', 'bonus')
+            cy.get('.discipline-ability').next().first().children().should('not.be.disabled')
+            cy.get('.discipline-ability').first().children().should('contain', 'bond famulus')
+            cy.get('.discipline-ability').next().next().next().first().children().should('be.disabled')
+        })
+    })
 })

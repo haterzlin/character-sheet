@@ -3,11 +3,12 @@
  * @param initialValue {Number} - lowest available value
  * @param value {Number} - selected number of dots
  * @param scale {Number} - how many dots to display
+ * @param bonus {Number} - number of dots added - retrictions should not count this, but it should be included in used value
  *
  * data hoveringOver - which dot is cursor over, to be able to paint previous or next with appropriate color
  */
 export default {
-  props: ['initialValue', 'value', 'scale'],
+  props: ['initialValue', 'value', 'scale', 'bonus'],
   emits: ['valueChange'],
   data() {
     return {
@@ -44,6 +45,7 @@ export default {
         point: true,
         init: i <= initialValue,
         fill: i > initialValue && i <= value,
+        bonus: bonus !=0 && i == value + bonus, 
         add:  i > value && i <= hoveringOver,
         remove: hoveringOver && i > hoveringOver || hoveringOver == value,
       }"
@@ -75,6 +77,10 @@ export default {
 
 .point.fill {
   background: radial-gradient(#ff6666, #cc0000);
+}
+
+.point.bonus {
+  background: radial-gradient(#ff6666, #660000);
 }
 
 .point.add {

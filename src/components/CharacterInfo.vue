@@ -11,8 +11,18 @@ import CharacterInfoPortrait from "./CharacterInfoPortrait.vue";
  */
 export default {
   components: [CharacterInfoInput, CharacterInfoSelect, CharacterInfoPortrait],
-  props: ["bio", "generations"],
+  props: ["bio", "predatorDefinitions"],
   emits: ["bioChange"],
+  computed: {
+    /**
+     * @returns list of disciplines filtered by predator type value from predatorDefinitions
+     */
+    predatorTypeDisciplines() {
+      return this.predatorDefinitions.filter(
+        (predator) => predator.id == this.bio.predator.value
+      )[0].disciplines
+    }
+  }
 };
 </script>
 
@@ -64,6 +74,19 @@ export default {
         :item="bio.predator"
         @char-item-change="$emit('bioChange', [bio.predator, $event])"/>
 
+      <div class="char-info-item">
+        <label>Predator Discipline:</label>
+        <select
+          @change="bio.predator.choosenDiscipline = $event.target.value"
+          :value="bio.predator.choosenDiscipline"
+        >
+          <option disabled value>Choose discipline</option>
+          <option v-for="option in predatorTypeDisciplines" :key="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+
     </div>
     <div class="clear"></div>
   </div>
@@ -81,6 +104,11 @@ export default {
 
 .clear {
   clear: both;
+}
+.char-info-item label {
+  font-size: small;
+  font-variant: small-caps;
+  display: block;
 }
 
 </style>

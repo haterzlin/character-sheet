@@ -46,7 +46,9 @@ export const biography = {
     id: "Predator Type",
     value: "Alleycat",
     list: ["Alleycat", "Bagger", "Blood Leech", "Cleaver", "Consensualist", "Farmer", "Osiris", "Sandman", "Scene Queen", "Siren"],
-    disabledValue: "Choose Your Predator Type"
+    disabledValue: "Choose Your Predator Type",
+    choosenDiscipline: "no"
+
   },
   ambition: {
     id: "Ambition",
@@ -79,6 +81,141 @@ export const biography = {
   }
 
 };
+
+export const predatorDefinitions = [
+  {
+    id: "Alleycat",
+    specialties: [ 
+      { skill: "Intimidation", specialty: "Stickups"},
+      { skill: "Brawl", specialty: "Grappling"}
+    ],
+    disciplines: ["Celerity", "Potence"],
+    humanityModifier: -1,
+    bloodPotencyModifier: 0,
+    merits: [],
+    flaws: [],
+    advantages: ["Criminal Contacts ***"]
+  },
+  {
+    id: "Bagger",
+    specialties: [ 
+      { skill: "Larceny", specialty: "Lock-picking"},
+      { skill: "StreetWise", specialty: "Black Market"}
+    ],
+    disciplines: ["Blood Sorcery", "Obfuscate"],
+    humanityModifier: 0,
+    bloodPotencyModifier: 0,
+    merits: ["Feeding Merit: Iron Gullet ***"],
+    flaws: ["The Enemy **"],
+    advantages: []
+  },
+  {
+    id: "Blood Leech",
+    specialties: [ 
+      { skill: "Brawl", specialty: "Kindred"},
+      { skill: "Stealth", specialty: "against Kindred"}
+    ],
+    disciplines: ["Celerity", "Protean"],
+    humanityModifier: -1,
+    bloodPotencyModifier: 1,
+    merits: [],
+    flaws: ["Dark Secret Diablerist ** or Shunned ** ", "Feeding flaw ** Prey Exclusion (mortals)"],
+    advantages: []
+  },
+  {
+    id: "Cleaver",
+    specialties: [ 
+      { skill: "Persuasion", specialty: "Gaslighting"},
+      { skill: "Subterfudge", specialty: "Coverups"}
+    ],
+    disciplines: ["Animalism", "Dominate"],
+    humanityModifier: 0,
+    bloodPotencyModifier: 0,
+    merits: [],
+    flaws: ["Dark Secret Celaver *"],
+    advantages: ["Herd ** "]
+  },
+  {
+    id: "Consensualist",
+    specialties: [ 
+      { skill: "Medicine", specialty: "Phlebotomy"},
+      { skill: "Persuasion", specialty: "Victims"}
+    ],
+    disciplines: ["Auspex", "Fortitude"],
+    humanityModifier: 1,
+    bloodPotencyModifier: 0,
+    merits: [],
+    flaws: ["Dark Secret Masquerade Breacher *", "Feeding Flaw Prey exclusion (non-consenting) *"],
+    advantages: []
+  },
+  {
+    id: "Farmer",
+    specialties: [ 
+      { skill: "Animal Ken", specialty: "Specific Animal"},
+      { skill: "Survival", specialty: "Hunting"}
+    ],
+    disciplines: ["Animalism", "Protean"],
+    humanityModifier: 1,
+    bloodPotencyModifier: 0,
+    merits: [],
+    flaws: ["Feeding Flaw Vegan **"],
+    advantages: []
+  },
+  {
+    id: "Osiris",
+    specialties: [ 
+      { skill: "Occult", specialty: "Specific tradition"},
+      { skill: "Performance", specialty: "Specific entertainment field"}
+    ],
+    disciplines: ["Blood Sorcery", "Presence"],
+    humanityModifier: 0,
+    bloodPotencyModifier: 0,
+    merits: [],
+    flaws: ["Two dots between Enemies and Mythic Flaws"],
+    advantages: ["3 dots between Fame and Herd"]
+  },
+  {
+    id: "Sandman",
+    specialties: [ 
+      { skill: "Medicine", specialty: "Anesthetics"},
+      { skill: "Stealth", specialty: "Break-in"}
+    ],
+    disciplines: ["Auspex", "Obfuscate"],
+    humanityModifier: 0,
+    bloodPotencyModifier: 0,
+    merits: [],
+    flaws: ["Two dots between Enemies and Mythic Flaws"],
+    advantages: ["1 dot of Resources"]
+  },
+  {
+    id: "Scene Queen",
+    specialties: [ 
+      { skill: "Etiquette", specialty: "Specific scene"},
+      { skill: "Leadership", specialty: "Specific scene"},
+      { skill: "Streetwise", specialty: "Specific scene"}
+    ],
+    disciplines: ["Dominate", "Potence"],
+    humanityModifier: 0,
+    bloodPotencyModifier: 0,
+    merits: [],
+    flaws: ["Influence flaw Disliked or Feeding flaw Prey exclusion (different subculture from yours)"],
+    advantages: ["Fame * and Contact * "]
+  },
+  {
+    id: "Siren",
+    specialties: [ 
+      { skill: "Persuasion", specialty: "Seduction"},
+      { skill: "Subterfudge", specialty: "Seduction"},
+    ],
+    disciplines: ["Fortitude", "Presence"],
+    humanityModifier: 0,
+    bloodPotencyModifier: 0,
+    merits: ["Looks Merit Beautiful **"],
+    flaws: ["Enemy a spurned lover or jelaous partner * "],
+    advantages: []
+  },
+]
+
 
 export const skillDistributions = [
   {
