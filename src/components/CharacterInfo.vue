@@ -22,6 +22,19 @@ export default {
         (predator) => predator.id == this.bio.predator.value
       )[0].disciplines
     }
+  },
+  methods: {
+    /**
+     * after change of predator type check if we have to remove predator discipline
+     */
+    chosenDisciplineCheck(predatorType) {
+      var allowedDisciplines = this.predatorDefinitions.filter(
+        (predator) => predator.id == predatorType
+      )[0].disciplines
+      if (! allowedDisciplines.includes(this.bio.predator.chosenDiscipline)) {
+        this.bio.predator.chosenDiscipline = "no"
+      }
+    }
   }
 };
 </script>
@@ -72,7 +85,7 @@ export default {
         @char-item-change="$emit('bioChange', [bio.faction, $event])"/>
       <CharacterInfoSelect 
         :item="bio.predator"
-        @char-item-change="$emit('bioChange', [bio.predator, $event])"/>
+        @char-item-change="$emit('bioChange', [bio.predator, $event]); chosenDisciplineCheck($event)"/>
 
       <div class="char-info-item">
         <label>Predator Discipline:</label>
