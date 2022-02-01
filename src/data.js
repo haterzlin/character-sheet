@@ -1089,7 +1089,7 @@ export const vitals = [
     id: "Blood Potency",
     style: "point",
     scale: 10,
-    //TODO dependa on generation
+    //TODO depends on generation
     description: "Your Blood Potency: a measure of Caine's blood in Your character",
     },
 ];
