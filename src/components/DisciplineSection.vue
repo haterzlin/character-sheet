@@ -1,8 +1,6 @@
 <script setup>
-
 import Discipline from './Discipline.vue';
 import RestrictionState from './RestrictionState.vue';
-
 </script>
 
 <script>
