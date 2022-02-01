@@ -68,4 +68,24 @@ describe('Adding discipline', () => {
             cy.get('.discipline-ability').next().next().next().first().children().should('be.disabled')
         })
     })
+    it('Predator type discipline is not removed when Animalism is predator discipline for selected Predator type', () => {
+        cy.contains('Predator Type:').next().select('Farmer')
+        cy.get('#disciplines').within(() => {
+            cy.get('.points').first().children().next().first().should('have.class', 'fill')
+            cy.get('.points').first().children().next().next().first().should('have.class', 'bonus')
+            cy.get('.points').first().children().next().next().first().should('not.have.class', 'fill')
+            cy.get('.discipline-ability').next().next().first().children().should('not.be.disabled')
+        })
+    })
+    it('Predator type discipline is removed when Animalism is not predator discipline for selected Predator type', () => {
+        cy.contains('Predator Type:').next().select('Alleycat')
+        cy.get('#disciplines').within(() => {
+            cy.get('.points').first().children().next().first().should('have.class', 'fill')
+            cy.get('.points').first().children().next().next().first().should('have.class', 'bonus')
+            // error - next one should fail if previous passed and is not!!!
+            cy.get('.points').first().children().next().next().first().should('not.have.class', 'bonus')
+            cy.get('.points').first().children().next().next().first().should('not.have.class', 'fill')
+            cy.get('.discipline-ability').next().next().first().children().should('be.disabled')
+        })
+    })
 })
