@@ -77,8 +77,8 @@ export default {
       <div class="char-info-item">
         <label>Predator Discipline:</label>
         <select
-          @change="bio.predator.choosenDiscipline = $event.target.value"
-          :value="bio.predator.choosenDiscipline"
+          @change="bio.predator.chosenDiscipline = $event.target.value"
+          :value="bio.predator.chosenDiscipline"
         >
           <option disabled value>Choose discipline</option>
           <option v-for="option in predatorTypeDisciplines" :key="option">

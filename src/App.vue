@@ -201,7 +201,7 @@ export default {
       :disciplines="disciplines"
       :selectedClan="biography.clan.value"
       :disciplines-definition="disciplinesDefinition"
-      :predatorDiscipline="biography.predator.choosenDiscipline"
+      :predatorDiscipline="biography.predator.chosenDiscipline"
       @disciplines-change="disciplines = $event"
       @stat-help="handleHelp($event)"
     >

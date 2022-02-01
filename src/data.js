@@ -47,7 +47,7 @@ export const biography = {
     value: "Alleycat",
     list: ["Alleycat", "Bagger", "Blood Leech", "Cleaver", "Consensualist", "Farmer", "Osiris", "Sandman", "Scene Queen", "Siren"],
     disabledValue: "Choose Your Predator Type",
-    choosenDiscipline: "no"
+    chosenDiscipline: "no"
 
   },
   ambition: {
