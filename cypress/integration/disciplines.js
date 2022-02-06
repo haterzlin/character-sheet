@@ -80,11 +80,10 @@ describe('Adding discipline', () => {
     it('Predator type discipline is removed when Animalism is not predator discipline for selected Predator type', () => {
         cy.contains('Predator Type:').next().select('Alleycat')
         cy.get('#disciplines').within(() => {
-            cy.get('.points').first().children().next().first().should('have.class', 'fill')
-            cy.get('.points').first().children().next().next().first().should('have.class', 'bonus')
-            // error - next one should fail if previous passed and is not!!!
-            cy.get('.points').first().children().next().next().first().should('not.have.class', 'bonus')
-            cy.get('.points').first().children().next().next().first().should('not.have.class', 'fill')
+            var points = cy.get('.points').first().children()
+            points.next().first().should('have.class', 'fill')
+            points.next().should('not.have.class', 'bonus')
+            points.should('not.have.class', 'fill')
             cy.get('.discipline-ability').next().next().first().children().should('be.disabled')
         })
     })
