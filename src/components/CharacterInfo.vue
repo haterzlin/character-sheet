@@ -12,7 +12,7 @@ import CharacterInfoPortrait from "./CharacterInfoPortrait.vue";
 export default {
   components: [CharacterInfoInput, CharacterInfoSelect, CharacterInfoPortrait],
   props: ["bio", "predatorDefinitions"],
-  emits: ["bioChange"],
+  emits: ["bioChange", "predatorTypeChange"],
   computed: {
     /**
      * @returns list of disciplines filtered by predator type value from predatorDefinitions
@@ -31,8 +31,8 @@ export default {
       var allowedDisciplines = this.predatorDefinitions.filter(
         (predator) => predator.id == predatorType
       )[0].disciplines
-      if (! allowedDisciplines.includes(this.bio.predator.chosenDiscipline)) {
-        this.bio.predator.chosenDiscipline = "no"
+      if (! allowedDisciplines.includes(this.bio.predatorDiscipline)) {
+        this.$emit('bioChange', [this.bio.predatorDiscipline, null]);
       }
     }
   }
@@ -85,20 +85,14 @@ export default {
         @char-item-change="$emit('bioChange', [bio.faction, $event])"/>
       <CharacterInfoSelect 
         :item="bio.predator"
-        @char-item-change="$emit('bioChange', [bio.predator, $event]); chosenDisciplineCheck($event)"/>
+        @char-item-change="$emit('bioChange', [bio.predator, $event]); 
+                           //bio.predatorDiscipline.list = predatorTypeDisciplines;
+                           $emit('predatorTypeChange', predatorTypeDisciplines);
+                           chosenDisciplineCheck($event)"/>
 
-      <div class="char-info-item">
-        <label>Predator Discipline:</label>
-        <select
-          @change="bio.predator.chosenDiscipline = $event.target.value"
-          :value="bio.predator.chosenDiscipline"
-        >
-          <option disabled value>Choose discipline</option>
-          <option v-for="option in predatorTypeDisciplines" :key="option">
-            {{ option }}
-          </option>
-        </select>
-      </div>
+      <CharacterInfoSelect 
+        :item="bio.predatorDiscipline"
+        @char-item-change="$emit('bioChange', [bio.predatorDiscipline, $event]);"/>
 
     </div>
     <div class="clear"></div>

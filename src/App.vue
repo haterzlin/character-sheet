@@ -182,7 +182,8 @@ export default {
     <character-info 
       :bio="biography" 
       :predator-definitions="predatorDefinitions"
-      @bio-change="$event[0].value = $event[1]">
+      @bio-change="$event[0].value = $event[1]"
+      @predator-type-change="biography.predatorDiscipline.list = $event">
     </character-info>
     <attribute-section
       :stats="attributes"
@@ -201,7 +202,7 @@ export default {
       :disciplines="disciplines"
       :selectedClan="biography.clan.value"
       :disciplines-definition="disciplinesDefinition"
-      :predatorDiscipline="biography.predator.chosenDiscipline"
+      :predatorDiscipline="biography.predatorDiscipline.value"
       @disciplines-change="disciplines = $event"
       @stat-help="handleHelp($event)"
     >
