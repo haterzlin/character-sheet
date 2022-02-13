@@ -162,6 +162,24 @@ export default {
       });
       return;
     },
+    /**
+     * @param {String} newPredator is value of new predator type
+     * we generate list of allowed disciplines based on it
+     * we will check if current selected predator discipline is allowed and if not, we'll reset it
+     * then we need to update list of allowed disciplines 
+     * and then we can set new predator type value
+     */
+    predatorTypeChange(newPredator) {
+      var allowedDisciplines = predatorDefinitions.filter(
+        (predator) => predator.id == newPredator
+      )[0].disciplines
+      console.log('old predator discipline: ' + this.biography.predatorDiscipline.value)
+      if (! allowedDisciplines.includes(this.biography.predatorDiscipline.value)) {
+        this.biography.predatorDiscipline.value = "no"
+      }
+      this.biography.predatorDiscipline.list = allowedDisciplines
+      this.biography.predator.value = newPredator
+    },
   },
 };
 </script>
@@ -181,9 +199,8 @@ export default {
     :style="{cursor: (help) ? 'help' : null}">
     <character-info 
       :bio="biography" 
-      :predator-definitions="predatorDefinitions"
-      @bio-change="$event[0].value = $event[1]"
-      @predator-type-change="biography.predatorDiscipline.list = $event">
+      @bio-change="setDataValue($event)"
+      @predator-type-change="predatorTypeChange($event)">
     </character-info>
     <attribute-section
       :stats="attributes"

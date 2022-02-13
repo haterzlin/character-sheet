@@ -11,31 +11,8 @@ import CharacterInfoPortrait from "./CharacterInfoPortrait.vue";
  */
 export default {
   components: [CharacterInfoInput, CharacterInfoSelect, CharacterInfoPortrait],
-  props: ["bio", "predatorDefinitions"],
-  emits: ["bioChange", "predatorTypeChange"],
-  computed: {
-    /**
-     * @returns list of disciplines filtered by predator type value from predatorDefinitions
-     */
-    predatorTypeDisciplines() {
-      return this.predatorDefinitions.filter(
-        (predator) => predator.id == this.bio.predator.value
-      )[0].disciplines
-    }
-  },
-  methods: {
-    /**
-     * after change of predator type check if we have to remove predator discipline
-     */
-    chosenDisciplineCheck(predatorType) {
-      var allowedDisciplines = this.predatorDefinitions.filter(
-        (predator) => predator.id == predatorType
-      )[0].disciplines
-      if (! allowedDisciplines.includes(this.bio.predatorDiscipline)) {
-        this.$emit('bioChange', [this.bio.predatorDiscipline, null]);
-      }
-    }
-  }
+  props: ["bio"],
+  emits: ["bioChange", "predatorTypeChange"]
 };
 </script>
 
@@ -85,10 +62,7 @@ export default {
         @char-item-change="$emit('bioChange', [bio.faction, $event])"/>
       <CharacterInfoSelect 
         :item="bio.predator"
-        @char-item-change="$emit('bioChange', [bio.predator, $event]); 
-                           //bio.predatorDiscipline.list = predatorTypeDisciplines;
-                           $emit('predatorTypeChange', predatorTypeDisciplines);
-                           chosenDisciplineCheck($event)"/>
+        @char-item-change="$emit('predatorTypeChange', $event)"/>
 
       <CharacterInfoSelect 
         :item="bio.predatorDiscipline"
@@ -111,11 +85,6 @@ export default {
 
 .clear {
   clear: both;
-}
-.char-info-item label {
-  font-size: small;
-  font-variant: small-caps;
-  display: block;
 }
 
 </style>
