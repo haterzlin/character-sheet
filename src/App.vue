@@ -170,12 +170,11 @@ export default {
      * and then we can set new predator type value
      */
     predatorTypeChange(newPredator) {
-      var allowedDisciplines = predatorDefinitions.filter(
+      var allowedDisciplines = this.predatorDefinitions.filter(
         (predator) => predator.id == newPredator
       )[0].disciplines
-      console.log('old predator discipline: ' + this.biography.predatorDiscipline.value)
       if (! allowedDisciplines.includes(this.biography.predatorDiscipline.value)) {
-        this.biography.predatorDiscipline.value = "no"
+        this.biography.predatorDiscipline.value = null
       }
       this.biography.predatorDiscipline.list = allowedDisciplines
       this.biography.predator.value = newPredator

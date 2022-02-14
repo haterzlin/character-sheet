@@ -63,11 +63,9 @@ export default {
       <CharacterInfoSelect 
         :item="bio.predator"
         @char-item-change="$emit('predatorTypeChange', $event)"/>
-
       <CharacterInfoSelect 
         :item="bio.predatorDiscipline"
         @char-item-change="$emit('bioChange', [bio.predatorDiscipline, $event]);"/>
-
     </div>
     <div class="clear"></div>
   </div>

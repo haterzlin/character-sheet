@@ -51,7 +51,7 @@ export const biography = {
   predatorDiscipline: {
     id: "Predator Discipline",
     list: ["Celerity", "Potence"],
-    value: "no"
+    value: null
   },
   ambition: {
     id: "Ambition",
