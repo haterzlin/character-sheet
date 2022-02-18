@@ -57,10 +57,10 @@ export default {
         )
         .map(({ id }) => id);
     },
-    computeBonus() {
+    predatorDisciplineBonus() {
       /**
        * compute bonus for predator discipline
-       * @returns {Int}
+       * @returns {Number}
        */
       if (!this.discipline.id | this.discipline.id != this.predatorDiscipline) {
         return 0
@@ -152,7 +152,7 @@ export default {
         :value="discipline.value"
         :initialValue="0"
         :scale="5"
-        :bonus="computeBonus"
+        :bonus="predatorDisciplineBonus"
         @valueChange="
           emitChangedDiscipline(discipline.id, $event, discipline.abilities)
         "
@@ -168,7 +168,7 @@ export default {
       {{ item.level }}
       <select
         class="discipline-ability-select"
-        :disabled="this.discipline.value + computeBonus < item.level  ? 1 : 0"
+        :disabled="this.discipline.value + predatorDisciplineBonus < item.level  ? 1 : 0"
         v-model="item.value"
       >
         <option disabled value="">Choose ability</option>
