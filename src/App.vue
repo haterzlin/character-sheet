@@ -88,6 +88,9 @@ export default {
     setDataValue(event) {
       event[0].value = event[1];      
     },
+    setDataList(event) {
+      event[0].list = event[1];      
+    },
     /**
      * TODO explain this method, better
      * event handler, if help==true send data to helpWidnow; help -> false
@@ -162,23 +165,6 @@ export default {
       });
       return;
     },
-    /**
-     * @param {String} newPredator is value of new predator type
-     * we generate list of allowed disciplines based on it
-     * we will check if current selected predator discipline is allowed and if not, we'll reset it
-     * then we need to update list of allowed disciplines 
-     * and then we can set new predator type value
-     */
-    predatorTypeChange(newPredator) {
-      var allowedDisciplines = this.predatorDefinitions.filter(
-        (predator) => predator.id == newPredator
-      )[0].disciplines
-      if (! allowedDisciplines.includes(this.biography.predatorDiscipline.value)) {
-        this.biography.predatorDiscipline.value = null
-      }
-      this.biography.predatorDiscipline.list = allowedDisciplines
-      this.biography.predator.value = newPredator
-    },
   },
 };
 </script>
@@ -198,8 +184,10 @@ export default {
     :style="{cursor: (help) ? 'help' : null}">
     <character-info 
       :bio="biography" 
+      :predator-definitions="predatorDefinitions"
       @bio-change="setDataValue($event)"
-      @predator-type-change="predatorTypeChange($event)">
+      @bio-change-list="setDataList($event)"
+      >
     </character-info>
     <attribute-section
       :stats="attributes"
