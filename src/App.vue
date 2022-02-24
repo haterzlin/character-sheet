@@ -221,10 +221,16 @@ h3 {
   text-align: center;
 }
 
+div.threeColumns {
+  box-sizing: border-box;
+}
 div.statList {
-  width: 240px;
+  width: 32%;
   float: left;
-  padding: 10px;
+  padding: 5px;
+}
+div.clearFloat {
+  clear: both;
 }
 .ulStats {
   text-align: left;
