@@ -53,8 +53,8 @@ export default {
         :allocatedResources="allocatedResources"
         @disciplineChange="$emit('disciplinesChange', disciplines)"
       />
-    </div>
-    <div class="clearFloat"></div>
+      <div class="clearFloat"></div>
+    </div>    
   </div>
 </template>
 

@@ -68,8 +68,8 @@ export default {
           </li>
         </ul>
       </div>
-    </div>
-    <div class="clearFloat"></div>
+      <div class="clearFloat"></div>
+    </div>   
   </div>
 </template>
 
