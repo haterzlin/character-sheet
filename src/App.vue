@@ -85,11 +85,8 @@ export default {
     this.bindPathToData();
   },
   methods: {
-    setDataValue(event) {
-      event[0].value = event[1];      
-    },
-    setDataList(event) {
-      event[0].list = event[1];      
+    setData(event, key) {
+      event[0][key] = event[1];      
     },
     /**
      * TODO explain this method, better
@@ -185,20 +182,20 @@ export default {
     <character-info 
       :bio="biography" 
       :predator-definitions="predatorDefinitions"
-      @bio-change="setDataValue($event)"
-      @bio-change-list="setDataList($event)"
+      @bio-change="setData($event, 'value')"
+      @bio-change-list="setData($event, 'list')"
       >
     </character-info>
     <attribute-section
       :stats="attributes"
-      @stat-section-change="setDataValue($event)"
+      @stat-section-change="setData($event, 'value')"
       @stat-help="handleHelp($event)"
     >
     </attribute-section>
     <skill-section
       :stats="skills"
       :distributions="skillDistributions"
-      @stat-section-change="setDataValue($event)"
+      @stat-section-change="setData($event, 'value')"
       @stat-help="handleHelp($event)"
     >
     </skill-section>

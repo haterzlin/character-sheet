@@ -24,7 +24,7 @@ export default {
       var allowedDisciplines = this.predatorDefinitions.filter(
         (predator) => predator.id == newPredator
       )[0].disciplines
-      if (! allowedDisciplines.includes(this.bio.predatorDiscipline.value)) {
+      if (!allowedDisciplines.includes(this.bio.predatorDiscipline.value)) {
         this.$emit('bioChange', [this.bio.predatorDiscipline, null])
       }
       this.$emit('bioChangeList', [this.bio.predatorDiscipline, allowedDisciplines])
