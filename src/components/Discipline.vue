@@ -115,6 +115,15 @@ export default {
         this.$emit('disciplineChange', newdisc);
       }
     },
+    /**
+     * returns 0 if discipline ability select should be enabled
+     * or 1 if not 
+     * depending in itemLevel and discipline value and predator discipline bonus
+     * @param {String} itemLevel - which discipline ability level we are at
+     */
+    isAbilityDisabled(itemLevel) {
+      return this.discipline.value + this.predatorDisciplineBonus < itemLevel ? 1 : 0
+    }
   },
 };
 </script>
@@ -168,7 +177,7 @@ export default {
       {{ item.level }}
       <select
         class="discipline-ability-select"
-        :disabled="this.discipline.value + predatorDisciplineBonus < item.level  ? 1 : 0"
+        :disabled="isAbilityDisabled(item.level)"
         v-model="item.value"
       >
         <option disabled value="">Choose ability</option>
