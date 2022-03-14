@@ -34,8 +34,8 @@ export default {
 </script>
 
 <template>
-  <div class="char-info" id="char-info">
-    <div class="char-info-group">
+  <div class="threeColumns" id="char-info">
+    <div class="statList">
       <CharacterInfoInput 
         :item="bio.concept" 
         @char-item-change="$emit('bioChange', [bio.concept, $event])"></CharacterInfoInput>
@@ -55,7 +55,7 @@ export default {
         :item="bio.desire"
         @char-item-change="$emit('bioChange', [bio.desire, $event])"></CharacterInfoInput>
     </div>
-    <div class="char-info-group middle">
+    <div class="statList middle">
       <CharacterInfoPortrait
         :item="bio.image"
         @char-item-change="$emit('bioChange', [bio.image, $event])"
@@ -64,7 +64,7 @@ export default {
         :item="bio.name"
         @char-item-change="$emit('bioChange', [bio.name, $event])"/>
     </div>
-    <div class="char-info-group">
+    <div class="statList">
       <CharacterInfoSelect 
         :item="bio.generation"
         @char-item-change="$emit('bioChange', [bio.generation, $event])"/>
@@ -84,22 +84,12 @@ export default {
         :item="bio.predatorDiscipline"
         @char-item-change="$emit('bioChange', [bio.predatorDiscipline, $event]);"/>
     </div>
-    <div class="clear"></div>
+    <div class="clearFloat"></div>
   </div>
 </template>
 
 <style scoped>
-.char-info-group {
-  width: 32%;
-  float: left
-}
-
 .middle {
   text-align: center;
 }
-
-.clear {
-  clear: both;
-}
-
 </style>

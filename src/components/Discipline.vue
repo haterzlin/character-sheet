@@ -129,7 +129,7 @@ export default {
 </script>
 
 <template>
-  <div class="discipline-item">
+  <div class="statList">
     <div>
       <select
         class="discipline-select"
@@ -193,11 +193,6 @@ export default {
 </template>
 
 <style scoped>
-.discipline-item {
-  width: 32%;
-  float: left;
-  margin: 5px;
-}
 
 .discipline-item:hover {
   background-color: #f5f5f5;

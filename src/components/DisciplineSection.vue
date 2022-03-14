@@ -41,18 +41,20 @@ export default {
       class="resourceCount"
       :allocatedResources="allocatedResources"
       :resourceRestrictions="disciplinesDefinition.resource"
-    />      
-
-    <Discipline
-      v-for="discipline in disciplines"
-      :key="discipline"
-      :discipline="discipline"
-      :disciplines="disciplines"
-      :clan="selectedClan"
-      :allocatedResources="allocatedResources"
-      :predatorDiscipline="predatorDiscipline"
-      @disciplineChange="$emit('disciplinesChange', disciplines)"
     />
+    <div class="threecolumns">
+      <Discipline
+        v-for="discipline in disciplines"
+        :key="discipline"
+        :discipline="discipline"
+        :disciplines="disciplines"
+        :clan="selectedClan"
+        :allocatedResources="allocatedResources"
+        :predatorDiscipline="predatorDiscipline"
+        @disciplineChange="$emit('disciplinesChange', disciplines)"
+      />
+      <div class="clearFloat"></div>
+    </div>    
   </div>
 </template>
 

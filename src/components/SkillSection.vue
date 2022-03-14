@@ -44,29 +44,32 @@ export default {
       :allocatedResources="allocatedResources"
       :resourceRestrictions="stats.resource"
     />
-    <div
-      v-for="category in stats.data"
-      :key="category.id"
-      class="statList"
-      @click="$emit('statHelp', { category: category })"      
-    >
-      <h2>{{ category.id }}</h2>
-      <ul class="ulStats">
-        <li v-for="item in category.list" :key="item.id">
-          <Stat
-            :stat="item"
-            :scale="stats.resource.length - 1"
-            @stat-change="emitAllowedChange($event)"
-            @stat-click="
-              $emit('statHelp', {
-                stat: $event.stat,
-                resource: stats.resource,
-              })
-            "            
-          />
-        </li>
-      </ul>
-    </div>
+    <div class="threecolumns">
+      <div
+        v-for="category in stats.data"
+        :key="category.id"
+        class="statList"
+        @click="$emit('statHelp', { category: category })"      
+      >
+        <h2>{{ category.id }}</h2>
+        <ul class="ulStats">
+          <li v-for="item in category.list" :key="item.id">
+            <Stat
+              :stat="item"
+              :scale="stats.resource.length - 1"
+              @stat-change="emitAllowedChange($event)"
+              @stat-click="
+                $emit('statHelp', {
+                  stat: $event.stat,
+                  resource: stats.resource,
+                })
+              "            
+            />
+          </li>
+        </ul>
+      </div>
+      <div class="clearFloat"></div>
+    </div>   
   </div>
 </template>
 
