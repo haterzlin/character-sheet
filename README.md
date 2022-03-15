@@ -48,3 +48,7 @@ Installation on Ubuntu 20.04
 ### Build production files
 
     npm run build
+
+### Build & Run tests
+
+   bash run_tests.sh
