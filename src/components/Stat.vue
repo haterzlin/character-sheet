@@ -52,6 +52,7 @@ export default {
 
 .statName:after {
   content: " ________________";
+  color: #ccc;
 }
 
 .stat:hover > .statName {

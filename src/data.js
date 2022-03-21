@@ -411,7 +411,7 @@ export const skills = {
             4: "With your parkour abilities, why would you need to turn into a bat?",
             5: "Olympic records await you; only a very few peak humans can achieve what you can. Vampires mistake your skill for Physical Disciplines.",
             specialties:
-              "Specialties: Acrobatics, Archery, Climbing, Endurance, Jumping, Parkour, Swimming, Throwing",
+              "Acrobatics, Archery, Climbing, Endurance, Jumping, Parkour, Swimming, Throwing",
           },
         },
         {
@@ -426,7 +426,7 @@ export const skills = {
             4: "You either received Spetsnazquality training, or you have spent decades of afterlife in fights.",
             5: "You could win MMA championships even without the use of your vampiric powers.",
             specialties:
-              "Specialties: Animals, Armed Mortals, Bar Fights, Grappling, Kindred, Sporting Combat, Unarmed Mortals, Werewolves, While in Protean Beast Form",
+              "Animals, Armed Mortals, Bar Fights, Grappling, Kindred, Sporting Combat, Unarmed Mortals, Werewolves, While in Protean Beast Form",
           },
         },
         {
@@ -441,7 +441,7 @@ export const skills = {
             4: "Your skill is highly respected among the kine and Kindred aware of it.",
             5: "You are often chosen to create the focal point for parties at Elysium.",
             specialties:
-              "Specializations: Carpentry, Carving, Design, Painting, Sculpting, Sewing, Weaponsmithing ",
+              "Carpentry, Carving, Design, Painting, Sculpting, Sewing, Weaponsmithing ",
           },
         },
         {
@@ -456,7 +456,7 @@ export const skills = {
             4: "You could be a stunt driver or the personal chauffeur of a Prince or Baron.",
             5: "You know cars inside and out. Few can match your skill and knowledge.",
             specialties:
-              "Specialties: AllTerrain Vehicles, Evasion, Motorcycles, Street Racing, Stunts, Tailing, Trucks, Vintage Models ",
+              "AllTerrain Vehicles, Evasion, Motorcycles, Street Racing, Stunts, Tailing, Trucks, Vintage Models ",
           },
         },
         {
@@ -471,7 +471,7 @@ export const skills = {
             4: "You can handle trick shots, called shots, running shots – really anything ending in a gunshot.",
             5: "You’ve been practicing since the debut of the Winchester.",
             specialties:
-              "Specialties: Crossbows, Gun Dealing, Gunsmithing, Handloading Ammunition, QuickDraw, Sniper, Trick Shooting",
+              "Crossbows, Gun Dealing, Gunsmithing, Handloading Ammunition, QuickDraw, Sniper, Trick Shooting",
           },
         },
         {
@@ -486,7 +486,7 @@ export const skills = {
             4: "You can defeat a keypad, retool an ID card, or crack a safe.",
             5: "You can get into – or out of – the vault of a multinational bank.",
             specialties:
-              "Specialties: Alarms, Forgery, Grand Theft Auto, Housebreaking, Lockpicking, Pickpocket, Safecracking, Security Analysis ",
+              "Alarms, Forgery, Grand Theft Auto, Housebreaking, Lockpicking, Pickpocket, Safecracking, Security Analysis ",
           },
         },
         {
@@ -499,7 +499,7 @@ export const skills = {
             4: "The fools brought a gun to your knife fight.",
             5: "You are the domain’s weaponmaster, sought out by Kindred far and wide for your skill.",
             specialties:
-              "Specialties: Axes, Chains, Clubs, Fencing, Disarming Blows, Garrotes, Improvised Weapons, Knives, Stakes, Swords",
+              "Axes, Chains, Clubs, Fencing, Disarming Blows, Garrotes, Improvised Weapons, Knives, Stakes, Swords",
           },
         },
         {
@@ -514,7 +514,7 @@ export const skills = {
             4: "Your subtle, silent passage could make you a worthy ninja – or a worthy foe for ninja.",
             5: "The Children of Haqim come to you for advice on stalking and hiding, if they can find you.",
             specialties:
-              "Specialties: Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness",
+              "Ambushes, Crowds, Disguise, Hiding, Shadowing, Silent Movement, Urban, Wilderness",
           },
         },
         {
@@ -529,7 +529,7 @@ export const skills = {
             4: "You can thrive outside the city like the true predator you are.",
             5: "Gangrel run in packs with you – if they can keep up.",
             specialties:
-              "Specialties: Desert, Hunting, Jungle, Tracking, Traps, Shelters, Urban Exploration, Woodlands",
+              "Desert, Hunting, Jungle, Tracking, Traps, Shelters, Urban Exploration, Woodlands",
           },
         },
       ],
@@ -551,7 +551,7 @@ export const skills = {
             4: "You draw animals into your orbit. Few attacking creatures maintain their aggression.",
             5: "You can sense an animal’s feelings and thoughts, and they can feel and act on yours.",
             specialties:
-              "Specialties: Attack Training, Cats, Dogs, Falconry, Horses, Pacification, Rats, Snakes, Stunt Training, Wolves",
+              "Attack Training, Cats, Dogs, Falconry, Horses, Pacification, Rats, Snakes, Stunt Training, Wolves",
           },
         },
         {
@@ -566,7 +566,7 @@ export const skills = {
             4: "Your behavior sets trends, especially if you do something to buck the norm of etiquette.",
             5: "The Keeper of Elysium and the Harpies look to you to establish domain protocol.",
             specialties:
-              "Specialties: Anarch, Camarilla, Celebrities, Corporate, Elysium, Feudal, OnePercenter, Secret Society",
+              "Anarch, Camarilla, Celebrities, Corporate, Elysium, Feudal, OnePercenter, Secret Society",
           },
         },
         {
@@ -581,7 +581,7 @@ export const skills = {
             4: "You are an undead lie detector. Only the best con artists can slip one by you.",
             5: "People may be books of blood, but they are printed in very large type – easy to read.",
             specialties:
-              "Specialties: Ambitions, Desires, Detect Lies, Emotions, Empathy, Interrogation, Motives, Phobias, Vices",
+              "Ambitions, Desires, Detect Lies, Emotions, Empathy, Interrogation, Motives, Phobias, Vices",
           },
         },
         {
@@ -596,7 +596,7 @@ export const skills = {
             4: "You're far past mere physical threats.",
             5: "Even fellow Kindred may step back if you step up.",
             specialties:
-              "Specialties: Extortion, Insults, Interrogation, Physical Coercion, Staredowns, Veiled Threats",
+              "Extortion, Insults, Interrogation, Physical Coercion, Staredowns, Veiled Threats",
           },
         },
         {
@@ -611,7 +611,7 @@ export const skills = {
             4: "You can inspire the injured and dying to action, so long as you are there to lead them.",
             5: "Your words fill a vampire’s heart with enough strength to make it feel alive and beating.",
             specialties:
-              "Specialties: Command, Inspiration, Oratory, Praxis, Team Dynamics, War Pack ",
+              "Command, Inspiration, Oratory, Praxis, Team Dynamics, War Pack ",
           },
         },
         {
@@ -626,7 +626,7 @@ export const skills = {
             4: "You perform your practiced art form stunningly, winning over even Toreador far and wide.",
             5: "Improvisation holds no terrors for you: every night a different audience, every night a different show.",
             specialties:
-              "Specialties: Comedy, Dance, Drama, Drums, Guitar, Keyboards, Poetry, Public Speaking, Rap, Singing, Violin, Wind Instruments <br>In theory, the Storyteller could break these specialties down endlessly – can even a fivedot pop star also perform as a coloratura soprano and a country crooner? But in practice, unless the whole chronicle happens in a musical or theatrical milieu, allow broader specialties.",
+              "Comedy, Dance, Drama, Drums, Guitar, Keyboards, Poetry, Public Speaking, Rap, Singing, Violin, Wind Instruments <br>In theory, the Storyteller could break these specialties down endlessly – can even a fivedot pop star also perform as a coloratura soprano and a country crooner? But in practice, unless the whole chronicle happens in a musical or theatrical milieu, allow broader specialties.",
           },
         },
         {
@@ -641,7 +641,7 @@ export const skills = {
             4: "The other side starts looking for a settlement when they see you in court, human or Kindred.",
             5: "You may be the original silvertongued devil.",
             specialties:
-              "Specialties: Bargaining, Fast Talk, Interrogation, Legal Argument, Negotiation, Rhetoric",
+              "Bargaining, Fast Talk, Interrogation, Legal Argument, Negotiation, Rhetoric",
           },
         },
         {
@@ -656,7 +656,7 @@ export const skills = {
             4: "When gangsters say “I know a guy,” you’re who they know.",
             5: "You can hire, orchestrate, or arrange almost any criminal activity anywhere in your city.",
             specialties:
-              "Specialties: Arms Dealing, Black Market, Bribery, Drugs, Fence Stolen Goods, Gangs, Graffiti, Personal Rep, Sex Trade, Urban Survival ",
+              "Arms Dealing, Black Market, Bribery, Drugs, Fence Stolen Goods, Gangs, Graffiti, Personal Rep, Sex Trade, Urban Survival ",
           },
         },
         {
@@ -671,7 +671,7 @@ export const skills = {
             4: "You can operate endlessly in deep cover: a perfect double agent. Perhaps you are!",
             5: "Nobody believes you have even a single dot in Subterfuge.",
             specialties:
-              "Specialties: Bluff, Feign Mortality, Impeccable Lies, Innocence, The Long Con, Seduction ",
+              "Bluff, Feign Mortality, Impeccable Lies, Innocence, The Long Con, Seduction ",
           },
         },
       ],
@@ -693,7 +693,7 @@ export const skills = {
             4: "Advanced specialized study beyond university, learning into subjects few understand",
             5: "Refined and advanced scholarship, likely to be sought out for advice and tutelage",
             specialties:
-              "Specialties: Architecture, English Literature, History of Art, History (specific Field or Period), Journalism, Philosophy, Research, Teaching, Theology",
+              "Architecture, English Literature, History of Art, History (specific Field or Period), Journalism, Philosophy, Research, Teaching, Theology",
           },
         },
         {
@@ -708,7 +708,7 @@ export const skills = {
             4: "Even when you are distracted, few things are beyond your notice.",
             5: "Your senses are those of a wild animal.",
             specialties:
-              "Specialties: Ambushes, Camouflage, Concealed Objects, Hearing, Instincts, Smell, Sight, Traps, Wilderness",
+              "Ambushes, Camouflage, Concealed Objects, Hearing, Instincts, Smell, Sight, Traps, Wilderness",
           },
         },
         {
@@ -723,7 +723,7 @@ export const skills = {
             4: "Investment banks follow your financial lead. You have no trouble concealing fraud.",
             5: "You can make money do anything, including stick to your pockets – or crash countries.",
             specialties:
-              "Specialties: Appraisal, Banking, Black Markets, Corporate Finance, Currency Manipulation, Fine Art, Forensic Accounting, Money Laundering, Stock Market ",
+              "Appraisal, Banking, Black Markets, Corporate Finance, Currency Manipulation, Fine Art, Forensic Accounting, Money Laundering, Stock Market ",
           },
         },
         {
@@ -738,7 +738,7 @@ export const skills = {
             4: "The Sheriff comes to you when unknown parties sabotage the domain’s safety.",
             5: "You set riddles for others and live an enigmatic existence few can penetrate.",
             specialties:
-              "Specialties: Criminology, Deduction, Forensics, Missing Persons, Murder, Paranormal Mysteries, Traffic Analysis ",
+              "Criminology, Deduction, Forensics, Missing Persons, Murder, Paranormal Mysteries, Traffic Analysis ",
           },
         },
         {
@@ -753,7 +753,7 @@ export const skills = {
             4: "You can diagnose and treat all but the rarest of illnesses. You may have been a surgeon or specialist in life.",
             5: "You are a noted medical expert, sought out by mortals and immortals alike.",
             specialties:
-              "Specialties: First Aid, Haematology, Pathology, Pharmacy, Phlebotomy, Surgery, Trauma Care, Veterinary ",
+              "First Aid, Haematology, Pathology, Pharmacy, Phlebotomy, Surgery, Trauma Care, Veterinary ",
           },
         },
         {
@@ -768,7 +768,7 @@ export const skills = {
             4: "You could name most of the Antediluvians and even comprehend a Tremere ritual.",
             5: "Tremere and Children of Haqim consult with you on obscure lore.",
             specialties:
-              "Specializations: Alchemy, Blood Magic, Faeries, Ghosts, Grimoires, Infernalism, Magi, Necromancy, Noddism, Parapsychology, Voudun, Werewolves ",
+              "Alchemy, Blood Magic, Faeries, Ghosts, Grimoires, Infernalism, Magi, Necromancy, Noddism, Parapsychology, Voudun, Werewolves ",
           },
         },
         {
@@ -783,7 +783,7 @@ export const skills = {
             4: "You know the true personaliCHARACTERS ties of the real movers and shakers, live and undead, in your area.",
             5: "You could guess at the unknown members of the Camarilla’s Inner Circle.",
             specialties:
-              "Specialties: Anarchs, Camarilla, City Government, Clan (specific), Diplomacy, Media, National Politics, State/Provincial Politics ",
+              "Anarchs, Camarilla, City Government, Clan (specific), Diplomacy, Media, National Politics, State/Provincial Politics ",
           },
         },
         {
@@ -798,7 +798,7 @@ export const skills = {
             4: "You are an expert in your field and in those allied to it.",
             5: "Few peers match your understanding, and others come to you for guidance.",
             specialties:
-              "Specialties: Astronomy, Biology, Chemistry, Demolitions, Engineering, Genetics, Geology, Mathematics, Physics",
+              "Astronomy, Biology, Chemistry, Demolitions, Engineering, Genetics, Geology, Mathematics, Physics",
           },
         },
         {
@@ -813,13 +813,24 @@ export const skills = {
             4: "The Prince might call you personally to manage cybersecurity for their domain.",
             5: "On the internet, nobody knows you’re a vampire – or that you’re there at all.",
             specialties:
-              "Specializations: Artillery, Coding, Computer Building, Data Mining, Hacking, Networks, Phones, Surveillance Systems",
+              "Artillery, Coding, Computer Building, Data Mining, Hacking, Networks, Phones, Surveillance Systems",
           },
         },
       ],
     },
   ],
 };
+
+export const specialties = {
+  freeSpecialtySkills: {
+    Craft: [], 
+    Academics: [], 
+    Science: [], 
+    Performance: []
+  },
+  chosenSkill: "",
+  chosenSpecialty: ""
+}
 
 export const disciplines = [
   {

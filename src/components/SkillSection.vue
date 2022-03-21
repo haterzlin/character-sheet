@@ -2,6 +2,7 @@
 import { statSectionMixin } from "./mixins/statSectionMixin";
 import { attributesAndSkillsMixin } from "./mixins/attributesAndSkillsMixin";
 import Stat from "./Stat.vue";
+import Skill from "./Skill.vue";
 import RestrictionState from "./RestrictionState.vue";
 </script>
 
@@ -13,7 +14,7 @@ import RestrictionState from "./RestrictionState.vue";
  * if changes are possible, emit event to top component to make changes, otherwise don't
  */
 export default {
-  components: [Stat, RestrictionState],
+  components: [Stat, RestrictionState, Skill],
   mixins: [statSectionMixin, attributesAndSkillsMixin],
   props: ["distributions"],
 };
@@ -54,7 +55,7 @@ export default {
         <h2>{{ category.id }}</h2>
         <ul class="ulStats">
           <li v-for="item in category.list" :key="item.id">
-            <Stat
+            <Skill
               :stat="item"
               :scale="stats.resource.length - 1"
               @stat-change="emitAllowedChange($event)"
@@ -68,11 +69,12 @@ export default {
           </li>
         </ul>
       </div>
-      <div class="clearFloat"></div>
-    </div>   
+    </div>
   </div>
+  <div class="clearFloat"></div>
 </template>
 
 <style scoped>
 select {width: 10em}
+clearFloat {clear: both}
 </style>
